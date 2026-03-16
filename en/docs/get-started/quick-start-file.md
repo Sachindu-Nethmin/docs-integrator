@@ -64,6 +64,15 @@ Use the data mapping tool to extract file metadata from the event payload and ma
 2. Drop a CSV file into the polling directory.
 3. Verify the output file is generated.
 
+## Supported file sources
+
+| Source | Transport | Use case |
+| --- | --- | --- |
+| **Local directory** | File system | Development, on-premises batch processing |
+| **FTP** | FTP | Legacy file exchange |
+| **FTPS** | FTP over TLS | Secure legacy file exchange |
+| **SFTP** | SSH File Transfer | Secure file exchange |
+
 ## What's next
 
 - [File Processing](/docs/develop/build/file-processing): Advanced file handling patterns

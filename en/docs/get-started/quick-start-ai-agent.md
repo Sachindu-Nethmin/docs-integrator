@@ -31,9 +31,16 @@ Client                     GraphQL Service            LLM (OpenAI)
 
 Add an "AI Agent" component to your project using the visual designer.
 
-## Step 2: Connect an LLM
+## Step 2: Add a GraphQL service
 
-Define the agent's "Goal" (purpose) and "Instructions" (how it should behave), then choose and configure the Large Language Model (LLM) that will power it.
+1. Add a **GraphQL Service** artifact.
+2. Add a mutation named `task` that accepts a `query: string` parameter.
+
+## Step 3: Configure the inline agent
+
+1. Inside the mutation, implement an **Inline Agent**.
+2. Configure the model provider (WSO2 default or OpenAI).
+3. Set up agent memory and tools.
 
 In code:
 
