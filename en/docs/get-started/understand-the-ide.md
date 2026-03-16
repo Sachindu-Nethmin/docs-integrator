@@ -16,16 +16,16 @@ The visual designer shows your integration as a flow diagram. Each node represen
 
 ## Low-code ↔ pro-code switching
 
-Click the toggle button to switch between the visual designer and the Ballerina code editor. Changes made in either view are instantly synced to the other.
+Select the toggle button to switch between the visual designer and the Ballerina code editor. Changes made in either view are instantly synced to the other.
 
 ## Key UI elements
 
-1. **Project Explorer**: Browse your integration artifacts, connectors, and resources
-2. **Artifact Panel**: Add new services, automations, event handlers, or AI agents
-3. **Properties Panel**: Configure the selected node's settings
-4. **Run Button**: Start your integration locally
-5. **Try-It Tool**: Send test requests to running services
-6. **Data Mapper**: Open the visual data transformation tool
+1. **Project Explorer**: Browse your integration artifacts, connectors, and resources.
+2. **Artifact Panel**: Add new services, automations, event handlers, or AI agents.
+3. **Properties Panel**: Configure the selected node's settings.
+4. **Run Button**: Start your integration locally.
+5. **Try-It Tool**: Send test requests to running services.
+6. **Data Mapper**: Open the visual data transformation tool.
 
 ## What's next
 

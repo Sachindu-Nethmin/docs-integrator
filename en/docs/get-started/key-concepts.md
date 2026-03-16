@@ -16,15 +16,15 @@ Expose your integrations over HTTP, GraphQL, gRPC, WebSocket, or TCP. Services a
 
 Scheduled or manually triggered integrations that run without an external request. Use automations for periodic data sync, cleanup tasks, or report generation. → [Build Automations](/docs/develop/build/automations)
 
-## Event Handlers
+## Event handlers
 
 Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, or MQTT. Event handlers process streaming data in real time. → [Build Event Handlers](/docs/develop/build/event-handlers)
 
-## File Processors
+## File processors
 
 Integrations triggered by file arrival on FTP, SFTP, or local directories. Process CSV, JSON, XML, or fixed-width files in batch or one at a time. → [Build File Processing](/docs/develop/build/file-processing)
 
-## AI Agents
+## AI agents
 
 Intelligent artifacts backed by large language models (LLMs). Agents can reason, use tools, maintain conversation memory, and orchestrate multi-step workflows. → [Build AI Agents](/docs/develop/build/ai-agents)
 
@@ -44,7 +44,7 @@ LLM calls treated as typed function calls in your integration code. Define an in
 
 The file where you define environment-specific configuration: database URLs, API keys, feature flags. Different environments (dev, test, prod) get different `Config.toml` files. → [Configuration Management](/docs/develop/build/configuration-management)
 
-## Integration Control Plane (ICP)
+## Integration control plane (ICP)
 
 A dashboard for monitoring, managing, and troubleshooting running integrations in production. View logs, metrics, and trace requests across services. → [ICP](/docs/deploy-operate/observe/icp)
 

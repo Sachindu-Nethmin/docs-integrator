@@ -25,7 +25,7 @@ Get your development environment ready in under 5 minutes.
 
 1. Open the Environment.
 2. Ensure you have access to project creation commands.
-3. Select **Create New Project** to confirm the environment is working
+3. Select **Create New Project** to confirm the environment is working.
 
 ## What's next
 

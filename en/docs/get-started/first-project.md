@@ -10,11 +10,11 @@ Create a new WSO2 Integrator project and understand what gets generated.
 
 ## Create the project
 
-1. Open the WSO2 Integrator Development Environment
-2. Open the Project Wizard
-3. Select **Create New Project**
-4. Choose a directory and project name
-5. The environment generates the project structure
+1. Open the WSO2 Integrator Development Environment.
+2. Open the Project Wizard.
+3. Select **Create New Project**.
+4. Choose a directory and project name.
+5. The environment generates the project structure.
 
 ## Project structure
 
@@ -30,9 +30,9 @@ my-integration/
 
 ## Run the empty project
 
-1. Click the **Run** button in the IDE toolbar, or
-2. Open a terminal and run: `bal run`
-3. You should see the service start successfully
+1. Select the **Run** button in the IDE toolbar, or
+2. Open a terminal and run: `bal run`.
+3. You should see the service start successfully.
 
 ## What's next
 

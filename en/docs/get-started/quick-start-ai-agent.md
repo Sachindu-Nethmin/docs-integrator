@@ -8,11 +8,23 @@ description: Create an intelligent AI agent powered by LLMs in under 10 minutes.
 
 **Time:** Under 10 minutes · **What you'll build:** An AI agent that connects to an LLM, uses tools, and handles chat interactions.
 
-<!-- TODO: Add architecture diagram -->
+## Architecture
+
+```text
+Client                     GraphQL Service            LLM (OpenAI)
+  │                        localhost:8080                  │
+  │  mutation Task(query)       │                         │
+  │────────────────────────────►│   prompt + tools        │
+  │                             │────────────────────────►│
+  │                             │◄────────────────────────│
+  │◄────────────────────────────│   response              │
+  │  { data: { task: "..." } }  │                         │
+```
+
 
 ## Prerequisites
 
-- [Environment set up](install.md)
+- [Environment setup](install.md)
 - An API key for an LLM provider (OpenAI, Anthropic, etc.)
 
 ## Step 1: Create an agent artifact
@@ -23,6 +35,34 @@ Add an "AI Agent" component to your project using the visual designer.
 
 Define the agent's "Goal" (purpose) and "Instructions" (how it should behave), then choose and configure the Large Language Model (LLM) that will power it.
 
+In code:
+
+```ballerina
+import ballerina/graphql;
+import ballerinax/ai.agent;
+import ballerinax/ai.provider.openai;
+
+configurable string openaiKey = ?;
+
+service /graphql on new graphql:Listener(8080) {
+    remote function task(string query) returns string|error {
+        openai:Client model = check new ({
+            auth: {token: openaiKey},
+            model: "gpt-4o"
+        });
+
+        agent:InlineAgent inlineAgent = check new (
+            model: model,
+            systemPrompt: "You are a helpful assistant.",
+            tools: []
+        );
+
+        return check inlineAgent.run(query);
+    }
+}
+```
+
+
 ## Step 3: Define tools
 
 Attach "Tools" to the agent, which can be other integrations or APIs you've built, allowing the agent to fetch data or perform real-world actions.
@@ -30,8 +70,13 @@ Attach "Tools" to the agent, which can be other integrations or APIs you've buil
 ## Step 4: Test in the playground
 
 1. Deploy the AI agent locally (click **Run**)
-2. Open the built-in AI Agent Playground
-3. Send a chat message to verify its reasoning and tool usage
+2. Open the built-in AI Agent Playground.
+3. Send a chat message to verify its reasoning and tool usage, or test with curl.
+
+```bash
+curl -X POST http://localhost:8080/graphql   -H "Content-Type: application/json"   -d '{"query": "mutation Task { task(query: \"What is WSO2 Integrator?\") }"}'
+```
+
 
 ## What's next
 

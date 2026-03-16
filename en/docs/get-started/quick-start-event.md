@@ -8,11 +8,9 @@ description: React to events from Kafka or RabbitMQ in under 10 minutes.
 
 **Time:** Under 10 minutes · **What you'll build:** An event handler that consumes messages from a message broker and processes them.
 
-<!-- TODO: Add architecture diagram -->
-
 ## Prerequisites
 
-- [Environment set up](install.md)
+- [Environment setup](install.md)
 - A running Kafka or RabbitMQ instance (or use the provided Docker Compose)
 
 ## Step 1: Create an event handler
@@ -27,11 +25,44 @@ Provide the necessary connection parameters in the properties panel, such as hos
 
 Define how the integration should process incoming messages within the `onMessage` event handler block. Route the processed data to another target system if necessary.
 
+In code, this looks like:
+
+```ballerina
+import ballerinax/rabbitmq;
+import ballerina/log;
+
+listener rabbitmq:Listener orderListener = new (
+    host = "localhost",
+    port = 5672
+);
+
+@rabbitmq:ServiceConfig {queueName: "Orders"}
+service on orderListener {
+    remote function onMessage(rabbitmq:AnydataMessage message) returns error? {
+        log:printInfo("Received order", content = message.content.toString());
+    }
+}
+```
+
+
 ## Step 4: Run and test
 
-1. Click **Run** in the toolbar
-2. Publish a test message to the broker
-3. Verify the event handler processes it
+1. Select **Run** in the toolbar.
+2. The service starts listening for messages on the `Orders` queue.
+3. Publish a test message to RabbitMQ using the management UI at `http://localhost:15672` or a client.
+4. Check the terminal output for the logged message.
+
+## Supported event sources
+
+| Broker | Ballerina Package |
+|---|---|
+| **Apache Kafka** | `ballerinax/kafka` |
+| **RabbitMQ** | `ballerinax/rabbitmq` |
+| **MQTT** | `ballerinax/mqtt` |
+| **Azure Service Bus** | `ballerinax/azure.servicebus` |
+| **Salesforce** | `ballerinax/salesforce` |
+| **GitHub Webhooks** | `ballerinax/github` |
+
 
 ## What's next
 
