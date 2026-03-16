@@ -8,15 +8,15 @@ description: Generate a new integration project and understand the project struc
 
 Create a new WSO2 Integrator project and understand what gets generated.
 
-## Create the Project
+## Create the project
 
-1. Open VS Code
-2. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-3. Select **WSO2 Integrator: Create New Project**
+1. Open the WSO2 Integrator Development Environment
+2. Open the Project Wizard
+3. Select **Create New Project**
 4. Choose a directory and project name
-5. The extension generates the project structure
+5. The environment generates the project structure
 
-## Project Structure
+## Project structure
 
 ```
 my-integration/
@@ -28,13 +28,13 @@ my-integration/
 └── resources/              # Static resources (schemas, configs)
 ```
 
-## Run the Empty Project
+## Run the empty project
 
-1. Click the **Run** button in the VS Code toolbar, or
+1. Click the **Run** button in the IDE toolbar, or
 2. Open a terminal and run: `bal run`
 3. You should see the service start successfully
 
-## What's Next
+## What's next
 
-- [Understand the IDE](understand-the-ide.md) — Learn the visual designer layout
-- [Build an API Integration](quick-start-api.md) — Your first real integration
+- [Understand the Development Environment](understand-the-ide.md): Learn the visual designer layout
+- [Build an API Integration](quick-start-api.md): Your first real integration

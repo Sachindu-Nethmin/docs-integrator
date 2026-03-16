@@ -1,45 +1,33 @@
 ---
 sidebar_position: 4
-title: Install WSO2 Integrator
-description: Step-by-step installation of the WSO2 Integrator VS Code extension and Ballerina distribution.
+title: Set Up Your Environment
+description: Prerequisites and step-by-step installation of the WSO2 Integrator development environment.
 ---
 
-# Install WSO2 Integrator
+# Set Up Your Environment
 
 Get your development environment ready in under 5 minutes.
 
-## Step 1: Install Visual Studio Code
+## Prerequisites
 
-Download and install VS Code from [code.visualstudio.com/download](https://code.visualstudio.com/download).
+- Java 17 or later (OpenJDK recommended)
+- Operating system: macOS, Windows, or Linux
 
-## Step 2: Install the WSO2 Integrator Extension
+## Install the environment
 
-1. Open VS Code.
-2. Open the Extensions view:
-   - **Windows / Linux:** `Ctrl + Shift + X`
-   - **macOS:** `Shift + Cmd + X`
-3. Search for **"WSO2 Integrator: BI"**.
-4. Click **Install**.
+1. Download the latest WSO2 Integrator IDE from [the official portal](https://wso2.com/integration-platform/integrator/).
+2. Follow the installation wizard for your operating system.
+3. Launch the application.
 
-This installs both the **WSO2 Integrator: BI** extension and the **Ballerina** extension automatically.
+<!-- TODO: Add installation screenshot -->
 
-## Step 3: Set Up the Ballerina Distribution
+## Verify installation
 
-1. Click the **BI** icon in the VS Code sidebar.
-2. Select **"Set up Ballerina distribution"** when prompted.
-3. Wait for the download and setup to complete.
-4. Restart VS Code.
+1. Open the Environment.
+2. Ensure you have access to project creation commands.
+3. Select **Create New Project** to confirm the environment is working
 
-## Verify Installation
+## What's next
 
-After restarting VS Code:
-
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`).
-2. Type **"WSO2 Integrator"** -- you should see available commands.
-3. Click the **BI** icon in the sidebar to access the integrations view.
-
-## What's Next
-
-- [Create Your First Project](first-project.md) -- Generate a project structure
-- [Understand the IDE](understand-the-ide.md) -- Learn the visual designer
-- [Quick Start: Integration as API](quick-start-api.md) -- Build your first API integration
+- [Create Your First Project](first-project.md): Generate a project structure
+- [Understand the Development Environment](understand-the-ide.md): Learn the visual designer

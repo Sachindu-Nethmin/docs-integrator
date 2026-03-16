@@ -6,30 +6,34 @@ description: Key differentiators and positioning of WSO2 Integrator.
 
 # Why WSO2 Integrator
 
-## Key Differentiators
+## Key differentiators
 
-### Low-Code ↔ Pro-Code Parity
-Unlike platforms that offer either a visual tool or a coding experience, WSO2 Integrator provides both — and they stay perfectly synchronized. Start with drag-and-drop, switch to code when you need precision, and switch back whenever you want.
+### 100% open source
+Build and deploy without vendor lock-in. Full stack control with data sovereignty.
 
-### Ballerina-Powered
-Built on Ballerina, a language designed specifically for integration. You get compile-time type safety for data transformations, built-in network primitives, and sequence diagram visualization — capabilities that general-purpose languages can't match.
+### Low-code ↔ pro-code parity
+Unlike platforms that offer either a visual tool or a coding experience, WSO2 Integrator provides both, and they stay perfectly synchronized. Start with drag-and-drop, switch to code when you need precision, and switch back whenever you want.
 
-### AI-Assisted Development
+### Ballerina-powered
+Built on Ballerina, a language designed specifically for integration. You get compile-time type safety for data transformations, built-in network primitives, and sequence diagram visualization: capabilities that general-purpose languages can't match.
+
+### AI-assisted development
 AI isn't a bolt-on feature. It's woven into every stage: AI-assisted data mapping, natural language functions that call LLMs as typed functions, AI-generated test cases, and agent-building capabilities.
 
-### 200+ Connectors
+### 200+ connectors
 Pre-built connectors for SaaS applications, databases, messaging systems, cloud services, AI/LLM providers, and protocols. Plus the ability to use any Ballerina package from Central.
 
-### Deploy Anywhere
-Run locally during development. Deploy to Docker, Kubernetes, AWS, Azure, GCP, or WSO2's own Devant iPaaS. Same code, any target.
+### Deploy anywhere: Run it your way
+- Self-Hosted: Deploy to Kubernetes, Docker, VMs, or bare metal. Bring your own CI/CD pipelines.
+- SaaS: Managed infrastructure with zero maintenance, continuous updates, and multi-region availability. Same code, any target.
 
-## Who It's For
+## Who it's for
 
-- **Integration developers** building APIs, event-driven flows, file processing, and automations
-- **Platform engineers** standardizing integration infrastructure across teams
-- **Teams modernizing from legacy ESBs** looking for a clean break from XML-heavy, proprietary tooling
+- Integration developers building APIs, event-driven flows, file processing, and automations
+- Platform engineers standardizing integration infrastructure across teams
+- Teams modernizing from legacy ESBs looking for a clean break from XML-heavy, proprietary tooling
 
-## What's Next
+## What's next
 
-- [Key Concepts](key-concepts.md) — Learn the product vocabulary
-- [Install VS Code Extension](install.md) — Get set up in 5 minutes
+- [Key Concepts](key-concepts.md): Learn the product vocabulary
+- [Set Up Your Environment](install.md): Get set up in 5 minutes

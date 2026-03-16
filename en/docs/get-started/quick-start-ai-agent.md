@@ -1,97 +1,39 @@
 ---
 sidebar_position: 11
-title: "Quick Start: Build an AI Agent"
-description: Create an intelligent AI agent powered by LLMs with tool calling.
+title: Build an AI Agent
+description: Create an intelligent AI agent powered by LLMs in under 10 minutes.
 ---
 
-# Quick Start: Build an AI Agent
+# Build an AI Agent
 
-**Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to queries through a GraphQL endpoint.
+**Time:** Under 10 minutes · **What you'll build:** An AI agent that connects to an LLM, uses tools, and handles chat interactions.
+
+<!-- TODO: Add architecture diagram -->
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
-- An OpenAI API key
+- [Environment set up](install.md)
+- An API key for an LLM provider (OpenAI, Anthropic, etc.)
 
-## Architecture
+## Step 1: Create an agent artifact
 
-```
-Client                     GraphQL Service            LLM (OpenAI)
-  │                        localhost:8080                  │
-  │  mutation Task(query)       │                         │
-  │────────────────────────────►│   prompt + tools        │
-  │                             │────────────────────────►│
-  │                             │◄────────────────────────│
-  │◄────────────────────────────│   response              │
-  │  { data: { task: "..." } }  │                         │
-```
+Add an "AI Agent" component to your project using the visual designer.
 
-## Step 1: Create the Project
+## Step 2: Connect an LLM
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `AIAgent`).
+Define the agent's "Goal" (purpose) and "Instructions" (how it should behave), then choose and configure the Large Language Model (LLM) that will power it.
 
-## Step 2: Add a GraphQL Service
+## Step 3: Define tools
 
-1. Add a **GraphQL Service** artifact.
-2. Add a mutation named `task` that accepts a `query: string` parameter.
+Attach "Tools" to the agent, which can be other integrations or APIs you've built, allowing the agent to fetch data or perform real-world actions.
 
-## Step 3: Configure the Inline Agent
+## Step 4: Test in the playground
 
-1. Inside the mutation, implement an **Inline Agent**.
-2. Configure the model provider (WSO2 default or OpenAI).
-3. Set up agent memory and tools.
+1. Deploy the AI agent locally (click **Run**)
+2. Open the built-in AI Agent Playground
+3. Send a chat message to verify its reasoning and tool usage
 
-In code:
+## What's next
 
-```ballerina
-import ballerina/graphql;
-import ballerinax/ai.agent;
-import ballerinax/ai.provider.openai;
-
-configurable string openaiKey = ?;
-
-service /graphql on new graphql:Listener(8080) {
-    remote function task(string query) returns string|error {
-        openai:Client model = check new ({
-            auth: {token: openaiKey},
-            model: "gpt-4o"
-        });
-
-        agent:InlineAgent inlineAgent = check new (
-            model: model,
-            systemPrompt: "You are a helpful assistant.",
-            tools: []
-        );
-
-        return check inlineAgent.run(query);
-    }
-}
-```
-
-## Step 4: Configure the API Key
-
-Create a `Config.toml` file:
-
-```toml
-openaiKey = "<your-openai-api-key>"
-```
-
-## Step 5: Run and Test
-
-1. Click **Run** in the toolbar.
-2. Test with curl:
-
-```bash
-curl -X POST http://localhost:8080/graphql \
-  -H "Content-Type: application/json" \
-  -d '{"query": "mutation Task { task(query: \"What is WSO2 Integrator?\") }"}'
-```
-
-## What's Next
-
-- [GenAI Overview](/docs/genai) -- Full guide to AI capabilities
-- [Chat Agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
-- [MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
-- [RAG Applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents
+- [AI Agents & Natural Functions](/docs/develop/build/ai-agents): Advanced agent patterns
+- [RAG Applications](/docs/develop/build/rag-applications): Add knowledge bases to agents

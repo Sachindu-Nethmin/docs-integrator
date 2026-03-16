@@ -1,77 +1,39 @@
 ---
 sidebar_position: 8
-title: "Quick Start: Event Integration"
-description: Build an event-driven integration that reacts to messages from a message broker.
+title: Build an Event Integration
+description: React to events from Kafka or RabbitMQ in under 10 minutes.
 ---
 
-# Quick Start: Event Integration
+# Build an Event Integration
 
-**Time:** Under 10 minutes | **What you'll build:** An event-driven integration that consumes messages from RabbitMQ and processes them.
+**Time:** Under 10 minutes · **What you'll build:** An event handler that consumes messages from a message broker and processes them.
 
-Event integrations are ideal for reactive workflows triggered by messages from Kafka, RabbitMQ, MQTT, or other message brokers.
+<!-- TODO: Add architecture diagram -->
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
-- A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:management`)
+- [Environment set up](install.md)
+- A running Kafka or RabbitMQ instance (or use the provided Docker Compose)
 
-## Step 1: Create the Project
+## Step 1: Create an event handler
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `OrderProcessor`).
+Add a listener component for the event source you want to consume from, such as RabbitMQ, Kafka, or MQTT.
 
-## Step 2: Add an Event Integration Artifact
+## Step 2: Configure the message source
 
-1. In the design view, add a **RabbitMQ** event integration artifact.
-2. Configure the connection:
-   - **Queue:** `Orders`
-   - **Host:** `localhost`
-   - **Port:** `5672`
-   - **Username:** `guest`
-   - **Password:** `guest`
+Provide the necessary connection parameters in the properties panel, such as host, port, and security credentials for your message broker.
 
-## Step 3: Add Message Processing Logic
+## Step 3: Process the message
 
-Add an `onMessage` handler to process incoming messages:
+Define how the integration should process incoming messages within the `onMessage` event handler block. Route the processed data to another target system if necessary.
 
-```ballerina
-import ballerinax/rabbitmq;
-import ballerina/log;
+## Step 4: Run and test
 
-listener rabbitmq:Listener orderListener = new (
-    host = "localhost",
-    port = 5672
-);
+1. Click **Run** in the toolbar
+2. Publish a test message to the broker
+3. Verify the event handler processes it
 
-@rabbitmq:ServiceConfig {queueName: "Orders"}
-service on orderListener {
-    remote function onMessage(rabbitmq:AnydataMessage message) returns error? {
-        log:printInfo("Received order", content = message.content.toString());
-    }
-}
-```
+## What's next
 
-## Step 4: Run and Test
-
-1. Click **Run** in the toolbar.
-2. The service starts listening for messages on the `Orders` queue.
-3. Publish a test message to RabbitMQ using the management UI at `http://localhost:15672` or a client.
-4. Check the terminal output for the logged message.
-
-## Supported Event Sources
-
-| Broker | Ballerina Package |
-|---|---|
-| **Apache Kafka** | `ballerinax/kafka` |
-| **RabbitMQ** | `ballerinax/rabbitmq` |
-| **MQTT** | `ballerinax/mqtt` |
-| **Azure Service Bus** | `ballerinax/azure.servicebus` |
-| **Salesforce** | `ballerinax/salesforce` |
-| **GitHub Webhooks** | `ballerinax/github` |
-
-## What's Next
-
-- [Quick Start: File Integration](quick-start-file.md) -- Process files from FTP or local directories
-- [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Kafka](../develop/integration-artifacts/event/kafka.md) -- Advanced event-driven patterns
+- [Event Handlers](/docs/develop/build/event-handlers): Advanced event processing patterns
+- [Error Handling](/docs/develop/build/error-handling): Handle failures gracefully
