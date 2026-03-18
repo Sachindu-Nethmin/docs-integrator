@@ -1,41 +1,41 @@
 ---
 sidebar_position: 1
-title: System Requirements & Prerequisites
+title: System requirements & prerequisites
 description: Hardware, software, and network requirements for WSO2 Integrator development.
 ---
 
-# System Requirements & Prerequisites
+# System requirements & prerequisites
 
 Before you install WSO2 Integrator, make sure your development environment meets these requirements.
 
-## Hardware Requirements
+## Hardware requirements
 
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
-| **Processor** | 0.2 core (1.0--1.2 GHz) | 1+ core |
-| **Memory (Heap)** | 512 MB | 1 GB+ |
-| **Disk Space** | 2 GB free | 5+ GB free |
+| Processor | 0.2 core (1.0--1.2 GHz) | 1+ core |
+| Memory (Heap) | 512 MB | 1 GB+ |
+| Disk space | 2 GB free | 5+ GB free |
 
-## Supported Operating Systems
+## Supported operating systems
 
 | OS | Minimum Version |
 |---|---|
-| **Windows** | Windows 10 or later |
-| **Ubuntu** | 24.04 LTS |
-| **Red Hat Enterprise Linux** | RHEL 9 |
-| **macOS** | macOS 14.6 (Sonoma) or later |
+| Windows | Windows 10 or later |
+| Ubuntu | 24.04 LTS |
+| Red Hat Enterprise Linux | RHEL 9 |
+| macOS | macOS 14.6 (Sonoma) or later |
 
 ARM architectures are supported, including Apple Silicon (M1/M2/M3/M4) and ARM-based Linux.
 
-## Software Requirements
+## Software requirements
 
 | Software | Version | Notes |
 |----------|---------|-------|
-| **Visual Studio Code** | Latest stable | Primary IDE -- download from [code.visualstudio.com](https://code.visualstudio.com/download) |
-| **Java Runtime (JRE)** | 21 | Required for the Ballerina runtime |
-| **Docker** | 20.10+ | Optional -- for containerized deployment |
+| Visual Studio Code | Latest stable | Primary IDE -- download from [code.visualstudio.com](https://code.visualstudio.com/download) |
+| Java Runtime (JRE) | 21 | Required for the Ballerina runtime |
+| Docker | 20.10+ | Optional -- for containerized deployment |
 
-### Supported Java Distributions
+### Supported Java distributions
 
 Any JRE 21 distribution works. Tested distributions:
 
@@ -46,7 +46,7 @@ Any JRE 21 distribution works. Tested distributions:
 | OpenJRE | 21 |
 | Oracle JRE | 21 |
 
-### Java Setup
+### Java setup
 
 Install a supported JDK/JRE:
 
@@ -77,7 +77,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ```
 
-## Network Requirements
+## Network requirements
 
 The development environment needs internet access for:
 
@@ -88,6 +88,6 @@ The development environment needs internet access for:
 
 If you're behind a corporate proxy, configure proxy settings in VS Code and in your terminal environment.
 
-## What's Next
+## What's next
 
 - [Install WSO2 Integrator](install.md) -- Install the VS Code extension and set up Ballerina

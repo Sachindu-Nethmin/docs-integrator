@@ -6,22 +6,9 @@ description: Download and install the Ballerina distribution that powers WSO2 In
 
 # Install Ballerina
 
-WSO2 Integrator is built on the Ballerina programming language. If you're using the WSO2 Integrator VS Code extension, Ballerina is set up automatically. Use this page only if you need a standalone Ballerina installation for CLI-based development.
+WSO2 Integrator is built on the Ballerina programming language. Use this page if you need a standalone Ballerina installation for CLI-based development (for CI/CD pipelines, Docker builds, or CLI-only workflows).
 
-## Automatic Installation (Recommended)
-
-The WSO2 Integrator VS Code extension handles the Ballerina installation for you:
-
-1. Install the [WSO2 Integrator extension](install.md).
-2. Click the **BI** icon in the sidebar.
-3. Select **Set up Ballerina distribution** when prompted.
-4. Restart VS Code.
-
-This is the recommended approach for most users.
-
-## Manual Installation
-
-If you need Ballerina outside VS Code (for CI/CD pipelines, Docker builds, or CLI-only workflows):
+## Installation
 
 ### macOS
 
@@ -53,7 +40,7 @@ sudo rpm -i ballerina-2201.13.0-swan-lake-linux-x64.rpm
 
 Download the MSI installer from [ballerina.io/downloads](https://ballerina.io/downloads/) and run it.
 
-## Verify Installation
+## Verify installation
 
 ```bash
 bal version
@@ -64,7 +51,7 @@ Expected output:
 Ballerina 2201.13.0 (Swan Lake Update 13)
 ```
 
-## Managing Multiple Versions
+## Managing multiple versions
 
 Use the Ballerina Update Tool to manage distributions:
 
@@ -82,7 +69,7 @@ bal dist use 2201.13.0
 bal dist update
 ```
 
-## What's Next
+## What's next
 
-- [Install WSO2 Integrator](install.md) -- Set up the VS Code extension
+- [Install WSO2 Integrator](install.md) -- Install the WSO2 Integrator application
 - [Create Your First Project](first-project.md) -- Generate a project structure
