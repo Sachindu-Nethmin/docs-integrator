@@ -4,7 +4,12 @@ title: "Quick Start: Build an Automation"
 description: Create a scheduled automation that runs tasks on a timer.
 ---
 
-# Quick Start: Build an Automation
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Quick start: Build an automation
 
 **Time:** Under 10 minutes | **What you'll build:** A scheduled automation that runs tasks on a timer or manual trigger.
 
@@ -12,20 +17,30 @@ Automations are ideal for data synchronization, report generation, and routine m
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- [WSO2 Integrator installed](install.md)
 
-## Step 1: Create the Project
+## Architecture
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `MyAutomation`).
+<ThemedImage
+  alt="Architecture Diagram"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-automation/automation-light.svg'),
+    dark: useBaseUrl('/img/get-started/quick-start-automation/automation-dark.svg'),
+  }}
+/>
 
-## Step 2: Add an Automation Artifact
+## Step 1: Create the project
+
+1. Open WSO2 Integrator.
+2. Select **Create New Integration**.
+3. Enter the integration name (for example, `MyAutomation`).
+
+## Step 2: Add an automation artifact
 
 1. In the design view, add an **Automation** artifact.
 2. The automation starts with an empty flow.
 
-## Step 3: Add Logic
+## Step 3: Add logic
 
 1. Add a **Call Function** node to the flow.
 2. Configure it with a simple expression:
@@ -38,15 +53,18 @@ public function main() {
 }
 ```
 
-## Step 4: Run and Test
+## Step 4: Run and test
 
-1. Click **Run** in the toolbar (top-right corner).
+1. Select **Run** in the toolbar.
 2. The automation executes immediately and prints output to the terminal.
 3. Check the terminal output for `Hello World`.
 
-## Scheduling Automations
+## Scheduling automations
 
 For production use, configure a cron schedule to trigger the automation periodically:
+
+<Tabs>
+<TabItem value="code" label="Source View" default>
 
 ```ballerina
 import ballerina/task;
@@ -62,8 +80,22 @@ service on timer {
 }
 ```
 
-## What's Next
+</TabItem>
+<TabItem value="ui" label="Design View">
 
-- [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Quick Start: Event Integration](quick-start-event.md) -- React to messages from brokers
-- [Quick Start: AI Agent](quick-start-ai-agent.md) -- Build an intelligent agent
+<ThemedImage
+  alt="Design View"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-automation/design-view-light.png'),
+    dark: useBaseUrl('/img/get-started/quick-start-automation/design-view-dark.png'),
+  }}
+/>
+
+</TabItem>
+</Tabs>
+
+## What's next
+
+- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
+- [Quick start: Event integration](quick-start-event.md) -- React to messages from brokers
+- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent

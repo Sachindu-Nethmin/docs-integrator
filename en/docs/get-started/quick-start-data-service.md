@@ -4,7 +4,12 @@ title: "Quick Start: Build a Data Service"
 description: Create a CRUD data service using bal persist in under 10 minutes.
 ---
 
-# Build a Data Service
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Build a data service
 
 In this quick start, you'll create a data service that exposes CRUD operations over a database using `bal persist` — Ballerina's built-in data persistence layer.
 
@@ -13,14 +18,24 @@ In this quick start, you'll create a data service that exposes CRUD operations o
 - [WSO2 Integrator set up](install.md)
 - A running database (MySQL, PostgreSQL, or H2 for quick testing)
 
-## Step 1: Create a New Project
+## Architecture
+
+<ThemedImage
+  alt="Architecture Diagram"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-data-service/data-service-light.svg'),
+    dark: useBaseUrl('/img/get-started/quick-start-data-service/data-service-dark.svg'),
+  }}
+/>
+
+## Step 1: Create a new project
 
 ```bash
 bal new data_service
 cd data_service
 ```
 
-## Step 2: Initialize Persistence
+## Step 2: Initialize persistence
 
 ```bash
 bal persist init
@@ -28,7 +43,7 @@ bal persist init
 
 This creates a `persist` directory with a model definition file.
 
-## Step 3: Define Your Data Model
+## Step 3: Define your data model
 
 Edit `persist/model.bal`:
 
@@ -45,7 +60,7 @@ type Employee record {|
 |};
 ```
 
-## Step 4: Generate the Client
+## Step 4: Generate the client
 
 ```bash
 bal persist generate
@@ -53,9 +68,12 @@ bal persist generate
 
 This generates type-safe client code for CRUD operations against your database.
 
-## Step 5: Create the Service
+## Step 5: Create the service
 
 Edit `main.bal`:
+
+<Tabs>
+<TabItem value="code" label="Source View" default>
 
 ```ballerina
 import ballerina/http;
@@ -94,7 +112,21 @@ service /employees on new http:Listener(port) {
 }
 ```
 
-## Step 6: Configure the Database
+</TabItem>
+<TabItem value="ui" label="Design View">
+
+<ThemedImage
+  alt="Design View"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-data-service/design-view-light.png'),
+    dark: useBaseUrl('/img/get-started/quick-start-data-service/design-view-dark.png'),
+  }}
+/>
+
+</TabItem>
+</Tabs>
+
+## Step 6: Configure the database
 
 Edit `Config.toml`:
 
@@ -109,7 +141,7 @@ password = ""
 database = "employees_db"
 ```
 
-## Step 7: Run and Test
+## Step 7: Run and test
 
 ```bash
 bal run
@@ -130,7 +162,7 @@ curl -X POST http://localhost:8080/employees \
 curl http://localhost:8080/employees/1
 ```
 
-## Supported Data Stores
+## Supported data stores
 
 `bal persist` supports seven data stores out of the box:
 
@@ -144,8 +176,8 @@ curl http://localhost:8080/employees/1
 | Redis | `ballerinax/persist.redis` |
 | In-Memory | Built-in |
 
-## What's Next
+## What's next
 
-- [Data Persistence](../develop/integration-artifacts/data-persistence.md) — Deep dive into `bal persist`
+- [Data persistence](../develop/integration-artifacts/data-persistence.md) — Deep dive into `bal persist`
 - [Services](../develop/integration-artifacts/services.md) — Advanced service configuration
-- [Quick Start: Build an AI Agent](quick-start-ai-agent.md) — Add AI capabilities
+- [Quick start: Build an AI agent](quick-start-ai-agent.md) — Add AI capabilities

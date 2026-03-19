@@ -4,46 +4,49 @@ title: "Quick Start: Build an AI Agent"
 description: Create an intelligent AI agent powered by LLMs with tool calling.
 ---
 
-# Quick Start: Build an AI Agent
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Quick start: Build an AI agent
 
 **Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to queries through a GraphQL endpoint.
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- [WSO2 Integrator installed](install.md)
 - An OpenAI API key
 
 ## Architecture
 
-```
-Client                     GraphQL Service            LLM (OpenAI)
-  │                        localhost:8080                  │
-  │  mutation Task(query)       │                         │
-  │────────────────────────────►│   prompt + tools        │
-  │                             │────────────────────────►│
-  │                             │◄────────────────────────│
-  │◄────────────────────────────│   response              │
-  │  { data: { task: "..." } }  │                         │
-```
+<ThemedImage
+  alt="Architecture Diagram"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-ai-agent/ai-agent-light.svg'),
+    dark: useBaseUrl('/img/get-started/quick-start-ai-agent/ai-agent-dark.svg'),
+  }}
+/>
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `AIAgent`).
+1. Open WSO2 Integrator.
+2. Select **Create New Integration**.
+3. Enter the integration name (for example, `AIAgent`).
 
-## Step 2: Add a GraphQL Service
+## Step 2: Add a GraphQL service
 
 1. Add a **GraphQL Service** artifact.
 2. Add a mutation named `task` that accepts a `query: string` parameter.
 
-## Step 3: Configure the Inline Agent
+## Step 3: Configure the inline agent
 
 1. Inside the mutation, implement an **Inline Agent**.
 2. Configure the model provider (WSO2 default or OpenAI).
 3. Set up agent memory and tools.
 
-In code:
+<Tabs>
+<TabItem value="code" label="Source View" default>
 
 ```ballerina
 import ballerina/graphql;
@@ -70,7 +73,21 @@ service /graphql on new graphql:Listener(8080) {
 }
 ```
 
-## Step 4: Configure the API Key
+</TabItem>
+<TabItem value="ui" label="Design View">
+
+<ThemedImage
+  alt="Design View"
+  sources={{
+    light: useBaseUrl('/img/get-started/quick-start-ai-agent/design-view-light.png'),
+    dark: useBaseUrl('/img/get-started/quick-start-ai-agent/design-view-dark.png'),
+  }}
+/>
+
+</TabItem>
+</Tabs>
+
+## Step 4: Configure the API key
 
 Create a `Config.toml` file:
 
@@ -78,9 +95,9 @@ Create a `Config.toml` file:
 openaiKey = "<your-openai-api-key>"
 ```
 
-## Step 5: Run and Test
+## Step 5: Run and test
 
-1. Click **Run** in the toolbar.
+1. Select **Run** in the toolbar.
 2. Test with curl:
 
 ```bash
@@ -89,9 +106,9 @@ curl -X POST http://localhost:8080/graphql \
   -d '{"query": "mutation Task { task(query: \"What is WSO2 Integrator?\") }"}'
 ```
 
-## What's Next
+## What's next
 
-- [GenAI Overview](/docs/genai) -- Full guide to AI capabilities
-- [Chat Agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
-- [MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
-- [RAG Applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents
+- [GenAI overview](/docs/genai) -- Full guide to AI capabilities
+- [Chat agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
+- [MCP servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
+- [RAG applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents
