@@ -32,18 +32,31 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 1. Open WSO2 Integrator.
 2. Select **Create New Integration**.
 3. Enter the integration name (for example, `HelloWorld`).
-4. Select **Create Integration**.
+4. Select the project location.
+5. Select **Create Integration**.
 
 ## Step 2: Add an HTTP service
 
-1. In the design view, add an **HTTP Service** artifact.
-2. Set the base path to `/hello` and port to `9090`.
-3. Add a **GET** resource at the path `/greeting`.
+1. In the design view, select **Add Artifact**.
+2. Select **HTTP Service** under **Integration as API**.
+3. Keep **Service contract** as **Design from scratch**.
+4. Set **Service base path** to `/hello`.
+5. Set **Listener port** to `9090`.
+6. Select **Create**.
 
-## Step 3: Connect to an external API
+## Step 3: Design the integration flow
 
-1. Add an HTTP connection to `https://apis.wso2.com/zvdz/mi-qsg/v1.0`.
-2. In the GET resource, invoke the external API and return its response.
+1. In the HTTP service design view, add a **GET** resource.
+2. Set the resource path to `/greeting` and save.
+3. Select **+** inside the resource flow.
+4. Add a new **HTTP** connection.
+5. Set the base URL to `https://apis.wso2.com/zvdz/mi-qsg/v1.0`.
+6. Name the connection `externalApi` and save.
+7. Add the `get` action from the `externalApi` connection.
+8. Set the action path to `/`.
+9. Store the action result in a variable named `response` with type `json`.
+10. Add a **Return** node.
+11. Set the return expression to `response`.
 
 <Tabs>
 <TabItem value="code" label="Source View" default>
@@ -78,7 +91,8 @@ service /hello on new http:Listener(9090) {
 ## Step 4: Run and test
 
 1. Select **Run** in the toolbar.
-2. Once the service starts, test with curl:
+2. Use **Try It** to invoke the `/hello/greeting` resource from the IDE.
+3. You can also test with curl:
 
 ```bash
 curl http://localhost:9090/hello/greeting
@@ -90,7 +104,7 @@ Expected response:
 {"message": "Hello World!!!"}
 ```
 
-You can also use the built-in **Try It** panel in WSO2 Integrator to test the endpoint interactively.
+4. To stop the integration, select **Stop** in the toolbar or use `Shift+F5`.
 
 ## What's next
 

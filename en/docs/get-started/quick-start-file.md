@@ -33,41 +33,63 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 
 1. Open WSO2 Integrator.
 2. Select **Create New Integration**.
-3. Enter the integration name (for example, `FileProcessor`).
+3. Enter the integration name (for example, `LocalFilesIntegration`).
+4. Select the project location.
+5. Select **Create New Integration**.
 
 ## Step 2: Add a file integration artifact
 
-1. In the design view, add a **Directory Service** (for local files) or **FTP Service** (for remote files) artifact.
-2. Configure the directory path to watch.
+1. In the design view, select **Add Artifact**.
+2. Select **Directory Service** under **File integration**.
+3. Enter the directory path to monitor (for example, `/user/home/Downloads`).
+4. Select **Create**.
 
-## Step 3: Process incoming files
+Tip: Use a configurable variable for the monitored path so you can change it by environment without code changes.
 
-Add logic to read and process files when they arrive:
+## Step 3: Configure file event handlers
+
+1. Select **Add Handler** and add the `onCreate` handler.
+2. Open the `onCreate` function in the flow designer.
+3. Add a **Log Info** node.
+4. Set the message to include `File created ` and `event.name`.
+5. Repeat the same process for `onDelete` and `onModify` handlers.
+6. For `onDelete`, use a message such as `File deleted ` with `event.name`.
+7. For `onModify`, use a message such as `File modified ` with `event.name`.
+
+## Step 4: Run and test
+
+1. Select **Run** in the toolbar.
+2. Create a file in the monitored directory and verify the `onCreate` log.
+3. Modify the file and verify the `onModify` log.
+4. Delete the file and verify the `onDelete` log.
+
+Add the following logic in source view to match the same flow:
 
 <Tabs>
 <TabItem value="code" label="Source View" default>
 
 ```ballerina
 import ballerina/file;
-import ballerina/io;
 import ballerina/log;
 
+configurable string monitorPath = "/user/home/Downloads";
+
 listener file:Listener dirListener = new ({
-    path: "/data/inbox",
+    path: monitorPath,
     recursive: false
 });
 
 service on dirListener {
     remote function onCreate(file:FileEvent event) returns error? {
-        string filePath = event.name;
-        log:printInfo("New file detected", path = filePath);
+        log:printInfo("File created " + event.name);
+    }
 
-        // Read CSV content
-        string content = check io:fileReadString(filePath);
-        log:printInfo("File content", content = content);
+    remote function onDelete(file:FileEvent event) returns error? {
+        log:printInfo("File deleted " + event.name);
+    }
 
-        // Process and write output
-        check io:fileWriteString("/data/processed/" + filePath, content);
+    remote function onModify(file:FileEvent event) returns error? {
+        log:printInfo("File modified " + event.name);
     }
 }
 ```
@@ -85,12 +107,6 @@ service on dirListener {
 
 </TabItem>
 </Tabs>
-
-## Step 4: Run and test
-
-1. Select **Run** in the toolbar.
-2. Drop a file into the watched directory (`/data/inbox`).
-3. Verify the processed output appears in `/data/processed/`.
 
 ## Supported file sources
 

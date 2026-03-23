@@ -17,8 +17,10 @@ Event integrations are ideal for reactive workflows triggered by messages from K
 
 ## Prerequisites
 
-- [WSO2 Integrator installed](install.md)
-- A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:management`)
+- [WSO2 Integrator installed](install.md) as a standalone IDE.
+- A running RabbitMQ instance:
+  1. Use an existing instance, or start one with Docker: `docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:management`.
+  2. Note the connection values: `host`, `port`, `username`, and `password`.
 
 ## Architecture
 
@@ -35,20 +37,35 @@ Event integrations are ideal for reactive workflows triggered by messages from K
 1. Open WSO2 Integrator.
 2. Select **Create New Integration**.
 3. Enter the integration name (for example, `OrderProcessor`).
+4. Select the project location.
+5. Select **Create New Integration**.
 
 ## Step 2: Add an event integration artifact
 
-1. In the design view, add a **RabbitMQ** event integration artifact.
-2. Configure the connection:
-   - **Queue:** `Orders`
-   - **Host:** `localhost`
-   - **Port:** `5672`
-   - **Username:** `guest`
-   - **Password:** `guest`
+1. In the design view, select **Add Artifact**.
+2. Select **RabbitMQ Event Integration** under **Event integration**.
+3. Set the queue name to `Orders`.
+4. Select **Create**.
+5. Open **Configure** and add these configurable values:
+
+| Configurable | Type |
+|---|---|
+| `host` | `string` |
+| `port` | `int` |
+| `username` | `string` |
+| `password` | `string` |
+
+6. Set the RabbitMQ connection fields to use these configurables.
+7. Save the changes.
 
 ## Step 3: Add message processing logic
 
-Add an `onMessage` handler to process incoming messages:
+1. Select **Add Handler** and add `onMessage`.
+2. Open the `onMessage` handler flow.
+3. Add a **Log Info** node.
+4. Set the message to `message.toString()`.
+
+Add the following logic in source view to match the same flow:
 
 <Tabs>
 <TabItem value="code" label="Source View" default>
@@ -57,15 +74,22 @@ Add an `onMessage` handler to process incoming messages:
 import ballerinax/rabbitmq;
 import ballerina/log;
 
+configurable string host = ?;
+configurable int port = ?;
+configurable string username = ?;
+configurable string password = ?;
+
 listener rabbitmq:Listener orderListener = new (
-    host = "localhost",
-    port = 5672
+  host = host,
+  port = port,
+  username = username,
+  password = password
 );
 
 @rabbitmq:ServiceConfig {queueName: "Orders"}
 service on orderListener {
     remote function onMessage(rabbitmq:AnydataMessage message) returns error? {
-        log:printInfo("Received order", content = message.content.toString());
+    log:printInfo(message.content.toString());
     }
 }
 ```
@@ -88,7 +112,7 @@ service on orderListener {
 
 1. Select **Run** in the toolbar.
 2. The service starts listening for messages on the `Orders` queue.
-3. Publish a test message to RabbitMQ using the management UI at `http://localhost:15672` or a client.
+3. Publish a test message by using the RabbitMQ management UI at `http://localhost:15672` or any RabbitMQ client.
 4. Check the terminal output for the logged message.
 
 ## Supported event sources

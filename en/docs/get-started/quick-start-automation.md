@@ -38,20 +38,13 @@ Automations are ideal for data synchronization, report generation, and routine m
 ## Step 2: Add an automation artifact
 
 1. In the design view, add an **Automation** artifact.
-2. The automation starts with an empty flow.
+2. Click **Create** to create an automation. This directs you to the automation diagram view.
+3. Click **+** after the **Start** node to open the node panel.
 
 ## Step 3: Add logic
 
 1. Add a **Call Function** node to the flow.
-2. Configure it with a simple expression:
-
-```ballerina
-import ballerina/io;
-
-public function main() {
-    io:println("Hello World");
-}
-```
+2. Click **+ Add Another Value**, type `"Hello World"` and click **Save**.
 
 ## Step 4: Run and test
 
