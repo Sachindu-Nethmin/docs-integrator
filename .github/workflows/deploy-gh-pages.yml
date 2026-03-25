@@ -37,18 +37,12 @@ jobs:
         run: npm run build
         working-directory: en
         env:
-          BASE_URL: /docs-integrator/dev/
-
-      - name: Prepare deploy directory
-        run: |
-          mkdir -p deploy/dev
-          cp -r en/build/* deploy/dev/
-          echo '<meta http-equiv="refresh" content="0; url=./dev/">' > deploy/index.html
+          BASE_URL: /${{ github.event.repository.name }}/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: deploy
+          publish_dir: en/build
           publish_branch: gh-pages
           keep_files: false
