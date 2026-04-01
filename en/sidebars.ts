@@ -1084,6 +1084,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/database/mysql/setup-guide',
             'connectors/catalog/database/mysql/action-reference',
             'connectors/catalog/database/mysql/trigger-reference',
+            'connectors/catalog/database/mysql/example',
           ],
         },
         {
