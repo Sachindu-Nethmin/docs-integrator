@@ -22,7 +22,7 @@ flowchart LR
 
 ## Setting up the OracleDB integration
 
-To set up the integration project, follow the [WSO2 Integrator project creation guide](https://wso2.com/integrator/).
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the OracleDB connector
 
