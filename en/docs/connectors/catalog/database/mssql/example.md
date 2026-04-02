@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Build a WSO2 Integrator integration that connects to a Microsoft SQL Server database using the MSSQL connector and inserts a record into a `customers` table via an Automation entry point. All credentials are secured through Configurable variables.
+Build a WSO2 Integrator integration that connects to a Microsoft SQL Server database using the MSSQL connector and inserts a record into a `customers` table via an Automation entry point. All credentials are secured through configurable variables.
 
 **Operations used:**
 - **execute** — Runs a SQL INSERT statement against the MSSQL database and returns an execution result
@@ -37,15 +37,15 @@ flowchart LR
 
 ## Configuring the MSSQL connection
 
-### Step 2: Bind all connection parameters to Configurable variables
+### Step 2: Bind all connection parameters to configurable variables
 
 The **Configure MS SQL** form opens. All connection parameters are under **Advanced Configurations** — click **Expand** if collapsed. For each field, use the **Open Helper Panel** → **Configurables** tab → **+ New Configurable** workflow to create a Configurable variable and bind it to the field:
 
-- **host** — The MSSQL server hostname
-- **user** — The database username
-- **password** — The database password
-- **database** — The name of the target database
-- **port** — The TCP port for the MSSQL server
+- **host**: The MSSQL server hostname
+- **user**: The database username
+- **password**: The database password
+- **database**: The name of the target database
+- **port**: The TCP port for the MSSQL server
 
 After all fields are bound, set the **Connection Name** to `mssqlClient`.
 
@@ -63,15 +63,15 @@ The canvas returns to the main integration view and displays the `mssqlClient` c
 
 1. In the left panel, click **Configurations**.
 2. Set a value for each configurable listed below:
-   - **mssqlHost** — string — hostname of your MSSQL server
-   - **mssqlUser** — string — database username
-   - **mssqlPassword** — string — database password
-   - **mssqlDatabase** — string — name of the target database
-   - **mssqlPort** — int — TCP port for the MSSQL server
+   - **mssqlHost** : string : hostname of your MSSQL server
+   - **mssqlUser** : string : database username
+   - **mssqlPassword** : string : database password
+   - **mssqlDatabase** : string : name of the target database
+   - **mssqlPort** : int : TCP port for the MSSQL server
 
 ## Configuring the MSSQL execute operation
 
-### Step 5: Add an Automation entry point
+### Step 5: Add an automation entry point
 
 1. Click **+ Add Artifact** on the canvas.
 2. In the Artifacts panel, click **Automation** under the "Automation" section.
