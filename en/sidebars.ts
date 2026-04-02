@@ -963,6 +963,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/database/java.jdbc/setup-guide',
             'connectors/catalog/database/java.jdbc/action-reference',
+            'connectors/catalog/database/java-jdbc/example',
           ],
         },
         {
