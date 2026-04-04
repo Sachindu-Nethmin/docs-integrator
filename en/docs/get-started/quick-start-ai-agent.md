@@ -15,15 +15,16 @@ description: Create an intelligent AI agent powered by LLMs with tool calling.
 
 ## Architecture
 
-```
-Client                     GraphQL Service            LLM (OpenAI)
-  │                        localhost:8080                  │
-  │  mutation Task(query)       │                         │
-  │────────────────────────────►│   prompt + tools        │
-  │                             │────────────────────────►│
-  │                             │◄────────────────────────│
-  │◄────────────────────────────│   response              │
-  │  { data: { task: "..." } }  │                         │
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Service as GraphQL Service<br/>localhost:8080
+    participant LLM as LLM (OpenAI)
+
+    Client->>Service: mutation Task(query)
+    Service->>LLM: prompt + tools
+    LLM-->>Service: response
+    Service-->>Client: { data: { task: "..." } }
 ```
 
 ## Step 1: Create the Project
@@ -91,7 +92,7 @@ curl -X POST http://localhost:8080/graphql \
 
 ## What's Next
 
-- [GenAI Overview](/docs/genai) -- Full guide to AI capabilities
+- [GenAI Overview](/docs/genai/overview) -- Full guide to AI capabilities
 - [Chat Agents](/docs/genai/agents/chat-agents) -- Build interactive chat agents
 - [MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Expose tools to AI assistants
 - [RAG Applications](/docs/genai/rag/architecture-overview) -- Add knowledge bases to agents

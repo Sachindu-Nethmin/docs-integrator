@@ -4,11 +4,14 @@ title: Error Handling
 description: Handle failures gracefully with do/on-fail, check, retry, circuit breaker, and fallback patterns.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Error Handling
 
 Robust integrations anticipate and handle failures. Ballerina treats errors as first-class values with a dedicated `error` type, making it impossible to silently ignore failures. This page covers error handling constructs and resilience patterns for your integrations.
 
-## The Error Type
+## The error type
 
 In Ballerina, errors are values, not exceptions. Functions that can fail return a union type that includes `error`:
 
@@ -22,13 +25,12 @@ function getCustomerName(string id) returns string|error {
 }
 ```
 
-## Check Expression
+## Check expression
 
 The `check` keyword propagates errors to the caller. If the expression evaluates to an error, the function immediately returns that error.
 
 ```ballerina
 function processOrder(OrderRequest req) returns OrderResponse|error {
-    // Each 'check' returns the error to the caller if the operation fails
     Customer customer = check getCustomer(req.customerId);
     decimal total = check calculateTotal(req.items);
     string orderId = check insertOrder(customer.id, total);
@@ -38,9 +40,22 @@ function processOrder(OrderRequest req) returns OrderResponse|error {
 }
 ```
 
-## Do/On-Fail Blocks
+## Do/on-fail blocks
 
-Use `do/on fail` to catch errors within a specific scope:
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Error Handling**, select the error handling node you need.
+
+   ![Flow canvas showing a function call node wrapped in an Error Handler block](/img/develop/design-logic/error-handling/error-nodes.png)
+
+3. Wrap existing nodes inside the error handling block by dragging them in, or add new nodes inside the block.
+4. Configure the **on fail** handler — specify the error variable name and add recovery steps.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function processWithRecovery(OrderRequest req) returns OrderResponse|error {
@@ -52,15 +67,12 @@ function processWithRecovery(OrderRequest req) returns OrderResponse|error {
         return {orderId: orderId, status: "CONFIRMED", total: total};
     } on fail error e {
         log:printError("Order processing failed", 'error = e);
-        // Attempt recovery or return a meaningful error
         return error("Order processing failed: " + e.message());
     }
 }
 ```
 
-### Selective Error Handling
-
-Handle specific error types differently:
+### Selective error handling
 
 ```ballerina
 function callExternalService(string endpoint) returns json|error {
@@ -77,12 +89,14 @@ function callExternalService(string endpoint) returns json|error {
 }
 ```
 
-## Custom Error Types
+</TabItem>
+</Tabs>
+
+## Custom error types
 
 Define domain-specific error types for clear error handling:
 
 ```ballerina
-// Define custom error types
 type OrderError distinct error;
 type ValidationError distinct error;
 type PaymentError distinct error;
@@ -101,7 +115,6 @@ function createOrder(OrderRequest req) returns OrderResponse|OrderError {
 
     boolean|InventoryError inventoryResult = reserveInventory(req.items);
     if inventoryResult is InventoryError {
-        // Refund payment before returning error
         check refundPayment(req.customerId, paymentResult);
         return error OrderError("Inventory reservation failed", inventoryResult);
     }
@@ -110,23 +123,38 @@ function createOrder(OrderRequest req) returns OrderResponse|OrderError {
 }
 ```
 
-## Retry Pattern
+## Retry pattern
 
-Retry transient failures with configurable backoff.
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-### Using retry Blocks
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Error Handling**, select the retry node.
+3. In the configuration panel, specify:
+
+   | Field | Description |
+   |---|---|
+   | **Max retries** | Number of retry attempts |
+   | **Error type** | Filter retries to specific error types (optional) |
+
+4. Add the operation to retry inside the retry block.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Using retry blocks
 
 ```ballerina
 function callWithRetry(string endpoint) returns json|error {
     retry<error> (3) {
-        // This block retries up to 3 times on error
         json result = check httpClient->get(endpoint);
         return result;
     }
 }
 ```
 
-### Configurable Retry
+### Configurable retry
 
 ```ballerina
 retry<http:ClientError> (maxRetries) {
@@ -138,21 +166,24 @@ retry<http:ClientError> (maxRetries) {
 }
 ```
 
-### HTTP Client Retry Configuration
+### HTTP client retry configuration
 
 ```ballerina
 final http:Client resilientClient = check new ("https://api.example.com", {
     retryConfig: {
         count: 3,
-        interval: 2,          // 2 seconds initial interval
-        backOffFactor: 2.0,    // Exponential backoff
-        maxWaitInterval: 30,   // Max 30 seconds between retries
+        interval: 2,
+        backOffFactor: 2.0,
+        maxWaitInterval: 30,
         statusCodes: [500, 502, 503, 504]
     }
 });
 ```
 
-## Circuit Breaker Pattern
+</TabItem>
+</Tabs>
+
+## Circuit breaker pattern
 
 Prevent cascading failures by stopping requests to a failing service.
 
@@ -160,11 +191,11 @@ Prevent cascading failures by stopping requests to a failing service.
 final http:Client protectedClient = check new ("https://api.example.com", {
     circuitBreaker: {
         rollingWindow: {
-            timeWindow: 60,   // 60-second evaluation window
-            bucketSize: 10    // Divide into 10 buckets
+            timeWindow: 60,
+            bucketSize: 10
         },
-        failureThreshold: 0.5, // Open at 50% failure rate
-        resetTime: 30,          // Try again after 30 seconds
+        failureThreshold: 0.5,
+        resetTime: 30,
         statusCodes: [500, 502, 503]
     }
 });
@@ -179,7 +210,7 @@ function callProtectedService() returns json|error {
 }
 ```
 
-### Circuit Breaker States
+### Circuit breaker states
 
 | State | Behavior |
 |---|---|
@@ -187,34 +218,27 @@ function callProtectedService() returns json|error {
 | **Open** | All requests fail immediately; no calls to the backend |
 | **Half-Open** | One test request allowed; success closes, failure re-opens |
 
-## Fallback Pattern
-
-Provide alternative data or behavior when the primary path fails:
+## Fallback pattern
 
 ```ballerina
 function getProductPrice(string productId) returns decimal|error {
-    // Try primary source
     decimal|error price = getPriceFromCatalogService(productId);
     if price is decimal {
         return price;
     }
 
-    // Fallback to cache
     decimal|error cachedPrice = getPriceFromCache(productId);
     if cachedPrice is decimal {
         log:printWarn("Using cached price", productId = productId);
         return cachedPrice;
     }
 
-    // Fallback to default
     log:printWarn("Using default price", productId = productId);
     return 0.00d;
 }
 ```
 
-## Error Responses in HTTP Services
-
-Return structured error responses from HTTP services:
+## Error responses in HTTP services
 
 ```ballerina
 type ApiError record {|
@@ -248,9 +272,7 @@ resource function post orders(OrderRequest req)
 }
 ```
 
-## Panic and Trap
-
-For unrecoverable errors, use `panic` to halt execution. Use `trap` to catch panics.
+## Panic and trap
 
 ```ballerina
 // Panic on unrecoverable errors (use sparingly)
@@ -271,7 +293,7 @@ function safeInitialize() returns error? {
 }
 ```
 
-## Best Practices
+## Best practices
 
 1. **Prefer `check` over explicit error handling** for simple error propagation.
 2. **Use `do/on fail` for recovery logic** where you need to take action on failure.
@@ -279,10 +301,10 @@ function safeInitialize() returns error? {
 4. **Configure retries at the client level** for transient failures.
 5. **Use circuit breakers** for calls to external services that may become unavailable.
 6. **Always log errors** with sufficient context for debugging.
-7. **Never silently swallow errors** -- Ballerina's type system prevents this by design.
+7. **Never silently swallow errors** — Ballerina's type system prevents this by design.
 
-## What's Next
+## What's next
 
-- [Expressions](expressions.md) -- Write conditions for error handling branches
-- [Configuration Management](configuration-management.md) -- Configure retry and circuit breaker settings per environment
-- [Connections](connections.md) -- Configure resilient connections
+- [Expressions](expressions.md) — Write conditions for error handling branches
+- [Configuration Management](configuration-management.md) — Configure retry and circuit breaker settings per environment
+- [Connections](connections.md) — Configure resilient connections

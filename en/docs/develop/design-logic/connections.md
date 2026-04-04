@@ -4,24 +4,31 @@ title: Managing Connections
 description: Configure, test, and manage connections to databases, APIs, message brokers, and cloud services.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Managing Connections
 
-Connections define how your integration communicates with external systems -- databases, HTTP APIs, message brokers, cloud services, and SaaS applications. WSO2 Integrator provides a centralized connection management experience that lets you configure connections once and reuse them across all your integration artifacts.
+Connections define how your integration communicates with external systems — databases, HTTP APIs, message brokers, cloud services, and SaaS applications. WSO2 Integrator provides a centralized connection management experience that lets you configure connections once and reuse them across all your integration artifacts.
 
-## Creating a Connection
+## Creating a connection
 
-### From the Visual Designer
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-1. Open the **Connections** panel in the WSO2 Integrator sidebar.
-2. Click **+ New Connection**.
-3. Select the connector type (e.g., MySQL, HTTP, Kafka).
+1. Open the **WSO2 Integrator: BI** sidebar and expand **Connections**.
+2. Click **+** next to **Connections**, or in the flow canvas click **+** and select **Add Connection** under the **Connections** section.
+
+   ![Flow canvas showing an HTTP GET call node linked to the apiClient connection](/img/develop/design-logic/connections/call-endpoint.png)
+
+3. In the **Add Connection** panel, select the connector type (for example, MySQL, HTTP, Kafka).
 4. Fill in the connection parameters.
-5. Click **Test Connection** to verify.
-6. Click **Save**.
+5. Click **Save**.
 
-<!-- TODO: Screenshot of the connection creation dialog -->
+The connection appears under **Connections** in the sidebar and is available to all flows in the project.
 
-### From Code
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 Define connections as module-level client declarations with `configurable` parameters:
 
@@ -30,7 +37,6 @@ import ballerinax/mysql;
 import ballerina/http;
 import ballerinax/kafka;
 
-// Database connection
 configurable string dbHost = ?;
 configurable int dbPort = 3306;
 configurable string dbUser = ?;
@@ -54,7 +60,6 @@ final mysql:Client orderDb = check new (
     }
 );
 
-// HTTP API connection with OAuth2
 configurable string crmBaseUrl = ?;
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -82,9 +87,12 @@ final http:Client crmClient = check new (crmBaseUrl, {
 });
 ```
 
-## Connection Types
+</TabItem>
+</Tabs>
 
-### Database Connections
+## Connection types
+
+### Database connections
 
 ```ballerina
 import ballerinax/mysql;
@@ -113,17 +121,14 @@ final mssql:Client mssqlDb = check new (
 );
 ```
 
-### HTTP/REST Connections
+### HTTP/REST connections
 
 ```ballerina
 import ballerina/http;
 
 // Basic auth
 final http:Client basicClient = check new ("https://api.example.com", {
-    auth: {
-        username: "user",
-        password: "pass"
-    }
+    auth: {username: "user", password: "pass"}
 });
 
 // API key via header
@@ -140,16 +145,13 @@ final http:Client bearerClient = check new ("https://api.example.com", {
 // Mutual TLS (mTLS)
 final http:Client mtlsClient = check new ("https://secure.example.com", {
     secureSocket: {
-        key: {
-            certFile: "/certs/client.crt",
-            keyFile: "/certs/client.key"
-        },
+        key: {certFile: "/certs/client.crt", keyFile: "/certs/client.key"},
         cert: "/certs/ca.crt"
     }
 });
 ```
 
-### Message Broker Connections
+### Message broker connections
 
 ```ballerina
 import ballerinax/kafka;
@@ -159,11 +161,7 @@ import ballerinax/rabbitmq;
 final kafka:Producer kafkaProducer = check new ({
     bootstrapServers: "broker1:9092,broker2:9092",
     acks: kafka:ACKS_ALL,
-    retryCount: 3,
-    securityProtocol: kafka:PROTOCOL_SASL_SSL,
-    auth: kafka:AUTH_SASL_PLAIN,
-    username: "kafka-user",
-    password: "kafka-pass"
+    retryCount: 3
 });
 
 // RabbitMQ client
@@ -173,7 +171,7 @@ final rabbitmq:Client rmqClient = check new ("localhost", 5672, {
 });
 ```
 
-## Connection Pooling
+## Connection pooling
 
 For database connections, configure the connection pool to optimize resource usage:
 
@@ -181,9 +179,9 @@ For database connections, configure the connection pool to optimize resource usa
 final mysql:Client db = check new (
     host = dbHost, user = dbUser, password = dbPassword, database = dbName,
     connectionPool = {
-        maxOpenConnections: 25,       // Max concurrent connections
-        minIdleConnections: 5,        // Keep-alive connections
-        maxConnectionLifeTime: 1800   // Recycle after 30 minutes (seconds)
+        maxOpenConnections: 25,
+        minIdleConnections: 5,
+        maxConnectionLifeTime: 1800
     }
 );
 ```
@@ -194,25 +192,23 @@ final mysql:Client db = check new (
 | `minIdleConnections` | Minimum idle connections in the pool | `0` |
 | `maxConnectionLifeTime` | Max lifetime of a connection (seconds) | `1800` |
 
-## Testing Connections
+## Testing connections
 
-### From the Visual Designer
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-Click the **Test Connection** button in the connection configuration dialog. The test verifies connectivity, authentication, and basic operations.
+Click the **Test Connection** button in the connection configuration panel. The test verifies connectivity, authentication, and basic operations.
 
-### From Code
-
-Write a simple test function:
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function testDbConnection() returns error? {
-    // Test database connectivity
     _ = check orderDb->queryRow(`SELECT 1`);
     log:printInfo("Database connection successful");
 }
 
 function testApiConnection() returns error? {
-    // Test API connectivity
     http:Response response = check crmClient->get("/health");
     if response.statusCode == 200 {
         log:printInfo("API connection successful");
@@ -220,38 +216,38 @@ function testApiConnection() returns error? {
 }
 ```
 
-## Resilience Configuration
+</TabItem>
+</Tabs>
+
+## Resilience configuration
 
 ### Retry
 
 ```ballerina
 final http:Client resilientClient = check new ("https://api.example.com", {
     retryConfig: {
-        count: 3,               // Retry up to 3 times
-        interval: 2,            // Wait 2 seconds between retries
-        backOffFactor: 2.0,     // Double the wait each retry
-        maxWaitInterval: 30,    // Cap wait at 30 seconds
-        statusCodes: [500, 502, 503]  // Retry on these status codes
+        count: 3,
+        interval: 2,
+        backOffFactor: 2.0,
+        maxWaitInterval: 30,
+        statusCodes: [500, 502, 503]
     }
 });
 ```
 
-### Circuit Breaker
+### Circuit breaker
 
 ```ballerina
 final http:Client protectedClient = check new ("https://api.example.com", {
     circuitBreaker: {
-        rollingWindow: {
-            timeWindow: 60,     // 60-second rolling window
-            bucketSize: 10      // 10 buckets for granularity
-        },
-        failureThreshold: 0.5, // Open circuit at 50% failure rate
-        resetTime: 30           // Try again after 30 seconds
+        rollingWindow: {timeWindow: 60, bucketSize: 10},
+        failureThreshold: 0.5,
+        resetTime: 30
     }
 });
 ```
 
-## Environment-Specific Configuration
+## Environment-specific configuration
 
 Use `Config.toml` to vary connection details per environment:
 
@@ -275,8 +271,8 @@ dbName = "orders"
 crmBaseUrl = "https://api.crm.example.com"
 ```
 
-## What's Next
+## What's next
 
-- [Control Flow](control-flow.md) -- Use connections in branching and looping logic
-- [Error Handling](error-handling.md) -- Handle connection failures gracefully
-- [Configuration Management](configuration-management.md) -- Manage connection settings per environment
+- [Control Flow](control-flow.md) — Use connections in branching and looping logic
+- [Error Handling](error-handling.md) — Handle connection failures gracefully
+- [Configuration Management](configuration-management.md) — Manage connection settings per environment

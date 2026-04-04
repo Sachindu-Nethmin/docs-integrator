@@ -4,7 +4,7 @@ title: Scan Tool
 description: Run static code analysis on Ballerina projects with configurable rules for security, quality, and best practices.
 ---
 
-# Scan Tool
+# Scan tool
 
 The `bal scan` tool performs static code analysis on your Ballerina integration projects. It detects security vulnerabilities, code quality issues, performance anti-patterns, and violations of best practices. Results are reported with severity levels and actionable recommendations, helping you maintain high-quality integration code.
 
@@ -16,9 +16,9 @@ The Scan tool is included with the Ballerina distribution:
 bal scan --help
 ```
 
-## Running a Scan
+## Running a scan
 
-### Basic Usage
+### Basic usage
 
 ```bash
 # Scan the current project
@@ -34,7 +34,9 @@ bal scan --format json
 bal scan --fail-on-warnings
 ```
 
-### Example Output
+### Example output
+
+![Terminal output of bal scan command](/img/develop/tools/scan-tool/terminal-output.png)
 
 ```
 Scanning project: my-integration
@@ -55,9 +57,13 @@ Summary:
 Scan completed with 1 error(s). Fix errors before deploying.
 ```
 
-## Rule Categories
+Scan results also appear in the VS Code **Problems** panel, where you can click each issue to navigate directly to the affected line.
 
-### Security Rules
+![VS Code Problems panel showing scan results](/img/develop/tools/scan-tool/vscode-problems-panel.png)
+
+## Rule categories
+
+### Security rules
 
 | Rule ID | Description |
 |---|---|
@@ -68,7 +74,7 @@ Scan completed with 1 error(s). Fix errors before deploying.
 | `SEC005` | Sensitive data logged without masking |
 | `SEC006` | Overly permissive CORS configuration |
 
-### Performance Rules
+### Performance rules
 
 | Rule ID | Description |
 |---|---|
@@ -78,7 +84,7 @@ Scan completed with 1 error(s). Fix errors before deploying.
 | `PERF004` | Large payload processed without streaming |
 | `PERF005` | Blocking operation in isolated function |
 
-### Code Quality Rules
+### Code quality rules
 
 | Rule ID | Description |
 |---|---|
@@ -88,7 +94,7 @@ Scan completed with 1 error(s). Fix errors before deploying.
 | `QUAL004` | Missing error handling on remote call |
 | `QUAL005` | Deprecated API usage |
 
-### Style and Best Practice Rules
+### Style and best practice rules
 
 | Rule ID | Description |
 |---|---|
@@ -97,9 +103,9 @@ Scan completed with 1 error(s). Fix errors before deploying.
 | `STYLE003` | Missing documentation on public function |
 | `STYLE004` | Inconsistent naming convention |
 
-## Configuring Rules
+## Configuring rules
 
-### Scan Configuration File
+### Scan configuration file
 
 Create a `Scan.toml` file in your project root to customize which rules are enabled and their severity:
 
@@ -125,7 +131,7 @@ enabled = false       # Disable this rule
 maxFunctionLines = 50  # Configure threshold
 ```
 
-### Inline Suppression
+### Inline suppression
 
 Suppress specific warnings in code with annotations:
 
@@ -142,9 +148,9 @@ final http:Client quickClient = check new ("https://api.example.com");
 final http:Client internalClient = check new ("http://internal-service:8080");
 ```
 
-## Fixing Common Issues
+## Fixing common issues
 
-### SEC002: SQL Injection
+### SEC002: SQL injection
 
 ```ballerina
 // Bad: String concatenation
@@ -157,7 +163,7 @@ stream<User, error?> result = db->query(
 );
 ```
 
-### PERF003: Missing Timeout
+### PERF003: Missing timeout
 
 ```ballerina
 // Bad: No timeout
@@ -173,7 +179,7 @@ final http:Client client = check new ("https://api.example.com", {
 });
 ```
 
-### QUAL002: Empty Catch Block
+### QUAL002: Empty catch block
 
 ```ballerina
 // Bad: Error silently swallowed
@@ -192,7 +198,7 @@ do {
 }
 ```
 
-## CI/CD Integration
+## CI/CD integration
 
 ### GitHub Actions
 
@@ -201,7 +207,7 @@ do {
   run: bal scan --format json --fail-on-warnings
 ```
 
-### Jenkins Pipeline
+### Jenkins pipeline
 
 ```groovy
 stage('Static Analysis') {
@@ -212,7 +218,7 @@ stage('Static Analysis') {
 }
 ```
 
-### Pre-Commit Hook
+### Pre-commit hook
 
 ```bash
 #!/bin/bash
@@ -225,7 +231,7 @@ if [ $? -ne 0 ]; then
 fi
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -237,7 +243,7 @@ fi
 | `--include <categories>` | Include specific rule categories |
 | `--exclude <categories>` | Exclude specific rule categories |
 
-## What's Next
+## What's next
 
 - [Migration Tools](migration-tools.md) -- Scan and migrate from other integration platforms
 - [Static Code Analysis](/docs/develop/organize-code/static-code-analysis) -- Configure analysis in your project workflow

@@ -4,7 +4,10 @@ title: OpenAPI Tool
 description: Generate Ballerina services and clients from OpenAPI specifications, or export OpenAPI specs from Ballerina services.
 ---
 
-# OpenAPI Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# OpenAPI tool
 
 The `bal openapi` tool bridges OpenAPI specifications and Ballerina code. It generates type-safe Ballerina service stubs and client connectors from OpenAPI (Swagger) YAML or JSON files, and can also export an OpenAPI specification from an existing Ballerina service. This ensures your integrations conform to API contracts and eliminates boilerplate.
 
@@ -16,11 +19,31 @@ The OpenAPI tool is included with the Ballerina distribution. Verify it is avail
 bal openapi --help
 ```
 
-## Generating a Ballerina Service from OpenAPI
+## Generating a Ballerina service from OpenAPI
 
 Create a service skeleton that matches an OpenAPI specification. The generated code includes resource functions, request/response types, and validation constraints.
 
-### Basic Service Generation
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
+2. In the **Artifacts** panel, select **HTTP Service** under **Integration as API**.
+3. Select **Import From OpenAPI Specification** under **Service Contract**.
+
+   ![Select Import From OpenAPI Specification](/img/develop/tools/openapi-tool/step-import-spec.png)
+
+4. Browse or enter the path to your OpenAPI specification file (YAML or JSON).
+5. Configure the **Service Base Path** and listener settings.
+6. Click **Create**.
+
+   ![Service generation from OpenAPI](/img/develop/tools/openapi-tool/step-service-generation.png)
+
+7. WSO2 Integrator generates the service with resource function stubs, request/response types, and validation constraints matching your OpenAPI specification.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic service generation
 
 ```bash
 # Generate a service from an OpenAPI spec
@@ -33,7 +56,7 @@ bal openapi -i openapi.yaml --mode service -o generated/
 bal openapi -i https://petstore3.swagger.io/api/v3/openapi.json --mode service
 ```
 
-### Generated Service Structure
+### Generated service structure
 
 For an OpenAPI spec defining a `/orders` resource, the tool generates:
 
@@ -97,11 +120,30 @@ type LineItem record {|
 |};
 ```
 
-## Generating a Ballerina Client from OpenAPI
+</TabItem>
+</Tabs>
+
+## Generating a Ballerina client from OpenAPI
 
 Create a type-safe HTTP client that wraps all API operations defined in the spec.
 
-### Basic Client Generation
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas.
+2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
+3. Select **Import From OpenAPI Specification** and provide the spec file.
+
+   ![Client generation from OpenAPI](/img/develop/tools/openapi-tool/step-client-generation.png)
+
+4. Configure the client name and connection settings.
+5. Click **Create**.
+6. WSO2 Integrator generates a type-safe client connector with methods matching each API operation.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic client generation
 
 ```bash
 # Generate a client connector
@@ -111,7 +153,7 @@ bal openapi -i openapi.yaml --mode client
 bal openapi -i openapi.yaml --mode client --client-methods resource
 ```
 
-### Using the Generated Client
+### Using the generated client
 
 ```ballerina
 import generated_client as api;
@@ -134,7 +176,10 @@ function createOrder(api:OrderRequest req) returns api:Order|error {
 }
 ```
 
-## Generating Both Service and Client
+</TabItem>
+</Tabs>
+
+## Generating both service and client
 
 ```bash
 # Generate service and client together
@@ -146,9 +191,24 @@ bal openapi -i openapi.yaml
 #   types.bal            -- Shared types
 ```
 
-## Exporting OpenAPI from a Ballerina Service
+## Exporting OpenAPI from a Ballerina service
 
 Generate an OpenAPI specification from an existing Ballerina HTTP service:
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Open the Ballerina service in the **Service Designer**.
+2. Click **Export** in the service header toolbar.
+3. Select **Export OpenAPI Specification**.
+
+   ![Export OpenAPI from service](/img/develop/tools/openapi-tool/step-export.png)
+
+4. Choose the output location and format (YAML or JSON).
+5. Click **Export**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```bash
 # Export OpenAPI spec from a Ballerina project
@@ -170,7 +230,10 @@ service /api on new http:Listener(8090) {
 
 The tool produces an OpenAPI YAML describing the paths, request/response schemas, and status codes.
 
-## Command Reference
+</TabItem>
+</Tabs>
+
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -185,9 +248,9 @@ The tool produces an OpenAPI YAML describing the paths, request/response schemas
 | `--tags <tag1,tag2>` | Generate only operations with specified tags |
 | `--operations <op1,op2>` | Generate only specified operation IDs |
 
-## Customizing Generated Code
+## Customizing generated code
 
-### Filtering by Tags or Operations
+### Filtering by tags or operations
 
 ```bash
 # Generate only order-related operations
@@ -197,14 +260,14 @@ bal openapi -i openapi.yaml --mode service --tags orders
 bal openapi -i openapi.yaml --mode client --operations getOrders,createOrder
 ```
 
-### Handling Nullable Fields
+### Handling nullable fields
 
 ```bash
 # Treat all optional fields as nullable
 bal openapi -i openapi.yaml --nullable
 ```
 
-## Workflow Example
+## Workflow example
 
 A typical workflow for building an API integration:
 
@@ -215,7 +278,7 @@ A typical workflow for building an API integration:
 5. **Implement the service** resource functions with your integration logic.
 6. **Export your spec**: `bal openapi -i service.bal --mode export` to share with consumers.
 
-## What's Next
+## What's next
 
 - [GraphQL Tool](graphql-tool.md) -- Generate GraphQL services from SDL schemas
 - [gRPC Tool](grpc-tool.md) -- Generate gRPC services from Protocol Buffer definitions

@@ -4,38 +4,49 @@ title: Design Logic
 description: "Design your integration logic using the visual flow designer, code editor, or a combination of both."
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Design Logic
 
-Design the behavior of your integrations -- the logic that runs when a request arrives, an event fires, or a schedule triggers. WSO2 Integrator gives you two complementary approaches: a visual flow designer for rapid development and a full code editor for advanced scenarios. Both views stay synchronized, so you can switch freely between them.
+Design the behavior of your integrations — the logic that runs when a request arrives, an event fires, or a schedule triggers. WSO2 Integrator gives you two complementary approaches: a visual flow designer for rapid development and a full code editor for advanced scenarios. Both views stay synchronized, so you can switch freely between them.
 
-## Approaches to Designing Logic
+## Approaches to designing logic
 
-| Approach | Best For | Entry Point |
+| Approach | Best for | Entry point |
 |---|---|---|
-| **[Visual Flow Designer](flow-designer.md)** | Most integration scenarios, visual thinkers, rapid prototyping | Click on any `.bal` file |
+| **[Visual Flow Designer](flow-designer.md)** | Most integration scenarios, visual thinkers, rapid prototyping | Click on any automation, handler, or function in the sidebar |
 | **[Ballerina Pro-Code](ballerina-pro-code.md)** | Complex algorithms, advanced concurrency, custom protocols | Edit `.bal` files directly |
 | **Hybrid** | Start visual, switch to code for specific blocks | Use both views side-by-side |
 
-## Core Concepts
+## Core concepts
 
 Every integration follows a similar pattern: receive input, process it through a series of steps, and produce output. The design logic tools help you define those steps.
 
-```
-Input → [Validate] → [Transform] → [Route] → [Call External] → [Respond]
-```
-
 The building blocks of integration logic include:
 
-- **[Connections](connections.md)** -- Connect to databases, APIs, brokers, and cloud services
-- **[Control Flow](control-flow.md)** -- Branch, loop, and match on conditions
-- **[Error Handling](error-handling.md)** -- Handle failures with try/catch, retry, and fallback
-- **[Expressions](expressions.md)** -- Transform data inline with the Ballerina expression language
-- **[Query Expressions](query-expressions.md)** -- Filter, transform, and aggregate collections with SQL-like syntax
-- **[Configuration](configuration-management.md)** -- Externalize settings for different environments
-- **[Functions](functions.md)** -- Extract and reuse common logic
-- **[Java Interoperability](java-interoperability.md)** -- Call Java libraries from your integrations
+- **[Connections](connections.md)** — Connect to databases, APIs, brokers, and cloud services
+- **[Control Flow](control-flow.md)** — Branch, loop, and match on conditions
+- **[Error Handling](error-handling.md)** — Handle failures with do/on-fail, retry, and fallback
+- **[Expressions](expressions.md)** — Transform data inline with the Ballerina expression language
+- **[Query Expressions](query-expressions.md)** — Filter, transform, and aggregate collections with SQL-like syntax
+- **[Configuration](configuration-management.md)** — Externalize settings for different environments
+- **[Functions](functions.md)** — Extract and reuse common logic
+- **[Java Interoperability](java-interoperability.md)** — Call Java libraries from your integrations
 
-## Quick Example
+## Quick example
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Click **Automation** (or any handler) in the **Entry Points** section of the WSO2 Integrator sidebar to open the flow canvas.
+
+![Flow canvas showing the Automation with Start node, action buttons, and Flow/Sequence tabs](/img/develop/design-logic/flow-designer/canvas-overview.png)
+
+The canvas opens with a **Start** node and an **+** button. Click **+** to open the step picker and add nodes — connections, control flow, transformations, and error handling — to build your integration visually.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 Here is a complete integration that receives an HTTP request, validates the payload, calls an external API, transforms the result, and returns a response:
 
@@ -88,24 +99,23 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-In the visual flow designer, this same logic appears as a sequence of connected nodes that you can inspect, rearrange, and modify without writing code.
-
-<!-- TODO: Screenshot of the visual flow designer showing the above logic as a flow diagram -->
+</TabItem>
+</Tabs>
 
 ## Guides
 
-- [Visual Flow Designer](flow-designer.md) -- Build logic with drag-and-drop nodes
-- [Managing Connections](connections.md) -- Configure and test external connections
-- [Control Flow](control-flow.md) -- If/else, match, foreach, while, and more
-- [Error Handling](error-handling.md) -- Try/catch, retry, circuit breaker, fallback
-- [Expressions](expressions.md) -- Inline data transformation expressions
-- [Query Expressions](query-expressions.md) -- SQL-like queries over collections
-- [Configuration Management](configuration-management.md) -- Config.toml and configurable variables
-- [Functions](functions.md) -- Reusable logic blocks
-- [Ballerina Pro-Code](ballerina-pro-code.md) -- Full code editing with IDE support
-- [Java Interoperability](java-interoperability.md) -- Call Java libraries via FFI
+- [Visual Flow Designer](flow-designer.md) — Build logic with nodes on a canvas
+- [Managing Connections](connections.md) — Configure and test external connections
+- [Control Flow](control-flow.md) — If/else, match, foreach, while, and more
+- [Error Handling](error-handling.md) — Do/on-fail, retry, circuit breaker, fallback
+- [Expressions](expressions.md) — Inline data transformation expressions
+- [Query Expressions](query-expressions.md) — SQL-like queries over collections
+- [Configuration Management](configuration-management.md) — Config.toml and configurable variables
+- [Functions](functions.md) — Reusable logic blocks
+- [Ballerina Pro-Code](ballerina-pro-code.md) — Full code editing with IDE support
+- [Java Interoperability](java-interoperability.md) — Call Java libraries via FFI
 
-## What's Next
+## What's next
 
-- [Integration Artifacts](/docs/develop/integration-artifacts) -- Understand the artifact types that contain your logic
-- [Test](/docs/develop/test/try-it) -- Validate your logic with the built-in Try-It tool
+- [Integration Artifacts](/docs/develop/integration-artifacts/overview) — Understand the artifact types that contain your logic
+- [Test](/docs/develop/test/try-it) — Validate your logic with the built-in Try-It tool

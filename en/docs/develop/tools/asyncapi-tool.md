@@ -4,7 +4,10 @@ title: AsyncAPI Tool
 description: Generate event-driven Ballerina services from AsyncAPI specifications.
 ---
 
-# AsyncAPI Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# AsyncAPI tool
 
 The `bal asyncapi` tool generates Ballerina code from AsyncAPI specifications, enabling you to build event-driven integrations that consume and produce messages on Kafka, RabbitMQ, MQTT, WebSocket, and other messaging protocols. The generated code includes listener services, publisher clients, and message types derived from the AsyncAPI schema.
 
@@ -16,9 +19,26 @@ The AsyncAPI tool is included with the Ballerina distribution:
 bal asyncapi --help
 ```
 
-## Generating a Service from an AsyncAPI Spec
+## Generating a service from an AsyncAPI spec
 
-### Basic Usage
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
+2. In the **Artifacts** panel, select the relevant event handler type (for example, **Kafka**, **RabbitMQ**) under **Event Handlers**.
+3. Select **Import From AsyncAPI Specification** under **Service Contract**.
+
+   ![Import AsyncAPI specification](/img/develop/tools/asyncapi-tool/step-import-spec.png)
+
+4. Browse or enter the path to your AsyncAPI specification file.
+5. Configure the listener settings (bootstrap servers, group ID, etc.).
+6. Click **Create**.
+7. WSO2 Integrator generates the listener service with event handler stubs and message types matching your AsyncAPI specification.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic usage
 
 ```bash
 # Generate a Ballerina event listener service
@@ -28,7 +48,7 @@ bal asyncapi -i asyncapi.yaml --mode service
 bal asyncapi -i asyncapi.yaml --mode service -o generated/
 ```
 
-### Example AsyncAPI Specification
+### Example AsyncAPI specification
 
 ```yaml
 asyncapi: '2.6.0'
@@ -84,7 +104,7 @@ components:
           format: date-time
 ```
 
-### Generated Listener Service
+### Generated listener service
 
 The tool generates a Ballerina service that listens for messages on the defined channels:
 
@@ -108,7 +128,7 @@ service on orderListener {
 }
 ```
 
-### Generated Publisher
+### Generated publisher
 
 ```ballerina
 import ballerinax/kafka;
@@ -127,7 +147,7 @@ function publishOrderStatusChanged(OrderStatusEvent event) returns error? {
 }
 ```
 
-### Generated Types
+### Generated types
 
 ```ballerina
 // Auto-generated from AsyncAPI schemas
@@ -152,7 +172,10 @@ type OrderStatusEvent record {|
 |};
 ```
 
-## Implementing the Event Handler
+</TabItem>
+</Tabs>
+
+## Implementing the event handler
 
 After generating the skeleton, implement your event processing logic:
 
@@ -212,7 +235,7 @@ function persistOrder(OrderCreatedEvent event) returns error? {
 }
 ```
 
-## Exporting an AsyncAPI Spec from Ballerina
+## Exporting an AsyncAPI spec from Ballerina
 
 Generate an AsyncAPI specification from an existing Ballerina event-driven service:
 
@@ -224,7 +247,7 @@ bal asyncapi -i service.bal --mode export
 bal asyncapi -i service.bal --mode export -o specs/asyncapi.yaml
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -233,7 +256,7 @@ bal asyncapi -i service.bal --mode export -o specs/asyncapi.yaml
 | `bal asyncapi -i <service.bal> --mode export` | Export AsyncAPI from service |
 | `-o <dir>` | Output directory |
 
-## What's Next
+## What's next
 
 - [gRPC Tool](grpc-tool.md) -- Generate gRPC services from Protocol Buffer definitions
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients

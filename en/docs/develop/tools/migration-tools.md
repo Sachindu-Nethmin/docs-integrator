@@ -4,9 +4,9 @@ title: Migration Tools
 description: Migrate integrations from WSO2 MI, MuleSoft, and other platforms to WSO2 Integrator.
 ---
 
-# Migration Tools
+# Migration tools
 
-WSO2 Integrator provides migration tools that help you move existing integrations from other platforms -- including WSO2 MI, MuleSoft, and other integration solutions -- to WSO2 Integrator. The tools analyze your existing integration artifacts, generate equivalent Ballerina code, and produce a migration report highlighting items that require manual attention.
+WSO2 Integrator provides migration tools that help you move existing integrations from other platforms — including WSO2 MI, MuleSoft, and other integration solutions — to WSO2 Integrator. The tools analyze your existing integration artifacts, generate equivalent Ballerina code, and produce a migration report highlighting items that require manual attention.
 
 ## Migrating from WSO2 MI
 
@@ -18,7 +18,7 @@ WSO2 MI continues to be fully supported. For MI-specific documentation, visit [m
 
 The MI migration tool converts WSO2 MI artifacts (Synapse XML configurations) to Ballerina code. It handles APIs, proxy services, sequences, endpoints, data services, scheduled tasks, and message mediators.
 
-### Running the MI Migration Tool
+### Running the MI migration tool
 
 ```bash
 # Migrate a complete MI project (Carbon Application)
@@ -31,7 +31,9 @@ bal migrate mi -i /path/to/mi-project/ --artifacts api,proxy -o migrated/
 bal migrate mi -i /path/to/mi-project/ --report-only
 ```
 
-### Artifact Mapping
+![Terminal output during MI migration](/img/develop/tools/migration-tools/terminal-migration.png)
+
+### Artifact mapping
 
 The tool maps MI artifacts to their Ballerina equivalents:
 
@@ -46,7 +48,7 @@ The tool maps MI artifacts to their Ballerina equivalents:
 | Message Store + Processor | Kafka/message broker integration |
 | Inbound Endpoint | Listener service |
 
-### MI Mediator Mapping
+### MI mediator mapping
 
 | MI Mediator | Ballerina Equivalent |
 |---|---|
@@ -64,7 +66,7 @@ The tool maps MI artifacts to their Ballerina equivalents:
 | Enrich | Field assignment / spread operator |
 | DB Lookup | `db->queryRow()` |
 
-### Example: MI API to Ballerina Service
+### Example: MI API to Ballerina service
 
 **MI Synapse XML:**
 ```xml
@@ -122,9 +124,11 @@ service /api/orders on new http:Listener(8090) {
 }
 ```
 
-### Migration Report
+### Migration report
 
 The tool generates a detailed report listing what was migrated automatically and what requires manual attention:
+
+![Migration report showing migrated and manually reviewed items](/img/develop/tools/migration-tools/migration-report.png)
 
 ```
 Migration Report: OrderIntegration
@@ -148,7 +152,7 @@ Unsupported (Manual Migration Required):
 
 ## Migrating from MuleSoft
 
-### Running the MuleSoft Migration Tool
+### Running the MuleSoft migration tool
 
 ```bash
 # Migrate a MuleSoft project
@@ -161,7 +165,7 @@ bal migrate mule -i /path/to/mule-project/ --version 4 -o migrated/
 bal migrate mule -i /path/to/mule-project/ --report-only
 ```
 
-### MuleSoft Component Mapping
+### MuleSoft component mapping
 
 | MuleSoft Component | Ballerina Equivalent |
 |---|---|
@@ -177,7 +181,7 @@ bal migrate mule -i /path/to/mule-project/ --report-only
 | Object Store | Configurable state management |
 | Scheduler | `task:Listener` |
 
-### Example: MuleSoft Flow to Ballerina
+### Example: MuleSoft flow to Ballerina
 
 **MuleSoft Flow (XML):**
 ```xml
@@ -228,19 +232,19 @@ service /orders on new http:Listener(8090) {
 }
 ```
 
-## Migration Workflow
+## Migration workflow
 
 Follow these steps for a successful migration:
 
-1. **Assess** -- Run the migration tool with `--report-only` to understand the scope.
-2. **Generate** -- Run the full migration to produce Ballerina code.
-3. **Review** -- Check the migration report for items needing manual attention.
-4. **Configure** -- Set up `Config.toml` with connection details and environment-specific values.
-5. **Implement** -- Complete any manually flagged items (custom mediators, complex transformations).
-6. **Test** -- Write tests for the migrated integrations and compare behavior.
-7. **Deploy** -- Deploy to WSO2 Integrator runtime.
+1. **Assess** — Run the migration tool with `--report-only` to understand the scope.
+2. **Generate** — Run the full migration to produce Ballerina code.
+3. **Review** — Check the migration report for items needing manual attention.
+4. **Configure** — Set up `Config.toml` with connection details and environment-specific values.
+5. **Implement** — Complete any manually flagged items (custom mediators, complex transformations).
+6. **Test** — Write tests for the migrated integrations and compare behavior.
+7. **Deploy** — Deploy to WSO2 Integrator runtime.
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -251,7 +255,7 @@ Follow these steps for a successful migration:
 | `--artifacts <types>` | Migrate specific artifact types |
 | `--version <ver>` | Source platform version |
 
-## What's Next
+## What's next
 
 - [Scan Tool](scan-tool.md) -- Scan migrated code for quality and security issues
 - [Configuration Management](/docs/develop/design-logic/configuration-management) -- Set up environment-specific configuration for migrated integrations

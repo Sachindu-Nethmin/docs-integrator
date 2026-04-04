@@ -31,16 +31,20 @@ A CDC pipeline that monitors a MySQL orders table for changes and pushes those c
 
 ## Architecture
 
-```
-┌──────────────┐    ┌───────────────────┐    ┌──────────────┐
-│              │    │                   ├───►│ Elasticsearch│
-│   MySQL DB   ├───►│   CDC Service     │    │ (Search)     │
-│  (orders)    │    │                   │    └──────────────┘
-│              │    │  - Poll changes   │
-│  updated_at  │    │  - Track cursor   │    ┌──────────────┐
-│  is_deleted  │    │  - Fan-out        ├───►│ Kafka Topic  │
-│              │    │                   │    │ (Events)     │
-└──────────────┘    └───────────────────┘    └──────────────┘
+```mermaid
+flowchart LR
+    DB["MySQL DB<br/>(orders)<br/>updated_at<br/>is_deleted"]
+    subgraph CDC["CDC Service"]
+        Poll["Poll changes"]
+        Cursor["Track cursor"]
+        FanOut["Fan-out"]
+    end
+    ES["Elasticsearch<br/>(Search)"]
+    Kafka["Kafka Topic<br/>(Events)"]
+
+    DB ----> CDC
+    CDC ----> ES
+    CDC ----> Kafka
 ```
 
 ## Step 1: Create the Project
@@ -369,7 +373,6 @@ UPDATE orders SET status = 'shipped' WHERE id = 1;
 
 ## What's Next
 
-- [Event Handlers](../../develop/build/event-handlers.md) -- Event-driven development patterns
-- [Databases Connectors](../../connectors/databases.md) -- Database connector reference
-- [Messaging Connectors](../../connectors/messaging.md) -- Kafka, RabbitMQ, and more
+- [Databases Connectors](../../connectors/catalog/database) -- Database connector reference
+- [Messaging Connectors](../../connectors/catalog/messaging) -- Kafka, RabbitMQ, and more
 - [Kafka Event Processing Pipeline](../kafka-event-pipeline.md) -- Full Kafka tutorial

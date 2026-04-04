@@ -4,13 +4,37 @@ title: Functions
 description: Create reusable functions to encapsulate integration logic, compose operations, and keep your code maintainable.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Functions
 
 Functions are the primary mechanism for organizing and reusing integration logic. Extract repeated patterns into named functions, compose small operations into larger workflows, and keep your integration code clean and testable. Ballerina functions are first-class, type-safe, and support both synchronous and asynchronous execution.
 
-## Defining Functions
+## Defining and calling functions
 
-### Basic Functions
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Statement**, select **Call Function**.
+
+   ![Flow canvas showing a calculateTotal function call node in the Automation flow](/img/develop/design-logic/functions/function-node.png)
+
+3. In the configuration panel:
+
+   | Field | Description |
+   |---|---|
+   | **Function** | Select an existing function from the dropdown, or click **+ New Function** to define one |
+   | **Arguments** | Provide values for each parameter |
+   | **Result variable** | Name for the variable that holds the return value (optional) |
+
+4. Click **Save**.
+
+To define a new function, expand **Functions** in the WSO2 Integrator sidebar and click **+**. Enter the function name, parameters, and return type, then build the function body in its own flow canvas.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // Simple function with parameters and a return type
@@ -31,15 +55,17 @@ function fetchCustomer(string customerId) returns Customer|error {
 }
 ```
 
-### Required and Defaultable Parameters
+</TabItem>
+</Tabs>
+
+## Required and defaultable parameters
 
 ```ballerina
-// Required parameters come first, defaultable parameters after
 function sendNotification(
     string recipient,
     string message,
-    string channel = "email",    // Default: email
-    boolean urgent = false       // Default: not urgent
+    string channel = "email",
+    boolean urgent = false
 ) returns error? {
     if channel == "email" {
         check sendEmail(recipient, message, urgent);
@@ -56,7 +82,7 @@ check sendNotification("user@example.com", "Order shipped",
     channel = "sms", urgent = true);
 ```
 
-### Rest Parameters
+## Rest parameters
 
 Accept a variable number of arguments:
 
@@ -73,7 +99,6 @@ function mergeJsonObjects(json... objects) returns map<json> {
     return result;
 }
 
-// Call with any number of arguments
 map<json> merged = mergeJsonObjects(
     {name: "Alice"},
     {email: "alice@example.com"},
@@ -81,9 +106,9 @@ map<json> merged = mergeJsonObjects(
 );
 ```
 
-## Return Types
+## Return types
 
-### Single Return Type
+### Single return type
 
 ```ballerina
 function getOrderTotal(string orderId) returns decimal|error {
@@ -94,9 +119,7 @@ function getOrderTotal(string orderId) returns decimal|error {
 }
 ```
 
-### Union Return Types
-
-Return different types to represent success and failure scenarios:
+### Union return types
 
 ```ballerina
 function processPayment(PaymentRequest req)
@@ -110,26 +133,12 @@ function processPayment(PaymentRequest req)
 }
 ```
 
-### Returning Nil for Void with Error
-
-```ballerina
-// Returns nil on success, error on failure
-function updateInventory(string sku, int quantity) returns error? {
-    _ = check inventoryDb->execute(
-        `UPDATE inventory SET quantity = quantity - ${quantity} WHERE sku = ${sku}`
-    );
-}
-```
-
-## Function Composition
-
-### Chaining Functions with `check`
+## Function composition
 
 Compose multiple error-returning functions cleanly with `check`:
 
 ```ballerina
 function processOrder(OrderRequest req) returns OrderConfirmation|error {
-    // Each step can fail -- 'check' propagates errors automatically
     Customer customer = check fetchCustomer(req.customerId);
     check validateOrder(req, customer);
     decimal total = check calculatePricing(req.items, customer.tier);
@@ -141,10 +150,9 @@ function processOrder(OrderRequest req) returns OrderConfirmation|error {
 }
 ```
 
-### Utility Functions for Data Transformation
+### Utility functions for data transformation
 
 ```ballerina
-// Transform a collection of records
 function toOrderSummaries(Order[] orders) returns OrderSummary[] {
     return from Order o in orders
         select {
@@ -156,9 +164,7 @@ function toOrderSummaries(Order[] orders) returns OrderSummary[] {
         };
 }
 
-// Format currency values
 function formatCurrency(decimal amount, string currency = "USD") returns string {
-    // Round to 2 decimal places
     decimal rounded = decimal:round(amount, 2);
     match currency {
         "USD" => { return string `$${rounded}`; }
@@ -168,32 +174,9 @@ function formatCurrency(decimal amount, string currency = "USD") returns string 
 }
 ```
 
-### Higher-Order Functions
+## Isolated functions
 
-Pass functions as arguments to create flexible pipelines:
-
-```ballerina
-// A function that accepts a transformation function
-function processItems(
-    LineItem[] items,
-    function (LineItem) returns LineItem transform
-) returns LineItem[] {
-    return from LineItem item in items
-        select transform(item);
-}
-
-// Usage -- apply a discount
-LineItem[] discounted = processItems(order.items, function(LineItem item) returns LineItem {
-    return {
-        ...item,
-        unitPrice: item.unitPrice * 0.9d  // 10% discount
-    };
-});
-```
-
-## Isolated Functions
-
-Declare functions as `isolated` to guarantee concurrency safety. Isolated functions can only access `final` variables and other `isolated` state:
+Declare functions as `isolated` to guarantee concurrency safety:
 
 ```ballerina
 isolated function buildResponse(string id, string status) returns json {
@@ -205,24 +188,19 @@ isolated function buildResponse(string id, string status) returns json {
 }
 ```
 
-Service resource functions in Ballerina are implicitly `isolated`, which is why module-level clients must be declared `final`:
+Service resource functions are implicitly `isolated`, which is why module-level clients must be declared `final`:
 
 ```ballerina
 final http:Client apiClient = check new ("https://api.example.com");
 
 service /api on new http:Listener(8090) {
-    // This is implicitly isolated -- can access 'apiClient' because it is final
     resource function get data() returns json|error {
         return apiClient->get("/data");
     }
 }
 ```
 
-## Reusing Functions Across Modules
-
-### Defining Public Functions
-
-Mark functions with the `public` qualifier to make them accessible from other modules:
+## Reusing functions across modules
 
 ```ballerina
 // In module 'utils'
@@ -239,8 +217,6 @@ public function validateEmail(string email) returns boolean {
 }
 ```
 
-### Importing and Using Functions
-
 ```ballerina
 import myorg/myproject.utils;
 
@@ -249,13 +225,12 @@ function handleRegistration(RegistrationRequest req) returns error? {
         return error("Invalid email address");
     }
     log:printInfo("Registration", maskedEmail = utils:maskEmail(req.email));
-    // ...
 }
 ```
 
-## Common Integration Patterns
+## Common integration patterns
 
-### Retry Wrapper
+### Retry wrapper
 
 ```ballerina
 function withRetry(
@@ -271,8 +246,7 @@ function withRetry(
         }
         attempt += 1;
         if attempt < maxAttempts {
-            log:printWarn("Retrying operation",
-                attempt = attempt, maxAttempts = maxAttempts);
+            log:printWarn("Retrying operation", attempt = attempt, maxAttempts = maxAttempts);
             runtime:sleep(<decimal>delaySeconds);
         }
     }
@@ -280,26 +254,7 @@ function withRetry(
 }
 ```
 
-### Batch Processing
-
-```ballerina
-function processBatch(record {}[] records, int batchSize = 100) returns error? {
-    int totalRecords = records.length();
-    int batchCount = 0;
-
-    foreach int i in 0 ..< totalRecords {
-        if i > 0 && i % batchSize == 0 {
-            batchCount += 1;
-            log:printInfo("Batch processed",
-                batch = batchCount, processed = i, total = totalRecords);
-        }
-        check processRecord(records[i]);
-    }
-    log:printInfo("All batches complete", total = totalRecords);
-}
-```
-
-### Validation Functions
+### Validation functions
 
 ```ballerina
 type ValidationError record {|
@@ -315,25 +270,22 @@ function validateOrderRequest(OrderRequest req) returns ValidationError[] {
     }
     foreach LineItem item in req.items {
         if item.quantity <= 0 {
-            errors.push({'field: "items.quantity",
-                message: "Quantity must be positive"});
+            errors.push({'field: "items.quantity", message: "Quantity must be positive"});
         }
         if item.unitPrice < 0d {
-            errors.push({'field: "items.unitPrice",
-                message: "Price cannot be negative"});
+            errors.push({'field: "items.unitPrice", message: "Price cannot be negative"});
         }
     }
     if req.customerId.trim().length() == 0 {
-        errors.push({'field: "customerId",
-            message: "Customer ID is required"});
+        errors.push({'field: "customerId", message: "Customer ID is required"});
     }
 
     return errors;
 }
 ```
 
-## What's Next
+## What's next
 
-- [Ballerina Pro-Code](ballerina-pro-code.md) -- Advanced language features for complex function logic
-- [Error Handling](error-handling.md) -- Error propagation and recovery in functions
-- [Configuration Management](configuration-management.md) -- Parameterize functions with configurable values
+- [Ballerina Pro-Code](ballerina-pro-code.md) — Advanced language features for complex function logic
+- [Error Handling](error-handling.md) — Error propagation and recovery in functions
+- [Configuration Management](configuration-management.md) — Parameterize functions with configurable values

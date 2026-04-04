@@ -4,11 +4,28 @@ title: Query Expressions
 description: Use SQL-like query expressions to filter, transform, sort, group, and aggregate collections of data.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Query Expressions
 
 Query expressions bring SQL-like syntax to Ballerina, letting you filter, transform, sort, group, join, and aggregate data collections directly in your integration code. They work with arrays, streams, tables, and XML sequences, making them essential for data integration scenarios.
 
-## Basic Query Structure
+## Using query expressions in the visual designer
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Query expressions appear in the visual designer primarily inside **Map Data** nodes (the data mapper). To use a query expression:
+
+1. In the flow canvas, click **+** and select **Map Data** under **Statement**.
+2. In the data mapper, select the source collection and the target type.
+3. For complex transformations such as filtering, joining, or grouping, switch to the expression editor and enter the query expression directly.
+
+Query expressions are also used inside **Declare Variable** and **Update Variable** node configuration panels when assigning a computed collection value.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 A query expression follows a familiar SQL-like pattern:
 
@@ -21,7 +38,10 @@ var result = from <source>
              select <projection>;
 ```
 
-## From Clause
+</TabItem>
+</Tabs>
+
+## From clause
 
 The `from` clause declares the iteration source and a variable to bind each element.
 
@@ -31,7 +51,7 @@ Order[] activeOrders = from Order o in allOrders
     where o.status == "ACTIVE"
     select o;
 
-// From a stream (e.g., database query results)
+// From a stream (database query results)
 stream<Customer, sql:Error?> customerStream = dbClient->query(`SELECT * FROM customers`);
 Customer[] customers = from Customer c in customerStream
     select c;
@@ -46,43 +66,27 @@ int[] evenNumbers = from int i in 0 ..< 100
     select i;
 ```
 
-## Where Clause
+## Where clause
 
 Filter elements based on conditions. Multiple `where` clauses act as logical AND.
 
 ```ballerina
-// Single condition
 Order[] largeOrders = from Order o in orders
     where o.totalAmount > 1000d
     select o;
 
-// Multiple conditions (AND)
 Order[] urgentLargeOrders = from Order o in orders
     where o.totalAmount > 1000d
     where o.priority == "URGENT"
     where o.status != "CANCELLED"
     select o;
-
-// Complex conditions
-Product[] matchingProducts = from Product p in catalog
-    where p.price >= minPrice && p.price <= maxPrice
-    where p.category == targetCategory || p.featured == true
-    select p;
 ```
 
-## Let Clause
+## Let clause
 
 Bind intermediate computed values for use in later clauses.
 
 ```ballerina
-type OrderSummary record {|
-    string orderId;
-    string customerName;
-    decimal subtotal;
-    decimal tax;
-    decimal total;
-|};
-
 OrderSummary[] summaries = from Order o in orders
     let decimal subtotal = calculateSubtotal(o.items)
     let decimal tax = subtotal * 0.08d
@@ -96,21 +100,13 @@ OrderSummary[] summaries = from Order o in orders
     };
 ```
 
-## Select Clause
+## Select clause
 
-Project each element into a new shape. The `select` clause defines the output structure.
+Project each element into a new shape.
 
 ```ballerina
-// Select specific fields
 string[] customerEmails = from Customer c in customers
     select c.email;
-
-// Transform into a different record type
-type ContactInfo record {|
-    string fullName;
-    string email;
-    string phone;
-|};
 
 ContactInfo[] contacts = from Customer c in customers
     select {
@@ -120,57 +116,30 @@ ContactInfo[] contacts = from Customer c in customers
     };
 ```
 
-## Order By Clause
-
-Sort results by one or more expressions, ascending or descending.
+## Order by clause
 
 ```ballerina
-// Sort ascending (default)
-Order[] byDate = from Order o in orders
-    order by o.createdAt
-    select o;
-
-// Sort descending
 Order[] byAmountDesc = from Order o in orders
     order by o.totalAmount descending
     select o;
 
-// Multi-column sort
 Order[] sorted = from Order o in orders
     order by o.priority descending, o.createdAt ascending
     select o;
 ```
 
-## Limit Clause
-
-Restrict the number of results returned.
+## Limit clause
 
 ```ballerina
-// Top 10 orders by amount
 Order[] top10 = from Order o in orders
     order by o.totalAmount descending
     limit 10
     select o;
-
-// Paginated results
-Order[] page = from Order o in orders
-    order by o.createdAt descending
-    limit pageSize
-    select o;
 ```
 
-## Join Clause
-
-Combine data from two collections based on a condition.
+## Join clause
 
 ```ballerina
-type OrderWithCustomer record {|
-    string orderId;
-    decimal amount;
-    string customerName;
-    string customerEmail;
-|};
-
 OrderWithCustomer[] enrichedOrders = from Order o in orders
     join Customer c in customers on o.customerId equals c.id
     select {
@@ -181,17 +150,9 @@ OrderWithCustomer[] enrichedOrders = from Order o in orders
     };
 ```
 
-### Outer Join
-
-Include elements from the left source even when there is no matching element in the right source.
+### Outer join
 
 ```ballerina
-type OrderReport record {|
-    string orderId;
-    decimal amount;
-    string? customerName;
-|};
-
 OrderReport[] report = from Order o in orders
     outer join Customer c in customers on o.customerId equals c.id
     select {
@@ -201,18 +162,9 @@ OrderReport[] report = from Order o in orders
     };
 ```
 
-## Group By Clause
-
-Group elements and compute aggregates.
+## Group by clause
 
 ```ballerina
-type CategorySummary record {|
-    string category;
-    int productCount;
-    decimal avgPrice;
-    decimal maxPrice;
-|};
-
 CategorySummary[] categorySummaries = from Product p in products
     group by string category = p.category
     select {
@@ -223,37 +175,9 @@ CategorySummary[] categorySummaries = from Product p in products
     };
 ```
 
-### Group By Multiple Keys
+## Collect clause
 
 ```ballerina
-type RegionCategorySales record {|
-    string region;
-    string category;
-    decimal totalSales;
-    int orderCount;
-|};
-
-RegionCategorySales[] salesByRegionCategory = from Order o in orders
-    group by string region = o.region, string category = o.category
-    select {
-        region: region,
-        category: category,
-        totalSales: decimal:sum(...(from Order ord in o select ord.totalAmount)),
-        orderCount: o.length()
-    };
-```
-
-## Collect Clause
-
-Aggregate all elements into a single result without grouping.
-
-```ballerina
-type SalesTotal record {|
-    int orderCount;
-    decimal totalRevenue;
-    decimal avgOrderValue;
-|};
-
 SalesTotal totals = from Order o in orders
     where o.status == "COMPLETED"
     collect {
@@ -263,12 +187,9 @@ SalesTotal totals = from Order o in orders
     };
 ```
 
-## Do Clause (Side Effects)
-
-Use `do` instead of `select` when you want to perform actions without collecting results.
+## Do clause (side effects)
 
 ```ballerina
-// Process each element without building a result collection
 check from Order o in orders
     where o.status == "PENDING"
     where o.createdAt < cutoffDate
@@ -278,15 +199,9 @@ check from Order o in orders
     };
 ```
 
-## Query Expressions with Streams
-
-Query expressions work natively with streams, enabling efficient processing of database results and large datasets:
+## Query expressions with streams
 
 ```ballerina
-import ballerinax/mysql;
-import ballerina/sql;
-
-// Stream database results through a query
 function getHighValueCustomers() returns CustomerSummary[]|error {
     stream<Order, sql:Error?> orderStream = dbClient->query(
         `SELECT * FROM orders WHERE created_at > '2024-01-01'`
@@ -306,9 +221,9 @@ function getHighValueCustomers() returns CustomerSummary[]|error {
 }
 ```
 
-## Real-World Integration Examples
+## Real-world integration examples
 
-### Transform API Response
+### Transform API response
 
 ```ballerina
 function transformCrmContacts(json[] crmContacts) returns Contact[]|error {
@@ -325,7 +240,7 @@ function transformCrmContacts(json[] crmContacts) returns Contact[]|error {
 }
 ```
 
-### Reconcile Two Data Sources
+### Reconcile two data sources
 
 ```ballerina
 function reconcileInventory(
@@ -348,23 +263,7 @@ function reconcileInventory(
 }
 ```
 
-### Pivot Data for Reporting
-
-```ballerina
-function generateMonthlySalesReport(Order[] orders) returns MonthlySales[] {
-    return from Order o in orders
-        group by string month = o.createdAt.substring(0, 7)
-        order by month
-        select {
-            month: month,
-            orderCount: o.length(),
-            totalRevenue: decimal:sum(...(from Order ord in o select ord.totalAmount)),
-            avgOrderValue: decimal:avg(...(from Order ord in o select ord.totalAmount))
-        };
-}
-```
-
-## Query Expression Quick Reference
+## Query expression quick reference
 
 | Clause | Purpose | Example |
 |---|---|---|
@@ -379,8 +278,8 @@ function generateMonthlySalesReport(Order[] orders) returns MonthlySales[] {
 | `collect` | Aggregate all into one | `collect {count: items.length()}` |
 | `do` | Side effects only | `do { check process(o); }` |
 
-## What's Next
+## What's next
 
-- [Expressions](expressions.md) -- Inline expressions used within query clauses
-- [Functions](functions.md) -- Wrap query expressions in reusable functions
-- [Data Persistence](/docs/develop/integration-artifacts/data-persistence) -- Query over persisted data
+- [Expressions](expressions.md) — Inline expressions used within query clauses
+- [Functions](functions.md) — Wrap query expressions in reusable functions
+- [Data Persistence](/docs/develop/integration-artifacts/supporting/data-persistence) — Query over persisted data

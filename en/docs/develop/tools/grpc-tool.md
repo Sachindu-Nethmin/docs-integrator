@@ -4,7 +4,10 @@ title: gRPC Tool
 description: Generate Ballerina service stubs and client connectors from Protocol Buffer definitions.
 ---
 
-# gRPC Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# gRPC tool
 
 The `bal grpc` tool generates Ballerina code from Protocol Buffer (`.proto`) files. It creates service stubs with RPC method signatures, client connectors for calling gRPC services, and Ballerina record types that correspond to protobuf message definitions. This lets you integrate with gRPC-based microservices using idiomatic Ballerina code.
 
@@ -16,9 +19,29 @@ The gRPC tool is included with the Ballerina distribution:
 bal grpc --help
 ```
 
-## Generating Code from a Proto File
+## Generating code from a proto file
 
-### Basic Usage
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
+2. In the **Artifacts** panel, select **gRPC Service** under **Integration as API**.
+3. Select **Import From Proto File** and provide the `.proto` file.
+
+   ![Import proto file](/img/develop/tools/grpc-tool/step-import-proto.png)
+
+4. Select the generation mode: **Service**, **Client**, or **Both**.
+5. Configure the output settings.
+6. Click **Create**.
+
+   ![gRPC service generation](/img/develop/tools/grpc-tool/step-service-generation.png)
+
+7. WSO2 Integrator generates the service stub, client connector, and message types from your proto file.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic usage
 
 ```bash
 # Generate both service stub and client
@@ -34,7 +57,7 @@ bal grpc --input order_service.proto --mode client
 bal grpc --input order_service.proto --output generated/
 ```
 
-### Example Proto File
+### Example proto file
 
 ```protobuf
 syntax = "proto3";
@@ -90,7 +113,7 @@ message ListOrdersRequest {
 }
 ```
 
-### Generated Files
+### Generated files
 
 The tool produces:
 
@@ -101,7 +124,10 @@ generated/
 └── order_service_client.bal      # Client connector
 ```
 
-## Generated Service Stub
+</TabItem>
+</Tabs>
+
+## Generated service stub
 
 The service stub provides empty RPC method implementations that you fill in with your logic:
 
@@ -135,7 +161,7 @@ service "OrderService" on ep {
 }
 ```
 
-## Generated Client
+## Generated client
 
 The client provides type-safe methods for each RPC operation:
 
@@ -164,7 +190,7 @@ public isolated client class OrderServiceClient {
 }
 ```
 
-## Using the Generated Client
+## Using the generated client
 
 ### Unary RPC
 
@@ -187,7 +213,7 @@ function createOrder(string customerId, LineItem[] items) returns Order|error {
 }
 ```
 
-### Server Streaming
+### Server streaming
 
 ```ballerina
 function listCustomerOrders(string customerId) returns Order[]|error {
@@ -202,7 +228,7 @@ function listCustomerOrders(string customerId) returns Order[]|error {
 }
 ```
 
-### Bidirectional Streaming
+### Bidirectional streaming
 
 ```ballerina
 function streamOrderUpdates(OrderUpdate[] updates) returns OrderStatus[]|error {
@@ -225,7 +251,7 @@ function streamOrderUpdates(OrderUpdate[] updates) returns OrderStatus[]|error {
 }
 ```
 
-## Implementing the Service
+## Implementing the service
 
 Fill in the generated service stub with your integration logic:
 
@@ -276,7 +302,7 @@ service "OrderService" on new grpc:Listener(9090) {
 }
 ```
 
-## Proto Import Paths
+## Proto import paths
 
 For proto files that import other proto files, specify the import paths:
 
@@ -285,7 +311,7 @@ For proto files that import other proto files, specify the import paths:
 bal grpc --input order_service.proto --proto_path ./protos/ --proto_path ./third_party/
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -295,7 +321,7 @@ bal grpc --input order_service.proto --proto_path ./protos/ --proto_path ./third
 | `--output <dir>` | Output directory |
 | `--proto_path <dir>` | Additional proto import paths |
 
-## What's Next
+## What's next
 
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
 - [WSDL Tool](wsdl-tool.md) -- Generate SOAP clients from WSDL files

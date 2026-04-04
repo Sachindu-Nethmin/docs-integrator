@@ -4,7 +4,7 @@ title: Health Tool
 description: Generate FHIR and HL7 healthcare integration code from standard profiles and implementation guides.
 ---
 
-# Health Tool
+# Health tool
 
 The `bal health` tool generates Ballerina code for healthcare integrations based on FHIR (Fast Healthcare Interoperability Resources) and HL7 standards. It creates type-safe resource types, service templates, and data transformation utilities that conform to healthcare interoperability profiles, accelerating the development of clinical and administrative healthcare integrations.
 
@@ -16,9 +16,9 @@ The Health tool is included with the Ballerina distribution:
 bal health --help
 ```
 
-## FHIR Integration
+## FHIR integration
 
-### Generating FHIR Resource Types
+### Generating FHIR resource types
 
 Generate Ballerina records from FHIR implementation guides and profiles:
 
@@ -33,7 +33,7 @@ bal health fhir -i patient-profile.json --mode types -o generated/
 bal health fhir --package hl7.fhir.us.core --mode types
 ```
 
-### Generated FHIR Types
+### Generated FHIR types
 
 For a FHIR Patient resource, the tool generates Ballerina records with all profile constraints:
 
@@ -72,7 +72,7 @@ type Identifier record {|
 |};
 ```
 
-### Generating a FHIR Service
+### Generating a FHIR service
 
 Generate a Ballerina service that implements FHIR RESTful API interactions:
 
@@ -119,7 +119,7 @@ service /fhir/r4 on new http:Listener(9090) {
 }
 ```
 
-### Implementing a FHIR Service
+### Implementing a FHIR service
 
 ```ballerina
 import ballerina/http;
@@ -166,9 +166,9 @@ service /fhir/r4 on new http:Listener(9090) {
 }
 ```
 
-## HL7 Integration
+## HL7 integration
 
-### Generating HL7v2 Message Types
+### Generating HL7v2 message types
 
 ```bash
 # Generate HL7v2 message types
@@ -178,7 +178,7 @@ bal health hl7 -i hl7v2-definitions/ --mode types
 bal health hl7 --message-types ADT_A01,ORM_O01 --mode types
 ```
 
-### Working with HL7v2 Messages
+### Working with HL7v2 messages
 
 ```ballerina
 import ballerinax/health.hl7v2;
@@ -219,7 +219,7 @@ function createAdmitMessage(PatientInfo patient) returns string|error {
 }
 ```
 
-### HL7v2 Listener Service
+### HL7v2 listener service
 
 ```ballerina
 import ballerinax/health.hl7v2;
@@ -247,7 +247,7 @@ function handleAdmission(hl7v2:ADT_A01 message) returns error? {
 }
 ```
 
-## FHIR to HL7v2 Transformation
+## FHIR to HL7v2 transformation
 
 A common healthcare integration pattern is converting between FHIR and HL7v2:
 
@@ -276,7 +276,7 @@ function mapGender(string fhirGender) returns string {
 }
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -286,7 +286,7 @@ function mapGender(string fhirGender) returns string {
 | `bal health hl7 --message-types <types>` | Generate HL7v2 message types |
 | `-o <dir>` | Output directory |
 
-## What's Next
+## What's next
 
 - [EDI Tool](edi-tool.md) -- Generate B2B data exchange code
 - [OpenAPI Tool](openapi-tool.md) -- Expose healthcare services as REST APIs

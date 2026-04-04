@@ -48,17 +48,17 @@ WSO2 Integrator supports the following artifact types:
 
 A typical integration combines multiple artifact types. For example, an order processing system might include:
 
-```
-┌─────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  HTTP Service    │────▶│  Event Handler   │────▶│  Data Persistence│
-│  (receive order) │     │  (process order)  │     │  (store order)   │
-└─────────────────┘     └──────────────────┘     └──────────────────┘
-        │                        │
-        ▼                        ▼
-┌─────────────────┐     ┌──────────────────┐
-│  Email           │     │  Automation       │
-│  (confirmation)  │     │  (daily report)   │
-└─────────────────┘     └──────────────────┘
+```mermaid
+flowchart TD
+    HTTP["HTTP Service<br/>(receive order)"]
+    Handler["Event Handler<br/>(process order)"]
+    Persistence[(Data Persistence<br/>(store order))]
+    Email["Email<br/>(confirmation)"]
+    Automation["Automation<br/>(daily report)"]
+
+    HTTP ----> Handler ----> Persistence
+    HTTP ----> Email
+    Handler ----> Automation
 ```
 
 ## Creating Artifacts
@@ -98,6 +98,6 @@ Every artifact follows the same lifecycle:
 
 ## What's Next
 
-- [Services](services.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
-- [Event Handlers](event-handlers.md) -- React to messages from brokers and external systems
+- [Services](service/http-service.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
+- [Event Handlers](event/kafka.md) -- React to messages from brokers and external systems
 - [Design Logic](/docs/develop/design-logic/overview) -- Build the logic inside your artifacts

@@ -4,15 +4,31 @@ title: Control Flow
 description: Use conditional logic, loops, pattern matching, and parallel execution to control integration behavior.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Control Flow
 
 Control flow constructs determine the execution path of your integration logic. Use conditionals to branch, loops to iterate, pattern matching to route, and workers to execute in parallel. Each construct is available in both the visual flow designer and code.
 
-## If/Else Statements
+## If/Else statements
 
 Branch your logic based on conditions.
 
-### In Code
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Control**, select **If**.
+
+   ![Flow canvas showing an If node with condition and True/False branches](/img/develop/design-logic/control-flow/if-else.png)
+
+3. In the configuration panel, enter the condition expression (for example, `req.items.length() == 0`).
+4. Add nodes to the **True** and **False** branches.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 resource function post orders(OrderRequest req) returns OrderResponse|http:BadRequest|error {
@@ -36,17 +52,27 @@ resource function post orders(OrderRequest req) returns OrderResponse|http:BadRe
 }
 ```
 
-### In the Visual Designer
+</TabItem>
+</Tabs>
 
-<!-- TODO: Screenshot of an if/else node in the flow designer -->
-
-1. Click **+** to add a node and select **If/Else**.
-2. Enter the condition expression.
-3. Add nodes to the **True** and **False** branches.
-
-## Match Expressions
+## Match expressions
 
 Match expressions provide structured pattern matching, similar to switch/case but more powerful with Ballerina's type system.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Control**, select **Match**.
+
+   ![Flow canvas showing a Match node with multiple pattern branches](/img/develop/design-logic/control-flow/match.png)
+
+3. In the configuration panel, enter the expression to match against.
+4. Add a branch for each pattern. Use `_` for the default branch.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function routePayment(Payment payment) returns PaymentResult|error {
@@ -68,13 +94,12 @@ function routePayment(Payment payment) returns PaymentResult|error {
 }
 ```
 
-### Type-Based Matching
+### Type-based matching
 
 ```ballerina
 type PaymentMethod CreditCard|BankTransfer|DigitalWallet;
 
 function processPayment(PaymentMethod method) returns string|error {
-    // Match on type
     if method is CreditCard {
         return "Charged card ending in " + method.lastFour;
     } else if method is BankTransfer {
@@ -85,11 +110,10 @@ function processPayment(PaymentMethod method) returns string|error {
 }
 ```
 
-### Binding Patterns
+### Binding patterns
 
 ```ballerina
 function handleResponse(json response) returns string {
-    // Match with binding patterns
     if response is map<json> {
         json|error status = response.status;
         if status is string && status == "success" {
@@ -101,9 +125,33 @@ function handleResponse(json response) returns string {
 }
 ```
 
-## Foreach Loops
+</TabItem>
+</Tabs>
+
+## Foreach loops
 
 Iterate over arrays, maps, and other iterable types.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Control**, select **Foreach**.
+
+   ![Flow canvas showing a Foreach node iterating over a collection](/img/develop/design-logic/control-flow/foreach.png)
+
+3. In the configuration panel, specify:
+
+   | Field | Description |
+   |---|---|
+   | **Collection** | The array, map, or stream to iterate over |
+   | **Variable** | The loop variable name bound to each element |
+
+4. Add nodes inside the loop body.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function processOrderItems(LineItem[] items) returns decimal {
@@ -117,7 +165,7 @@ function processOrderItems(LineItem[] items) returns decimal {
     return total;
 }
 
-// Foreach with index using .enumerate()
+// Foreach with index
 function logItems(LineItem[] items) {
     foreach int i in 0 ..< items.length() {
         log:printInfo("Item " + i.toString(), name = items[i].productName);
@@ -132,9 +180,7 @@ function processHeaders(map<string> headers) {
 }
 ```
 
-### Foreach with Early Termination
-
-Use a combination of foreach and error handling to break out of loops:
+### Foreach with early termination
 
 ```ballerina
 function findFirstMatch(Order[] orders, string customerId) returns Order? {
@@ -149,9 +195,27 @@ function findFirstMatch(Order[] orders, string customerId) returns Order? {
 }
 ```
 
-## While Loops
+</TabItem>
+</Tabs>
+
+## While loops
 
 Execute a block repeatedly while a condition is true.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the flow canvas, click **+** to open the step picker.
+2. Under **Control**, select **While**.
+
+   ![Flow canvas showing a While node with loop condition](/img/develop/design-logic/control-flow/while.png)
+
+3. In the configuration panel, enter the loop condition expression.
+4. Add nodes inside the loop body.
+5. Click **Save**.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 function pollUntilComplete(string jobId) returns JobResult|error {
@@ -168,7 +232,6 @@ function pollUntilComplete(string jobId) returns JobResult|error {
             return error("Job failed: " + status.errorMessage);
         }
 
-        // Wait before polling again
         runtime:sleep(2);
         attempt += 1;
     }
@@ -177,7 +240,10 @@ function pollUntilComplete(string jobId) returns JobResult|error {
 }
 ```
 
-## Do Blocks
+</TabItem>
+</Tabs>
+
+## Do blocks
 
 Use `do` blocks to create scoped execution with error handling:
 
@@ -195,13 +261,12 @@ function processWithScope() returns error? {
 }
 ```
 
-## Parallel Execution with Workers
+## Parallel execution with workers
 
 Execute multiple branches concurrently using Ballerina workers.
 
 ```ballerina
 function enrichOrderData(Order 'order) returns EnrichedOrder|error {
-    // Execute three API calls in parallel
     worker customerWorker returns Customer|error {
         return fetchCustomer('order.customerId);
     }
@@ -214,7 +279,6 @@ function enrichOrderData(Order 'order) returns EnrichedOrder|error {
         return calculatePricing('order.items);
     }
 
-    // Wait for all workers and combine results
     Customer|error customer = wait customerWorker;
     InventoryStatus[]|error inventory = wait inventoryWorker;
     PricingResult|error pricing = wait pricingWorker;
@@ -228,26 +292,7 @@ function enrichOrderData(Order 'order) returns EnrichedOrder|error {
 }
 ```
 
-### Wait for Any (First Response)
-
-```ballerina
-function fetchFromFastestSource(string key) returns json|error {
-    worker primaryWorker returns json|error {
-        return primaryApi->get("/data/" + key);
-    }
-
-    worker fallbackWorker returns json|error {
-        runtime:sleep(1); // Give primary a head start
-        return fallbackApi->get("/data/" + key);
-    }
-
-    // Return whichever completes first
-    json|error result = wait primaryWorker | fallbackWorker;
-    return result;
-}
-```
-
-## Range Expressions
+## Range expressions
 
 Iterate over numeric ranges:
 
@@ -263,11 +308,11 @@ foreach int i in 1 ... 10 {
 }
 ```
 
-## Visual Designer Representation
+## Visual designer representation
 
 Each control flow construct has a visual representation in the flow designer:
 
-| Construct | Visual Node |
+| Construct | Visual node |
 |---|---|
 | If/Else | Diamond shape with True/False branches |
 | Match | Diamond with multiple labeled branches |
@@ -275,10 +320,8 @@ Each control flow construct has a visual representation in the flow designer:
 | While | Loop block with condition |
 | Parallel | Fork node that splits into concurrent branches |
 
-<!-- TODO: Screenshot showing all control flow nodes in the visual designer palette -->
+## What's next
 
-## What's Next
-
-- [Error Handling](error-handling.md) -- Handle failures within your control flow
-- [Expressions](expressions.md) -- Write conditions and transformations
-- [Query Expressions](query-expressions.md) -- Functional-style iteration with query syntax
+- [Error Handling](error-handling.md) — Handle failures within your control flow
+- [Expressions](expressions.md) — Write conditions and transformations
+- [Query Expressions](query-expressions.md) — Functional-style iteration with query syntax

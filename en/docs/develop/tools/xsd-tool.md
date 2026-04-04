@@ -4,7 +4,10 @@ title: XSD Tool
 description: Generate Ballerina record types from XML Schema Definition (XSD) files.
 ---
 
-# XSD Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# XSD tool
 
 The `bal xsd` tool generates Ballerina record types from XML Schema Definition (XSD) files. It maps XSD complex types, simple types, enumerations, and element structures to equivalent Ballerina records with XML annotations, enabling you to serialize and deserialize XML documents with full type safety.
 
@@ -16,9 +19,25 @@ The XSD tool is included with the Ballerina distribution:
 bal xsd --help
 ```
 
-## Generating Record Types from XSD
+## Generating record types from XSD
 
-### Basic Usage
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas.
+2. In the **Artifacts** panel, select **Types** under **Other Artifacts**.
+3. Select **Import From XSD** and provide the `.xsd` file.
+
+   ![Import XSD file](/img/develop/tools/xsd-tool/step-import-xsd.png)
+
+4. Configure the output module and type name prefix.
+5. Click **Generate**.
+6. WSO2 Integrator generates Ballerina record types with XML annotations matching your XSD schema.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic usage
 
 ```bash
 # Generate Ballerina records from an XSD file
@@ -81,7 +100,7 @@ bal xsd -i https://example.com/schemas/order.xsd
 </xs:schema>
 ```
 
-### Generated Ballerina Records
+### Generated Ballerina records
 
 ```ballerina
 import ballerina/data.xmldata;
@@ -119,9 +138,12 @@ enum OrderStatus {
 }
 ```
 
-## Using Generated Types
+</TabItem>
+</Tabs>
 
-### Parsing XML to Records
+## Using generated types
+
+### Parsing XML to records
 
 ```ballerina
 import ballerina/data.xmldata;
@@ -136,7 +158,7 @@ function parseOrderString(string xmlString) returns Order|error {
 }
 ```
 
-### Converting Records to XML
+### Converting records to XML
 
 ```ballerina
 import ballerina/data.xmldata;
@@ -146,7 +168,7 @@ function toOrderXml(Order 'order) returns xml|error {
 }
 ```
 
-### Integration Example
+### Integration example
 
 Use the generated types in an integration that receives XML from a SOAP endpoint and transforms it to JSON for a REST API:
 
@@ -180,7 +202,7 @@ service /api on new http:Listener(servicePort) {
 }
 ```
 
-## XSD Type Mapping
+## XSD type mapping
 
 The tool maps XSD types to Ballerina types as follows:
 
@@ -199,7 +221,7 @@ The tool maps XSD types to Ballerina types as follows:
 | `minOccurs="0"` | Optional (`Type?`) |
 | Attribute | `@xmldata:Attribute` |
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -207,7 +229,7 @@ The tool maps XSD types to Ballerina types as follows:
 | `bal xsd -i <url>` | Generate from remote XSD |
 | `-o <dir>` | Output directory |
 
-## What's Next
+## What's next
 
 - [WSDL Tool](wsdl-tool.md) -- Generate SOAP clients that use these XML types
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients

@@ -4,7 +4,7 @@ title: EDI Tool
 description: Generate Ballerina types and parsers from EDI schema definitions for B2B data exchange.
 ---
 
-# EDI Tool
+# EDI tool
 
 The `bal edi` tool generates Ballerina code from EDI (Electronic Data Interchange) schema definitions, enabling B2B integration with trading partners using standards such as X12 and EDIFACT. The generated code includes record types for EDI segments and transaction sets, along with parser and serializer functions that convert between raw EDI text and type-safe Ballerina records.
 
@@ -16,9 +16,7 @@ The EDI tool is included with the Ballerina distribution:
 bal edi --help
 ```
 
-## Generating Code from an EDI Schema
-
-### Basic Usage
+## Generating code from an EDI schema
 
 ```bash
 # Generate Ballerina types from an EDI schema
@@ -31,7 +29,7 @@ bal edi --standard x12 --version 005010 --transaction 850 -o generated/
 bal edi codegen -i edi-schemas/ -o generated_edi/
 ```
 
-### EDI Schema Definition
+### EDI schema definition
 
 EDI schemas are defined in JSON format, describing the structure of segments, elements, and transaction sets:
 
@@ -74,7 +72,7 @@ EDI schemas are defined in JSON format, describing the structure of segments, el
 }
 ```
 
-### Generated Ballerina Types
+### Generated Ballerina types
 
 ```ballerina
 // Auto-generated from EDI schema
@@ -111,7 +109,7 @@ type TransactionSetTrailer record {|
 |};
 ```
 
-### Generated Parser and Serializer
+### Generated parser and serializer
 
 ```ballerina
 // Parse raw EDI text to typed record
@@ -125,9 +123,9 @@ public function toEdiString(PurchaseOrder850 purchaseOrder) returns string|error
 }
 ```
 
-## Using Generated EDI Code
+## Using generated EDI code
 
-### Parsing Incoming EDI Messages
+### Parsing incoming EDI messages
 
 ```ballerina
 import ballerina/log;
@@ -158,7 +156,7 @@ function processLineItem(edi:LineItem item) returns error? {
 }
 ```
 
-### Generating Outbound EDI Messages
+### Generating outbound EDI messages
 
 ```ballerina
 import generated_edi as edi;
@@ -185,7 +183,7 @@ function generatePurchaseOrderAck(string poNumber, string controlNumber)
 }
 ```
 
-### B2B Integration Service
+### B2B integration service
 
 A complete example that receives EDI purchase orders over HTTP and converts them to JSON for internal processing:
 
@@ -241,7 +239,7 @@ service /b2b on new http:Listener(servicePort) {
 
 ## Working with X12 and EDIFACT
 
-### X12 Standards
+### X12 standards
 
 ```bash
 # Generate code for X12 850 (Purchase Order)
@@ -254,7 +252,7 @@ bal edi --standard x12 --version 005010 --transaction 810
 bal edi --standard x12 --version 005010 --transaction 856
 ```
 
-### EDIFACT Standards
+### EDIFACT standards
 
 ```bash
 # Generate code for EDIFACT ORDERS
@@ -264,7 +262,7 @@ bal edi --standard edifact --version d96a --transaction ORDERS
 bal edi --standard edifact --version d96a --transaction INVOIC
 ```
 
-## EDI Libraries
+## EDI libraries
 
 Install pre-built EDI packages from Ballerina Central for common transaction sets:
 
@@ -276,7 +274,7 @@ bal add ballerinax/edi.x12.d05010x.v850
 bal add ballerinax/edi.edifact.d96a.vORDERS
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -288,7 +286,7 @@ bal add ballerinax/edi.edifact.d96a.vORDERS
 | `--transaction <code>` | Transaction set identifier |
 | `-o <dir>` | Output directory |
 
-## What's Next
+## What's next
 
 - [Health Tool](health-tool.md) -- Generate healthcare integration code
 - [XSD Tool](xsd-tool.md) -- Generate types from XML schemas

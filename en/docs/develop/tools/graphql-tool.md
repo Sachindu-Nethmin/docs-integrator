@@ -4,7 +4,10 @@ title: GraphQL Tool
 description: Generate Ballerina GraphQL services and clients from GraphQL SDL schemas.
 ---
 
-# GraphQL Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# GraphQL tool
 
 The `bal graphql` tool generates Ballerina service skeletons and client code from GraphQL Schema Definition Language (SDL) files. It creates type-safe resolver stubs, input/output types, and client operations that match your GraphQL schema, letting you focus on implementing business logic rather than writing boilerplate.
 
@@ -16,9 +19,29 @@ The GraphQL tool is included with the Ballerina distribution:
 bal graphql --help
 ```
 
-## Generating a Service from a GraphQL Schema
+## Generating a service from a GraphQL schema
 
-### Basic Service Generation
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
+2. In the **Artifacts** panel, select **GraphQL Service** under **Integration as API**.
+3. Select **Import From GraphQL Schema** under **Service Contract**.
+
+   ![Import GraphQL schema](/img/develop/tools/graphql-tool/step-import-schema.png)
+
+4. Browse or enter the path to your GraphQL SDL file.
+5. Configure the **Service Base Path** and listener settings.
+6. Click **Create**.
+
+   ![GraphQL service generation](/img/develop/tools/graphql-tool/step-service-generation.png)
+
+7. WSO2 Integrator generates the service with resolver stubs and record types matching your GraphQL schema.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic service generation
 
 ```bash
 # Generate a Ballerina GraphQL service from an SDL file
@@ -28,7 +51,7 @@ bal graphql -i schema.graphql --mode service
 bal graphql -i schema.graphql --mode service -o generated/
 ```
 
-### Example Schema
+### Example schema
 
 Given the following `schema.graphql`:
 
@@ -83,7 +106,7 @@ enum OrderStatus {
 }
 ```
 
-### Generated Service Code
+### Generated service code
 
 The tool generates a Ballerina service with resolver stubs:
 
@@ -158,9 +181,23 @@ enum OrderStatus {
 }
 ```
 
-## Generating a Client from a GraphQL Schema
+</TabItem>
+</Tabs>
 
-Generate a type-safe client for consuming a GraphQL API:
+## Generating a client from a GraphQL schema
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas.
+2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
+3. Select **Import From GraphQL Schema** and provide the SDL file.
+4. Optionally provide a queries document (`.graphql`) to specify the operations your client needs.
+5. Click **Create**.
+6. WSO2 Integrator generates a type-safe GraphQL client with methods for each operation.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```bash
 # Generate a GraphQL client
@@ -170,7 +207,7 @@ bal graphql -i schema.graphql --mode client
 bal graphql -i schema.graphql --mode client -q queries.graphql
 ```
 
-### Defining Client Queries
+### Defining client queries
 
 Create a `queries.graphql` file with the operations your client needs:
 
@@ -200,7 +237,7 @@ mutation CreateOrder($input: OrderInput!) {
 }
 ```
 
-### Using the Generated Client
+### Using the generated client
 
 ```ballerina
 import generated_client as gql;
@@ -220,7 +257,10 @@ function createOrder(string customerId, gql:LineItemInput[] items)
 }
 ```
 
-## Exporting a GraphQL Schema from Ballerina
+</TabItem>
+</Tabs>
+
+## Exporting a GraphQL schema from Ballerina
 
 Generate a GraphQL SDL file from an existing Ballerina GraphQL service:
 
@@ -232,7 +272,7 @@ bal graphql -i service.bal --mode export
 bal graphql -i service.bal --mode export -o schema/
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -242,7 +282,7 @@ bal graphql -i service.bal --mode export -o schema/
 | `-o <dir>` | Output directory |
 | `-q <queries.graphql>` | Queries document for client generation |
 
-## Implementing Resolvers
+## Implementing resolvers
 
 After generating the service skeleton, implement each resolver with your integration logic:
 
@@ -282,7 +322,7 @@ service /graphql on new graphql:Listener(9090) {
 }
 ```
 
-## What's Next
+## What's next
 
 - [AsyncAPI Tool](asyncapi-tool.md) -- Generate event-driven services from AsyncAPI specs
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients

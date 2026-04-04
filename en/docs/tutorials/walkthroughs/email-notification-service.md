@@ -30,18 +30,24 @@ A notification API that accepts event payloads (order confirmations, password re
 
 ## Architecture
 
-```
-┌──────────────┐     ┌───────────────────┐     ┌────────────┐
-│ Order Service├────►│                   ├────►│            │
-└──────────────┘     │   Notification    │     │   SMTP     │
-┌──────────────┐     │   Service         │     │   Server   │
-│ Auth Service ├────►│                   ├────►│            │
-└──────────────┘     │  - Template Engine│     └─────┬──────┘
-┌──────────────┐     │  - Retry Logic    │           │
-│ Alert System ├────►│  - Delivery Log   │     ┌─────▼──────┐
-└──────────────┘     └───────────────────┘     │  Recipient │
-                                               │  Inbox     │
-                                               └────────────┘
+```mermaid
+flowchart LR
+    Order["Order Service"]
+    Auth["Auth Service"]
+    Alert["Alert System"]
+    
+    subgraph Service["Notification Service"]
+        Engine["Template Engine"]
+        Retry["Retry Logic"]
+        Log["Delivery Log"]
+    end
+    
+    SMTP["SMTP Server"]
+    Inbox["Recipient Inbox"]
+
+    Order & Auth & Alert ----> Service
+    Service ----> SMTP
+    SMTP ----> Inbox
 ```
 
 ## Step 1: Create the Project
@@ -316,7 +322,5 @@ curl http://localhost:8090/notifications/templates
 
 ## What's Next
 
-- [Communication Connectors](../../connectors/communication.md) -- Email, SMS, and Slack connectors
-- [Error Handling](../../develop/build/error-handling.md) -- Robust error handling patterns
-- [Automations](../../develop/build/automations.md) -- Schedule recurring email tasks
+- [Communication Connectors](../../connectors/catalog/communication) -- Email, SMS, and Slack connectors
 - [Content-Based Routing](content-based-routing.md) -- Route notifications by type

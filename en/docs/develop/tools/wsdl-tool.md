@@ -4,7 +4,10 @@ title: WSDL Tool
 description: Generate Ballerina client connectors from WSDL definitions for SOAP web service integration.
 ---
 
-# WSDL Tool
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# WSDL tool
 
 The `bal wsdl` tool generates Ballerina client code from Web Services Description Language (WSDL) files. It creates type-safe SOAP client connectors, request/response record types, and XML serialization logic, enabling you to call legacy SOAP web services from your Ballerina integrations without manually constructing XML envelopes.
 
@@ -16,9 +19,25 @@ The WSDL tool is included with the Ballerina distribution:
 bal wsdl --help
 ```
 
-## Generating a Client from WSDL
+## Generating a client from WSDL
 
-### Basic Usage
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click the **+** **Add Artifacts** button in the canvas.
+2. In the **Artifacts** panel, select **Connection** under **Other Artifacts**.
+3. Select **Import From WSDL** and provide the WSDL file or URL.
+
+   ![Import WSDL file](/img/develop/tools/wsdl-tool/step-import-wsdl.png)
+
+4. Configure the client name and SOAP version settings.
+5. Click **Create**.
+6. WSO2 Integrator generates a type-safe SOAP client connector with methods for each WSDL operation, along with request/response record types.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+### Basic usage
 
 ```bash
 # Generate a Ballerina SOAP client from a WSDL file
@@ -42,7 +61,7 @@ generated/
 └── utils.bal          # XML serialization helpers
 ```
 
-### Generated Client
+### Generated client
 
 ```ballerina
 import ballerina/soap;
@@ -78,7 +97,7 @@ public isolated client class OrderServiceClient {
 }
 ```
 
-### Generated Types
+### Generated types
 
 ```ballerina
 // Auto-generated from WSDL schema types
@@ -129,9 +148,12 @@ type OrderSummary record {|
 |};
 ```
 
-## Using the Generated Client
+</TabItem>
+</Tabs>
 
-### Basic Client Usage
+## Using the generated client
+
+### Basic client usage
 
 ```ballerina
 configurable string soapEndpoint = ?;
@@ -188,7 +210,7 @@ service /api on new http:Listener(servicePort) {
 
 ## Authentication
 
-### WS-Security with Username Token
+### WS-Security with username token
 
 ```ballerina
 final OrderServiceClient secureClient = check new (soapEndpoint, {
@@ -213,7 +235,7 @@ final OrderServiceClient mtlsClient = check new (soapEndpoint, {
 });
 ```
 
-## SOAP Versions
+## SOAP versions
 
 The tool supports both SOAP 1.1 and SOAP 1.2:
 
@@ -228,7 +250,7 @@ bal wsdl -i service.wsdl --soap-version 1.1
 bal wsdl -i service.wsdl --soap-version 1.2
 ```
 
-## Command Reference
+## Command reference
 
 | Command | Description |
 |---|---|
@@ -238,7 +260,7 @@ bal wsdl -i service.wsdl --soap-version 1.2
 | `--soap-version <1.1\|1.2>` | Force SOAP version |
 | `--operations <op1,op2>` | Generate only specified operations |
 
-## What's Next
+## What's next
 
 - [XSD Tool](xsd-tool.md) -- Generate record types from XML Schema definitions
 - [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
