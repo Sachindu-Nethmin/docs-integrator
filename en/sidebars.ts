@@ -1233,6 +1233,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/database/oracledb/setup-guide',
             'connectors/catalog/database/oracledb/action-reference',
+            'connectors/catalog/database/oracledb/example',
           ],
         },
         {
