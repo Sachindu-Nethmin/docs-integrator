@@ -357,6 +357,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/cloud-infrastructure/aws.marketplace.mpm/setup-guide',
             'connectors/catalog/cloud-infrastructure/aws.marketplace.mpm/action-reference',
+            'connectors/catalog/cloud-infrastructure/aws.marketplace.mpm/example',
           ],
         },
         {
