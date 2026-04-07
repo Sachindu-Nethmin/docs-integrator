@@ -113,6 +113,8 @@ The `onConnect` handler is a remote function that runs when a new client connect
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
+import ballerina/log;
+
 service on tcpListener {
 
     remote function onConnect(tcp:Caller caller) returns tcp:ConnectionService {
