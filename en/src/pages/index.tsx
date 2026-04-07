@@ -1,12 +1,64 @@
 import type {ReactNode} from 'react';
 import {useState, useEffect, useRef, useCallback} from 'react';
 import Link from '@docusaurus/Link';
-import {useHistory} from '@docusaurus/router';
+import {useHistory, useLocation} from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import DocSidebar from '@theme/DocSidebar';
+import type {PropSidebarItem} from '@docusaurus/plugin-content-docs';
 
 import styles from './index.module.css';
+
+/* ------------------------------------------------------------------ */
+/*  Sidebar items (mirrors mainSidebar from sidebars.ts)               */
+/* ------------------------------------------------------------------ */
+const homeSidebarItems: PropSidebarItem[] = [
+  {
+    type: 'category',
+    label: 'Get Started',
+    collapsed: false,
+    collapsible: true,
+    href: '/docs/get-started/overview-&-architecture',
+    items: [
+      {type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture'},
+      {type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator'},
+      {type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts'},
+      {
+        type: 'category',
+        label: 'Set Up',
+        collapsed: true,
+        collapsible: true,
+        items: [
+          {type: 'link', label: 'System Requirements', href: '/docs/get-started/system-requirements'},
+          {type: 'link', label: 'Install', href: '/docs/get-started/install'},
+          {type: 'link', label: 'First Project', href: '/docs/get-started/first-project'},
+          {type: 'link', label: 'Understand the IDE', href: '/docs/get-started/understand-the-ide'},
+        ],
+      },
+      {
+        type: 'category',
+        label: 'Quick Starts',
+        collapsed: false,
+        collapsible: true,
+        items: [
+          {type: 'link', label: 'Quick Start: API', href: '/docs/get-started/quick-start-api'},
+          {type: 'link', label: 'Quick Start: Event', href: '/docs/get-started/quick-start-event'},
+          {type: 'link', label: 'Quick Start: File', href: '/docs/get-started/quick-start-file'},
+          {type: 'link', label: 'Quick Start: Automation', href: '/docs/get-started/quick-start-automation'},
+          {type: 'link', label: 'Quick Start: Data Service', href: '/docs/get-started/quick-start-data-service'},
+          {type: 'link', label: 'Quick Start: AI Agent', href: '/docs/get-started/quick-start-ai-agent'},
+        ],
+      },
+    ],
+  },
+  {type: 'link', label: 'Develop', href: '/docs/develop/overview'},
+  {type: 'link', label: 'Connectors', href: '/docs/connectors/overview'},
+  {type: 'link', label: 'GenAI', href: '/docs/genai/overview'},
+  {type: 'link', label: 'Tutorials', href: '/docs/tutorials/overview'},
+  {type: 'link', label: 'Deploy & Operate', href: '/docs/deploy-operate/overview'},
+  {type: 'link', label: 'Reference', href: '/docs/reference/overview'},
+];
 
 /* ------------------------------------------------------------------ */
 /*  Clean SVG Icon Components                                          */
@@ -371,13 +423,26 @@ function WhatsNew(): ReactNode {
 /* ------------------------------------------------------------------ */
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
+  const {pathname} = useLocation();
   return (
     <Layout title="Home" description={siteConfig.tagline}>
-      <HomepageHeader />
-      <main>
-        <SectionCards />
-        <WhatsNew />
-      </main>
+      <div className={styles.pageLayout}>
+        <aside className={styles.sidebarCol}>
+          <DocSidebar
+            sidebar={homeSidebarItems}
+            path={pathname}
+            onCollapse={() => {}}
+            isHidden={false}
+          />
+        </aside>
+        <div className={styles.mainContent}>
+          <HomepageHeader />
+          <main>
+            <SectionCards />
+            <WhatsNew />
+          </main>
+        </div>
+      </div>
     </Layout>
   );
 }
