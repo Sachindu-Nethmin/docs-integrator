@@ -1633,6 +1633,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/zoom.scheduler/setup-guide',
             'connectors/catalog/communication/zoom.scheduler/action-reference',
+            'connectors/catalog/communication/zoom.scheduler/example',
           ],
         },
       ],
