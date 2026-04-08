@@ -1066,6 +1066,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/kafka/setup-guide',
             'connectors/catalog/messaging/kafka/action-reference',
             'connectors/catalog/messaging/kafka/trigger-reference',
+            'connectors/catalog/messaging/kafka/example',
           ],
         },
         {
