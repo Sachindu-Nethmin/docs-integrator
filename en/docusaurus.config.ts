@@ -11,10 +11,10 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://integrator.docs.wso2.com',
+  url: 'https://sachindu-nethmin.github.io',
   baseUrl: process.env.BASE_URL || '/',
 
-  organizationName: 'wso2',
+  organizationName: 'sachindu-nethmin',
   projectName: 'docs-integrator',
 
   onBrokenLinks: 'warn',
