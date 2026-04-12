@@ -1,5 +1,5 @@
 ---
-title: Tutorial: Conversational Data Pipeline
+title: 'Tutorial: Conversational Data Pipeline'
 ---
 
 # Tutorial: Conversational Data Pipeline

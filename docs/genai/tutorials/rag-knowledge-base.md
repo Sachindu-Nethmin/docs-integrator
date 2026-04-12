@@ -1,5 +1,5 @@
 ---
-title: Tutorial: RAG Knowledge Base
+title: 'Tutorial: RAG Knowledge Base'
 ---
 
 # Tutorial: RAG Knowledge Base

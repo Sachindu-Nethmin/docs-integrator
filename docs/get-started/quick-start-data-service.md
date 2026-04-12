@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Build a Data Service
+title: 'Quick Start: Build a Data Service'
 ---
 
 # Build a Data Service

@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Build an AI Agent
+title: 'Quick Start: Build an AI Agent'
 ---
 
 # Quick Start: Build an AI Agent

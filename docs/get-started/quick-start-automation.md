@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Build an Automation
+title: 'Quick Start: Build an Automation'
 ---
 
 # Quick Start: Build an Automation

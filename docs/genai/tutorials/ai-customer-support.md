@@ -1,5 +1,5 @@
 ---
-title: Tutorial: AI Customer Support Agent
+title: 'Tutorial: AI Customer Support Agent'
 ---
 
 # Tutorial: AI Customer Support Agent

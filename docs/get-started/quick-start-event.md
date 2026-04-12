@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Event Integration
+title: 'Quick Start: Event Integration'
 ---
 
 # Quick Start: Event Integration

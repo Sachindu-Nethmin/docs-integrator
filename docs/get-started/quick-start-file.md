@@ -1,5 +1,5 @@
 ---
-title: Quick Start: File Integration
+title: 'Quick Start: File Integration'
 ---
 
 # Quick Start: File Integration

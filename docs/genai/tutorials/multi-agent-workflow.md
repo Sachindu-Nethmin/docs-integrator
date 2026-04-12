@@ -1,5 +1,5 @@
 ---
-title: Tutorial: Multi-Agent Workflow
+title: 'Tutorial: Multi-Agent Workflow'
 ---
 
 # Tutorial: Multi-Agent Workflow

@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Integration as API
+title: 'Quick Start: Integration as API'
 ---
 
 # Quick Start: Integration as API

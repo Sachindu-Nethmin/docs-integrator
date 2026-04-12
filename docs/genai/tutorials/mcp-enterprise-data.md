@@ -1,5 +1,5 @@
 ---
-title: Tutorial: MCP Server for Enterprise Data
+title: 'Tutorial: MCP Server for Enterprise Data'
 ---
 
 # Tutorial: MCP Server for Enterprise Data

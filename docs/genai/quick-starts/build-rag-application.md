@@ -1,5 +1,5 @@
 ---
-title: Quick Start: Build a RAG Application
+title: 'Quick Start: Build a RAG Application'
 ---
 
 # Build a RAG Application
