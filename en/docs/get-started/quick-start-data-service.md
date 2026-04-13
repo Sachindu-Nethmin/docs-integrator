@@ -16,6 +16,39 @@ In this quick start, you'll create a data service that exposes CRUD operations o
 - [WSO2 Integrator set up](install.md)
 - A running database (MySQL, PostgreSQL, or H2 for quick testing)
 
+### Set up the database
+
+To set up the database and sample data, perform the following steps:
+
+1. Save the following SQL script as `db_setup.sql`:
+   ```sql
+   -- Create the database
+   CREATE DATABASE IF NOT EXISTS simple_db;
+   USE simple_db;
+
+   -- Create the 'start' user and grant permissions
+   CREATE USER IF NOT EXISTS 'start'@'localhost' IDENTIFIED BY 'start';
+   GRANT ALL PRIVILEGES ON simple_db.* TO 'start'@'localhost';
+   FLUSH PRIVILEGES;
+
+   -- Create the inventory table
+   CREATE TABLE IF NOT EXISTS inventory (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       itemName VARCHAR(255) NOT NULL,
+       quantity INT NOT NULL
+   );
+
+   -- Insert the sample data
+   INSERT INTO inventory (itemName, quantity) VALUES ('Coffee Mugs', 15);
+   INSERT INTO inventory (itemName, quantity) VALUES ('Desk Lamps', 4);   -- Low stock trigger
+   INSERT INTO inventory (itemName, quantity) VALUES ('Notebooks', 25);
+   ```
+
+2. Open your terminal and run the following command to execute the script:
+   ```bash
+   mysql -u root -p < db_setup.sql
+   ```
+   
 ## Step 1: Create the Project
 
 1. Open WSO2 Integrator.
