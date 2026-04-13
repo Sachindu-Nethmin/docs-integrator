@@ -4,6 +4,7 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import { useSidebarBreadcrumbs } from '@docusaurus/plugin-content-docs/client';
 import { useLocation, useHistory } from '@docusaurus/router';
 import { usePluginData } from '@docusaurus/useGlobalData';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import { useConnectorVersion } from '@site/src/utils/connectorVersion';
 import MarkdownButton from './MarkdownButton';
@@ -143,10 +144,19 @@ export default function DocBreadcrumbsWrapper(props) {
   // URL for the raw markdown content
   const getMarkdownUrl = () => {
     const path = location.pathname;
+    const docsBaseUrl = useBaseUrl('/docs');
+
     // Only generate markdown URLs for docs pages
-    if (!path.startsWith('/docs/')) {
+    if (!path.startsWith(docsBaseUrl)) {
       return null;
     }
+
+    // Ensure it matches /docs/ or /docs exactly (avoid matching /docs-something)
+    const nextChar = path[docsBaseUrl.length];
+    if (nextChar && nextChar !== '/') {
+      return null;
+    }
+
     let markdownPath = path;
     if (markdownPath.endsWith('/')) {
       markdownPath += 'index.md';
