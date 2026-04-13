@@ -1,12 +1,13 @@
-import type {ReactNode} from 'react';
-import {useState, useEffect, useRef, useCallback} from 'react';
+import type { ReactNode } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from '@docusaurus/Link';
-import {useHistory, useLocation} from '@docusaurus/router';
+import { useHistory, useLocation } from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import DocSidebar from '@theme/DocSidebar';
-import type {PropSidebarItem} from '@docusaurus/plugin-content-docs';
+import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
+
 
 import styles from './index.module.css';
 
@@ -21,19 +22,19 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/get-started/overview-&-architecture',
     items: [
-      {type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture'},
-      {type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator'},
-      {type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts'},
+      { type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture' },
+      { type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator' },
+      { type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts' },
       {
         type: 'category',
         label: 'Set Up',
         collapsed: true,
         collapsible: true,
         items: [
-          {type: 'link', label: 'System Requirements', href: '/docs/get-started/system-requirements'},
-          {type: 'link', label: 'Install', href: '/docs/get-started/install'},
-          {type: 'link', label: 'First Project', href: '/docs/get-started/first-project'},
-          {type: 'link', label: 'Understand the IDE', href: '/docs/get-started/understand-the-ide'},
+          { type: 'link', label: 'System Requirements', href: '/docs/get-started/system-requirements' },
+          { type: 'link', label: 'Install', href: '/docs/get-started/install' },
+          { type: 'link', label: 'First Project', href: '/docs/get-started/first-project' },
+          { type: 'link', label: 'Understand the IDE', href: '/docs/get-started/understand-the-ide' },
         ],
       },
       {
@@ -42,12 +43,12 @@ const homeSidebarItems: PropSidebarItem[] = [
         collapsed: false,
         collapsible: true,
         items: [
-          {type: 'link', label: 'Quick Start: API', href: '/docs/get-started/quick-start-api'},
-          {type: 'link', label: 'Quick Start: Event', href: '/docs/get-started/quick-start-event'},
-          {type: 'link', label: 'Quick Start: File', href: '/docs/get-started/quick-start-file'},
-          {type: 'link', label: 'Quick Start: Automation', href: '/docs/get-started/quick-start-automation'},
-          {type: 'link', label: 'Quick Start: Data Service', href: '/docs/get-started/quick-start-data-service'},
-          {type: 'link', label: 'Quick Start: AI Agent', href: '/docs/get-started/quick-start-ai-agent'},
+          { type: 'link', label: 'Quick Start: API', href: '/docs/get-started/quick-start-api' },
+          { type: 'link', label: 'Quick Start: Event', href: '/docs/get-started/quick-start-event' },
+          { type: 'link', label: 'Quick Start: File', href: '/docs/get-started/quick-start-file' },
+          { type: 'link', label: 'Quick Start: Automation', href: '/docs/get-started/quick-start-automation' },
+          { type: 'link', label: 'Quick Start: Data Service', href: '/docs/get-started/quick-start-data-service' },
+          { type: 'link', label: 'Quick Start: AI Agent', href: '/docs/get-started/quick-start-ai-agent' },
         ],
       },
     ],
@@ -59,15 +60,15 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/develop/overview',
     items: [
-      {type: 'link', label: 'Create Integrations', href: '/docs/develop/create-integrations/create-new-integration'},
-      {type: 'link', label: 'Project Views', href: '/docs/develop/project-views/project-view'},
-      {type: 'link', label: 'Integration Artifacts', href: '/docs/develop/integration-artifacts/automation'},
-      {type: 'link', label: 'Design Integration Logic', href: '/docs/develop/design-logic/overview'},
-      {type: 'link', label: 'Transform', href: '/docs/develop/transform/data-mapper'},
-      {type: 'link', label: 'Try & Test', href: '/docs/develop/test/try-it'},
-      {type: 'link', label: 'Debugging & Troubleshooting', href: '/docs/develop/debugging/overview'},
-      {type: 'link', label: 'Organize Code', href: '/docs/develop/organize-code/packages-modules'},
-      {type: 'link', label: 'Tools', href: '/docs/develop/tools/overview'},
+      { type: 'link', label: 'Create Integrations', href: '/docs/develop/create-integrations/create-new-integration' },
+      { type: 'link', label: 'Project Views', href: '/docs/develop/project-views/project-view' },
+      { type: 'link', label: 'Integration Artifacts', href: '/docs/develop/integration-artifacts/automation' },
+      { type: 'link', label: 'Design Integration Logic', href: '/docs/develop/design-logic/overview' },
+      { type: 'link', label: 'Transform', href: '/docs/develop/transform/data-mapper' },
+      { type: 'link', label: 'Try & Test', href: '/docs/develop/test/try-it' },
+      { type: 'link', label: 'Debugging & Troubleshooting', href: '/docs/develop/debugging/overview' },
+      { type: 'link', label: 'Organize Code', href: '/docs/develop/organize-code/packages-modules' },
+      { type: 'link', label: 'Tools', href: '/docs/develop/tools/overview' },
     ],
   },
   {
@@ -77,7 +78,7 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/connectors/overview',
     items: [
-      {type: 'link', label: 'Connector Catalog', href: '/docs/connectors/catalog/index'},
+      { type: 'link', label: 'Connector Catalog', href: '/docs/connectors/catalog/index' },
     ],
   },
   {
@@ -87,9 +88,9 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/genai/overview',
     items: [
-      {type: 'link', label: 'Getting Started', href: '/docs/genai/getting-started/setup'},
-      {type: 'link', label: 'Key Concepts', href: '/docs/genai/key-concepts/what-is-llm'},
-      {type: 'link', label: 'Develop AI Applications', href: '/docs/genai/overview'},
+      { type: 'link', label: 'Getting Started', href: '/docs/genai/getting-started/setup' },
+      { type: 'link', label: 'Key Concepts', href: '/docs/genai/key-concepts/what-is-llm' },
+      { type: 'link', label: 'Develop AI Applications', href: '/docs/genai/overview' },
     ],
   },
   {
@@ -99,11 +100,11 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/tutorials/overview',
     items: [
-      {type: 'link', label: 'Walkthroughs', href: '/docs/tutorials/salesforce-db-sync'},
-      {type: 'link', label: 'Enterprise Integration Patterns', href: '/docs/tutorials/patterns/content-based-router'},
-      {type: 'link', label: 'Pre-Built Integration Samples', href: '/docs/tutorials/pre-built/overview'},
-      {type: 'link', label: 'Sample Projects', href: '/docs/tutorials/samples/overview'},
-      {type: 'link', label: 'Migration Guides', href: '/docs/tutorials/migration/from-wso2-mi'},
+      { type: 'link', label: 'Walkthroughs', href: '/docs/tutorials/salesforce-db-sync' },
+      { type: 'link', label: 'Enterprise Integration Patterns', href: '/docs/tutorials/patterns/content-based-router' },
+      { type: 'link', label: 'Pre-Built Integration Samples', href: '/docs/tutorials/pre-built/overview' },
+      { type: 'link', label: 'Sample Projects', href: '/docs/tutorials/samples/overview' },
+      { type: 'link', label: 'Migration Guides', href: '/docs/tutorials/migration/from-wso2-mi' },
     ],
   },
   {
@@ -113,11 +114,11 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/deploy-operate/overview',
     items: [
-      {type: 'link', label: 'Deploy', href: '/docs/deploy-operate/deploy/local'},
-      {type: 'link', label: 'CI/CD', href: '/docs/deploy-operate/cicd/github-actions'},
-      {type: 'link', label: 'Observe', href: '/docs/deploy-operate/observe/overview'},
-      {type: 'link', label: 'Secure', href: '/docs/deploy-operate/secure/runtime-security'},
-      {type: 'link', label: 'Capacity Planning', href: '/docs/deploy-operate/capacity-planning/overview'},
+      { type: 'link', label: 'Deploy', href: '/docs/deploy-operate/deploy/local' },
+      { type: 'link', label: 'CI/CD', href: '/docs/deploy-operate/cicd/github-actions' },
+      { type: 'link', label: 'Observe', href: '/docs/deploy-operate/observe/overview' },
+      { type: 'link', label: 'Secure', href: '/docs/deploy-operate/secure/runtime-security' },
+      { type: 'link', label: 'Capacity Planning', href: '/docs/deploy-operate/capacity-planning/overview' },
     ],
   },
   {
@@ -127,11 +128,11 @@ const homeSidebarItems: PropSidebarItem[] = [
     collapsible: true,
     href: '/docs/reference/overview',
     items: [
-      {type: 'link', label: 'Language', href: '/docs/reference/language/syntax'},
-      {type: 'link', label: 'Configuration', href: '/docs/reference/config/ballerina-toml'},
-      {type: 'link', label: 'CLI', href: '/docs/reference/cli/bal-commands'},
-      {type: 'link', label: 'APIs', href: '/docs/reference/api/management-api'},
-      {type: 'link', label: 'Supported Data Formats', href: '/docs/reference/data-formats/index'},
+      { type: 'link', label: 'Language', href: '/docs/reference/language/syntax' },
+      { type: 'link', label: 'Configuration', href: '/docs/reference/config/ballerina-toml' },
+      { type: 'link', label: 'CLI', href: '/docs/reference/cli/bal-commands' },
+      { type: 'link', label: 'APIs', href: '/docs/reference/api/management-api' },
+      { type: 'link', label: 'Supported Data Formats', href: '/docs/reference/data-formats/index' },
     ],
   },
 ];
@@ -288,10 +289,10 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  {label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api'},
-  {label: 'Connectors Catalog', to: '/docs/connectors'},
-  {label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent'},
-  {label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes'},
+  { label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api' },
+  { label: 'Connectors Catalog', to: '/docs/connectors' },
+  { label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent' },
+  { label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -401,6 +402,7 @@ function HomepageHeader(): ReactNode {
   return (
     <header className={styles.heroBanner}>
       <div className="container">
+
         <Heading as="h1">WSO2 Integrator</Heading>
         <p className={styles.heroSubtitle}>
           Build integrations with low-code simplicity and pro-code power.
@@ -498,8 +500,8 @@ function WhatsNew(): ReactNode {
 /*  Home page                                                          */
 /* ------------------------------------------------------------------ */
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
-  const {pathname} = useLocation();
+  const { siteConfig } = useDocusaurusContext();
+  const { pathname } = useLocation();
   return (
     <Layout title="Home" description={siteConfig.tagline}>
       <div className={styles.pageLayout}>
@@ -507,7 +509,7 @@ export default function Home(): ReactNode {
           <DocSidebar
             sidebar={homeSidebarItems}
             path={pathname}
-            onCollapse={() => {}}
+            onCollapse={() => { }}
             isHidden={false}
           />
         </aside>
