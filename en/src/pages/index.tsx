@@ -1,5 +1,5 @@
-import type {ReactNode} from 'react';
-import {useState, useEffect, useRef, useCallback} from 'react';
+import type { ReactNode } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from '@docusaurus/Link';
 import {useHistory, useLocation} from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -7,6 +7,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import DocSidebar from '@theme/DocSidebar';
 import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
+
 
 import styles from './index.module.css';
 
@@ -279,10 +280,10 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  {label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api'},
-  {label: 'Connectors Catalog', to: '/docs/connectors'},
-  {label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent'},
-  {label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes'},
+  { label: 'Quick Start: REST API', to: '/docs/get-started/quick-start-api' },
+  { label: 'Connectors Catalog', to: '/docs/connectors' },
+  { label: 'Build an AI Agent', to: '/docs/get-started/quick-start-ai-agent' },
+  { label: 'Deploy to Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -392,6 +393,7 @@ function HomepageHeader(): ReactNode {
   return (
     <header className={styles.heroBanner}>
       <div className="container">
+
         <Heading as="h1">WSO2 Integrator</Heading>
         <p className={styles.heroSubtitle}>
           Build integrations with low-code simplicity and pro-code power.
