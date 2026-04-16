@@ -57,7 +57,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/wso2/docs-integrator/edit/main/en/docs/',
+          editUrl: ({ docPath }) =>
+            `https://github.com/wso2/docs-integrator/edit/main/en/docs/${docPath
+              .split('/')
+              .map(encodeURIComponent)
+              .join('/')}`,
           showLastUpdateTime: true,
         },
         blog: false,
