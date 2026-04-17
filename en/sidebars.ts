@@ -74,6 +74,8 @@ const sidebars: SidebarsConfig = {
             'develop/create-integrations/open-integration-or-project',
             'develop/create-integrations/explore-samples',
             'develop/create-integrations/create-library',
+            'develop/create-integrations/create-project',
+            'develop/create-integrations/open-project',
             'develop/create-integrations/migrate-3rd-party-integrations',
           ],
         },
@@ -126,7 +128,18 @@ const sidebars: SidebarsConfig = {
               type: 'category', label: 'File Integration',
               collapsed: true,
               items: [
-                'develop/integration-artifacts/file/ftp-sftp',
+                {
+                  type: 'category', label: 'Remote Servers (FTP/SFTP)',
+                  collapsed: true,
+                  link: { type: 'doc', id: 'develop/integration-artifacts/file/ftp-sftp' },
+                  items: [
+                    'develop/integration-artifacts/file/csv-fault-tolerance',
+                    'develop/integration-artifacts/file/file-dependency-triggers',
+                    'develop/integration-artifacts/file/streaming-large-files',
+                    'develop/integration-artifacts/file/resiliency',
+                    'develop/integration-artifacts/file/high-availability',
+                  ],
+                },
                 'develop/integration-artifacts/file/local-files',
               ],
             },
@@ -198,6 +211,7 @@ const sidebars: SidebarsConfig = {
           label: 'Debugging & Troubleshooting',
           items: [
             'develop/debugging/overview',
+            'develop/debugging/errors-and-stack-traces',
             'develop/debugging/editor-debugging',
             'develop/debugging/remote-debugging',
             'develop/debugging/strand-dumps',
@@ -646,6 +660,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/guidewire.insnow/setup-guide',
             'connectors/catalog/erp-business/guidewire.insnow/action-reference',
+            'connectors/catalog/erp-business/guidewire.insnow/example',
           ],
         },
         {
@@ -993,6 +1008,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/ibm.ctg/setup-guide',
             'connectors/catalog/erp-business/ibm.ctg/action-reference',
+            'connectors/catalog/erp-business/ibm.ctg/example',
           ],
         },
         {
@@ -1322,6 +1338,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap/setup-guide',
             'connectors/catalog/erp-business/sap/action-reference',
+            'connectors/catalog/erp-business/sap/example',
           ],
         },
         {
@@ -1341,6 +1358,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.salesarea-0001/example',
           ],
         },
         {
@@ -1350,6 +1368,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_salesdistrict_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_salesdistrict_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-salesdistrict-srv/example',
           ],
         },
         {
@@ -1359,6 +1378,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_inquiry_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-inquiry-srv/example',
           ],
         },
         {
@@ -1377,6 +1397,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.ce_salesorder_0001/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.sales.order.analytics/example',
           ],
         },
         {
@@ -1386,6 +1407,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_order_simulation_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-order-simulation-srv/example',
           ],
         },
         {
@@ -1395,6 +1417,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_salesorganization_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_salesorganization_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-salesorganization-srv/example',
           ],
         },
         {
@@ -1404,6 +1427,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sales_quotation_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sales-quotation-srv/example',
           ],
         },
         {
@@ -1413,6 +1437,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-incoterms-srv/example',
           ],
         },
         {
@@ -1422,6 +1447,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/example',
           ],
         },
         {
@@ -1880,6 +1906,8 @@ const sidebars: SidebarsConfig = {
             'tutorials/walkthroughs/edi-ftp-processing',
             'tutorials/walkthroughs/csv-ftp-processing',
             'tutorials/walkthroughs/ftp-listener-with-age-filter-and-file-dependency',
+            'tutorials/walkthroughs/local-file-watcher',
+            'tutorials/walkthroughs/streaming-csv-sftp',
             'tutorials/data-reconciliation',
           ],
         },
