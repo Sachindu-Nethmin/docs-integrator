@@ -12,7 +12,7 @@ A workspace that contains your integration code, dependencies, configuration, an
 
 ## Integration
 
-A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator—you compose them from [Services](#services), [Automations](#automations), [Event handlers](#event-handlers), and more.
+A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator—you compose them from [Automations](#automations), [AI agents](#ai-agents), [Services](#services), [Event handlers](#event-handlers), and [File processors](#file-processors).
 
 ## Library
 
@@ -36,6 +36,14 @@ Expose your integrations over HTTP, GraphQL, gRPC, WebSocket, or TCP. The listen
 
 Scheduled or manually triggered integrations that run without an external request. Use automations for periodic data synchronization, cleanup tasks, or report generation.
 
+## AI agents
+
+Intelligent artifacts backed by large language models (LLMs). Agents can reason, use tools, maintain conversation memory, and orchestrate multi-step workflows.
+
+## Services
+
+Expose your integrations over HTTP, GraphQL, gRPC, WebSocket, or TCP. Services are the most common artifact—they define endpoints that external systems call.
+
 ## Event integrations
 
 Reactive integrations where the listener connects to a message broker — Kafka, RabbitMQ, NATS, MQTT, Azure Service Bus, or Solace — and the service processes messages as they arrive. Use event integrations for real-time streaming data and event-driven architectures.
@@ -43,10 +51,6 @@ Reactive integrations where the listener connects to a message broker — Kafka,
 ## File integrations
 
 Integrations where the listener connects to a remote file server (FTP, SFTP, FTPS) or monitors a local directory, polling for new files. The service defines which directory to watch, which files to match, and how to process incoming content — as CSV, JSON, XML, text, or binary. For more information, see [Remote Servers (FTP/SFTP)](/docs/develop/integration-artifacts/file/ftp-sftp) and [Local Files](/docs/develop/integration-artifacts/file/local-files).
-
-## AI agents
-
-Intelligent artifacts backed by large language models (LLMs). Agents can reason, use tools, maintain conversation memory, and orchestrate multi-step workflows.
 
 ## Connectors
 
