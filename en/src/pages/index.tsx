@@ -493,11 +493,26 @@ function WhatsNew(): ReactNode {
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isFullyHidden, setIsFullyHidden] = useState(false);
+
+  // Sync isFullyHidden with isCollapsed with a delay to match CSS transition
+  useEffect(() => {
+    if (isCollapsed) {
+      const timer = setTimeout(() => setIsFullyHidden(true), 300); // match --ifm-transition-fast
+      return () => clearTimeout(timer);
+    } else {
+      setIsFullyHidden(false);
+    }
+  }, [isCollapsed]);
 
   return (
     <Layout title="Home" description={siteConfig.tagline}>
       <div className={styles.pageLayout}>
-        <aside className={`${styles.sidebarCol} ${isCollapsed ? styles.collapsed : ''}`}>
+        <aside
+          className={`${styles.sidebarCol} ${isCollapsed ? styles.collapsed : ''} ${isFullyHidden ? styles.hidden : ''}`}
+          aria-hidden={isFullyHidden}
+          {...(isFullyHidden ? { inert: true } : {})}
+        >
           <DocSidebar
             sidebar={homeSidebarItems}
             path="/none"
@@ -506,6 +521,20 @@ export default function Home(): ReactNode {
           />
         </aside>
         <div className={styles.mainContent}>
+          {isCollapsed && (
+            <button
+              className={styles.expandButton}
+              onClick={() => setIsCollapsed(false)}
+              aria-label="Expand sidebar"
+              title="Expand sidebar"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+          )}
           <HomepageHeader />
           <main>
             <SectionCards />

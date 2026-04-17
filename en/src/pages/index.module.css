@@ -26,12 +26,49 @@
   border-right: 1px solid var(--wso2-surface-border);
   z-index: 10;
   overflow-y: auto;
-  transition: width var(--ifm-transition-fast) ease;
+  transition: width var(--ifm-transition-fast) ease, visibility var(--ifm-transition-fast) ease, opacity var(--ifm-transition-fast) ease;
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebarCol.collapsed {
   width: 0;
   border-right: none;
+  opacity: 0;
+}
+
+.sidebarCol.hidden {
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.expandButton {
+  position: fixed;
+  left: 0;
+  top: calc(var(--ifm-navbar-height) + 1.5rem);
+  z-index: 100;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-content);
+  transition: all var(--ifm-transition-fast) ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.expandButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  padding-left: 0.8rem;
+}
+
+.expandButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 /* Add a small top padding for a premium, balanced look */
