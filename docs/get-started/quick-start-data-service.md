@@ -11,152 +11,122 @@ In this quick start, you'll create a data service that exposes CRUD operations o
 - [WSO2 Integrator set up](install.md)
 - A running database (MySQL, PostgreSQL, or H2 for quick testing)
 
-### Set up the database
+## Step 1: Create a New Project
 
-To set up the database and sample data, perform the following steps:
+```bash
+bal new data_service
+cd data_service
+```
 
-1. Save the following SQL script as `db_setup.sql`:
-   ```sql
-   -- Create the database
-   CREATE DATABASE IF NOT EXISTS simple_db;
-   USE simple_db;
+## Step 2: Initialize Persistence
 
-   -- Create the 'start' user and grant permissions
-   CREATE USER IF NOT EXISTS 'start'@'localhost' IDENTIFIED BY 'start';
-   GRANT ALL PRIVILEGES ON simple_db.* TO 'start'@'localhost';
-   FLUSH PRIVILEGES;
+```bash
+bal persist init
+```
 
-   -- Create the inventory table
-   CREATE TABLE IF NOT EXISTS inventory (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       itemName VARCHAR(255) NOT NULL,
-       quantity INT NOT NULL
-   );
+This creates a `persist` directory with a model definition file.
 
-   -- Insert the sample data
-   INSERT INTO inventory (itemName, quantity) VALUES ('Coffee Mugs', 15);
-   INSERT INTO inventory (itemName, quantity) VALUES ('Desk Lamps', 4);   -- Low stock trigger
-   INSERT INTO inventory (itemName, quantity) VALUES ('Notebooks', 25);
-   ```
+## Step 3: Define Your Data Model
 
-2. Open your terminal and run the following command to execute the script:
-   ```bash
-   mysql -u root -p < db_setup.sql
-   ```
+Edit `persist/model.bal`:
 
-## Step 1: Create the Project
+```ballerina
+import ballerina/persist as _;
 
-1. Open WSO2 Integrator.
-2. Select **Create**.
-3. Set **Integration Name** to `InventoryService`.
-4. Set **Project Name** to `Quick_Start`.
-5. Select **Browse**.
-6. Select the project location and select **Open**.
-7. Select **Create Integration**.
+type Employee record {|
+    readonly int id;
+    string firstName;
+    string lastName;
+    string email;
+    string department;
+    decimal salary;
+|};
+```
 
-<ThemedImage
-    alt="Create the Project"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/create-the-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/create-the-project-dark.gif'),
-    }}
-/>
+## Step 4: Generate the Client
 
-## Step 2: Initialize Database Connection
+```bash
+bal persist generate
+```
 
-1. Select **InventoryService**.
-2. In the design view, select **+ Add Artifact**.
-3. Scroll down and select **Connection** under **Other Artifacts**.
-4. Select **Connect to a Database**.
+This generates type-safe client code for CRUD operations against your database.
 
-<ThemedImage
-    alt="Initialize Database Connection"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/initialize-database-connection-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/initialize-database-connection-dark.gif'),
-    }}
-/>
+## Step 5: Create the Service
 
-## Step 3: Configure Database Settings
+Edit `main.bal`:
 
-1. Set **Host** to `localhost`.
-2. Set **Port** to `3306`.
-3. Set **Database** to `simple_db`.
-4. Set **User** to `start`.
-5. Set **Password** to `start`.
-6. Select **Connect & Introspect Database**.
-7. Select **inventory**.
-8. Select **Continue to Connection Details**.
-9. Set **Connection Name** to `inventoryDB`.
-10. Select **Save Connection**.
+```ballerina
+import ballerina/http;
+import ballerina/persist;
 
-<ThemedImage
-    alt="Configure Database Settings"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/configure-database-settings-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/configure-database-settings-dark.gif'),
-    }}
-/>
+configurable int port = 8080;
 
-## Step 4: Bootstrap Automation Flow
+service /employees on new http:Listener(port) {
+    private final Client dbClient;
 
-1. Select **InventoryService**.
-2. In the design view, select **+ Add Artifact**.
-3. Select **Automation** and select **Create**.
-4. Select **+** after the **Start** node to open the node panel.
+    function init() returns error? {
+        self.dbClient = check new ();
+    }
 
-<ThemedImage
-    alt="Bootstrap Automation Flow"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/bootstrap-automation-flow-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/bootstrap-automation-flow-dark.gif'),
-    }}
-/>
+    resource function get .() returns Employee[]|error {
+        stream<Employee, persist:Error?> employees = self.dbClient->/employees;
+        return from Employee emp in employees select emp;
+    }
 
-## Step 5: Configure Data Selection
+    resource function get [int id]() returns Employee|error {
+        return self.dbClient->/employees/[id];
+    }
 
-1. Select **inventoryDB**.
-2. Select **Get rows from inventory table**.
-4. Set **Result** to `ItemsNames`.
-5. Select **ItemName**.
-6. Select **Save**.
+    resource function post .(Employee employee) returns Employee|error {
+        int[] ids = check self.dbClient->/employees.post([employee]);
+        return self.dbClient->/employees/[ids[0]];
+    }
 
-<ThemedImage
-    alt="Configure Data Selection"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/configure-data-selection-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/configure-data-selection-dark.gif'),
-    }}
-/>
+    resource function put [int id](Employee employee) returns Employee|error {
+        return self.dbClient->/employees/[id].put(employee);
+    }
 
-## Step 6: Implement Logic Loop
+    resource function delete [int id]() returns Employee|error {
+        return self.dbClient->/employees/[id].delete();
+    }
+}
+```
 
-1. Select **+**.
-5. Search `println` and select **println**.
-4. Select **Initialize Array** from the node panel.
-5. Set **Values** to `ItemsNames` and select **Save**.
+## Step 6: Configure the Database
 
-<ThemedImage
-    alt="Implement Logic Loop"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/implement-logic-loop-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/implement-logic-loop-dark.gif'),
-    }}
-/>
+Edit `Config.toml`:
+
+```toml
+port = 8080
+
+[modelClient]
+host = "localhost"
+port = 3306
+user = "root"
+password = ""
+database = "employees_db"
+```
 
 ## Step 7: Run and Test
 
-1. Select **Run**.
-2. If prompted, generate the `Config.toml` and supply your database password.
-3. Check the terminal output for the low stock alerts.
+```bash
+bal run
+```
 
-<ThemedImage
-    alt="Run and Test"
-    sources={{
-        light: useBaseUrl('/img/get-started/quick-start-data-service/run-and-test-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-data-service/run-and-test-dark.gif'),
-    }}
-/>
+Test the endpoints:
+
+```bash
+# List all employees
+curl http://localhost:8080/employees
+
+# Create an employee
+curl -X POST http://localhost:8080/employees \
+  -H "Content-Type: application/json" \
+  -d '{"id": 1, "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com", "department": "Engineering", "salary": 95000}'
+
+# Get by ID
+curl http://localhost:8080/employees/1
+```
 
 ## Supported Data Stores
 

@@ -2,8 +2,6 @@
 title: Debugging in VS Code
 ---
 
-# Debugging in VS Code
-
 Debug your integrations and tests step-by-step in VS Code using the WSO2 Integrator extension. Set breakpoints, inspect variables, and trace execution flow to diagnose issues quickly.
 
 ## Setting Breakpoints
