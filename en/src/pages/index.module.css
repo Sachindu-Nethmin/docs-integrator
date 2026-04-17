@@ -26,10 +26,16 @@
   border-right: 1px solid var(--wso2-surface-border);
   z-index: 10;
   overflow-y: auto;
+  transition: width var(--ifm-transition-fast) ease;
+}
+
+.sidebarCol.collapsed {
+  width: 0;
+  border-right: none;
 }
 
 /* Add a small top padding for a premium, balanced look */
-.sidebarCol > :global(div) {
+.sidebarCol> :global(div) {
   padding-top: 1rem !important;
 }
 
@@ -126,9 +132,11 @@
   .heroBanner {
     padding: 3rem 1.5rem 2.5rem;
   }
+
   .heroBanner h1 {
     font-size: 2rem;
   }
+
   .heroSubtitle {
     font-size: 1rem;
   }

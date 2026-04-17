@@ -18,7 +18,7 @@ const homeSidebarItems: PropSidebarItem[] = [
   {
     type: 'category',
     label: 'Get Started',
-    collapsed: false,
+    collapsed: true,
     collapsible: true,
     href: '/docs/get-started/overview-&-architecture',
     items: [
@@ -40,7 +40,7 @@ const homeSidebarItems: PropSidebarItem[] = [
       {
         type: 'category',
         label: 'Quick Starts',
-        collapsed: false,
+        collapsed: true,
         collapsible: true,
         items: [
           { type: 'link', label: 'Quick Start: API', href: '/docs/get-started/quick-start-api' },
@@ -492,15 +492,17 @@ function WhatsNew(): ReactNode {
 /* ------------------------------------------------------------------ */
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
     <Layout title="Home" description={siteConfig.tagline}>
       <div className={styles.pageLayout}>
-        <aside className={styles.sidebarCol}>
+        <aside className={`${styles.sidebarCol} ${isCollapsed ? styles.collapsed : ''}`}>
           <DocSidebar
             sidebar={homeSidebarItems}
             path="/none"
-            onCollapse={() => {}}
-            isHidden={false}
+            onCollapse={() => setIsCollapsed(!isCollapsed)}
+            isHidden={isCollapsed}
           />
         </aside>
         <div className={styles.mainContent}>
