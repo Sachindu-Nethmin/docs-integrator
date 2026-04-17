@@ -197,6 +197,23 @@ function IconReference(): ReactNode {
   );
 }
 
+function IconArrowRight({ size = 14 }: { size?: number }): ReactNode {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /*  Section Data                                                       */
 /* ------------------------------------------------------------------ */
@@ -496,12 +513,32 @@ export default function Home(): ReactNode {
     <Layout title="Home" description={siteConfig.tagline}>
       <div className={styles.pageLayout}>
         <aside className={styles.sidebarCol}>
-          <DocSidebar
-            sidebar={homeSidebarItems}
-            path="/none"
-            onCollapse={() => {}}
-            isHidden={false}
-          />
+          <div className={styles.sidebarTopSection}>
+            <DocSidebar
+              sidebar={homeSidebarItems}
+              path="/none"
+              onCollapse={() => { }}
+              isHidden={false}
+            />
+          </div>
+          <div className={styles.sidebarBottomSection}>
+            <a
+              href="https://si.docs.wso2.com/latest/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sidebarPill}>
+              SI-docs
+              <IconArrowRight size={14} />
+            </a>
+            <a
+              href="https://mi.docs.wso2.com/en/latest/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sidebarPill}>
+              MI-docs
+              <IconArrowRight size={14} />
+            </a>
+          </div>
         </aside>
         <div className={styles.mainContent}>
           <HomepageHeader />

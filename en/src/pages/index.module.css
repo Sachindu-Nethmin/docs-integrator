@@ -25,11 +25,86 @@
   background-color: var(--wso2-sidebar-bg);
   border-right: 1px solid var(--wso2-surface-border);
   z-index: 10;
+  overflow: hidden;
+}
+
+.sidebarTopSection {
+  height: 100%;
   overflow-y: auto;
+  padding-bottom: 120px;
+  /* Space for floating bottom links */
+}
+
+.sidebarBottomSection {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 20;
+  background: linear-gradient(180deg, transparent 0%, var(--wso2-sidebar-bg) 35%, var(--wso2-sidebar-bg) 100%);
+  pointer-events: none;
+  /* Allow clicking through transparent part if needed, but the links themselves should be clickable */
+}
+
+.sidebarBottomSection>* {
+  pointer-events: auto;
+}
+
+.sidebarPill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  /* Match sidebar items' radius */
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid var(--wso2-surface-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .sidebarPill {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  /* Match sidebar link color */
+}
+
+.sidebarPill:hover {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .sidebarPill:hover {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: #38BDF8;
+  color: #FFFFFF !important;
+}
+
+.sidebarPill svg {
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.sidebarPill:hover svg {
+  opacity: 1;
+  transform: translateX(2px);
+  color: inherit;
 }
 
 /* Add a small top padding for a premium, balanced look */
-.sidebarCol > :global(div) {
+.sidebarCol> :global(div) {
   padding-top: 1rem !important;
 }
 
@@ -126,9 +201,11 @@
   .heroBanner {
     padding: 3rem 1.5rem 2.5rem;
   }
+
   .heroBanner h1 {
     font-size: 2rem;
   }
+
   .heroSubtitle {
     font-size: 1rem;
   }
