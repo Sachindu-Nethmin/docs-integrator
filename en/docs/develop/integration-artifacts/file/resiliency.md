@@ -79,4 +79,4 @@ If the connection succeeds on any retry, the listener polls normally and the ret
 
 - [FTP / SFTP](ftp-sftp.md) — service configuration, authentication, and file handlers
 - [High availability](high-availability.md) — distributed listener coordination to prevent duplicate processing
-- [Streaming large files](streaming-large-files.md) — process large files without loading into memory
+- [Streaming large files](streaming-large.md) — process large files without loading into memory

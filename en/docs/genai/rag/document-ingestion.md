@@ -284,5 +284,5 @@ class IngestionJob {
 
 - [Chunking & Embedding](chunking-embedding.md) — Optimize how documents are split and vectorized
 - [Vector Databases](vector-databases.md) — Configure your vector storage backend
-- [Building a RAG Service](building-rag-service.md) — Put it all together in a queryable service
-- [RAG Architecture Overview](architecture-overview.md) — Understand the full pipeline design
+- [Building a RAG Service](build-service.md) — Put it all together in a queryable service
+- [RAG Architecture Overview](architecture-index.md) — Understand the full pipeline design

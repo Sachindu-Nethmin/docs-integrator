@@ -220,5 +220,5 @@ az functionapp plan create --name premium-plan \
 ## What's Next
 
 - [GraalVM Native Images](graalvm.md) -- Compile to native binaries for minimal cold start
-- [Managing Configurations](managing-configurations.md) -- Environment-specific configuration strategies
+- [Managing Configurations](manage-configurations.md) -- Environment-specific configuration strategies
 - [Deploy to AWS / Azure / GCP](cloud-providers.md) -- Container-based cloud deployments

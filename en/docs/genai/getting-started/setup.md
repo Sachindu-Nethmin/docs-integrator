@@ -250,4 +250,4 @@ function createLlmClient() returns agent:LlmModel|error {
 
 - [Build a Smart Calculator Assistant](smart-calculator.md) -- Your first AI integration with tool calling
 - [Build a Sample Hotel Booking Agent](hotel-booking-agent.md) -- A more complete agent with memory and multiple tools
-- [Key Concepts: What is an LLM?](/docs/genai/key-concepts/what-is-llm) -- Understand the foundational technology
+- [Key Concepts: What is an LLM?](/docs/genai/key-concepts/llm) -- Understand the foundational technology

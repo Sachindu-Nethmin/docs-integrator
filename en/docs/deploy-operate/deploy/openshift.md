@@ -230,4 +230,4 @@ spec:
 
 - [Docker & Kubernetes](docker-kubernetes.md) -- General Kubernetes deployment guide
 - [Scaling & High Availability](scaling-ha.md) -- Multi-replica and HA patterns
-- [Managing Configurations](managing-configurations.md) -- Per-environment configuration strategies
+- [Managing Configurations](manage-configurations.md) -- Per-environment configuration strategies

@@ -299,5 +299,5 @@ Write custom scan rules for organization-specific standards.
 ## What's Next
 
 - [Style Guide](style-guide.md) -- Coding conventions and formatting rules
-- [Generate Documentation](generate-documentation.md) -- Produce API docs from source code
+- [Generate Documentation](generate-docs.md) -- Produce API docs from source code
 - [Code Coverage](/docs/develop/test/code-coverage) -- Measure test coverage alongside code quality

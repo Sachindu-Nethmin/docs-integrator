@@ -105,25 +105,25 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 
 | Example | Description | Link |
 |---------|-------------|------|
-| HTTP Service | Basic HTTP service | [View](https://ballerina.io/learn/by-example/http-service-and-resource/) |
+| HTTP Service | Basic HTTP service | [View](https://ballerina.io/learn/by-example/http-and-resource/) |
 | HTTP Client | Basic HTTP client | [View](https://ballerina.io/learn/by-example/http-client-send-request-receive-response/) |
 | Query Parameters | Service query parameters | [View](https://ballerina.io/learn/by-example/http-query-parameter/) |
 | Path Parameters | Service path parameters | [View](https://ballerina.io/learn/by-example/http-path-parameter/) |
 | Request/Response | Full request/response handling | [View](https://ballerina.io/learn/by-example/http-send-response/) |
 | Headers | HTTP header handling | [View](https://ballerina.io/learn/by-example/http-headers/) |
 | Data Binding | Payload data binding | [View](https://ballerina.io/learn/by-example/http-data-binding/) |
-| Error Handling | HTTP error handling | [View](https://ballerina.io/learn/by-example/http-service-error-handling/) |
+| Error Handling | HTTP error handling | [View](https://ballerina.io/learn/by-example/http-error-handling/) |
 | Interceptors | HTTP interceptors | [View](https://ballerina.io/learn/by-example/http-interceptors/) |
 | CORS | Cross-origin resource sharing | [View](https://ballerina.io/learn/by-example/http-cors/) |
 | Circuit Breaker | Circuit breaker pattern | [View](https://ballerina.io/learn/by-example/http-circuit-breaker/) |
 | Load Balancer | Client-side load balancing | [View](https://ballerina.io/learn/by-example/http-load-balancer/) |
 | Retry | HTTP retry | [View](https://ballerina.io/learn/by-example/http-retry/) |
 | Caching | HTTP response caching | [View](https://ballerina.io/learn/by-example/http-caching/) |
-| SSL/TLS | HTTPS support | [View](https://ballerina.io/learn/by-example/http-service-ssl-tls/) |
-| Mutual SSL | Mutual TLS authentication | [View](https://ballerina.io/learn/by-example/http-service-mutual-ssl/) |
-| Basic Auth | Basic authentication | [View](https://ballerina.io/learn/by-example/http-service-basic-auth/) |
-| JWT Auth | JWT authentication | [View](https://ballerina.io/learn/by-example/http-service-jwt-auth/) |
-| OAuth2 | OAuth 2.0 authentication | [View](https://ballerina.io/learn/by-example/http-service-oauth2/) |
+| SSL/TLS | HTTPS support | [View](https://ballerina.io/learn/by-example/http-ssl-tls/) |
+| Mutual SSL | Mutual TLS authentication | [View](https://ballerina.io/learn/by-example/http-mutual-ssl/) |
+| Basic Auth | Basic authentication | [View](https://ballerina.io/learn/by-example/http-basic-auth/) |
+| JWT Auth | JWT authentication | [View](https://ballerina.io/learn/by-example/http-jwt-auth/) |
+| OAuth2 | OAuth 2.0 authentication | [View](https://ballerina.io/learn/by-example/http-oauth2/) |
 
 ## gRPC
 
@@ -147,7 +147,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 
 | Example | Description | Link |
 |---------|-------------|------|
-| WebSocket Service | Basic WebSocket server | [View](https://ballerina.io/learn/by-example/websocket-service/) |
+| WebSocket Service | Basic WebSocket server | [View](https://ballerina.io/learn/by-example/websocket/) |
 | WebSocket Client | WebSocket client | [View](https://ballerina.io/learn/by-example/websocket-client/) |
 
 ## Messaging
@@ -197,7 +197,7 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Before/After Functions | Test lifecycle hooks | [View](https://ballerina.io/learn/by-example/testerina-before-and-after-each/) |
 | Data-Driven Tests | Parameterized tests | [View](https://ballerina.io/learn/by-example/testerina-data-driven-tests/) |
 | Mocking | Mock functions and clients | [View](https://ballerina.io/learn/by-example/testerina-mocking-functions/) |
-| Service Testing | Test HTTP services | [View](https://ballerina.io/learn/by-example/http-service-tests/) |
+| Service Testing | Test HTTP services | [View](https://ballerina.io/learn/by-example/http-tests/) |
 
 ## Observability
 
@@ -228,5 +228,5 @@ Alternatively, use the "Run" button on each example page at [ballerina.io/learn/
 ## See Also
 
 - [Ballerina Syntax Quick Reference](/docs/reference/language/syntax) -- Language cheat sheet
-- [Ballerina API Documentation](api/ballerina-api-docs.md) -- Full API docs
+- [Ballerina API Documentation](api/ballerina.md) -- Full API docs
 - [Specifications](specifications.md) -- Language and platform specifications

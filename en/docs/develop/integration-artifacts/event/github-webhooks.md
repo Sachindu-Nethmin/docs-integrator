@@ -266,6 +266,6 @@ When a GitHub Events service is created, WSO2 Integrator adds all handlers for t
 ## What's next
 
 - [Kafka](kafka.md) — consume messages from Apache Kafka topics
-- [Salesforce Events](salesforce-events.md) — listen to Salesforce Change Data Capture events
+- [Salesforce Events](salesforce.md) — listen to Salesforce Change Data Capture events
 - [Connections](../supporting/connections.md) — reuse GitHub credentials across services
-- [GitHub connector reference](../../../connectors/catalog/developer-tools/github/overview.md) — full connector API reference
+- [GitHub connector reference](../../../connectors/catalog/developer-tools/github/index.md) — full connector API reference

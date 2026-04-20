@@ -253,6 +253,6 @@ The report should show 4 valid records, 1 skipped, and a validation error for ro
 
 ## What's next
 
-- [Local Files](../../develop/integration-artifacts/file/local-files.md) — local file service configuration and event handler reference
+- [Local Files](../../develop/integration-artifacts/file/local.md) — local file service configuration and event handler reference
 - [FTP / SFTP](../../develop/integration-artifacts/file/ftp-sftp.md) — monitor remote servers instead of local directories
 - [CSV processing](../../develop/transform/csv-flat-file.md) — fail-safe parsing, projections, and custom delimiters

@@ -292,6 +292,6 @@ public function validateOrder(json order) returns boolean|error {
 
 ## What's next
 
-- [Execute tests](execute-tests.md) — Run tests from the visual designer, CLI, or in parallel
-- [Unit testing](unit-testing.md) — Write effective unit tests
-- [Test services and clients](test-services-clients.md) — Integration testing patterns
+- [Execute tests](execute.md) — Run tests from the visual designer, CLI, or in parallel
+- [Unit testing](unit.md) — Write effective unit tests
+- [Test services and clients](services-clients.md) — Integration testing patterns

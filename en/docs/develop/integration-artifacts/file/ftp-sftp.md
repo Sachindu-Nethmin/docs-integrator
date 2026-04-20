@@ -264,8 +264,8 @@ service on ftpListener {
 |---|---|---|---|
 | `path` | `string` | `"/"` | Directory on the remote server to monitor for new files. |
 | `fileNamePattern` | `string?` | — | Regex to filter which files trigger handlers. Only matching files are processed. |
-| `fileAgeFilter` | `FileAgeFilter?` | — | Age bounds to skip files that are too new (still uploading) or too old (stale). See [File dependency and trigger conditions](file-dependency-triggers.md). |
-| `fileDependencyConditions` | `FileDependencyCondition[]?` | — | Conditions that block processing until related files exist. See [File dependency and trigger conditions](file-dependency-triggers.md). |
+| `fileAgeFilter` | `FileAgeFilter?` | — | Age bounds to skip files that are too new (still uploading) or too old (stale). See [File dependency and trigger conditions](dependency-triggers.md). |
+| `fileDependencyConditions` | `FileDependencyCondition[]?` | — | Conditions that block processing until related files exist. See [File dependency and trigger conditions](dependency-triggers.md). |
 
 Under **Attached Listeners**, select **ftpListener** to configure the listener the service is attached to.
 
@@ -700,7 +700,7 @@ See [Caller operations](#caller-operations) for the full list of `caller->put*` 
 
 ## What's next
 
-- [Local files](local-files.md) — monitor a local directory instead of a remote server
+- [Local files](local.md) — monitor a local directory instead of a remote server
 - [Connections](../supporting/connections.md) — reuse FTP connection credentials across services
 - [Data Mapper](../supporting/data-mapper.md) — transform incoming file payloads between formats
 - [FTP file processing tutorial](../../../tutorials/walkthroughs/edi-ftp-processing.md) — end-to-end walkthrough for EDI file processing over FTP

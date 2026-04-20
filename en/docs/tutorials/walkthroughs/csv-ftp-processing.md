@@ -331,11 +331,11 @@ curl ftp://127.0.0.1/incoming/ --user "admin:admin"
 - **Stream large files** — Replace `string[][] content` with `stream<string[], error?> content` in the `onFileCsv` signature to process rows incrementally without loading the entire file into memory
 - **Write valid records to a database** — Add a MySQL or PostgreSQL connector and insert each `InventoryRecord` into a database table inside the foreach loop
 - **Send alerts on failure** — Add an email or Slack notification when files land in `/errors` so operations teams can investigate promptly
-- **Add file dependency** — Require a `.done` marker file before processing, similar to the [FTP order batch walkthrough](ftp-listener-with-age-filter-and-file-dependency.md)
+- **Add file dependency** — Require a `.done` marker file before processing, similar to the [FTP order batch walkthrough](ftp-order-processing.md)
 
 ## What's next
 
 - [CSV flat file processing](../../develop/transform/csv-flat-file.md) -- CSV parsing patterns including projections, custom delimiters, and fail-safe options
 - [FTP / SFTP services](../../develop/integration-artifacts/file/ftp-sftp.md) -- FTP service configuration, authentication, and post-processing reference
-- [Process FTP order batches](ftp-listener-with-age-filter-and-file-dependency.md) -- Age filtering and file dependency patterns for FTP listeners
+- [Process FTP order batches](ftp-order-processing.md) -- Age filtering and file dependency patterns for FTP listeners
 - [EDI FTP processing](edi-ftp-processing.md) -- End-to-end EDI file processing over SFTP

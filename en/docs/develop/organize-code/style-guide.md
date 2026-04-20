@@ -351,5 +351,5 @@ import myorg/order_service.db;
 ## What's Next
 
 - [Static Code Analysis](static-code-analysis.md) -- Automate code quality checks
-- [Generate Documentation](generate-documentation.md) -- Produce API docs from your code
+- [Generate Documentation](generate-docs.md) -- Produce API docs from your code
 - [Packages & Modules](packages-modules.md) -- Organize code into packages

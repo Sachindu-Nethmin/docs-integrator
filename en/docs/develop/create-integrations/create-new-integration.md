@@ -117,7 +117,7 @@ The integration is generated as a Ballerina package. Use these fields to configu
 
 ## What's next
 
-- [Open an Existing Integration](open-integration-or-project.md) -- Work with projects already on disk
-- [Explore Sample Integrations](explore-samples.md) -- Browse and learn from built-in examples
+- [Open an Existing Integration](open-integration.md) -- Work with projects already on disk
+- [Explore Sample Integrations](explore-sample-integrations.md) -- Browse and learn from built-in examples
 - [Project View](../project-views/project-view.md) -- Manage multi-package workspaces
 - [Integration Artifacts](/docs/develop/integration-artifacts/overview) -- Understand the artifact types you can create

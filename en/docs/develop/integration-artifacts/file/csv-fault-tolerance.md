@@ -138,6 +138,6 @@ service on ftpListener {
 ## What's next
 
 - [CSV processing](../../transform/csv-flat-file.md) — fail-safe parser configuration, custom delimiters, projections
-- [Streaming large files](streaming-large-files.md) — process CSV files row-by-row without loading into memory
+- [Streaming large files](streaming-large.md) — process CSV files row-by-row without loading into memory
 - [FTP / SFTP](ftp-sftp.md) — service configuration, authentication, and post-processing reference
 - [CSV FTP processing tutorial](../../../tutorials/walkthroughs/csv-ftp-processing.md) — end-to-end walkthrough with sample data and Docker FTP server

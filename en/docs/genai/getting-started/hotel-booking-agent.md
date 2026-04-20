@@ -225,4 +225,4 @@ This agent demonstrates three key patterns:
 - [Creating an AI Agent](/docs/genai/develop/agents/creating-agent) -- Deep dive into agent configuration
 - [Adding Tools to an Agent](/docs/genai/develop/agents/adding-tools) -- Advanced tool patterns
 - [Adding Memory to an Agent](/docs/genai/develop/agents/adding-memory) -- Memory types and strategies
-- [What is AI Agent Memory?](/docs/genai/key-concepts/what-is-agent-memory) -- Understand memory concepts
+- [What is AI Agent Memory?](/docs/genai/key-concepts/agent-memory) -- Understand memory concepts

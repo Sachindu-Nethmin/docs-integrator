@@ -273,7 +273,7 @@ type DatabaseConfig record {|
 |};
 ```
 
-See the [Config.toml Reference](../config/config-toml.md) and [Environment Variables](../config/environment-variables.md) pages for details on providing values.
+See the [Config.toml Reference](../config/config.md) and [Environment Variables](../config/environment-variables.md) pages for details on providing values.
 
 ## Workers and Concurrency
 

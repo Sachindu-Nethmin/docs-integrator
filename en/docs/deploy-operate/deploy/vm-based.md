@@ -242,6 +242,6 @@ service /health on new http:Listener(9091) {
 
 ## What's Next
 
-- [Managing Configurations](managing-configurations.md) -- Per-environment configuration strategies
+- [Managing Configurations](manage-configurations.md) -- Per-environment configuration strategies
 - [Scaling & High Availability](scaling-ha.md) -- Run multiple instances behind a load balancer
 - [GraalVM Native Images](graalvm.md) -- Compile to native binaries for faster startup

@@ -231,4 +231,4 @@ llmApiKey = "not-needed"
 
 - [Constructing Prompts](/docs/genai/develop/direct-llm/constructing-prompts) -- Write effective prompts for your models
 - [Handling Responses](/docs/genai/develop/direct-llm/handling-responses) -- Stream and manage LLM output
-- [What is an LLM?](/docs/genai/key-concepts/what-is-llm) -- LLM fundamentals
+- [What is an LLM?](/docs/genai/key-concepts/llm) -- LLM fundamentals

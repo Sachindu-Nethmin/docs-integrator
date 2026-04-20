@@ -156,5 +156,5 @@ The LLM never performs arithmetic directly. It delegates all computation to the 
 ## What's Next
 
 - [Build a Sample Hotel Booking Agent](hotel-booking-agent.md) -- A more complete agent with memory and real-world tools
-- [What is an AI Agent?](/docs/genai/key-concepts/what-is-ai-agent) -- Understand the agent architecture
-- [What are Tools?](/docs/genai/key-concepts/what-are-tools) -- Learn about tool design patterns
+- [What is an AI Agent?](/docs/genai/key-concepts/ai-agent) -- Understand the agent architecture
+- [What are Tools?](/docs/genai/key-concepts/tools) -- Learn about tool design patterns

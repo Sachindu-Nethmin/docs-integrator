@@ -20,9 +20,9 @@ const homeSidebarItems: PropSidebarItem[] = [
     label: 'Get Started',
     collapsed: false,
     collapsible: true,
-    href: '/docs/get-started/overview-&-architecture',
+    href: '/docs/get-started/',
     items: [
-      { type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/overview-&-architecture' },
+      { type: 'link', label: 'Overview & Architecture', href: '/docs/get-started/' },
       { type: 'link', label: 'Why WSO2 Integrator', href: '/docs/get-started/why-wso2-integrator' },
       { type: 'link', label: 'Key Concepts', href: '/docs/get-started/key-concepts' },
       {
@@ -214,7 +214,7 @@ const sections: SectionCard[] = [
   {
     title: 'Get Started',
     description: 'Install, set up, and build your first integration in under 10 minutes.',
-    link: '/docs/get-started/overview-&-architecture',
+    link: '/docs/get-started/',
     icon: <IconGetStarted />,
     iconBg: '#ECFDF5',
     iconBgDark: 'rgba(5, 150, 105, 0.15)',
@@ -499,7 +499,7 @@ export default function Home(): ReactNode {
           <DocSidebar
             sidebar={homeSidebarItems}
             path="/none"
-            onCollapse={() => {}}
+            onCollapse={() => { }}
             isHidden={false}
           />
         </aside>

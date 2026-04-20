@@ -86,7 +86,7 @@ description: Version history, new features, breaking changes, and migration note
 - GraalVM native image compilation may require additional configuration for some connector packages. Check the connector documentation for GraalVM compatibility before enabling native builds.
 - The visual designer does not yet support `worker` message passing constructs. These are displayed as code blocks in the flow diagram.
 - Hot reload during `bal run` may not detect changes to platform JAR dependencies. Restart the application after updating JARs in the `libs/` directory.
-- The `bal persist` tool does not yet support all data store types in migration mode. Check the [persist documentation](https://ballerina.io/learn/bal-persist-overview) for supported stores.
+- The `bal persist` tool does not yet support all data store types in migration mode. Check the [persist documentation](https://ballerina.io/learn/persist-overview) for supported stores.
 
 ### Breaking Changes
 
@@ -115,4 +115,4 @@ See the [WSO2 documentation archive](https://docs.wso2.com) for previous product
 ## What's Next
 
 - [Install WSO2 Integrator](/docs/get-started/install) -- Get started with the latest release
-- [Quick Start Guide](/docs/get-started/quick-start-api) -- Build your first integration
+- [Quick Start Guide](/docs/get-started/api-integration) -- Build your first integration

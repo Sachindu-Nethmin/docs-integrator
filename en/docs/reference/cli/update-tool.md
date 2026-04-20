@@ -248,6 +248,6 @@ bal build
 
 ## See Also
 
-- [bal Command Reference](bal-commands.md) -- All bal subcommands
+- [bal Command Reference](commands.md) -- All bal subcommands
 - [Installation Guide](/docs/get-started/install) -- Initial installation
 - [System Requirements](/docs/reference/appendix/system-requirements) -- Supported platforms and prerequisites

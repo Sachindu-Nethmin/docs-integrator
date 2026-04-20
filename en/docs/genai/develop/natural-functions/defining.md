@@ -168,4 +168,4 @@ Use natural functions when you need a simple LLM-powered transformation. Use age
 
 - [Constructing Prompts for Natural Functions](/docs/genai/develop/natural-functions/constructing-prompts) -- Optimize your function descriptions
 - [Handling Natural Function Responses](/docs/genai/develop/natural-functions/handling-responses) -- Use natural functions in services and pipelines
-- [What is a Natural Function?](/docs/genai/key-concepts/what-is-natural-function) -- Conceptual overview
+- [What is a Natural Function?](/docs/genai/key-concepts/natural-function) -- Conceptual overview

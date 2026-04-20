@@ -85,43 +85,43 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/get-started/overview-&-architecture',
+          to: '/docs/get-started/',
           label: 'Get Started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
         },
         {
-          to: '/docs/develop/overview',
+          to: '/docs/develop/',
           label: 'Develop',
           position: 'left',
           activeBaseRegex: '/docs/develop(/|$)',
         },
         {
-          to: '/docs/connectors/overview',
+          to: '/docs/connectors/',
           label: 'Connectors',
           position: 'left',
           activeBaseRegex: '/docs/connectors(/|$)',
         },
         {
-          to: '/docs/genai/overview',
+          to: '/docs/genai/',
           label: 'GenAI',
           position: 'left',
           activeBaseRegex: '/docs/genai(/|$)',
         },
         {
-          to: '/docs/tutorials/overview',
+          to: '/docs/tutorials/',
           label: 'Tutorials',
           position: 'left',
           activeBaseRegex: '/docs/tutorials(/|$)',
         },
         {
-          to: '/docs/deploy-operate/overview',
+          to: '/docs/deploy-operate/',
           label: 'Deploy & Operate',
           position: 'left',
           activeBaseRegex: '/docs/deploy-operate(/|$)',
         },
         {
-          to: '/docs/reference/overview',
+          to: '/docs/reference/',
           label: 'Reference',
           position: 'left',
           activeBaseRegex: '/docs/reference(/|$)',
@@ -139,7 +139,7 @@ const config: Config = {
         {
           title: 'Get Started',
           items: [
-            { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
+            { label: 'Overview', to: '/docs/get-started/' },
             { label: 'Install', to: '/docs/get-started/install' },
             { label: 'Quick Starts', to: '/docs/get-started/quick-start-api' },
           ],
@@ -147,11 +147,11 @@ const config: Config = {
         {
           title: 'Develop',
           items: [
-            { label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/overview' },
+            { label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/' },
             { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
-            { label: 'Connectors', to: '/docs/connectors/overview' },
-            { label: 'GenAI', to: '/docs/genai/overview' },
+            { label: 'Connectors', to: '/docs/connectors/' },
+            { label: 'GenAI', to: '/docs/genai/' },
           ],
         },
         {

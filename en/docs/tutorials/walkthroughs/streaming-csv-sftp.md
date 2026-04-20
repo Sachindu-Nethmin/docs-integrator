@@ -339,12 +339,12 @@ mysql -h 127.0.0.1 -u root -proot sensors -e "SELECT COUNT(*) FROM sensor_readin
 - **Scale up** — Generate 1M+ rows to verify memory stays constant regardless of file size
 - **Add fail-safe CSV** — Enable fault tolerance so corrupted rows are skipped instead of terminating the stream
 - **Parallel batches** — Use Ballerina workers to insert batches concurrently while the stream continues
-- **Add file dependency** — Wait for a `.done` marker file before processing, using [file dependency conditions](../../develop/integration-artifacts/file/file-dependency-triggers.md)
+- **Add file dependency** — Wait for a `.done` marker file before processing, using [file dependency conditions](../../develop/integration-artifacts/file/dependency-triggers.md)
 - **Add coordination** — Deploy multiple instances with [high availability](../../develop/integration-artifacts/file/high-availability.md) to prevent duplicate processing
 
 ## What's next
 
-- [Streaming large files](../../develop/integration-artifacts/file/streaming-large-files.md) — reference for stream handler signatures and error behaviour
+- [Streaming large files](../../develop/integration-artifacts/file/streaming-large.md) — reference for stream handler signatures and error behaviour
 - [CSV fault tolerance](../../develop/integration-artifacts/file/csv-fault-tolerance.md) — skip malformed rows without halting the stream
 - [FTP / SFTP](../../develop/integration-artifacts/file/ftp-sftp.md) — service configuration, authentication, and file handlers
 - [CSV FTP processing tutorial](csv-ftp-processing.md) — fail-safe CSV parsing with automatic file routing

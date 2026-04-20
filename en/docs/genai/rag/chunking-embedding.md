@@ -257,7 +257,7 @@ This technique helps the embedding model understand the broader context of each 
 
 ## What's Next
 
-- [Building a RAG Service](building-rag-service.md) — Assemble a complete RAG service
+- [Building a RAG Service](build-service.md) — Assemble a complete RAG service
 - [Document Ingestion](document-ingestion.md) — Build ingestion pipelines for various formats
 - [Vector Databases](vector-databases.md) — Store and query your embeddings
 - [Managing Context Windows](/docs/genai/llm-connectivity/managing-context-windows) — Optimize how retrieved chunks fit in the LLM prompt

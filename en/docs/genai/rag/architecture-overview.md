@@ -233,4 +233,4 @@ rag:Response answer = check ragPipeline.query("What is the return policy?");
 - [Vector Databases](vector-databases.md) — Connect to and configure vector stores
 - [Document Ingestion](document-ingestion.md) — Build ingestion pipelines for various formats
 - [Chunking & Embedding](chunking-embedding.md) — Optimize your chunking and embedding strategy
-- [Building a RAG Service](building-rag-service.md) — End-to-end RAG service implementation
+- [Building a RAG Service](build-service.md) — End-to-end RAG service implementation

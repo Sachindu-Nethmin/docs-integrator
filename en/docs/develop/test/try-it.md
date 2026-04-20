@@ -26,7 +26,7 @@ You can open the Try-It panel from the visual designer or directly from the code
 - **Flow diagram view** — Open a specific resource in the flow diagram, then click **Try It** in the toolbar. This opens the Try-It panel scoped to that resource.
 - **Code editor (CodeLens)** — When viewing `main.bal` in the editor, a CodeLens action bar appears above the service declaration showing **Run | Debug | Visualize | Try it**. Click **Try it** to open the Try-It panel without leaving the code editor.
 
-![Service Designer toolbar with Try It button and Try-It panel open on the right](/img/develop/test/try-it/http-service-tryit-panel.png)
+![Service Designer toolbar with Try It button and Try-It panel open on the right](/img/develop/test/try-it/http-tryit-panel.png)
 
 The Try-It panel on the right lists each resource as a collapsible section with its HTTP method, path, and a request form.
 
@@ -111,5 +111,5 @@ The schema Explorer may show **No Schema Available** if schema introspection is 
 
 ## What's next
 
-- [Unit testing](unit-testing.md) — automated test suites with assertions
+- [Unit testing](unit.md) — automated test suites with assertions
 - [Debugging](/docs/develop/debugging/editor-debugging) — step through code while testing with Try-It

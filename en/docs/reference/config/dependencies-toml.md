@@ -237,5 +237,5 @@ password = "pass"
 ## See Also
 
 - [Ballerina.toml Reference](ballerina-toml.md) -- Project metadata and dependency declarations
-- [Config.toml Reference](config-toml.md) -- Runtime configuration
+- [Config.toml Reference](config.md) -- Runtime configuration
 - [Environment Variables](environment-variables.md) -- Env var mapping and precedence
