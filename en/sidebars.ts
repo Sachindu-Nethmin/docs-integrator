@@ -310,40 +310,11 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'Alfresco',
-              link: { type: 'doc', id: 'connectors/catalog/storage-file/alfresco/index' },
-              items: [
-                'connectors/catalog/storage-file/alfresco/setup-guide',
-                'connectors/catalog/storage-file/alfresco/action-reference',
-                'connectors/catalog/storage-file/alfresco/example',
-              ],
-            },
-            {
-              type: 'category',
               label: 'AMP',
               link: { type: 'doc', id: 'connectors/catalog/developer-tools/amp/index' },
               items: [
                 'connectors/catalog/developer-tools/amp/setup-guide',
                 'connectors/catalog/developer-tools/amp/action-reference',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Anthropic LLM',
-              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-anthropic/index' },
-              items: [
-                'connectors/catalog/ai-ml/ai-anthropic/setup-guide',
-                'connectors/catalog/ai-ml/ai-anthropic/action-reference',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Asana',
-              link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/asana/index' },
-              items: [
-                'connectors/catalog/productivity-collaboration/asana/setup-guide',
-                'connectors/catalog/productivity-collaboration/asana/action-reference',
-                'connectors/catalog/productivity-collaboration/asana/example',
               ],
             },
             {
@@ -398,16 +369,6 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'AWS Secrets Manager',
-              link: { type: 'doc', id: 'connectors/catalog/security-identity/aws-secretmanager/index' },
-              items: [
-                'connectors/catalog/security-identity/aws-secretmanager/setup-guide',
-                'connectors/catalog/security-identity/aws-secretmanager/action-reference',
-                'connectors/catalog/security-identity/aws-secretmanager/example',
-              ],
-            },
-            {
-              type: 'category',
               label: 'AWS SNS',
               link: { type: 'doc', id: 'connectors/catalog/communication/aws-sns/index' },
               items: [
@@ -425,6 +386,45 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/messaging/aws-sqs/action-reference',
                 'connectors/catalog/messaging/aws-sqs/trigger-reference',
                 'connectors/catalog/messaging/aws-sqs/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'AWS Secrets Manager',
+              link: { type: 'doc', id: 'connectors/catalog/security-identity/aws-secretmanager/index' },
+              items: [
+                'connectors/catalog/security-identity/aws-secretmanager/setup-guide',
+                'connectors/catalog/security-identity/aws-secretmanager/action-reference',
+                'connectors/catalog/security-identity/aws-secretmanager/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Alfresco',
+              link: { type: 'doc', id: 'connectors/catalog/storage-file/alfresco/index' },
+              items: [
+                'connectors/catalog/storage-file/alfresco/setup-guide',
+                'connectors/catalog/storage-file/alfresco/action-reference',
+                'connectors/catalog/storage-file/alfresco/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Anthropic LLM',
+              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-anthropic/index' },
+              items: [
+                'connectors/catalog/ai-ml/ai-anthropic/setup-guide',
+                'connectors/catalog/ai-ml/ai-anthropic/action-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Asana',
+              link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/asana/index' },
+              items: [
+                'connectors/catalog/productivity-collaboration/asana/setup-guide',
+                'connectors/catalog/productivity-collaboration/asana/action-reference',
+                'connectors/catalog/productivity-collaboration/asana/example',
               ],
             },
             {
@@ -475,20 +475,20 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'Candid',
-              link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/candid/index' },
-              items: [
-                'connectors/catalog/productivity-collaboration/candid/setup-guide',
-                'connectors/catalog/productivity-collaboration/candid/action-reference',
-              ],
-            },
-            {
-              type: 'category',
               label: 'CDC',
               link: { type: 'doc', id: 'connectors/catalog/database/cdc/index' },
               items: [
                 'connectors/catalog/database/cdc/setup-guide',
                 'connectors/catalog/database/cdc/trigger-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Candid',
+              link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/candid/index' },
+              items: [
+                'connectors/catalog/productivity-collaboration/candid/setup-guide',
+                'connectors/catalog/productivity-collaboration/candid/action-reference',
               ],
             },
             {
@@ -507,6 +507,19 @@ const sidebars: SidebarsConfig = {
               items: [
                 'connectors/catalog/messaging/confluent-cregistry/setup-guide',
                 'connectors/catalog/messaging/confluent-cregistry/action-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Connector Catalog',
+              link: { type: 'doc', id: 'connectors/catalog/index' },
+              items: [
+                'category',
+                'AI',
+                'doc',
+                'connectors/catalog/built-in/ai',
+                'connectors/catalog/built-in/ai/action-reference',
+                'connectors/catalog/built-in/ai/trigger-reference',
               ],
             },
             {
@@ -633,15 +646,6 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/productivity-collaboration/googleapis-sheets/setup-guide',
                 'connectors/catalog/productivity-collaboration/googleapis-sheets/action-reference',
                 'connectors/catalog/productivity-collaboration/googleapis-sheets/example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'gRPC',
-              link: { type: 'doc', id: 'connectors/catalog/built-in/grpc/index' },
-              items: [
-                'connectors/catalog/built-in/grpc/action-reference',
-                'connectors/catalog/built-in/grpc/trigger-reference',
               ],
             },
             {
@@ -1032,6 +1036,16 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
+              label: 'JMS',
+              link: { type: 'doc', id: 'connectors/catalog/messaging/java-jms/index' },
+              items: [
+                'connectors/catalog/messaging/java-jms/setup-guide',
+                'connectors/catalog/messaging/java-jms/action-reference',
+                'connectors/catalog/messaging/java-jms/trigger-reference',
+              ],
+            },
+            {
+              type: 'category',
               label: 'Java JDBC',
               link: { type: 'doc', id: 'connectors/catalog/database/java-jdbc/index' },
               items: [
@@ -1052,16 +1066,6 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'JMS',
-              link: { type: 'doc', id: 'connectors/catalog/messaging/java-jms/index' },
-              items: [
-                'connectors/catalog/messaging/java-jms/setup-guide',
-                'connectors/catalog/messaging/java-jms/action-reference',
-                'connectors/catalog/messaging/java-jms/trigger-reference',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Kafka',
               link: { type: 'doc', id: 'connectors/catalog/messaging/kafka/index' },
               items: [
@@ -1069,6 +1073,36 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/messaging/kafka/action-reference',
                 'connectors/catalog/messaging/kafka/trigger-reference',
                 'connectors/catalog/messaging/kafka/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'MCP',
+              link: { type: 'doc', id: 'connectors/catalog/built-in/mcp/index' },
+              items: [
+                'connectors/catalog/built-in/mcp/action-reference',
+                'connectors/catalog/built-in/mcp/trigger-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'MQTT',
+              link: { type: 'doc', id: 'connectors/catalog/built-in/mqtt' },
+              items: [
+                'connectors/catalog/built-in/mqtt/setup-guide',
+                'connectors/catalog/built-in/mqtt/action-reference',
+                'connectors/catalog/built-in/mqtt/trigger-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'MSSQL',
+              link: { type: 'doc', id: 'connectors/catalog/database/mssql/index' },
+              items: [
+                'connectors/catalog/database/mssql/setup-guide',
+                'connectors/catalog/database/mssql/action-reference',
+                'connectors/catalog/database/mssql/trigger-reference',
+                'connectors/catalog/database/mssql/example',
               ],
             },
             {
@@ -1088,15 +1122,6 @@ const sidebars: SidebarsConfig = {
               items: [
                 'connectors/catalog/marketing-social/mailchimp-transactional/setup-guide',
                 'connectors/catalog/marketing-social/mailchimp-transactional/action-reference',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'MCP',
-              link: { type: 'doc', id: 'connectors/catalog/built-in/mcp/index' },
-              items: [
-                'connectors/catalog/built-in/mcp/action-reference',
-                'connectors/catalog/built-in/mcp/trigger-reference',
               ],
             },
             {
@@ -1144,17 +1169,6 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/database/mongodb/setup-guide',
                 'connectors/catalog/database/mongodb/action-reference',
                 'connectors/catalog/database/mongodb/example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'MSSQL',
-              link: { type: 'doc', id: 'connectors/catalog/database/mssql/index' },
-              items: [
-                'connectors/catalog/database/mssql/setup-guide',
-                'connectors/catalog/database/mssql/action-reference',
-                'connectors/catalog/database/mssql/trigger-reference',
-                'connectors/catalog/database/mssql/example',
               ],
             },
             {
@@ -1293,15 +1307,6 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'pgvector',
-              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-pgvector/index' },
-              items: [
-                'connectors/catalog/ai-ml/ai-pgvector/setup-guide',
-                'connectors/catalog/ai-ml/ai-pgvector/action-reference',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Pinecone',
               link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-pinecone/index' },
               items: [
@@ -1358,6 +1363,26 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/ecommerce/sap-commerce-webservices/setup-guide',
                 'connectors/catalog/ecommerce/sap-commerce-webservices/action-reference',
                 'connectors/catalog/ecommerce/sap-commerce-webservices/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'SAP SD Incoterms',
+              link: { type: 'doc', id: 'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/index' },
+              items: [
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/setup-guide',
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/action-reference',
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'SAP SD Sold-to-Party Determination',
+              link: { type: 'doc', id: 'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/index' },
+              items: [
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/setup-guide',
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/action-reference',
+                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/example',
               ],
             },
             {
@@ -1441,22 +1466,12 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'SAP SD Incoterms',
-              link: { type: 'doc', id: 'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/index' },
+              label: 'SCIM',
+              link: { type: 'doc', id: 'connectors/catalog/security-identity/scim/index' },
               items: [
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/setup-guide',
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/action-reference',
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-incoterms-srv/example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'SAP SD Sold-to-Party Determination',
-              link: { type: 'doc', id: 'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/index' },
-              items: [
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/setup-guide',
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/action-reference',
-                'connectors/catalog/erp-business/sap-s4hana-api-sd-sa-soldtopartydetn/example',
+                'connectors/catalog/security-identity/scim/setup-guide',
+                'connectors/catalog/security-identity/scim/action-reference',
+                'connectors/catalog/security-identity/scim/example',
               ],
             },
             {
@@ -1477,16 +1492,6 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/marketing-social/salesforce-marketingcloud/setup-guide',
                 'connectors/catalog/marketing-social/salesforce-marketingcloud/action-reference',
                 'connectors/catalog/marketing-social/salesforce-marketingcloud/example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'SCIM',
-              link: { type: 'doc', id: 'connectors/catalog/security-identity/scim/index' },
-              items: [
-                'connectors/catalog/security-identity/scim/setup-guide',
-                'connectors/catalog/security-identity/scim/action-reference',
-                'connectors/catalog/security-identity/scim/example',
               ],
             },
             {
@@ -1575,7 +1580,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 'connectors/catalog/communication/twilio/setup-guide',
                 'connectors/catalog/communication/twilio/action-reference',
-                ...connectorVersionedDocs('connectors/catalog/communication/twilio'),
+                'connectors/catalog/communication/twilio/index',
                 'connectors/catalog/communication/twilio/example',
               ],
             },
@@ -1587,15 +1592,6 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/marketing-social/twitter/setup-guide',
                 'connectors/catalog/marketing-social/twitter/action-reference',
                 'connectors/catalog/marketing-social/twitter/example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Weaviate',
-              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-weaviate/index' },
-              items: [
-                'connectors/catalog/ai-ml/ai-weaviate/setup-guide',
-                'connectors/catalog/ai-ml/ai-weaviate/action-reference',
               ],
             },
             {
@@ -1615,6 +1611,15 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/developer-tools/wso2-apim-catalog/setup-guide',
                 'connectors/catalog/developer-tools/wso2-apim-catalog/action-reference',
                 'connectors/catalog/developer-tools/wso2-apim-catalog/example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Weaviate',
+              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-weaviate/index' },
+              items: [
+                'connectors/catalog/ai-ml/ai-weaviate/setup-guide',
+                'connectors/catalog/ai-ml/ai-weaviate/action-reference',
               ],
             },
             {
@@ -1656,520 +1661,540 @@ const sidebars: SidebarsConfig = {
                 'connectors/catalog/communication/zoom-scheduler/example',
               ],
             },
+            {
+              type: 'category',
+              label: 'gRPC',
+              link: { type: 'doc', id: 'connectors/catalog/built-in/grpc/index' },
+              items: [
+                'connectors/catalog/built-in/grpc/action-reference',
+                'connectors/catalog/built-in/grpc/trigger-reference',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'pgvector',
+              link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai-pgvector/index' },
+              items: [
+                'connectors/catalog/ai-ml/ai-pgvector/setup-guide',
+                'connectors/catalog/ai-ml/ai-pgvector/action-reference',
+              ],
+            },
           ],
         },
-        // ── Build Your Own ──
-        {
-          type: 'category',
-          label: 'Build Your Own',
-          link: { type: 'doc', id: 'connectors/build-your-own/index' },
-          items: [
-            'connectors/build-your-own/create-from-openapi',
-            'connectors/build-your-own/custom-development',
-          ],
-        }
       ],
     },
-
-    // ─────────────────────────────────────────────
-    // GENAI
-    // "How do I build AI agents, RAG, or MCP?"
-    // ─────────────────────────────────────────────
+    // ── Build Your Own ──
     {
       type: 'category',
-      label: 'GenAI',
-      collapsed: true,
-      link: { type: 'doc', id: 'genai/index' },
+      label: 'Build Your Own',
+      link: { type: 'doc', id: 'connectors/build-your-own/index' },
       items: [
-        // Getting Started
-        {
-          type: 'category',
-          label: 'Getting Started',
-          items: [
+        'connectors/build-your-own/create-from-openapi',
+        'connectors/build-your-own/custom-development',
+      ],
+    }
+  ],
+},
+
+  // ─────────────────────────────────────────────
+  // GENAI
+  // "How do I build AI agents, RAG, or MCP?"
+  // ─────────────────────────────────────────────
+  {
+    type: 'category',
+    label: 'GenAI',
+    collapsed: true,
+    link: { type: 'doc', id: 'genai/index' },
+    items: [
+      // Getting Started
+      {
+        type: 'category',
+        label: 'Getting Started',
+        items: [
             'genai/getting-started/setup',
             {
-              type: 'category',
-              label: 'Building Your First AI Integration',
-              items: [
+        type: 'category',
+        label: 'Building Your First AI Integration',
+        items: [
                 'genai/getting-started/smart-calculator',
-                'genai/getting-started/hotel-booking-agent',
+        'genai/getting-started/hotel-booking-agent',
               ],
-            },
+  },
           ],
         },
-        // Key Concepts
+// Key Concepts
+{
+  type: 'category',
+    label: 'Key Concepts',
+      items: [
+        'genai/key-concepts/llm',
+        'genai/key-concepts/natural-function',
+        'genai/key-concepts/ai-agent',
+        'genai/key-concepts/tools',
+        'genai/key-concepts/agent-memory',
+        'genai/key-concepts/mcp',
+        'genai/key-concepts/rag',
+      ],
+        },
+// Develop AI Applications
+{
+  type: 'category',
+    label: 'Develop AI Applications',
+      items: [
+        // Direct LLM Calls
         {
           type: 'category',
-          label: 'Key Concepts',
+          label: 'Direct LLM Calls',
           items: [
-            'genai/key-concepts/llm',
-            'genai/key-concepts/natural-function',
-            'genai/key-concepts/ai-agent',
-            'genai/key-concepts/tools',
-            'genai/key-concepts/agent-memory',
-            'genai/key-concepts/mcp',
-            'genai/key-concepts/rag',
+            'genai/develop/direct-llm/configuring-providers',
+            'genai/develop/direct-llm/constructing-prompts',
+            'genai/develop/direct-llm/handling-responses',
           ],
         },
-        // Develop AI Applications
+        // Natural Functions
         {
           type: 'category',
-          label: 'Develop AI Applications',
+          label: 'Natural Functions',
           items: [
-            // Direct LLM Calls
-            {
-              type: 'category',
-              label: 'Direct LLM Calls',
-              items: [
-                'genai/develop/direct-llm/configuring-providers',
-                'genai/develop/direct-llm/constructing-prompts',
-                'genai/develop/direct-llm/handling-responses',
-              ],
-            },
-            // Natural Functions
-            {
-              type: 'category',
-              label: 'Natural Functions',
-              items: [
-                'genai/develop/natural-functions/defining',
-                'genai/develop/natural-functions/constructing-prompts',
-                'genai/develop/natural-functions/handling-responses',
-              ],
-            },
-            // RAG
-            {
-              type: 'category',
-              label: 'RAG',
-              items: [
-                {
-                  type: 'category',
-                  label: 'RAG Ingestion',
-                  items: [
-                    'genai/develop/rag/chunking-documents',
-                    'genai/develop/rag/generating-embeddings',
-                    'genai/develop/rag/connect-vector-dbs',
-                  ],
-                },
-                'genai/develop/rag/querying',
-              ],
-            },
-            // AI Agents
-            {
-              type: 'category',
-              label: 'AI Agents',
-              items: [
-                'genai/develop/agents/creating-agent',
-                'genai/develop/agents/adding-tools',
-                'genai/develop/agents/adding-memory',
-                'genai/develop/agents/advanced-config',
-                'genai/develop/agents/agent-observability',
-                'genai/develop/agents/agent-evaluations',
-              ],
-            },
-            // MCP Integration
-            {
-              type: 'category',
-              label: 'MCP Integration',
-              items: [
-                'genai/develop/mcp/creating-server',
-                'genai/develop/mcp/agents',
-              ],
-            },
+            'genai/develop/natural-functions/defining',
+            'genai/develop/natural-functions/constructing-prompts',
+            'genai/develop/natural-functions/handling-responses',
           ],
         },
-        // Deep Dives — Agents
-        {
-          type: 'category',
-          label: 'Agents',
-          items: [
-            'genai/agents/architecture-concepts',
-            'genai/agents/chat',
-            'genai/agents/api-exposed',
-            'genai/agents/natural-functions',
-            'genai/agents/tool-binding',
-            'genai/agents/configure-memory',
-            'genai/agents/multi-agent-orchestration',
-          ],
-        },
-        // Deep Dives — RAG
+        // RAG
         {
           type: 'category',
           label: 'RAG',
           items: [
-            'genai/rag/architecture-overview',
-            'genai/rag/document-ingestion',
-            'genai/rag/chunking-embedding',
-            'genai/rag/vector-databases',
-            'genai/rag/build-service',
+            {
+              type: 'category',
+              label: 'RAG Ingestion',
+              items: [
+                'genai/develop/rag/chunking-documents',
+                'genai/develop/rag/generating-embeddings',
+                'genai/develop/rag/connect-vector-dbs',
+              ],
+            },
+            'genai/develop/rag/querying',
           ],
         },
-        // Deep Dives — MCP
+        // AI Agents
         {
           type: 'category',
-          label: 'MCP',
+          label: 'AI Agents',
           items: [
-            'genai/mcp/index',
-            'genai/mcp/consuming-tools',
-            'genai/mcp/exposing',
-            'genai/mcp/security',
+            'genai/develop/agents/creating-agent',
+            'genai/develop/agents/adding-tools',
+            'genai/develop/agents/adding-memory',
+            'genai/develop/agents/advanced-config',
+            'genai/develop/agents/agent-observability',
+            'genai/develop/agents/agent-evaluations',
           ],
         },
-        // LLM Connectivity
+        // MCP Integration
         {
           type: 'category',
-          label: 'LLM Connectivity',
+          label: 'MCP Integration',
           items: [
-            'genai/llm-connectivity/model-selection',
-            'genai/llm-connectivity/prompt-engineering',
-            'genai/llm-connectivity/managing-context-windows',
-            'genai/llm-connectivity/natural-expressions',
-            'genai/llm-connectivity/streaming-responses',
+            'genai/develop/mcp/creating-server',
+            'genai/develop/mcp/agents',
           ],
         },
-        // Guardrails
-        {
-          type: 'category',
-          label: 'Guardrails',
-          items: [
-            'genai/guardrails/responsible-ai',
-            'genai/guardrails/content-filtering',
-            'genai/guardrails/input-output',
-            'genai/guardrails/token-cost-management',
-            'genai/guardrails/ai-usage-guidelines',
-          ],
+      ],
         },
-        // Agent Observability
-        {
-          type: 'category',
-          label: 'Agent Observability',
-          items: [
-            'genai/agent-observability/agent-tracing',
-            'genai/agent-observability/conversation-logging',
-            'genai/agent-observability/performance-metrics',
-            'genai/agent-observability/debugging-agent-behavior',
-          ],
+// Deep Dives — Agents
+{
+  type: 'category',
+    label: 'Agents',
+      items: [
+        'genai/agents/architecture-concepts',
+        'genai/agents/chat',
+        'genai/agents/api-exposed',
+        'genai/agents/natural-functions',
+        'genai/agents/tool-binding',
+        'genai/agents/configure-memory',
+        'genai/agents/multi-agent-orchestration',
+      ],
         },
-        // Quick Starts
-        {
-          type: 'category',
-          label: 'Quick Starts',
-          items: [
-            'genai/quick-starts/build-conversational-agent',
-            'genai/quick-starts/build-rag-application',
-            'genai/quick-starts/expose-mcp-server',
-          ],
+// Deep Dives — RAG
+{
+  type: 'category',
+    label: 'RAG',
+      items: [
+        'genai/rag/architecture-overview',
+        'genai/rag/document-ingestion',
+        'genai/rag/chunking-embedding',
+        'genai/rag/vector-databases',
+        'genai/rag/build-service',
+      ],
         },
-        // Tutorials
-        {
-          type: 'category',
-          label: 'Tutorials',
-          items: [
-            'genai/tutorials/hr-knowledge-base-rag',
-            'genai/tutorials/customer-care-mcp',
-            'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/legal-doc-qa',
-            'genai/tutorials/ai-customer-support',
-            'genai/tutorials/conversational-data-pipeline',
-            'genai/tutorials/mcp-enterprise-data',
-            'genai/tutorials/multi-agent-workflow',
-            'genai/tutorials/rag-knowledge-base',
-          ],
+// Deep Dives — MCP
+{
+  type: 'category',
+    label: 'MCP',
+      items: [
+        'genai/mcp/index',
+        'genai/mcp/consuming-tools',
+        'genai/mcp/exposing',
+        'genai/mcp/security',
+      ],
         },
-        // Reference
-        {
-          type: 'category',
-          label: 'Reference',
-          items: [
-            'genai/reference/copilot-guide',
-            'genai/reference/ai-governance',
-            'genai/reference/troubleshooting',
-          ],
+// LLM Connectivity
+{
+  type: 'category',
+    label: 'LLM Connectivity',
+      items: [
+        'genai/llm-connectivity/model-selection',
+        'genai/llm-connectivity/prompt-engineering',
+        'genai/llm-connectivity/managing-context-windows',
+        'genai/llm-connectivity/natural-expressions',
+        'genai/llm-connectivity/streaming-responses',
+      ],
+        },
+// Guardrails
+{
+  type: 'category',
+    label: 'Guardrails',
+      items: [
+        'genai/guardrails/responsible-ai',
+        'genai/guardrails/content-filtering',
+        'genai/guardrails/input-output',
+        'genai/guardrails/token-cost-management',
+        'genai/guardrails/ai-usage-guidelines',
+      ],
+        },
+// Agent Observability
+{
+  type: 'category',
+    label: 'Agent Observability',
+      items: [
+        'genai/agent-observability/agent-tracing',
+        'genai/agent-observability/conversation-logging',
+        'genai/agent-observability/performance-metrics',
+        'genai/agent-observability/debugging-agent-behavior',
+      ],
+        },
+// Quick Starts
+{
+  type: 'category',
+    label: 'Quick Starts',
+      items: [
+        'genai/quick-starts/build-conversational-agent',
+        'genai/quick-starts/build-rag-application',
+        'genai/quick-starts/expose-mcp-server',
+      ],
+        },
+// Tutorials
+{
+  type: 'category',
+    label: 'Tutorials',
+      items: [
+        'genai/tutorials/hr-knowledge-base-rag',
+        'genai/tutorials/customer-care-mcp',
+        'genai/tutorials/it-helpdesk-chatbot',
+        'genai/tutorials/legal-doc-qa',
+        'genai/tutorials/ai-customer-support',
+        'genai/tutorials/conversational-data-pipeline',
+        'genai/tutorials/mcp-enterprise-data',
+        'genai/tutorials/multi-agent-workflow',
+        'genai/tutorials/rag-knowledge-base',
+      ],
+        },
+// Reference
+{
+  type: 'category',
+    label: 'Reference',
+      items: [
+        'genai/reference/copilot-guide',
+        'genai/reference/ai-governance',
+        'genai/reference/troubleshooting',
+      ],
         },
       ],
     },
 
-    // ─────────────────────────────────────────────
-    // TUTORIALS
-    // "Show me a complete, real example"
-    // ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// TUTORIALS
+// "Show me a complete, real example"
+// ─────────────────────────────────────────────
+{
+  type: 'category',
+    label: 'Tutorials',
+      collapsed: true,
+        link: { type: 'doc', id: 'tutorials/index' },
+  items: [
+    // Walkthroughs
     {
       type: 'category',
-      label: 'Tutorials',
-      collapsed: true,
-      link: { type: 'doc', id: 'tutorials/index' },
+      label: 'Walkthroughs',
       items: [
-        // Walkthroughs
-        {
-          type: 'category',
-          label: 'Walkthroughs',
-          items: [
-            'tutorials/salesforce-db-sync',
-            'tutorials/kafka-event-pipeline',
-            'tutorials/rest-api-aggregation',
-            'tutorials/walkthroughs/content-based-routing',
-            'tutorials/walkthroughs/data-transformation-pipeline',
-            'tutorials/file-batch-etl',
-            'tutorials/walkthroughs/email-notification-service',
-            'tutorials/walkthroughs/cdc-service',
-            'tutorials/healthcare-hl7-fhir',
-            'tutorials/walkthroughs/edi-ftp-processing',
-            'tutorials/walkthroughs/csv-ftp-processing',
-            'tutorials/walkthroughs/ftp-order-processing',
-            'tutorials/walkthroughs/local-file-watcher',
-            'tutorials/walkthroughs/streaming-csv-sftp',
-            'tutorials/data-reconciliation',
-          ],
-        },
-        // Enterprise Integration Patterns (EIP)
-        {
-          type: 'category',
-          label: 'Enterprise Integration Patterns',
-          items: [
-            'tutorials/patterns/content-based-router',
-            'tutorials/patterns/message-filter',
-            'tutorials/patterns/scatter-gather',
-            'tutorials/patterns/recipient-list',
-            'tutorials/patterns/message-translator',
-            'tutorials/patterns/circuit-breaker',
-            'tutorials/patterns/saga-compensation',
-            'tutorials/patterns/publish-subscribe',
-            'tutorials/patterns/guaranteed-delivery',
-            'tutorials/patterns/idempotent-receiver',
-            'tutorials/patterns/api-gateway-orchestration',
-            'tutorials/patterns/agent-tool-orchestration',
-            'tutorials/patterns/rag-pipeline',
-          ],
-        },
-        // Pre-Built Integration Samples
-        {
-          type: 'category',
-          label: 'Pre-Built Integration Samples',
-          items: [
-            'tutorials/pre-built/index',
-            'tutorials/pre-built/google-sheets-salesforce',
-            'tutorials/pre-built/github-email-summary',
-            'tutorials/pre-built/google-drive-onedrive',
-            'tutorials/pre-built/mysql-salesforce-products',
-            'tutorials/pre-built/gmail-salesforce-leads',
-            'tutorials/pre-built/kafka-salesforce-pricebook',
-            'tutorials/pre-built/salesforce-twilio-sms',
-            'tutorials/pre-built/hubspot-google-contacts',
-            'tutorials/pre-built/ftp-edi-salesforce',
-            'tutorials/pre-built/shopify-outlook-email',
-          ],
-        },
-        // Sample Projects
-        {
-          type: 'category',
-          label: 'Sample Projects',
-          items: [
-            'tutorials/samples/index',
-            'tutorials/samples/hospital-service',
-            'tutorials/samples/ecommerce-order-service',
-            'tutorials/samples/event-driven-microservices',
-            'tutorials/samples/data-service-persist',
-            'tutorials/samples/restful-api-data-mapper',
-            'tutorials/samples/ai-personal-assistant',
-          ],
-        },
-        // Migration Guides
-        {
-          type: 'category',
-          label: 'Migration Guides',
-          items: [
-            'tutorials/migration/from-wso2-mi',
-            'tutorials/migration/from-mulesoft',
-            'tutorials/migration/from-tibco',
-            'tutorials/migration/from-boomi',
-          ],
-        },
+        'tutorials/salesforce-db-sync',
+        'tutorials/kafka-event-pipeline',
+        'tutorials/rest-api-aggregation',
+        'tutorials/walkthroughs/content-based-routing',
+        'tutorials/walkthroughs/data-transformation-pipeline',
+        'tutorials/file-batch-etl',
+        'tutorials/walkthroughs/email-notification-service',
+        'tutorials/walkthroughs/cdc-service',
+        'tutorials/healthcare-hl7-fhir',
+        'tutorials/walkthroughs/edi-ftp-processing',
+        'tutorials/walkthroughs/csv-ftp-processing',
+        'tutorials/walkthroughs/ftp-order-processing',
+        'tutorials/walkthroughs/local-file-watcher',
+        'tutorials/walkthroughs/streaming-csv-sftp',
+        'tutorials/data-reconciliation',
       ],
     },
-
-    // ─────────────────────────────────────────────
-    // DEPLOY & OPERATE
-    // "How do I ship, run, and secure this?"
-    // ─────────────────────────────────────────────
+    // Enterprise Integration Patterns (EIP)
     {
       type: 'category',
-      label: 'Deploy & Operate',
-      collapsed: true,
-      link: { type: 'doc', id: 'deploy-operate/index' },
+      label: 'Enterprise Integration Patterns',
       items: [
-        // Deploy
-        {
-          type: 'category',
-          label: 'Deploy',
-          items: [
-            'deploy-operate/deploy/local',
-            'deploy-operate/deploy/vm-based',
-            'deploy-operate/deploy/docker-kubernetes',
-            'deploy-operate/deploy/openshift',
-            'deploy-operate/deploy/serverless',
-            'deploy-operate/deploy/devant',
-            'deploy-operate/deploy/cloud-providers',
-            'deploy-operate/deploy/graalvm',
-            'deploy-operate/deploy/environments',
-            'deploy-operate/deploy/manage-configurations',
-            'deploy-operate/deploy/scaling-ha',
-          ],
-        },
-        // CI/CD
-        {
-          type: 'category',
-          label: 'CI/CD',
-          items: [
-            'deploy-operate/cicd/github-actions',
-            'deploy-operate/cicd/jenkins',
-            'deploy-operate/cicd/gitlab',
-            'deploy-operate/cicd/azure-devops',
-          ],
-        },
-        // Observe
-        {
-          type: 'category',
-          label: 'Observe',
-          items: [
-            'deploy-operate/observe/index',
-            'deploy-operate/observe/logging',
-            'deploy-operate/observe/metrics',
-            'deploy-operate/observe/tracing',
-            'deploy-operate/observe/icp',
-            'deploy-operate/observe/devant',
-            'deploy-operate/observe/prometheus',
-            'deploy-operate/observe/grafana',
-            'deploy-operate/observe/jaeger',
-            'deploy-operate/observe/zipkin',
-            'deploy-operate/observe/datadog',
-            'deploy-operate/observe/new-relic',
-            'deploy-operate/observe/elastic',
-            'deploy-operate/observe/opensearch',
-            'deploy-operate/observe/moesif',
-            'deploy-operate/observe/custom-metrics',
-            'deploy-operate/observe/third-party',
-          ],
-        },
-        // Secure
-        {
-          type: 'category',
-          label: 'Secure',
-          items: [
-            'deploy-operate/secure/runtime-security',
-            'deploy-operate/secure/authentication',
-            'deploy-operate/secure/api-security',
-            'deploy-operate/secure/secrets-encryption',
-            'deploy-operate/secure/ip-whitelisting',
-            'deploy-operate/secure/compliance',
-          ],
-        },
-        // Capacity Planning
-        {
-          type: 'category',
-          label: 'Capacity Planning',
-          items: [
-            'deploy-operate/capacity-planning/index',
-            'deploy-operate/capacity-planning/performance-reports',
-          ],
-        },
+        'tutorials/patterns/content-based-router',
+        'tutorials/patterns/message-filter',
+        'tutorials/patterns/scatter-gather',
+        'tutorials/patterns/recipient-list',
+        'tutorials/patterns/message-translator',
+        'tutorials/patterns/circuit-breaker',
+        'tutorials/patterns/saga-compensation',
+        'tutorials/patterns/publish-subscribe',
+        'tutorials/patterns/guaranteed-delivery',
+        'tutorials/patterns/idempotent-receiver',
+        'tutorials/patterns/api-gateway-orchestration',
+        'tutorials/patterns/agent-tool-orchestration',
+        'tutorials/patterns/rag-pipeline',
       ],
     },
-
-    // ─────────────────────────────────────────────
-    // REFERENCE
-    // "What's the exact syntax / config / API for Z?"
-    // ─────────────────────────────────────────────
+    // Pre-Built Integration Samples
     {
       type: 'category',
-      label: 'Reference',
-      collapsed: true,
-      link: { type: 'doc', id: 'reference/index' },
+      label: 'Pre-Built Integration Samples',
       items: [
-        // Language
-        {
-          type: 'category',
-          label: 'Language',
-          items: [
-            'reference/language/syntax',
-            'reference/language/type-system',
-            'reference/language/standard-library',
-            'reference/language/query-expressions',
-            'reference/language/concurrency',
-            'reference/language/error-handling',
-            'reference/language/integration-features',
-          ],
-        },
-        // Configuration
-        {
-          type: 'category',
-          label: 'Configuration',
-          items: [
-            'reference/config/ballerina-toml',
-            'reference/config/config',
-            'reference/config/cloud-toml',
-            'reference/config/dependencies-toml',
-            'reference/config/environment-variables',
-          ],
-        },
-        // CLI
-        {
-          type: 'category',
-          label: 'CLI',
-          items: [
-            'reference/cli/commands',
-            'reference/cli/persist',
-            'reference/cli/openapi',
-            'reference/cli/graphql',
-            'reference/cli/grpc',
-            'reference/cli/edi',
-            'reference/cli/health',
-            'reference/cli/update-tool',
-            'reference/cli/scan',
-          ],
-        },
-        // APIs
-        {
-          type: 'category',
-          label: 'APIs',
-          items: [
-            'reference/api/management',
-            'reference/api/icp',
-            'reference/api/ballerina',
-          ],
-        },
-        'reference/protocols',
-        {
-          type: 'category',
-          label: 'Supported Data Formats',
-          link: { type: 'doc', id: 'reference/data-formats/index' },
-          items: [
-            'reference/data-formats/avro',
-            'reference/data-formats/csv',
-            'reference/data-formats/edi',
-            'reference/data-formats/fhir',
-            'reference/data-formats/hl7',
-            'reference/data-formats/json',
-            'reference/data-formats/protocol-buffers',
-            'reference/data-formats/toml',
-            'reference/data-formats/xml',
-            'reference/data-formats/yaml',
-          ],
-        },
-        'reference/by-example',
-        'reference/specifications',
-        // Appendix
-        {
-          type: 'category',
-          label: 'Appendix',
-          items: [
-            'reference/appendix/system-requirements',
-            'reference/error-codes',
-            'reference/glossary',
-            'reference/faq',
-            'reference/appendix/troubleshooting',
-            'reference/release-notes',
-          ],
-        },
+        'tutorials/pre-built/index',
+        'tutorials/pre-built/google-sheets-salesforce',
+        'tutorials/pre-built/github-email-summary',
+        'tutorials/pre-built/google-drive-onedrive',
+        'tutorials/pre-built/mysql-salesforce-products',
+        'tutorials/pre-built/gmail-salesforce-leads',
+        'tutorials/pre-built/kafka-salesforce-pricebook',
+        'tutorials/pre-built/salesforce-twilio-sms',
+        'tutorials/pre-built/hubspot-google-contacts',
+        'tutorials/pre-built/ftp-edi-salesforce',
+        'tutorials/pre-built/shopify-outlook-email',
       ],
+    },
+    // Sample Projects
+    {
+      type: 'category',
+      label: 'Sample Projects',
+      items: [
+        'tutorials/samples/index',
+        'tutorials/samples/hospital-service',
+        'tutorials/samples/ecommerce-order-service',
+        'tutorials/samples/event-driven-microservices',
+        'tutorials/samples/data-service-persist',
+        'tutorials/samples/restful-api-data-mapper',
+        'tutorials/samples/ai-personal-assistant',
+      ],
+    },
+    // Migration Guides
+    {
+      type: 'category',
+      label: 'Migration Guides',
+      items: [
+        'tutorials/migration/from-wso2-mi',
+        'tutorials/migration/from-mulesoft',
+        'tutorials/migration/from-tibco',
+        'tutorials/migration/from-boomi',
+      ],
+    },
+  ],
+    },
+
+// ─────────────────────────────────────────────
+// DEPLOY & OPERATE
+// "How do I ship, run, and secure this?"
+// ─────────────────────────────────────────────
+{
+  type: 'category',
+    label: 'Deploy & Operate',
+      collapsed: true,
+        link: { type: 'doc', id: 'deploy-operate/index' },
+  items: [
+    // Deploy
+    {
+      type: 'category',
+      label: 'Deploy',
+      items: [
+        'deploy-operate/deploy/local',
+        'deploy-operate/deploy/vm-based',
+        'deploy-operate/deploy/docker-kubernetes',
+        'deploy-operate/deploy/openshift',
+        'deploy-operate/deploy/serverless',
+        'deploy-operate/deploy/devant',
+        'deploy-operate/deploy/cloud-providers',
+        'deploy-operate/deploy/graalvm',
+        'deploy-operate/deploy/environments',
+        'deploy-operate/deploy/manage-configurations',
+        'deploy-operate/deploy/scaling-ha',
+      ],
+    },
+    // CI/CD
+    {
+      type: 'category',
+      label: 'CI/CD',
+      items: [
+        'deploy-operate/cicd/github-actions',
+        'deploy-operate/cicd/jenkins',
+        'deploy-operate/cicd/gitlab',
+        'deploy-operate/cicd/azure-devops',
+      ],
+    },
+    // Observe
+    {
+      type: 'category',
+      label: 'Observe',
+      items: [
+        'deploy-operate/observe/index',
+        'deploy-operate/observe/logging',
+        'deploy-operate/observe/metrics',
+        'deploy-operate/observe/tracing',
+        'deploy-operate/observe/icp',
+        'deploy-operate/observe/devant',
+        'deploy-operate/observe/prometheus',
+        'deploy-operate/observe/grafana',
+        'deploy-operate/observe/jaeger',
+        'deploy-operate/observe/zipkin',
+        'deploy-operate/observe/datadog',
+        'deploy-operate/observe/new-relic',
+        'deploy-operate/observe/elastic',
+        'deploy-operate/observe/opensearch',
+        'deploy-operate/observe/moesif',
+        'deploy-operate/observe/custom-metrics',
+        'deploy-operate/observe/third-party',
+      ],
+    },
+    // Secure
+    {
+      type: 'category',
+      label: 'Secure',
+      items: [
+        'deploy-operate/secure/runtime-security',
+        'deploy-operate/secure/authentication',
+        'deploy-operate/secure/api-security',
+        'deploy-operate/secure/secrets-encryption',
+        'deploy-operate/secure/ip-whitelisting',
+        'deploy-operate/secure/compliance',
+      ],
+    },
+    // Capacity Planning
+    {
+      type: 'category',
+      label: 'Capacity Planning',
+      items: [
+        'deploy-operate/capacity-planning/index',
+        'deploy-operate/capacity-planning/performance-reports',
+      ],
+    },
+  ],
+    },
+
+// ─────────────────────────────────────────────
+// REFERENCE
+// "What's the exact syntax / config / API for Z?"
+// ─────────────────────────────────────────────
+{
+  type: 'category',
+    label: 'Reference',
+      collapsed: true,
+        link: { type: 'doc', id: 'reference/index' },
+  items: [
+    // Language
+    {
+      type: 'category',
+      label: 'Language',
+      items: [
+        'reference/language/syntax',
+        'reference/language/type-system',
+        'reference/language/standard-library',
+        'reference/language/query-expressions',
+        'reference/language/concurrency',
+        'reference/language/error-handling',
+        'reference/language/integration-features',
+      ],
+    },
+    // Configuration
+    {
+      type: 'category',
+      label: 'Configuration',
+      items: [
+        'reference/config/ballerina-toml',
+        'reference/config/config',
+        'reference/config/cloud-toml',
+        'reference/config/dependencies-toml',
+        'reference/config/environment-variables',
+      ],
+    },
+    // CLI
+    {
+      type: 'category',
+      label: 'CLI',
+      items: [
+        'reference/cli/commands',
+        'reference/cli/persist',
+        'reference/cli/openapi',
+        'reference/cli/graphql',
+        'reference/cli/grpc',
+        'reference/cli/edi',
+        'reference/cli/health',
+        'reference/cli/update-tool',
+        'reference/cli/scan',
+      ],
+    },
+    // APIs
+    {
+      type: 'category',
+      label: 'APIs',
+      items: [
+        'reference/api/management',
+        'reference/api/icp',
+        'reference/api/ballerina',
+      ],
+    },
+    'reference/protocols',
+    {
+      type: 'category',
+      label: 'Supported Data Formats',
+      link: { type: 'doc', id: 'reference/data-formats/index' },
+      items: [
+        'reference/data-formats/avro',
+        'reference/data-formats/csv',
+        'reference/data-formats/edi',
+        'reference/data-formats/fhir',
+        'reference/data-formats/hl7',
+        'reference/data-formats/json',
+        'reference/data-formats/protocol-buffers',
+        'reference/data-formats/toml',
+        'reference/data-formats/xml',
+        'reference/data-formats/yaml',
+      ],
+    },
+    'reference/by-example',
+    'reference/specifications',
+    // Appendix
+    {
+      type: 'category',
+      label: 'Appendix',
+      items: [
+        'reference/appendix/system-requirements',
+        'reference/error-codes',
+        'reference/glossary',
+        'reference/faq',
+        'reference/appendix/troubleshooting',
+        'reference/release-notes',
+      ],
+    },
+  ],
     },
   ],
 };
