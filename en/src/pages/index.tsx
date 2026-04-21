@@ -5,9 +5,6 @@ import { useHistory } from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
-import DocSidebar from '@theme/DocSidebar';
-import type { PropSidebarItem } from '@docusaurus/plugin-content-docs';
-
 
 import styles from './index.module.css';
 
@@ -214,7 +211,7 @@ const sections: SectionCard[] = [
   {
     title: 'Get Started',
     description: 'Install, set up, and build your first integration in under 10 minutes.',
-    link: '/docs/get-started/overview-&-architecture',
+    link: '/docs/get-started/overview-and-architecture',
     icon: <IconGetStarted />,
     iconBg: '#ECFDF5',
     iconBgDark: 'rgba(5, 150, 105, 0.15)',
@@ -328,7 +325,7 @@ function SearchBar(): ReactNode {
   }, []);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent) => {
       e.preventDefault();
       if (query.trim()) {
         history.push(`/search?q=${encodeURIComponent(query.trim())}`);
