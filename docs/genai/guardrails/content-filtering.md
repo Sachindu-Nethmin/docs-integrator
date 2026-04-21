@@ -8,9 +8,9 @@ Content filtering prevents your AI integrations from generating or passing throu
 
 Content filters work alongside [input/output guardrails](input-output-guardrails.md) but focus specifically on the semantic content of messages rather than structural validation.
 
-## Built-In content filters
+## Built-In Content Filters
 
-### Category-Based filtering
+### Category-Based Filtering
 
 Block content across predefined categories.
 
@@ -36,7 +36,7 @@ final agent:ChatAgent safeAgent = check new (
 );
 ```
 
-### Threshold levels
+### Threshold Levels
 
 | Threshold | Description | Use Case |
 |-----------|-------------|----------|
@@ -44,11 +44,11 @@ final agent:ChatAgent safeAgent = check new (
 | `"medium"` | Block clearly harmful content | General business applications |
 | `"high"` | Block only extreme content | Internal tools, research applications |
 
-## Topic filtering
+## Topic Filtering
 
 Restrict the agent to specific topics and block off-topic conversations.
 
-### Allowlist approach
+### Allowlist Approach
 
 ```ballerina
 final guardrails:ContentFilter topicFilter = new guardrails:TopicFilter({
@@ -66,7 +66,7 @@ final guardrails:ContentFilter topicFilter = new guardrails:TopicFilter({
 });
 ```
 
-### Blocklist approach
+### Blocklist Approach
 
 ```ballerina
 final guardrails:ContentFilter blocklistFilter = new guardrails:TopicFilter({
@@ -84,9 +84,9 @@ final guardrails:ContentFilter blocklistFilter = new guardrails:TopicFilter({
 });
 ```
 
-## Language filtering
+## Language Filtering
 
-### Profanity filter
+### Profanity Filter
 
 ```ballerina
 final guardrails:ContentFilter profanityFilter = new guardrails:ProfanityFilter({
@@ -96,7 +96,7 @@ final guardrails:ContentFilter profanityFilter = new guardrails:ProfanityFilter(
 });
 ```
 
-### Language detection
+### Language Detection
 
 Restrict responses to supported languages.
 
@@ -110,11 +110,11 @@ final guardrails:ContentFilter languageFilter = new guardrails:LanguageFilter({
 });
 ```
 
-## Custom content filters
+## Custom Content Filters
 
 Build domain-specific content filters for your industry or use case.
 
-### Regex-Based filter
+### Regex-Based Filter
 
 ```ballerina
 final guardrails:ContentFilter regexFilter = new guardrails:PatternFilter({
@@ -134,7 +134,7 @@ final guardrails:ContentFilter regexFilter = new guardrails:PatternFilter({
 });
 ```
 
-### LLM-Based content filter
+### LLM-Based Content Filter
 
 Use an LLM to evaluate content quality and appropriateness.
 
@@ -153,7 +153,7 @@ final guardrails:ContentFilter llmFilter = new guardrails:LlmContentFilter({
 });
 ```
 
-## Applying multiple filters
+## Applying Multiple Filters
 
 Filters execute in sequence. The first filter to block stops the pipeline.
 
@@ -174,11 +174,11 @@ final agent:ChatAgent filteredAgent = check new (
 );
 ```
 
-## Filtering in Non-Agent contexts
+## Filtering in Non-Agent Contexts
 
 Apply content filters to natural functions and direct LLM calls.
 
-### Filtering natural function output
+### Filtering Natural Function Output
 
 ```ballerina
 function safeClassify(string text) returns string|error {
@@ -195,7 +195,7 @@ function safeClassify(string text) returns string|error {
 }
 ```
 
-### Middleware pattern
+### Middleware Pattern
 
 ```ballerina
 function filteredChat(agent:ChatAgent chatAgent, string message, string sessionId) returns string|error {
@@ -218,7 +218,7 @@ function filteredChat(agent:ChatAgent chatAgent, string message, string sessionI
 }
 ```
 
-## Monitoring filter activity
+## Monitoring Filter Activity
 
 Track how often filters trigger for operational insight.
 
@@ -236,7 +236,7 @@ function logFilterActivity(guardrails:FilterResult result, string direction) {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Input/Output Guardrails](input-output-guardrails.md) -- Structural validation for AI inputs and outputs
 - [Token & Cost Management](token-cost-management.md) -- Control LLM usage and spending

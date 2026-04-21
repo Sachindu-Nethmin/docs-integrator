@@ -13,7 +13,7 @@ Stream pricing update events from a Kafka topic and synchronize them with Salesf
 - Salesforce developer account with a connected app and OAuth 2.0 credentials
 - A Salesforce price book (Standard or custom) and associated products
 
-## Quick run
+## Quick Run
 
 ```bash
 # Clone the samples repository
@@ -46,9 +46,9 @@ baseUrl = "https://your-instance.salesforce.com"
 pricebookId = "<PRICEBOOK2_ID>"
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 kafka-to-salesforce-pricebook/
@@ -60,7 +60,7 @@ kafka-to-salesforce-pricebook/
 └── types.bal
 ```
 
-### Defining the data types
+### Defining the Data Types
 
 ```ballerina
 // Kafka pricing event payload
@@ -84,7 +84,7 @@ type SalesforcePricebookEntry record {|
 |};
 ```
 
-### Consuming Kafka pricing events
+### Consuming Kafka Pricing Events
 
 The `main.bal` file sets up a Kafka listener that processes pricing messages as they arrive:
 
@@ -131,7 +131,7 @@ service on kafkaListener {
 }
 ```
 
-### Looking up products and upserting price book entries
+### Looking Up Products and Upserting Price Book Entries
 
 ```ballerina
 import ballerinax/salesforce;
@@ -194,21 +194,21 @@ function processPricingEvent(PricingEvent event) returns error? {
 }
 ```
 
-### Key points
+### Key Points
 
 - **Event-driven processing**: The Kafka listener consumes messages as they arrive, providing near-real-time price updates in Salesforce.
 - **Manual offset commit**: Offsets are committed only after successful processing, ensuring at-least-once delivery semantics.
 - **Product lookup**: Each pricing event references a product by its code, which is resolved to a Salesforce Product2 ID before upserting the price book entry.
 - **Discount calculation**: The integration supports both standard and discount pricing, applying percentage discounts before writing the final price.
 
-## Customization notes
+## Customization Notes
 
 - **Batch processing**: Accumulate multiple Kafka records and use the Salesforce composite API to upsert them in a single call for better performance.
 - **Multi-currency support**: Include the `CurrencyIsoCode` field in the `SalesforcePricebookEntry` and the Kafka event to support multi-currency price books.
 - **Dead letter queue**: Send failed events to a separate Kafka topic (dead letter queue) instead of blocking the consumer.
 - **Schema validation**: Add Avro or JSON Schema validation using the Kafka Schema Registry connector to ensure incoming events conform to the expected format.
 
-## What's next
+## What's Next
 
 - [MySQL to Salesforce Products](mysql-salesforce-products.md) -- Sync product catalogs from a database
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS on Salesforce events

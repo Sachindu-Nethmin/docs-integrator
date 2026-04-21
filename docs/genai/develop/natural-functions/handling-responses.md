@@ -6,7 +6,7 @@ title: Handling Natural Function Responses
 
 Natural functions and natural expressions return typed Ballerina values that you can use anywhere in your integration logic -- HTTP services, event handlers, data pipelines, and conditional flows.
 
-## In HTTP services
+## In HTTP Services
 
 ```ballerina
 import ballerina/http;
@@ -33,7 +33,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-## In event handlers
+## In Event Handlers
 
 ```ballerina
 import ballerinax/kafka;
@@ -58,7 +58,7 @@ service on feedbackListener {
 }
 ```
 
-## In data pipelines
+## In Data Pipelines
 
 ```ballerina
 function processBatch(Document[] documents) returns ProcessedDocument[]|error {
@@ -72,7 +72,7 @@ function processBatch(Document[] documents) returns ProcessedDocument[]|error {
 }
 ```
 
-## In conditional logic
+## In Conditional Logic
 
 ```ballerina
 function processIncomingEmail(Email email) returns error? {
@@ -91,7 +91,7 @@ function processIncomingEmail(Email email) returns error? {
 }
 ```
 
-## Natural expressions vs. natural functions
+## Natural Expressions vs. Natural Functions
 
 | Feature | Natural Expressions | Natural Functions |
 |---------|--------------------|--------------------|
@@ -103,7 +103,7 @@ function processIncomingEmail(Email email) returns error? {
 
 Use natural expressions for quick, inline transformations. Use natural functions when the same LLM operation is reused across multiple services or modules.
 
-## Per-Expression model override
+## Per-Expression Model Override
 
 Override the default model for a specific natural expression.
 
@@ -115,7 +115,7 @@ string result = check ai:natural<string>(
 );
 ```
 
-## What's next
+## What's Next
 
 - [Defining Natural Functions](/docs/genai/develop/natural-functions/defining) -- Create natural function signatures
 - [Constructing Prompts](/docs/genai/develop/natural-functions/constructing-prompts) -- Write effective descriptions

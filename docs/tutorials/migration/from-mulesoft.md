@@ -6,7 +6,7 @@ title: Coming from MuleSoft
 
 A guide for developers migrating integrations from MuleSoft Anypoint to WSO2 Integrator.
 
-## Concept mapping
+## Concept Mapping
 
 | In MuleSoft | In WSO2 Integrator | Notes |
 |---|---|---|
@@ -32,7 +32,7 @@ A guide for developers migrating integrations from MuleSoft Anypoint to WSO2 Int
 | Maven (pom.xml) | Ballerina.toml | Dependency and build configuration |
 | properties file | Config.toml | Environment-specific configuration |
 
-## Key differences
+## Key Differences
 
 ### DataWeave vs. Ballerina
 
@@ -76,7 +76,7 @@ Key differences:
 - DataWeave uses `map`, `filter`, `reduce` with a functional style. Ballerina offers both functional style and **query expressions** (`from ... where ... select`).
 - DataWeave handles format conversion (JSON to XML, etc.) implicitly. In Ballerina, use explicit conversion functions or the Visual Data Mapper.
 
-### Mule flows vs. Ballerina services
+### Mule Flows vs. Ballerina Services
 
 In MuleSoft, a flow is a pipeline of message processors triggered by an inbound endpoint. In WSO2 Integrator, a **service** is a collection of HTTP resources (similar to APIkit Router), and each resource is a function.
 
@@ -118,7 +118,7 @@ Differences:
 - MuleSoft passes data through a mutable `MuleEvent` (payload, attributes, variables). Ballerina uses typed function parameters and return values -- no implicit state.
 - In MuleSoft, the flow pipeline processes one message at a time. In Ballerina, each resource function handles one request and returns a typed response.
 
-### Error handling
+### Error Handling
 
 **MuleSoft:**
 ```xml
@@ -150,9 +150,9 @@ do {
 
 The key advantage: Ballerina errors are typed. You handle `postgresql:Error` specifically rather than matching on a string error type like `DB:CONNECTIVITY`.
 
-## Step-by-Step migration
+## Step-by-Step Migration
 
-### 1. inventory your mule applications
+### 1. Inventory Your Mule Applications
 
 Categorize each Mule flow:
 - **API flows** (HTTP Listener + APIkit) --> WSO2 Integrator **services**
@@ -160,7 +160,7 @@ Categorize each Mule flow:
 - **JMS/Kafka listener flows** --> **event handlers**
 - **Batch jobs** --> **automations** with streaming/query expressions
 
-### 2. convert DataWeave to Ballerina
+### 2. Convert DataWeave to Ballerina
 
 For each DataWeave transformation:
 1. Define the **input and output record types** in Ballerina (equivalent to DataWeave type definitions).
@@ -168,7 +168,7 @@ For each DataWeave transformation:
 3. Complex transformations --> write Ballerina **query expressions** (similar to DataWeave `map`/`filter`).
 4. Format conversions (JSON to XML, CSV, etc.) --> use `ballerina/data.xmldata`, `ballerina/data.csv`, etc.
 
-### 3. map connectors
+### 3. Map Connectors
 
 For each MuleSoft connector:
 - **Database** (`db:select`, `db:insert`) --> `ballerinax/postgresql`, `ballerinax/mysql`, etc.
@@ -180,7 +180,7 @@ For each MuleSoft connector:
 - **Email** --> `ballerina/email`
 - Check the [Connectors](/docs/connectors/overview) page for the full list.
 
-### 4. convert flow logic
+### 4. Convert Flow Logic
 
 For each Mule flow:
 
@@ -197,14 +197,14 @@ For each Mule flow:
    - Set Payload --> return value from the function
 5. **Write tests** using `bal test` (replaces MUnit).
 
-### 5. set up deployment
+### 5. Set Up Deployment
 
 Replace MuleSoft CloudHub / Runtime Fabric with:
 - **Development**: `bal run` locally
 - **Testing**: Deploy to a staging environment via CI/CD
 - **Production**: Deploy to WSO2 Devant (managed cloud), Kubernetes, or a VM
 
-## Common gotchas
+## Common Gotchas
 
 - **No mutable event object**: MuleSoft's `MuleEvent` carries payload, attributes, and variables through the flow. In Ballerina, pass data explicitly as function parameters -- there is no global mutable state.
 - **DataWeave `payload` keyword**: There is no equivalent. Data arrives as typed function parameters or return values from connector calls.
@@ -213,9 +213,9 @@ Replace MuleSoft CloudHub / Runtime Fabric with:
 - **Batch processing**: MuleSoft has a dedicated batch module. In Ballerina, use streaming with query expressions or chunked processing in a `foreach` loop.
 - **MEL expressions**: Mule Expression Language is replaced by Ballerina expressions. All expressions are statically typed.
 
-## Before/After examples
+## Before/After Examples
 
-### REST API with database
+### REST API with Database
 
 **MuleSoft** (simplified):
 - HTTP Listener on `/api/customers/{id}`
@@ -261,7 +261,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-### Kafka consumer with transformation
+### Kafka Consumer with Transformation
 
 **MuleSoft**: Kafka Listener --> DataWeave transform --> HTTP POST to downstream service
 

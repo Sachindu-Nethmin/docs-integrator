@@ -27,7 +27,7 @@ sequenceDiagram
     Agent-->>User: Chat reply
 ```
 
-## Step 1: Create the project
+## Step 1: Create the Project
 
 1. Open WSO2 Integrator.
 2. Select **Create**.
@@ -45,7 +45,7 @@ sequenceDiagram
     }}
 />
 
-## Step 2: Add an AI chat agent
+## Step 2: Add an AI Chat Agent
 
 1. Select **AI Agent**.
 2. In the design view, select **+ Add Artifact**.
@@ -61,7 +61,7 @@ sequenceDiagram
     }}
 />
 
-## Step 3: Configure the AI agent
+## Step 3: Configure the AI Agent
 
 1. Select **AI Agent**.
 2. Set **Instructions** to `You are a highly skilled WSO2 Integration Architect. Your goal is to assist developers in building, debugging, and optimizing integration flows.`.
@@ -89,7 +89,7 @@ sequenceDiagram
     }}
 />
 
-## What's next
+## Next steps
 
 - [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
 - [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service

@@ -6,7 +6,7 @@ title: Managing Configurations
 
 WSO2 Integrator uses Ballerina's configuration system to externalize runtime settings. This page covers strategies for managing configurations across development, testing, staging, and production environments.
 
-## Configuration sources
+## Configuration Sources
 
 Ballerina resolves configuration values from multiple sources, with the following precedence (highest first):
 
@@ -17,7 +17,7 @@ Ballerina resolves configuration values from multiple sources, with the followin
 | 3 | `Config.toml` file(s) | `[myModule] port = 9090` |
 | 4 | Default values in code | `configurable int port = 8080;` |
 
-## Defining configurable values
+## Defining Configurable Values
 
 Declare configurable variables in your Ballerina code:
 
@@ -29,9 +29,9 @@ configurable string dbUser = ?;     // Required -- no default
 configurable string dbPassword = ?; // Required -- no default
 ```
 
-## Per-Environment config files
+## Per-Environment Config Files
 
-### Directory structure
+### Directory Structure
 
 Organize configuration files by environment:
 
@@ -52,7 +52,7 @@ my-integration/
       Config.toml       # Production environment
 ```
 
-### Development config
+### Development Config
 
 `config/dev/Config.toml`:
 
@@ -69,7 +69,7 @@ password = "dev_password"
 level = "DEBUG"
 ```
 
-### Production config
+### Production Config
 
 `config/prod/Config.toml`:
 
@@ -86,7 +86,7 @@ password = "encrypted:xxxxxx"
 level = "INFO"
 ```
 
-### Selecting the config file at runtime
+### Selecting the Config File at Runtime
 
 Use the `BAL_CONFIG_FILES` environment variable:
 
@@ -104,7 +104,7 @@ Supply multiple config files (merged in order, later files override earlier):
 BAL_CONFIG_FILES=config/base/Config.toml:config/prod/Config.toml java -jar my_integration.jar
 ```
 
-## Environment variable overrides
+## Environment Variable Overrides
 
 Override any configurable value using environment variables. The naming convention is:
 
@@ -120,9 +120,9 @@ java -jar my_integration.jar
 
 This is useful for container orchestrators and CI/CD pipelines.
 
-## Kubernetes ConfigMaps and secrets
+## Kubernetes ConfigMaps and Secrets
 
-### ConfigMap for Non-Sensitive values
+### ConfigMap for Non-Sensitive Values
 
 ```yaml
 apiVersion: v1
@@ -142,7 +142,7 @@ data:
     level = "INFO"
 ```
 
-### Secret for sensitive values
+### Secret for Sensitive Values
 
 ```yaml
 apiVersion: v1
@@ -155,7 +155,7 @@ stringData:
   BAL_API_KEY: "ak_xxxxxxxxxxxxx"
 ```
 
-### Mount in deployment
+### Mount in Deployment
 
 ```yaml
 containers:
@@ -176,7 +176,7 @@ volumes:
       name: integration-config
 ```
 
-## Consolidated Multi-Service configuration
+## Consolidated Multi-Service Configuration
 
 When running multiple integrations in a consolidated package, namespace each service's config:
 
@@ -207,7 +207,7 @@ host = "smtp.example.com"
 port = 587
 ```
 
-## Configuration encryption
+## Configuration Encryption
 
 Encrypt sensitive values in `Config.toml`:
 
@@ -231,7 +231,7 @@ At runtime, provide the decryption key:
 BAL_CONFIG_SECRET_KEY=my-secret-key java -jar my_integration.jar
 ```
 
-## Configuration validation
+## Configuration Validation
 
 Ballerina validates configurations at startup. If a required configurable has no value, the application fails to start with a clear error:
 
@@ -247,7 +247,7 @@ configurable string dbHost = ?;  // Required string
 configurable "DEBUG"|"INFO"|"WARN"|"ERROR" logLevel = "INFO"; // Enum constraint
 ```
 
-## Best practices
+## Best Practices
 
 | Practice | Description |
 |----------|-------------|
@@ -257,7 +257,7 @@ configurable "DEBUG"|"INFO"|"WARN"|"ERROR" logLevel = "INFO"; // Enum constraint
 | Layer configs | Use base + environment-specific files for DRY configuration |
 | Prefer env vars for secrets | Use environment variables for passwords and API keys in CI/CD |
 
-## What's next
+## What's Next
 
 - [Environments](environments.md) -- Manage Dev, Test, and Prod promotion workflows
 - [Secrets & Encryption](../secure/secrets-encryption.md) -- Advanced secrets management with Vault

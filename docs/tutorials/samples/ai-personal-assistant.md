@@ -8,7 +8,7 @@ title: AI Personal Assistant
 
 A conversational AI assistant that manages your calendar, sends emails, checks the weather, and searches your notes -- all through natural language. The assistant uses an LLM for reasoning and Ballerina tool functions to interact with external services. It exposes both an HTTP API and a WebSocket endpoint for real-time chat.
 
-## Architecture diagram
+## Architecture Diagram
 
 ```mermaid
 flowchart TD
@@ -31,7 +31,7 @@ flowchart TD
     Request ----> LLM
 ```
 
-## Features demonstrated
+## Features Demonstrated
 
 - **LLM-powered agent** with multi-tool orchestration
 - **Google Calendar integration** -- create, list, and update events
@@ -49,7 +49,7 @@ flowchart TD
 - PostgreSQL database for the notes store
 - SMTP credentials for sending email
 
-## Quick start
+## Quick Start
 
 ```bash
 git clone https://github.com/wso2/integrator-samples.git
@@ -63,9 +63,9 @@ The service starts on port 8090 with two endpoints:
 - `POST /assistant/chat` -- HTTP request-response
 - `ws://localhost:8090/assistant/ws` -- WebSocket for real-time chat
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 ai-personal-assistant/
@@ -84,7 +84,7 @@ ai-personal-assistant/
     └── agent_test.bal    # Integration tests with mocked tools
 ```
 
-### Agent definition (`agent.bal`)
+### Agent Definition (`agent.bal`)
 
 The agent is configured with a system prompt that describes its capabilities and four tool bindings:
 
@@ -105,7 +105,7 @@ Be concise and confirm before taking actions like sending emails or creating eve
 );
 ```
 
-### Calendar tool (`tools/calendar.bal`)
+### Calendar Tool (`tools/calendar.bal`)
 
 ```ballerina
 isolated function listCalendarEvents(string date) returns json|error {
@@ -123,7 +123,7 @@ isolated function createCalendarEvent(string title, string date, string startTim
 }
 ```
 
-### Email tool (`tools/email.bal`)
+### Email Tool (`tools/email.bal`)
 
 ```ballerina
 isolated function sendEmail(string to, string subject, string body) returns record {|boolean sent;|}|error {

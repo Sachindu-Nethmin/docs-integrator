@@ -21,7 +21,7 @@ bal grpc --input <proto-file> [options]
 | `--mode` | — | No | Both | Generation mode: `client`, `service`, or omit for both |
 | `--proto-path` | — | No | — | Path to a directory containing imported `.proto` files |
 
-## Proto file example
+## Proto File Example
 
 ```protobuf
 // order_service.proto
@@ -83,7 +83,7 @@ message OrderStatus {
 }
 ```
 
-## Generate both client and service
+## Generate Both Client and Service
 
 ```bash
 # Generate client and service stubs
@@ -96,7 +96,7 @@ bal grpc --input order_service.proto --output src/
 bal grpc --input order_service.proto --proto-path ./protos/
 ```
 
-### Generated files
+### Generated Files
 
 ```
 order_service_pb.bal              # Message type definitions
@@ -104,13 +104,13 @@ OrderService_service.bal          # Service skeleton
 OrderService_client.bal           # Client stub
 ```
 
-## Generate client only
+## Generate Client Only
 
 ```bash
 bal grpc --input order_service.proto --mode client
 ```
 
-### Generated client usage
+### Generated Client Usage
 
 ```ballerina
 import ballerina/grpc;
@@ -140,13 +140,13 @@ public function main() returns error? {
 }
 ```
 
-## Generate service only
+## Generate Service Only
 
 ```bash
 bal grpc --input order_service.proto --mode service
 ```
 
-### Generated service skeleton
+### Generated Service Skeleton
 
 ```ballerina
 import ballerina/grpc;
@@ -177,7 +177,7 @@ service "OrderService" on ep {
 }
 ```
 
-## Protobuf to Ballerina type mapping
+## Protobuf to Ballerina Type Mapping
 
 | Protobuf Type | Ballerina Type |
 |--------------|----------------|
@@ -200,7 +200,7 @@ service "OrderService" on ep {
 | `google.protobuf.Duration` | `decimal` |
 | `google.protobuf.Struct` | `map<anydata>` |
 
-## gRPC communication patterns
+## gRPC Communication Patterns
 
 | Pattern | Proto Definition | Ballerina Signature |
 |---------|-----------------|-------------------|
@@ -209,7 +209,7 @@ service "OrderService" on ep {
 | Client streaming | `rpc Method(stream Req) returns (Res)` | `remote function Method(stream<Req, error?>) returns Res\|error` |
 | Bidirectional | `rpc Method(stream Req) returns (stream Res)` | `remote function Method(stream<Req, error?>) returns stream<Res, error?>\|error` |
 
-## See also
+## See Also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [Protocols Reference](/docs/reference/protocols) -- Supported protocols including gRPC

@@ -6,7 +6,7 @@ title: Logging & Structured Logs
 
 Configure logging for your WSO2 Integrator services to capture operational data, debug issues, and feed log aggregation systems.
 
-## Default logging behavior
+## Default Logging Behavior
 
 Ballerina provides a built-in `ballerina/log` module that writes log messages to standard output (stdout). By default, the log level is set to `INFO`, and messages are emitted in a human-readable format.
 
@@ -29,7 +29,7 @@ Default output format:
 time=2025-03-15T10:30:00.000Z level=INFO module=myorg/order_service message="Order received" orderId="ORD-12345"
 ```
 
-## Log levels and configuration
+## Log Levels and Configuration
 
 Ballerina supports the following log levels, from most to least verbose:
 
@@ -40,7 +40,7 @@ Ballerina supports the following log levels, from most to least verbose:
 | `WARN` | Potentially harmful situations that deserve attention |
 | `ERROR` | Error events that may still allow the service to continue |
 
-### Setting the log level
+### Setting the Log Level
 
 Configure the log level in `Config.toml`:
 
@@ -56,7 +56,7 @@ Or set it via environment variable:
 export BAL_CONFIG_VAR_BALLERINA_LOG_LEVEL=DEBUG
 ```
 
-### Module-Specific log levels
+### Module-Specific Log Levels
 
 Control log verbosity per module to reduce noise in production:
 
@@ -74,7 +74,7 @@ name = "myorg/payment_client"
 level = "DEBUG"                         # Debug a specific module
 ```
 
-### Using log functions
+### Using Log Functions
 
 ```ballerina
 import ballerina/log;
@@ -92,7 +92,7 @@ public function processPayment(string orderId, decimal amount) returns error? {
 }
 ```
 
-## Structured logging format
+## Structured Logging Format
 
 Ballerina emits structured logs in key-value format by default, which is compatible with most log aggregation tools. Each log entry includes:
 
@@ -102,7 +102,7 @@ Ballerina emits structured logs in key-value format by default, which is compati
 - `message` -- Log message string
 - Custom key-value pairs passed as named arguments
 
-### Adding context to log entries
+### Adding Context to Log Entries
 
 Pass additional context as named arguments to log functions:
 
@@ -133,7 +133,7 @@ Output:
 time=2025-03-15T10:30:00.000Z level=INFO module=myorg/order_service message="Processing order" orderId="ORD-12345" customerId="CUST-789" total=149.99 itemCount=3
 ```
 
-### JSON log format
+### JSON Log Format
 
 For systems that require JSON-formatted logs, configure the log output format:
 
@@ -158,9 +158,9 @@ JSON output:
 }
 ```
 
-## Log aggregation
+## Log Aggregation
 
-### ELK stack (Elasticsearch, Logstash, Kibana)
+### ELK Stack (Elasticsearch, Logstash, Kibana)
 
 Ship container logs to the ELK stack using Filebeat as a sidecar or DaemonSet:
 
@@ -202,7 +202,7 @@ Query logs in Grafana using LogQL:
 {app="wso2-integrator-app"} | json | level="ERROR" | orderId="ORD-12345"
 ```
 
-### CloudWatch logs
+### CloudWatch Logs
 
 On AWS ECS or EKS, send logs directly to CloudWatch using the `awslogs` log driver (ECS) or the CloudWatch agent (EKS). The structured key-value format is automatically parsed by CloudWatch Logs Insights:
 
@@ -213,7 +213,7 @@ fields @timestamp, @message
 | limit 50
 ```
 
-## What's next
+## What's Next
 
 - [Metrics](metrics.md) -- Monitor service health with Prometheus and Grafana
 - [Distributed Tracing](tracing.md) -- Trace requests across services

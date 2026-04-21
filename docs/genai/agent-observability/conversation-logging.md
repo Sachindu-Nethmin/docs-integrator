@@ -8,9 +8,9 @@ Conversation logging captures the full dialogue between users and AI agents, inc
 
 Unlike [agent tracing](agent-tracing.md) (which captures performance and timing), conversation logging captures the content of interactions.
 
-## Enabling conversation logging
+## Enabling Conversation Logging
 
-### Basic logging
+### Basic Logging
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -30,7 +30,7 @@ final agent:ChatAgent loggedAgent = check new (
 );
 ```
 
-### Structured conversation log
+### Structured Conversation Log
 
 Capture conversations as structured records for storage and analysis.
 
@@ -100,7 +100,7 @@ function logConversationTurn(
 }
 ```
 
-## Logging with metadata
+## Logging with Metadata
 
 Capture contextual metadata alongside conversations for richer analysis.
 
@@ -125,9 +125,9 @@ function chatWithLogging(string message, string sessionId, string userId) return
 }
 ```
 
-## Storage options
+## Storage Options
 
-### Database storage
+### Database Storage
 
 ```ballerina
 import ballerinax/mysql;
@@ -147,7 +147,7 @@ function storeConversation(ConversationLogEntry entry) returns error? {
 }
 ```
 
-### File-Based logging
+### File-Based Logging
 
 ```ballerina
 import ballerina/io;
@@ -162,7 +162,7 @@ function logToFile(ConversationLogEntry entry) returns error? {
 }
 ```
 
-### Event stream logging
+### Event Stream Logging
 
 Push conversation events to a message queue for downstream processing.
 
@@ -182,9 +182,9 @@ function logToKafka(ConversationLogEntry entry) returns error? {
 }
 ```
 
-## Privacy-Aware logging
+## Privacy-Aware Logging
 
-### PII redaction in logs
+### PII Redaction in Logs
 
 ```ballerina
 import ballerinax/ai.guardrails;
@@ -208,7 +208,7 @@ function logWithRedaction(string sessionId, string role, string content) returns
 }
 ```
 
-### Configurable log detail levels
+### Configurable Log Detail Levels
 
 ```ballerina
 configurable string logDetail = "summary";  // "full", "summary", "metadata_only"
@@ -229,9 +229,9 @@ function logConversation(string sessionId, string message, string response) retu
 }
 ```
 
-## Log retention and rotation
+## Log Retention and Rotation
 
-### Time-Based retention
+### Time-Based Retention
 
 ```ballerina
 // Clean up logs older than the retention period
@@ -244,7 +244,7 @@ function cleanupOldLogs(int retentionDays) returns error? {
 }
 ```
 
-### Automated cleanup
+### Automated Cleanup
 
 ```ballerina
 import ballerina/task;
@@ -265,9 +265,9 @@ function init() returns error? {
 }
 ```
 
-## Querying conversation logs
+## Querying Conversation Logs
 
-### Retrieve session history
+### Retrieve Session History
 
 ```ballerina
 function getSessionHistory(string sessionId) returns ConversationLogEntry[]|error {
@@ -277,7 +277,7 @@ function getSessionHistory(string sessionId) returns ConversationLogEntry[]|erro
 }
 ```
 
-### Search conversations
+### Search Conversations
 
 ```ballerina
 function searchConversations(string keyword, string? userId = ()) returns ConversationLogEntry[]|error {
@@ -296,7 +296,7 @@ function searchConversations(string keyword, string? userId = ()) returns Conver
 }
 ```
 
-### Conversation analytics
+### Conversation Analytics
 
 ```ballerina
 type ConversationStats record {|
@@ -321,7 +321,7 @@ function getConversationStats(string period) returns ConversationStats|error {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Agent Tracing](agent-tracing.md) -- Trace agent performance and timing
 - [Performance Metrics](performance-metrics.md) -- Monitor latency and throughput

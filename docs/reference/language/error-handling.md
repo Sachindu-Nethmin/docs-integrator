@@ -6,7 +6,7 @@ title: Error Handling
 
 Ballerina treats errors as first-class values rather than exceptions. The `error` type is a built-in basic type, and the language provides structured constructs -- `check`, `on fail`, `trap`, and distinct error types -- to handle failures explicitly and safely in integration workflows.
 
-## The error type
+## The Error Type
 
 An `error` value carries a message (string), an optional cause (another error), and an optional detail record.
 
@@ -26,7 +26,7 @@ OrderError orderErr = error("Order failed",
 );
 ```
 
-### Error value components
+### Error Value Components
 
 | Component | Type | Access | Description |
 |-----------|------|--------|-------------|
@@ -35,7 +35,7 @@ OrderError orderErr = error("Order failed",
 | Detail | `record {}` | `err.detail()` | Structured data associated with the error |
 | Stack trace | `runtime:StackFrame[]` | `err.stackTrace()` | Call stack at the point of error creation |
 
-## Check expression
+## Check Expression
 
 The `check` expression is the primary mechanism for propagating errors. If the expression evaluates to an error, it returns (or propagates) the error from the enclosing function or block.
 
@@ -48,7 +48,7 @@ function getUser(string id) returns json|error {
 }
 ```
 
-### Check in different contexts
+### Check in Different Contexts
 
 ```ballerina
 // Check in function — propagates error as return value
@@ -74,7 +74,7 @@ function safeFetch() returns string {
 }
 ```
 
-## On fail clause
+## On Fail Clause
 
 The `on fail` clause catches errors from `check` expressions within `do`, `while`, `foreach`, `lock`, `transaction`, and `retry` blocks.
 
@@ -93,7 +93,7 @@ function processRecords(json[] records) returns error? {
 }
 ```
 
-### Blocks that support on fail
+### Blocks That Support On Fail
 
 | Block | Example |
 |-------|---------|
@@ -104,7 +104,7 @@ function processRecords(json[] records) returns error? {
 | `transaction` | `transaction { ... } on fail error e { ... }` |
 | `retry` | `retry { ... } on fail error e { ... }` |
 
-### On fail with error type binding
+### On Fail with Error Type Binding
 
 ```ballerina
 function callExternalService() returns json|error {
@@ -122,7 +122,7 @@ function callExternalService() returns json|error {
 }
 ```
 
-## Trap expression
+## Trap Expression
 
 The `trap` expression catches panics and converts them to errors. Use `trap` when calling code that might panic rather than return an error.
 
@@ -139,7 +139,7 @@ function safeAccess(json data) returns json|error {
 }
 ```
 
-### Check vs. trap
+### Check vs. Trap
 
 | Feature | `check` | `trap` |
 |---------|---------|--------|
@@ -148,7 +148,7 @@ function safeAccess(json data) returns json|error {
 | Behavior | Propagates error to enclosing scope | Converts panic to `error` value |
 | Common in | API calls, I/O, data access | Type casts, array access, division |
 
-## Error detail records
+## Error Detail Records
 
 Error detail records carry structured information about failures. Define custom detail types for domain-specific errors.
 
@@ -183,7 +183,7 @@ function handleValidation() {
 }
 ```
 
-## Distinct errors
+## Distinct Errors
 
 Distinct errors are error types with a unique identity, enabling type-based error discrimination. Each `distinct` error type is a subtype of `error` and can be matched precisely.
 
@@ -224,7 +224,7 @@ function handleRequest(string id, string token) returns http:Response {
 }
 ```
 
-### Distinct error hierarchies
+### Distinct Error Hierarchies
 
 ```ballerina
 // Parent error type
@@ -246,9 +246,9 @@ function processRequest() returns json|AppError {
 }
 ```
 
-## Error constructors and matching
+## Error Constructors and Matching
 
-### Constructing errors
+### Constructing Errors
 
 ```ballerina
 // Basic error
@@ -266,7 +266,7 @@ type MyError error<record {|string code;|}>;
 MyError e4 = error MyError("failed", code = "E001");
 ```
 
-### Error match patterns
+### Error Match Patterns
 
 ```ballerina
 function categorizeError(error err) returns string {
@@ -287,9 +287,9 @@ function categorizeError(error err) returns string {
 }
 ```
 
-## Error handling patterns for integration
+## Error Handling Patterns for Integration
 
-### Retry with error handling
+### Retry with Error Handling
 
 ```ballerina
 function reliableCall(string url) returns json|error {
@@ -310,7 +310,7 @@ function reliableCall(string url) returns json|error {
 }
 ```
 
-### Circuit breaker pattern
+### Circuit Breaker Pattern
 
 ```ballerina
 function callWithCircuitBreaker() returns json|error {
@@ -332,7 +332,7 @@ function callWithCircuitBreaker() returns json|error {
 }
 ```
 
-### Error aggregation
+### Error Aggregation
 
 ```ballerina
 function validateOrder(Order order) returns error? {
@@ -354,7 +354,7 @@ function validateOrder(Order order) returns error? {
 }
 ```
 
-## See also
+## See Also
 
 - [Ballerina Syntax Quick Reference](syntax.md) -- Core language syntax
 - [Concurrency](concurrency.md) -- Workers, transactions, and error handling in concurrent code

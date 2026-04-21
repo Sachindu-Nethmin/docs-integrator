@@ -4,7 +4,7 @@ title: AI-Powered Customer Support Agent
 
 # AI-Powered Customer Support Agent
 
-## What you'll build
+## What You'll Build
 
 An AI-powered customer support agent that receives requests over HTTP, reasons about the customer's intent using an LLM, and calls backend tools (order lookup, refund processing, FAQ search) to resolve support tickets automatically.
 
@@ -26,7 +26,7 @@ flowchart TD
     Router ----> FAQ
 ```
 
-## What you'll learn
+## What You'll Learn
 
 - Creating an AI agent with LLM integration in WSO2 Integrator
 - Defining tools that the agent can invoke via function calling
@@ -42,9 +42,9 @@ flowchart TD
 
 **Time estimate:** 30--45 minutes
 
-## Step-by-Step walkthrough
+## Step-by-Step Walkthrough
 
-### Step 1: Create the project
+### Step 1: Create the Project
 
 1. Open VS Code and run **WSO2 Integrator: Create New Project**.
 2. Name the project `customer-support-agent`.
@@ -62,7 +62,7 @@ user = "admin"
 password = "admin"
 ```
 
-### Step 2: Define the data types
+### Step 2: Define the Data Types
 
 Create the record types for orders and support requests in `types.bal`:
 
@@ -102,7 +102,7 @@ type RefundResult record {|
 |};
 ```
 
-### Step 3: Build the tools
+### Step 3: Build the Tools
 
 Tools are regular Ballerina functions that the agent can call. Create `tools.bal`:
 
@@ -156,7 +156,7 @@ isolated function searchFaq(string query) returns string|error {
 }
 ```
 
-### Step 4: Create the agent
+### Step 4: Create the Agent
 
 Define the agent with its system prompt and tool bindings in `agent.bal`:
 
@@ -230,7 +230,7 @@ final agent:Agent supportAgent = check new (
 );
 ```
 
-### Step 5: Expose the agent as an HTTP service
+### Step 5: Expose the Agent as an HTTP Service
 
 Create `main.bal` to wire the agent to an HTTP endpoint:
 
@@ -256,7 +256,7 @@ service /support on new http:Listener(8090) {
 }
 ```
 
-### Step 6: Handle errors
+### Step 6: Handle Errors
 
 Wrap tool calls with error handling so the agent degrades gracefully:
 
@@ -276,7 +276,7 @@ isolated function safeToolCall(function () returns anydata|error toolFn) returns
 }
 ```
 
-### Step 7: Test it
+### Step 7: Test It
 
 1. Start the service:
 
@@ -321,7 +321,7 @@ curl -X POST http://localhost:8090/support/chat \
 bal test
 ```
 
-## Extend it
+## Extend It
 
 - **Add a WebSocket endpoint** for real-time chat instead of request-response.
 - **Integrate a vector database** (e.g., Pinecone, Weaviate) for richer FAQ search.
@@ -329,7 +329,7 @@ bal test
 - **Track analytics** by logging each conversation to a Kafka topic for downstream analysis.
 - **Implement rate limiting** to prevent abuse of the LLM endpoint.
 
-## Full source code
+## Full Source Code
 
 Find the complete working project on GitHub:
 [wso2/integrator-samples/customer-support-agent](https://github.com/wso2/integrator-samples/tree/main/customer-support-agent)

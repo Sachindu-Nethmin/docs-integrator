@@ -8,7 +8,7 @@ Agent tracing captures the full lifecycle of an agent interaction -- from the in
 
 Without tracing, debugging agent behavior is guesswork. With tracing, you can reconstruct exactly what happened in every interaction.
 
-## How agent tracing works
+## How Agent Tracing Works
 
 Every agent interaction produces a trace with a hierarchical structure:
 
@@ -27,9 +27,9 @@ Trace: chat-request-abc123
 └── Metadata: {totalTokens: 1250, totalDuration: 645ms, toolCalls: 1}
 ```
 
-## Enabling tracing
+## Enabling Tracing
 
-### Built-In tracing
+### Built-In Tracing
 
 WSO2 Integrator agents emit traces automatically when observability is enabled.
 
@@ -69,7 +69,7 @@ jaeger.sampler.type = "const"
 jaeger.sampler.param = 1.0
 ```
 
-## Trace structure
+## Trace Structure
 
 ### Spans
 
@@ -84,7 +84,7 @@ Each agent interaction generates the following span types:
 | `agent.guardrail.input` | Input guardrail evaluation | guardrailName, passed, duration |
 | `agent.guardrail.output` | Output guardrail evaluation | guardrailName, passed, duration |
 
-### Custom span attributes
+### Custom Span Attributes
 
 Add custom attributes to traces for domain-specific context.
 
@@ -112,7 +112,7 @@ function chatWithTracing(string message, string sessionId, string userId) return
 }
 ```
 
-## Exporting traces
+## Exporting Traces
 
 ### Jaeger
 
@@ -150,7 +150,7 @@ zipkin.reporter.hostname = "zipkin.monitoring"
 zipkin.reporter.port = 9411
 ```
 
-## Tracing Multi-Agent interactions
+## Tracing Multi-Agent Interactions
 
 When agents delegate to other agents, traces maintain parent-child relationships.
 
@@ -186,7 +186,7 @@ Trace: supervisor-request-xyz
 └── Span: agent.llm.reasoning (supervisor)
 ```
 
-## Sampling strategies
+## Sampling Strategies
 
 For high-volume production systems, trace sampling reduces overhead while maintaining visibility.
 
@@ -202,7 +202,7 @@ jaeger.sampler.type = "ratelimiting"
 jaeger.sampler.param = 2.0  # 2 traces per second
 ```
 
-### Error-Biased sampling
+### Error-Biased Sampling
 
 Always capture traces for failed interactions.
 
@@ -221,7 +221,7 @@ function chatWithErrorTracing(string message, string sessionId) returns string|e
 }
 ```
 
-## Privacy considerations
+## Privacy Considerations
 
 Traces may contain sensitive information. Configure tracing to respect data policies.
 
@@ -240,7 +240,7 @@ final agent:ChatAgent privacyAwareAgent = check new (
 );
 ```
 
-## What's next
+## What's Next
 
 - [Conversation Logging](conversation-logging.md) -- Log full conversations for audit
 - [Performance Metrics](performance-metrics.md) -- Monitor agent latency and throughput

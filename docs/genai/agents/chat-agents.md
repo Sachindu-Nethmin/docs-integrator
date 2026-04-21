@@ -8,7 +8,7 @@ Chat agents are conversational AI components that maintain context across multip
 
 Use chat agents when you need multi-turn conversations, contextual follow-ups, or interactive data exploration through natural language.
 
-## Creating a basic chat agent
+## Creating a Basic Chat Agent
 
 The simplest chat agent needs a model connection, a system prompt, and optionally tools and memory.
 
@@ -30,7 +30,7 @@ final agent:ChatAgent helpDeskAgent = check new (
 );
 ```
 
-## System prompt design
+## System Prompt Design
 
 The system prompt defines your agent's personality, capabilities, and constraints. A well-crafted system prompt is the most important factor in agent quality.
 
@@ -54,7 +54,7 @@ Response Format:
 - Summarize key takeaways at the end of each analysis`;
 ```
 
-### System prompt best practices
+### System Prompt Best Practices
 
 | Practice | Example |
 |----------|---------|
@@ -64,7 +64,7 @@ Response Format:
 | Include constraints | "Never share customer personal data in responses" |
 | Add tool usage guidance | "Use the orderLookup tool before answering order questions" |
 
-## Multi-Turn conversations
+## Multi-Turn Conversations
 
 Chat agents automatically maintain conversation context through their memory component. Each call to `chat()` includes a session ID that links messages together.
 
@@ -110,9 +110,9 @@ Agent: [calls resetVpnCertificate("EMP-1234")]
         VPN client and try connecting again."
 ```
 
-## Configuring agent behavior
+## Configuring Agent Behavior
 
-### Temperature and creativity
+### Temperature and Creativity
 
 Control how deterministic or creative the agent's responses are.
 
@@ -136,7 +136,7 @@ final agent:ChatAgent preciseAgent = check new (
 );
 ```
 
-### Maximum iterations
+### Maximum Iterations
 
 Limit how many reason-act-observe loops the agent can perform per request to prevent runaway chains.
 
@@ -149,7 +149,7 @@ final agent:ChatAgent boundedAgent = check new (
 );
 ```
 
-### Timeout configuration
+### Timeout Configuration
 
 Set a maximum time for agent responses to prevent long-running requests.
 
@@ -162,9 +162,9 @@ final agent:ChatAgent timedAgent = check new (
 );
 ```
 
-## Session management
+## Session Management
 
-### Session isolation
+### Session Isolation
 
 Each session ID creates an independent conversation thread. Different users or conversations never share context.
 
@@ -175,7 +175,7 @@ string r2 = check agent.chat("Hello!", "user-bob-session-1");
 string r3 = check agent.chat("Follow up", "user-alice-session-1");  // Only sees Alice's history
 ```
 
-### Session cleanup
+### Session Cleanup
 
 Clear session memory when a conversation ends to free resources.
 
@@ -194,7 +194,7 @@ service /helpdesk on new http:Listener(8090) {
 }
 ```
 
-## Handling errors in chat agents
+## Handling Errors in Chat Agents
 
 Design your agent to handle tool failures gracefully so the LLM can communicate issues to the user naturally.
 
@@ -219,7 +219,7 @@ isolated function getAccountBalance(string accountId) returns json|error {
 
 The agent will receive the error information and respond naturally, such as: "I'm unable to check your account balance right now because the banking system is temporarily unavailable. Please try again in a few minutes."
 
-## Advanced: Streaming chat responses
+## Advanced: Streaming Chat Responses
 
 Stream agent responses token by token for a more responsive user experience.
 
@@ -250,7 +250,7 @@ type ChatToken record {|
 |};
 ```
 
-## What's next
+## What's Next
 
 - [API-Exposed Agents](api-exposed-agents.md) — Expose agents as REST or GraphQL APIs
 - [Memory Configuration](memory-configuration.md) — Fine-tune how agents remember conversations

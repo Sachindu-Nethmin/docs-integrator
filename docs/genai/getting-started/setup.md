@@ -12,7 +12,7 @@ Before building AI integrations, you need the WSO2 Integrator development enviro
 - An LLM provider API key (OpenAI, Anthropic, Google, or Azure)
 - Ballerina Swan Lake installed (bundled with WSO2 Integrator)
 
-## Step 1: Create a new integration project
+## Step 1: Create a New Integration Project
 
 Open VS Code with the WSO2 Integrator extension and create a new project.
 
@@ -21,11 +21,11 @@ bal new my_ai_project
 cd my_ai_project
 ```
 
-## Step 2: Add AI dependencies
+## Step 2: Add AI Dependencies
 
 Add the required AI packages to your `Ballerina.toml` file depending on your use case.
 
-### For AI agents
+### For AI Agents
 
 ```toml
 # Ballerina.toml
@@ -43,7 +43,7 @@ name = "ai.agent"
 version = "0.8.0"
 ```
 
-### For RAG applications
+### For RAG Applications
 
 ```toml
 [[dependency]]
@@ -62,7 +62,7 @@ name = "chromadb"
 version = "0.5.0"
 ```
 
-### For MCP servers
+### For MCP Servers
 
 ```toml
 [[dependency]]
@@ -71,7 +71,7 @@ name = "mcp"
 version = "1.0.0"
 ```
 
-## Step 3: Configure your LLM provider
+## Step 3: Configure Your LLM Provider
 
 Create a `Config.toml` file in your project root with your LLM provider credentials.
 
@@ -111,7 +111,7 @@ final anthropic:Client llmClient = check new ({
 });
 ```
 
-### Google gemini
+### Google Gemini
 
 ```toml
 # Config.toml
@@ -175,7 +175,7 @@ final ollama:Client llmClient = check new ({
 });
 ```
 
-## Step 4: Verify the setup
+## Step 4: Verify the Setup
 
 Create a simple test to confirm your setup works.
 
@@ -204,7 +204,7 @@ bal run
 
 If you see a response from the LLM, your setup is complete.
 
-## Environment-Based configuration
+## Environment-Based Configuration
 
 Use separate `Config.toml` files for development and production environments.
 
@@ -244,7 +244,7 @@ function createLlmClient() returns agent:LlmModel|error {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Build a Smart Calculator Assistant](smart-calculator.md) -- Your first AI integration with tool calling
 - [Build a Sample Hotel Booking Agent](hotel-booking-agent.md) -- A more complete agent with memory and multiple tools

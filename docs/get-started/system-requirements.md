@@ -69,6 +69,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 # Linux
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ```
+
 ## Network requirements
 
 The development environment needs internet access for:
@@ -78,6 +79,6 @@ The development environment needs internet access for:
 
 If you're behind a corporate proxy, configure proxy settings in VS Code and in your terminal environment.
 
-## What's next
+## Next steps
 
 - [Install WSO2 Integrator](install.md)

@@ -6,7 +6,7 @@ title: Data Service with bal persist
 
 Build a complete CRUD (Create, Read, Update, Delete) data service using the `bal persist` tooling with a MySQL backend. This sample project demonstrates how to define data models, auto-generate the persistence layer, and expose a RESTful API -- all with minimal boilerplate code.
 
-## What you'll learn
+## What You'll Learn
 
 - Defining data models using `bal persist` model definitions
 - Auto-generating the persistence client and database schema
@@ -23,7 +23,7 @@ Build a complete CRUD (Create, Read, Update, Delete) data service using the `bal
 
 **Time estimate:** 10-15 minutes to clone and run; 30-45 minutes for full code walkthrough
 
-## Clone and run
+## Clone and Run
 
 ```bash
 # Clone the samples repository
@@ -73,7 +73,7 @@ curl -X PUT http://localhost:9090/products/1 \
 curl -X DELETE http://localhost:9090/products/1
 ```
 
-## Project structure
+## Project Structure
 
 ```
 data-service-persist/
@@ -93,9 +93,9 @@ data-service-persist/
     └── service_test.bal
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Defining the data model
+### Defining the Data Model
 
 The `persist/model.bal` file declares the entities and their relationships using the `bal persist` model syntax:
 
@@ -133,7 +133,7 @@ type Review record {|
 
 After running `bal persist generate`, the tooling creates the `generated/store/` directory with the persistence client, types, and SQL scripts.
 
-### HTTP service with CRUD endpoints
+### HTTP Service with CRUD Endpoints
 
 The `main.bal` file exposes the generated persistence client through a RESTful HTTP API:
 
@@ -246,7 +246,7 @@ service /products on new http:Listener(9090) {
 }
 ```
 
-### API request and response types
+### API Request and Response Types
 
 The `types.bal` file defines the types used for API requests and responses, separate from the persistence model:
 
@@ -294,7 +294,7 @@ function toApiProduct(store:Product p) returns Product => {
 };
 ```
 
-### Adding reviews (One-to-Many relationship)
+### Adding Reviews (One-to-Many Relationship)
 
 ```ballerina
 // Nested resource for product reviews
@@ -325,14 +325,14 @@ resource function get [int productId]/reviews() returns Review[]|error {
 }
 ```
 
-### Key points
+### Key Points
 
 - **Code generation**: The `bal persist generate` command auto-generates the persistence client, types, and SQL DDL from the model definition, eliminating boilerplate CRUD code.
 - **Type-safe queries**: The generated client provides compile-time type safety for all database operations.
 - **Schema migrations**: Running `bal persist push` applies schema changes to the database, keeping the model and database in sync.
 - **Separation of concerns**: The API types in `types.bal` are separate from the persistence types, allowing the public API shape to evolve independently from the database schema.
 
-## What's next
+## What's Next
 
 - [Event-Driven Microservices](event-driven-microservices.md) -- Build microservices with Kafka
 - [RESTful API with Data Mapper](restful-api-data-mapper.md) -- Use the visual data mapper for transformations

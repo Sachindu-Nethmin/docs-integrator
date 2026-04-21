@@ -6,11 +6,11 @@ title: Build a Data Transformation Pipeline
 
 Build a multi-stage pipeline that ingests data from one system, transforms it through several stages, and loads it into a target system. This tutorial demonstrates how to chain transformations, handle schema mismatches, and validate data at each stage.
 
-## What you'll build
+## What You'll Build
 
 An employee onboarding pipeline that takes HR system data, transforms it into the formats required by the payroll system, the IT provisioning system, and the company directory -- all from a single input event.
 
-## What you'll learn
+## What You'll Learn
 
 - Multi-stage data transformation using Ballerina data mapping
 - Type-safe schema conversion between systems
@@ -46,14 +46,14 @@ flowchart LR
     Transform ----> Payroll & IT & Directory
 ```
 
-## Step 1: Create the project
+## Step 1: Create the Project
 
 ```bash
 bal new onboarding_pipeline
 cd onboarding_pipeline
 ```
 
-## Step 2: Define source and target types
+## Step 2: Define Source and Target Types
 
 Define the input schema (HR system) and the three target schemas:
 
@@ -116,7 +116,7 @@ type Department record {|
 |};
 ```
 
-## Step 3: Build the validation stage
+## Step 3: Build the Validation Stage
 
 ```ballerina
 // validate.bal
@@ -154,7 +154,7 @@ function validateEmployee(HrEmployee emp) returns ValidationResult {
 }
 ```
 
-## Step 4: Build the enrichment stage
+## Step 4: Build the Enrichment Stage
 
 ```ballerina
 // enrich.bal
@@ -181,7 +181,7 @@ function enrichWithDepartment(HrEmployee emp) returns EnrichedEmployee|error {
 }
 ```
 
-## Step 5: Build the transformation stage
+## Step 5: Build the Transformation Stage
 
 ```ballerina
 // transform.bal
@@ -235,7 +235,7 @@ function convertDateFormat(string mmddyyyy) returns string|error {
 }
 ```
 
-## Step 6: Wire the pipeline together
+## Step 6: Wire the Pipeline Together
 
 ```ballerina
 // main.bal
@@ -321,7 +321,7 @@ service /onboarding on new http:Listener(8090) {
 }
 ```
 
-## Step 7: Test the pipeline
+## Step 7: Test the Pipeline
 
 Run the project:
 
@@ -366,14 +366,14 @@ curl -X POST http://localhost:8090/onboarding/employees \
   }'
 ```
 
-## Extend it
+## Extend It
 
 - **Add a dead letter queue** -- Store failed transformations for manual review
 - **Add idempotency** -- Prevent duplicate processing of the same employee
 - **Add async processing** -- Use Kafka to decouple the pipeline stages
 - **Add data masking** -- Mask sensitive fields like salary before logging
 
-## What's next
+## What's Next
 
 - [Data Mapper](../../develop/transform/data-mapper.md) -- Visual data mapping tool
 - [AI-Assisted Mapping](../../develop/transform/ai-assisted-mapping.md) -- Use AI to generate transformations

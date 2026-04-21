@@ -27,7 +27,7 @@ flowchart LR
 
 ## Adding the MPM connector
 
-### Step 1: Open the add connection palette
+### Step 1: Open the Add Connection palette
 
 In the left sidebar, hover over the **Connections** section and select the **Add Connection** button that appears in the toolbar. The connector palette opens with a search field at the top.
 
@@ -66,9 +66,9 @@ Select **Save Connection** to persist the connection. The **mpmClient** connecti
 - **awsAccessKeyId** (string) : Your AWS access key ID with Marketplace Metering permissions
 - **awsSecretAccessKey** (string) : Your AWS secret access key with Marketplace Metering permissions
 
-## Configuring the MPM batch meter usage operation
+## Configuring the MPM Batch Meter Usage operation
 
-### Step 6: Add an automation entry point
+### Step 6: Add an Automation entry point
 
 Select **+ Add Artifact** on the canvas toolbar and select **Automation** from the artifact palette. In the **Create New Automation** panel, select **Create**. A `main` Automation entry point appears under **Entry Points** and the canvas switches to the Automation flow view.
 

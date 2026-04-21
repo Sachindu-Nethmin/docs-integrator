@@ -26,7 +26,7 @@ flowchart LR
     Filter -- No Match ----> Discard
 ```
 
-## When to use it
+## When to Use It
 
 - **Event filtering** -- Process only high-priority alerts from a monitoring stream
 - **Data quality gates** -- Discard incomplete or malformed records before loading
@@ -36,7 +36,7 @@ flowchart LR
 
 ## Implementation
 
-### Basic message filter
+### Basic Message Filter
 
 Filter incoming order events to process only high-value orders:
 
@@ -78,7 +78,7 @@ function processOrder(OrderEvent event) returns error? {
 }
 ```
 
-### Multi-Criteria filter
+### Multi-Criteria Filter
 
 Apply multiple filter conditions using a predicate function:
 
@@ -123,7 +123,7 @@ if shouldProcess(event, criteria) {
 }
 ```
 
-### Streaming filter with Kafka
+### Streaming Filter with Kafka
 
 Filter messages from a Kafka topic before processing:
 
@@ -165,7 +165,7 @@ service on kafkaListener {
 
 ## Variations
 
-### Discard vs. route to dead letter
+### Discard vs. Route to Dead Letter
 
 A simple filter discards non-matching messages. A more robust approach routes them to a dead letter channel for auditing or reprocessing:
 
@@ -184,7 +184,7 @@ function filterAndRoute(OrderEvent event) returns error? {
 }
 ```
 
-### Configurable filters
+### Configurable Filters
 
 Load filter criteria from configuration to change filtering behavior without redeploying:
 
@@ -206,7 +206,7 @@ FilterCriteria criteria = {
 - **Filter ordering** -- Apply the cheapest filter criteria first to short-circuit evaluation
 - **Avoid side effects** -- The filter predicate should be pure and not modify the message
 
-## Related patterns
+## Related Patterns
 
 - [Content-Based Router](content-based-router.md) -- Routes messages to different destinations based on content (filter routes to one destination or discards)
 - [Idempotent Receiver](idempotent-receiver.md) -- Filters duplicate messages specifically

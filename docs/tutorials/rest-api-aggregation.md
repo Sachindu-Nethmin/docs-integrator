@@ -4,7 +4,7 @@ title: REST API Aggregation Service
 
 # REST API Aggregation Service
 
-## What you'll build
+## What You'll Build
 
 An API aggregation service that receives a single request, fans out to multiple backend REST APIs in parallel (user profile, order history, recommendations), combines the results into a unified response, and handles partial failures gracefully.
 
@@ -27,7 +27,7 @@ flowchart LR
     Combiner ----> Response
 ```
 
-## What you'll learn
+## What You'll Learn
 
 - Building an HTTP service that orchestrates multiple backend API calls
 - Making parallel HTTP requests using Ballerina workers
@@ -42,9 +42,9 @@ flowchart LR
 
 **Time estimate:** 30--45 minutes
 
-## Step-by-Step walkthrough
+## Step-by-Step Walkthrough
 
-### Step 1: Create the project
+### Step 1: Create the Project
 
 1. Open VS Code and run **WSO2 Integrator: Create New Project**.
 2. Name the project `rest-api-aggregation`.
@@ -63,7 +63,7 @@ recommendationServiceUrl = "http://localhost:8083"
 backendTimeoutSeconds = 5
 ```
 
-### Step 2: Define the data types
+### Step 2: Define the Data Types
 
 Create `types.bal`:
 
@@ -110,7 +110,7 @@ type AggregationMetadata record {|
 |};
 ```
 
-### Step 3: Build the backend clients
+### Step 3: Build the Backend Clients
 
 Create `clients.bal` with HTTP clients for each backend:
 
@@ -163,7 +163,7 @@ function fetchRecommendations(string userId) returns Recommendation[] {
 }
 ```
 
-### Step 4: Build the aggregation logic
+### Step 4: Build the Aggregation Logic
 
 Create `aggregator.bal` that fans out requests in parallel:
 
@@ -213,7 +213,7 @@ function aggregateCustomerData(string customerId) returns CustomerDashboard|erro
 }
 ```
 
-### Step 5: Expose the HTTP service
+### Step 5: Expose the HTTP Service
 
 Create `main.bal`:
 
@@ -271,7 +271,7 @@ service /api on new http:Listener(port) {
 }
 ```
 
-### Step 6: Add error handling and timeouts
+### Step 6: Add Error Handling and Timeouts
 
 The client-level timeouts were set in Step 3. Add a service-level timeout with a wrapper in `error_handler.bal`:
 
@@ -288,7 +288,7 @@ function logAggregationError(string customerId, string source, error err) {
 }
 ```
 
-### Step 7: Test it
+### Step 7: Test It
 
 1. Start mock backend services (or use a tool like WireMock):
 
@@ -349,7 +349,7 @@ The response will still return with `"recommendationService": "empty_or_failed"`
 bal test
 ```
 
-## Extend it
+## Extend It
 
 - **Add GraphQL support** to let clients query only the fields they need.
 - **Implement circuit breakers** on each backend client to avoid cascading failures.
@@ -357,7 +357,7 @@ bal test
 - **Rate-limit the endpoint** to prevent abuse and protect backend services.
 - **Support batch customer lookups** with a POST endpoint that aggregates for multiple IDs.
 
-## Full source code
+## Full Source Code
 
 Find the complete working project on GitHub:
 [wso2/integrator-samples/rest-api-aggregation](https://github.com/wso2/integrator-samples/tree/main/rest-api-aggregation)

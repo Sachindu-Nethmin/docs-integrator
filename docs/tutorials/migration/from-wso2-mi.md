@@ -9,7 +9,7 @@ This guide helps existing WSO2 MI users get started with WSO2 Integrator. Whethe
 :::tip WSO2 MI Documentation
 WSO2 MI continues to be fully supported. For MI-specific documentation, visit [mi.docs.wso2.com](https://mi.docs.wso2.com).
 
-## Concept mapping
+## Concept Mapping
 
 | In WSO2 MI | In WSO2 Integrator | Notes |
 |---|---|---|
@@ -21,10 +21,10 @@ WSO2 MI continues to be fully supported. For MI-specific documentation, visit [m
 | Data Service | Service + DB Connector | Unified model |
 | Registry | Config.toml | Simpler configuration |
 
-## Key differences
+## Key Differences
 
-## Step-by-Step migration
+## Step-by-Step Migration
 
-## Common gotchas
+## Common Gotchas
 
-## Before/After examples
+## Before/After Examples

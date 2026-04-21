@@ -6,11 +6,11 @@ title: Adding Tools to an Agent
 
 Tools are Ballerina functions that an AI agent can call during its reasoning loop. They connect your agent to the real world -- APIs, databases, services, and business rules. The LLM sees the tool's name, description, and parameter schema, then decides whether and how to call it.
 
-## Defining tools
+## Defining Tools
 
 Tools are Ballerina functions annotated with `@agent:Tool`.
 
-### Basic tool definition
+### Basic Tool Definition
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -24,7 +24,7 @@ isolated function getCustomerDetails(string customerId) returns json|error {
 }
 ```
 
-### Parameter descriptions
+### Parameter Descriptions
 
 Add descriptions to parameters so the LLM understands what values to provide.
 
@@ -43,7 +43,7 @@ isolated function searchOrders(
 }
 ```
 
-### Typed return values
+### Typed Return Values
 
 ```ballerina
 type InventoryResult record {|
@@ -67,9 +67,9 @@ isolated function checkInventory(string productId) returns InventoryResult|error
 }
 ```
 
-## Tool categories
+## Tool Categories
 
-### Data retrieval tools
+### Data Retrieval Tools
 
 Read-only tools that fetch information from external systems.
 
@@ -88,7 +88,7 @@ isolated function queryDatabase(
 }
 ```
 
-### Action tools
+### Action Tools
 
 Tools that perform write operations or trigger workflows.
 
@@ -107,7 +107,7 @@ isolated function createSupportTicket(
 }
 ```
 
-### Connector-Based tools
+### Connector-Based Tools
 
 Wrap existing WSO2 Integrator connectors as agent tools.
 
@@ -129,9 +129,9 @@ isolated function getSalesforceAccount(
 }
 ```
 
-## Registering tools with agents
+## Registering Tools with Agents
 
-### Static registration
+### Static Registration
 
 ```ballerina
 final agent:ChatAgent myAgent = check new (
@@ -141,7 +141,7 @@ final agent:ChatAgent myAgent = check new (
 );
 ```
 
-### Grouped registration
+### Grouped Registration
 
 ```ballerina
 agent:Tool[] readTools = [getCustomerDetails, searchOrders, checkInventory];
@@ -162,14 +162,14 @@ final agent:ChatAgent readOnlyAgent = check new (
 );
 ```
 
-## Tool design best practices
+## Tool Design Best Practices
 
 1. **Clear descriptions** -- The description is the most important factor in whether the LLM uses the tool correctly
 2. **Typed parameters** -- Use `@agent:Param` annotations to describe each parameter
 3. **Informative errors** -- Return descriptive error messages so the LLM can reason about failures
 4. **Limited output** -- Trim large responses to prevent exceeding context window limits
 
-### Informative error example
+### Informative Error Example
 
 ```ballerina
 @agent:Tool {
@@ -189,7 +189,7 @@ isolated function getCustomer(string customerId) returns json|error {
 }
 ```
 
-### Confirmation-Required tools
+### Confirmation-Required Tools
 
 For sensitive actions, instruct the agent to confirm with the user before executing.
 
@@ -203,7 +203,7 @@ isolated function cancelOrder(string orderId, string reason) returns json|error 
 }
 ```
 
-## What's next
+## What's Next
 
 - [Creating an AI Agent](/docs/genai/develop/agents/creating-agent) -- Build your first agent
 - [Adding Memory](/docs/genai/develop/agents/adding-memory) -- Configure conversation history

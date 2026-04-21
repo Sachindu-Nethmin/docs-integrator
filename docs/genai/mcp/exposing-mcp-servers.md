@@ -8,9 +8,9 @@ WSO2 Integrator lets you expose your existing integrations, APIs, and databases 
 
 This page covers how to annotate services, define tools, resources, and prompts, choose a transport, and handle requests in a production MCP server.
 
-## Creating an MCP server
+## Creating an MCP Server
 
-### Minimal server
+### Minimal Server
 
 The simplest MCP server registers one or more tools and starts listening for connections.
 
@@ -35,7 +35,7 @@ isolated function getOrderStatus(string orderId) returns json|error {
 
 By default, the server uses `stdio` transport, making it compatible with local MCP clients like Claude Desktop.
 
-### Server with SSE transport
+### Server with SSE Transport
 
 For remote clients or web-based AI assistants, use the SSE (Server-Sent Events) transport.
 
@@ -50,7 +50,7 @@ service on new mcp:Listener(new mcp:SseTransport(8090)) {
 }
 ```
 
-### Server with streamable HTTP transport
+### Server with Streamable HTTP Transport
 
 The Streamable HTTP transport is a newer option that uses standard HTTP with streaming support.
 
@@ -63,11 +63,11 @@ service on new mcp:Listener(new mcp:StreamableHttpTransport(8090)) {
 }
 ```
 
-## Defining tools
+## Defining Tools
 
 Tools are functions that AI assistants can call with parameters and receive structured results.
 
-### Basic tool
+### Basic Tool
 
 ```ballerina
 @mcp:Tool {
@@ -79,7 +79,7 @@ isolated function getCustomer(string customerId) returns json|error {
 }
 ```
 
-### Tool with annotated parameters
+### Tool with Annotated Parameters
 
 Add descriptions to each parameter so AI assistants understand what values to provide.
 
@@ -102,7 +102,7 @@ isolated function searchProducts(
 }
 ```
 
-### Tool with typed return values
+### Tool with Typed Return Values
 
 Return Ballerina records for structured, schema-aware output.
 
@@ -132,7 +132,7 @@ isolated function getOrderDetails(string orderId) returns OrderStatus|error {
 }
 ```
 
-### Write-Action tools
+### Write-Action Tools
 
 For tools that modify data, include clear descriptions about side effects.
 
@@ -151,11 +151,11 @@ isolated function createSupportTicket(
 }
 ```
 
-## Defining resources
+## Defining Resources
 
 Resources expose read-only data that AI assistants can access for context without calling a tool.
 
-### Static resource
+### Static Resource
 
 ```ballerina
 @mcp:Resource {
@@ -169,7 +169,7 @@ isolated function getProductCategories() returns json|error {
 }
 ```
 
-### Dynamic resource with URI template
+### Dynamic Resource with URI Template
 
 ```ballerina
 @mcp:Resource {
@@ -183,7 +183,7 @@ isolated function getCustomerProfile(string customerId) returns json|error {
 }
 ```
 
-## Defining prompts
+## Defining Prompts
 
 Prompts are reusable prompt templates that AI assistants can use for common tasks.
 
@@ -209,7 +209,7 @@ Please:
 }
 ```
 
-## Handling errors
+## Handling Errors
 
 Return informative error messages so AI assistants can reason about failures and suggest alternatives to the user.
 
@@ -231,7 +231,7 @@ isolated function getInvoice(string invoiceId) returns json|error {
 }
 ```
 
-## Limiting output size
+## Limiting Output Size
 
 Trim large responses to prevent exceeding context window limits on the client side.
 
@@ -255,11 +255,11 @@ isolated function queryAnalytics(string sqlQuery) returns json|error {
 }
 ```
 
-## Configuring for Claude desktop
+## Configuring for Claude Desktop
 
 To use your MCP server with Claude Desktop, add it to the Claude Desktop configuration file.
 
-### Stdio transport
+### stdio Transport
 
 ```json
 {
@@ -272,7 +272,7 @@ To use your MCP server with Claude Desktop, add it to the Claude Desktop configu
 }
 ```
 
-### SSE transport
+### SSE Transport
 
 ```json
 {
@@ -284,7 +284,7 @@ To use your MCP server with Claude Desktop, add it to the Claude Desktop configu
 }
 ```
 
-## What's next
+## What's Next
 
 - [Consuming MCP Tools](consuming-mcp-tools.md) -- Use external MCP tools in your agents
 - [MCP Security](mcp-security.md) -- Secure your MCP endpoints with authentication

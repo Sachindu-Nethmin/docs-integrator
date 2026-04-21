@@ -27,7 +27,7 @@ flowchart LR
     Receiver -- ACK ----> Store
 ```
 
-## When to use it
+## When to Use It
 
 - **Critical business events** -- Order placements, payment confirmations, or shipment notifications that must not be lost
 - **Cross-system synchronization** -- Keeping data in sync between systems with different availability
@@ -36,7 +36,7 @@ flowchart LR
 
 ## Implementation
 
-### Using Kafka for guaranteed delivery
+### Using Kafka for Guaranteed Delivery
 
 Kafka provides built-in durability through topic partitions and consumer offsets:
 
@@ -71,7 +71,7 @@ service /orders on new http:Listener(8090) {
 }
 ```
 
-### Delivery processor with retry
+### Delivery Processor with Retry
 
 Consume from Kafka and deliver with retries:
 
@@ -150,7 +150,7 @@ function sendToDeadLetter(json payload, string orderId) returns error? {
 }
 ```
 
-### Database-Backed outbox pattern
+### Database-Backed Outbox Pattern
 
 For scenarios without a message broker, use a database outbox table:
 
@@ -247,7 +247,7 @@ function deliverMessage(string payload) returns error? {
 - **Dead letter handling** -- Always have a plan for messages that exhaust all retries.
 - **Monitoring** -- Alert on growing queue depth or increasing dead letter counts.
 
-## Related patterns
+## Related Patterns
 
 - [Idempotent Receiver](idempotent-receiver.md) -- Essential companion pattern for handling duplicate deliveries
 - [Circuit Breaker & Retry](circuit-breaker.md) -- Controls retry behavior and prevents overwhelming failing services

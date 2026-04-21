@@ -45,7 +45,7 @@ DEFINE TOPIC('MY.TOPIC') TOPICSTR('my/topic/string')
 END
 ```
 
-## Step 3: Configure SSL/TLS (optional)
+## Step 3: Configure sSL/TLS (optional)
 
 For secure connections:
 

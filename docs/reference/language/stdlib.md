@@ -14,7 +14,7 @@ import ballerina/log;
 import ballerinax/mysql;
 ```
 
-## Language library (`Ballerina/lang.*`)
+## Language Library (`ballerina/lang.*`)
 
 Built-in functions and methods for Ballerina's core types. These are automatically available and do not require explicit imports.
 
@@ -41,49 +41,49 @@ Built-in functions and methods for Ballerina's core types. These are automatical
 | `lang.value` | Value operations: `toJson`, `toJsonString`, `fromJsonString`, `toBalString`, `clone`, `cloneReadOnly`, `ensureType`, `mergeJson` |
 | `lang.xml` | XML operations: `length`, `get`, `children`, `elements`, `filter`, `map`, `text`, `getName`, `setName`, `getAttributes` |
 
-## Network protocols
+## Network Protocols
 
-### HTTP (`Ballerina/http`)
+### HTTP (`ballerina/http`)
 
 HTTP/1.1 and HTTP/2 client and server support with request/response handling, content negotiation, SSL/TLS, and resilience patterns (retry, circuit breaker, load balancing).
 
-### WebSocket (`Ballerina/websocket`)
+### WebSocket (`ballerina/websocket`)
 
 Full-duplex WebSocket client and server for real-time bidirectional communication.
 
-### GraphQL (`Ballerina/graphql`)
+### GraphQL (`ballerina/graphql`)
 
 GraphQL server implementation with schema-first and code-first approaches, subscriptions, and federation support.
 
-### gRPC (`Ballerina/grpc`)
+### gRPC (`ballerina/grpc`)
 
 Protocol Buffers-based gRPC client and server with unary, server streaming, client streaming, and bidirectional streaming support.
 
-### TCP (`Ballerina/tcp`)
+### TCP (`ballerina/tcp`)
 
 Low-level TCP socket client and server for custom protocol implementations.
 
-### UDP (`Ballerina/udp`)
+### UDP (`ballerina/udp`)
 
 UDP datagram client and server for connectionless network communication.
 
-### Email (`Ballerina/email`)
+### Email (`ballerina/email`)
 
 SMTP client for sending emails and POP3/IMAP clients for receiving emails.
 
-### FTP (`Ballerina/ftp`)
+### FTP (`ballerina/ftp`)
 
 FTP and SFTP client for file transfer operations: upload, download, list, delete, rename.
 
-### WebSub (`Ballerina/websub`)
+### WebSub (`ballerina/websub`)
 
 WebSub subscriber implementation for the W3C WebSub protocol (publish-subscribe over HTTP).
 
-### WebSub hub (`Ballerina/websubhub`)
+### WebSub Hub (`ballerina/websubhub`)
 
 WebSub hub implementation for managing topic subscriptions and content distribution.
 
-## Messaging and event streaming
+## Messaging and Event Streaming
 
 Available as extended library packages (`ballerinax/*`):
 
@@ -95,13 +95,13 @@ Available as extended library packages (`ballerinax/*`):
 | `ballerinax/mqtt` | MQTT v3.1.1 and v5 client for IoT messaging |
 | `ballerinax/java.jms` | JMS client for Java Message Service brokers |
 
-## Data access
+## Data Access
 
-### SQL (`Ballerina/sql`)
+### SQL (`ballerina/sql`)
 
 Common SQL abstractions: `Client`, `ParameterizedQuery`, `ExecutionResult`, and typed result mapping.
 
-### Database connectors (`ballerinax/*`)
+### Database Connectors (`ballerinax/*`)
 
 | Package | Description |
 |---------|-------------|
@@ -112,7 +112,7 @@ Common SQL abstractions: `Client`, `ParameterizedQuery`, `ExecutionResult`, and 
 | `ballerinax/mongodb` | MongoDB connector |
 | `ballerinax/redis` | Redis connector |
 
-## Data formats
+## Data Formats
 
 | Package | Description |
 |---------|-------------|
@@ -143,7 +143,7 @@ Common SQL abstractions: `Client`, `ParameterizedQuery`, `ExecutionResult`, and 
 | `ballerina/log` | Structured logging with configurable levels: `DEBUG`, `INFO`, `WARN`, `ERROR` |
 | `ballerina/observe` | Metrics and distributed tracing APIs compatible with Prometheus and Jaeger |
 
-## Utility packages
+## Utility Packages
 
 | Package | Description |
 |---------|-------------|
@@ -164,7 +164,7 @@ Common SQL abstractions: `Client`, `ParameterizedQuery`, `ExecutionResult`, and 
 |---------|-------------|
 | `ballerina/ai` | AI agent framework and LLM integration utilities |
 
-## SaaS and enterprise connectors (`ballerinax/*`)
+## SaaS and Enterprise Connectors (`ballerinax/*`)
 
 Ballerina Central hosts a large collection of connectors for enterprise systems. Some commonly used ones include:
 

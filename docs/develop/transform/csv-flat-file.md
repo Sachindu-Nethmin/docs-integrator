@@ -6,7 +6,7 @@ title: CSV & Flat File Processing
 
 Handle tabular data formats -- CSV, TSV, and fixed-width files. The `ballerina/data.csv` module provides type-safe parsing, transformation, and serialization for comma-separated and delimited data.
 
-## Reading CSV into records
+## Reading CSV into Records
 
 Parse CSV content directly into typed Ballerina records using `csv:parseString()`. Define a record type whose fields match the CSV column headers.
 
@@ -64,7 +64,7 @@ Carol,Engineering,110000.00,8`;
 }
 ```
 
-## Reading CSV from files and streams
+## Reading CSV from Files and Streams
 
 Use `csv:parseBytes()` for byte arrays or `csv:parseStream()` for streaming large files without loading them entirely into memory.
 
@@ -105,7 +105,7 @@ public function main() returns error? {
 }
 ```
 
-## Selective column projection
+## Selective Column Projection
 
 Use closed record types to select only the columns you need. Columns not represented in the target record are automatically skipped.
 
@@ -139,7 +139,7 @@ Bob,Sales,72000.00,3,New York`;
 }
 ```
 
-## Custom delimiters and options
+## Custom Delimiters and Options
 
 Configure parsing behavior for TSV, pipe-delimited, or other non-standard formats.
 
@@ -204,7 +204,7 @@ Bob,Sales,72000`;
 }
 ```
 
-## Writing CSV output
+## Writing CSV Output
 
 Write record arrays directly to CSV files using `io:fileWriteCsv()`.
 
@@ -239,7 +239,7 @@ public function main() returns error? {
 }
 ```
 
-## Transforming between record types
+## Transforming Between Record Types
 
 Use `csv:transform()` to reshape CSV data from one record type to another.
 
@@ -319,7 +319,7 @@ ORD-002,Globex Inc,GDG-02,2,49.99`;
 }
 ```
 
-## Fail-Safe processing
+## Fail-Safe Processing
 
 When parsing CSV data, rows may contain invalid or malformed values (for example, `"INVALID"` where a `decimal` is expected). By default, `csv:parseString` fails on the first bad row. The `failSafe` option allows parsing to continue — invalid rows are skipped and errors are logged to the console and/or a file.
 
@@ -381,7 +381,7 @@ Design Patterns,Gang of Four,INVALID,1994-10-31`;
 
 The invalid row ("Design Patterns") is skipped, an error is logged, and only valid rows are returned. The error is also written to the log file at the specified path.
 
-## Edge cases
+## Edge Cases
 
 ### Quoted fields and special characters
 
@@ -395,6 +395,6 @@ Specify byte encoding when reading files with non-UTF-8 content by converting to
 
 Use `csv:parseStream()` or `csv:parseToStream()` for memory-efficient processing of large CSV files. The stream-based API processes records incrementally without loading the entire file.
 
-## What's next
+## What's Next
 
 - [EDI Processing](edi.md) -- Enterprise data interchange formats

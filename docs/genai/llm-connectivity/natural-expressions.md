@@ -8,7 +8,7 @@ Natural expressions let you embed natural language directly into Ballerina expre
 
 This is the most concise way to add LLM intelligence to your integration code. Where [natural functions](/docs/genai/agents/natural-functions) define reusable LLM-powered functions, natural expressions are for one-off inline transformations.
 
-## What are natural expressions?
+## What Are Natural Expressions?
 
 A natural expression is a Ballerina expression that uses natural language to describe a transformation. The compiler generates the prompt, calls the configured LLM, and returns a typed result.
 
@@ -21,9 +21,9 @@ string summary = ai:natural("Summarize this text in one sentence", article.conte
 
 The expression behaves like any other Ballerina expression: it has a type, can be assigned to a variable, passed to a function, or used in a conditional.
 
-## Basic usage
+## Basic Usage
 
-### Text transformation
+### Text Transformation
 
 ```ballerina
 // Translate text
@@ -38,7 +38,7 @@ string professional = check ai:natural<string>(
 );
 ```
 
-### Data extraction
+### Data Extraction
 
 Extract structured data from unstructured text.
 
@@ -71,7 +71,7 @@ if mood == "negative" {
 }
 ```
 
-### Boolean decisions
+### Boolean Decisions
 
 ```ballerina
 boolean isUrgent = check ai:natural<boolean>(
@@ -83,7 +83,7 @@ if isUrgent {
 }
 ```
 
-## Using context
+## Using Context
 
 Pass multiple pieces of context to the natural expression.
 
@@ -95,11 +95,11 @@ string response = check ai:natural<string>(
 );
 ```
 
-## Type-Safe output
+## Type-Safe Output
 
 Natural expressions use Ballerina's type system to constrain the LLM output.
 
-### Record types
+### Record Types
 
 ```ballerina
 type MeetingAction record {|
@@ -115,7 +115,7 @@ MeetingAction[] actions = check ai:natural<MeetingAction[]>(
 );
 ```
 
-### Union types
+### Union Types
 
 ```ballerina
 type TicketRoute "billing"|"technical"|"shipping"|"general";
@@ -125,7 +125,7 @@ TicketRoute route = check ai:natural(
 );
 ```
 
-### Array types
+### Array Types
 
 ```ballerina
 string[] keywords = check ai:natural<string[]>(
@@ -133,9 +133,9 @@ string[] keywords = check ai:natural<string[]>(
 );
 ```
 
-## Natural expressions in integration flows
+## Natural Expressions in Integration Flows
 
-### In HTTP services
+### In HTTP Services
 
 ```ballerina
 import ballerina/http;
@@ -160,7 +160,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-### In data pipelines
+### In Data Pipelines
 
 ```ballerina
 // Process a batch of customer reviews with inline natural expressions
@@ -182,7 +182,7 @@ function enrichReviews(Review[] reviews) returns EnrichedReview[]|error {
 }
 ```
 
-### In conditional logic
+### In Conditional Logic
 
 ```ballerina
 function processIncomingEmail(Email email) returns error? {
@@ -201,9 +201,9 @@ function processIncomingEmail(Email email) returns error? {
 }
 ```
 
-## Configuring the model
+## Configuring the Model
 
-### Per-Expression model override
+### Per-Expression Model Override
 
 ```ballerina
 string result = check ai:natural<string>(
@@ -213,7 +213,7 @@ string result = check ai:natural<string>(
 );
 ```
 
-### Global default configuration
+### Global Default Configuration
 
 Set the default model for all natural expressions in your project.
 
@@ -226,7 +226,7 @@ apiKey = "sk-your-key"
 temperature = 0.2
 ```
 
-## Natural expressions vs. natural functions
+## Natural Expressions vs. Natural Functions
 
 | Feature | Natural Expressions | Natural Functions |
 |---------|--------------------|--------------------|
@@ -238,7 +238,7 @@ temperature = 0.2
 
 Use natural expressions for quick, inline transformations. Use [natural functions](/docs/genai/agents/natural-functions) when the same LLM operation is reused across multiple services or modules.
 
-## What's next
+## What's Next
 
 - [Natural Functions](/docs/genai/agents/natural-functions) -- Define reusable LLM-powered functions
 - [Prompt Engineering](prompt-engineering.md) -- Write better instructions for natural expressions

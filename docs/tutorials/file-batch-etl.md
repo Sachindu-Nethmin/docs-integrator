@@ -4,7 +4,7 @@ title: File Batch ETL Pipeline
 
 # File Batch ETL Pipeline
 
-## What you'll build
+## What You'll Build
 
 A file-based ETL (Extract, Transform, Load) pipeline that watches an SFTP directory for incoming CSV files, parses and transforms the records, validates data quality, and loads the results into a PostgreSQL database.
 
@@ -22,7 +22,7 @@ flowchart LR
     ETL -- "log" --> Error
 ```
 
-## What you'll learn
+## What You'll Learn
 
 - Watching an SFTP directory for new files using the file processor trigger
 - Parsing CSV data with Ballerina's `ballerina/data.csv` module
@@ -38,9 +38,9 @@ flowchart LR
 
 **Time estimate:** 30--45 minutes
 
-## Step-by-Step walkthrough
+## Step-by-Step Walkthrough
 
-### Step 1: Create the project
+### Step 1: Create the Project
 
 1. Open VS Code and run **WSO2 Integrator: Create New Project**.
 2. Name the project `file-batch-etl`.
@@ -67,7 +67,7 @@ user = "etl_writer"
 password = "secret"
 ```
 
-### Step 2: Define the data types
+### Step 2: Define the Data Types
 
 Create `types.bal` with source and target record types:
 
@@ -117,7 +117,7 @@ type EtlRunSummary record {|
 |};
 ```
 
-### Step 3: Build the CSV parser and validator
+### Step 3: Build the CSV Parser and Validator
 
 Create `transform.bal`:
 
@@ -180,7 +180,7 @@ function transformRow(SalesCsvRow raw, int lineNumber) returns SalesRecord|Rejec
 }
 ```
 
-### Step 4: Build the database loader
+### Step 4: Build the Database Loader
 
 Create `loader.bal` for batch database inserts:
 
@@ -228,7 +228,7 @@ function loadRecords(SalesRecord[] records) returns int|error {
 }
 ```
 
-### Step 5: Wire up the file processor
+### Step 5: Wire Up the File Processor
 
 Create `main.bal` with the file processor trigger:
 
@@ -319,7 +319,7 @@ service on sftpListener {
 }
 ```
 
-### Step 6: Test it
+### Step 6: Test It
 
 1. Start the pipeline:
 
@@ -346,7 +346,7 @@ TX-003,2024-03-01,SKU-300,Widget C,-1,9.99,invalid-email,EU
 bal test
 ```
 
-## Extend it
+## Extend It
 
 - **Add schema detection** to automatically infer column types from CSV headers.
 - **Support additional formats** such as JSON, XML, or fixed-width files.
@@ -354,7 +354,7 @@ bal test
 - **Publish ETL metrics** to the Integration Control Plane for monitoring.
 - **Add deduplication** by checking transaction IDs against the database before insertion.
 
-## Full source code
+## Full Source Code
 
 Find the complete working project on GitHub:
 [wso2/integrator-samples/file-batch-etl](https://github.com/wso2/integrator-samples/tree/main/file-batch-etl)

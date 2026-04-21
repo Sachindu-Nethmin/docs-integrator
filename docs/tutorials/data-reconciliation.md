@@ -4,7 +4,7 @@ title: Multi-System Data Reconciliation
 
 # Multi-System Data Reconciliation
 
-## What you'll build
+## What You'll Build
 
 A scheduled automation that compares customer records between a CRM (Salesforce) and an ERP database (PostgreSQL), identifies mismatches, generates a reconciliation report, and optionally syncs the discrepancies.
 
@@ -22,7 +22,7 @@ flowchart LR
     Engine ----> Report
 ```
 
-## What you'll learn
+## What You'll Learn
 
 - Building a scheduled automation in WSO2 Integrator
 - Fetching data from Salesforce and a relational database in parallel
@@ -38,9 +38,9 @@ flowchart LR
 
 **Time estimate:** 30--45 minutes
 
-## Step-by-Step walkthrough
+## Step-by-Step Walkthrough
 
-### Step 1: Create the project
+### Step 1: Create the Project
 
 1. Open VS Code and run **WSO2 Integrator: Create New Project**.
 2. Name the project `data-reconciliation`.
@@ -64,7 +64,7 @@ user = "admin"
 password = "admin"
 ```
 
-### Step 2: Define the data types
+### Step 2: Define the Data Types
 
 Create `types.bal` with records for both system schemas:
 
@@ -107,7 +107,7 @@ type ReconciliationReport record {|
 |};
 ```
 
-### Step 3: Build the data fetchers
+### Step 3: Build the Data Fetchers
 
 Create `data_sources.bal` to retrieve data from both systems:
 
@@ -173,7 +173,7 @@ function fetchErpCustomers() returns map|error {
 }
 ```
 
-### Step 4: Build the reconciliation engine
+### Step 4: Build the Reconciliation Engine
 
 Create `reconciler.bal` with the comparison logic:
 
@@ -253,7 +253,7 @@ function compareFields(Customer sf, Customer erp) returns FieldMismatch[] {
 }
 ```
 
-### Step 5: Schedule the automation
+### Step 5: Schedule the Automation
 
 Wire everything together in `main.bal` with a scheduled trigger:
 
@@ -306,7 +306,7 @@ function runReconciliation() returns error? {
 }
 ```
 
-### Step 6: Handle errors
+### Step 6: Handle Errors
 
 Add retry logic and error notifications in `error_handler.bal`:
 
@@ -336,7 +336,7 @@ function notifyReconciliationFailure(error err) {
 }
 ```
 
-### Step 7: Test it
+### Step 7: Test It
 
 1. Start the automation:
 
@@ -358,14 +358,14 @@ curl -X POST http://localhost:8090/reconciliation/trigger
 bal test
 ```
 
-## Extend it
+## Extend It
 
 - **Add auto-sync** to push corrections back to the source systems when mismatches are found.
 - **Send Slack notifications** with a daily summary of discrepancies.
 - **Add a dashboard** by writing reports to a database and querying via the ICP.
 - **Support incremental reconciliation** by tracking the last run timestamp and only comparing updated records.
 
-## Full source code
+## Full Source Code
 
 Find the complete working project on GitHub:
 [wso2/integrator-samples/data-reconciliation](https://github.com/wso2/integrator-samples/tree/main/data-reconciliation)

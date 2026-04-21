@@ -13,7 +13,7 @@ This quick start builds on the calculator example by adding conversation memory,
 - [WSO2 Integrator set up for AI](setup.md)
 - An API key for an LLM provider
 
-## Step 1: Define data types
+## Step 1: Define Data Types
 
 ```ballerina
 type Hotel record {|
@@ -45,7 +45,7 @@ type Booking record {|
 |};
 ```
 
-## Step 2: Define agent tools
+## Step 2: Define Agent Tools
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -113,7 +113,7 @@ isolated function makeBooking(
 }
 ```
 
-## Step 3: Create the agent with memory
+## Step 3: Create the Agent with Memory
 
 Memory allows the agent to maintain conversation context across multiple turns, so the user can refer back to previous search results or refine their request.
 
@@ -146,7 +146,7 @@ Guidelines:
 );
 ```
 
-## Step 4: Expose as a chat service
+## Step 4: Expose as a Chat Service
 
 ```ballerina
 import ballerina/http;
@@ -177,7 +177,7 @@ type ChatResponse record {|
 |};
 ```
 
-## Step 5: Run and test
+## Step 5: Run and Test
 
 1. Configure and run:
 
@@ -210,7 +210,7 @@ curl -X POST http://localhost:8090/booking/chat \
 
 The agent remembers the entire conversation, so it knows which hotel and dates the user is referring to in follow-up messages.
 
-## How it works
+## How It Works
 
 This agent demonstrates three key patterns:
 
@@ -218,7 +218,7 @@ This agent demonstrates three key patterns:
 2. **Sequential tool calls** -- The agent calls `searchHotels` first, then `checkAvailability`, then `makeBooking`, using each result to inform the next step.
 3. **Confirmation before action** -- The system prompt instructs the agent to confirm details before calling `makeBooking`, preventing unintended bookings.
 
-## What's next
+## What's Next
 
 - [Creating an AI Agent](/docs/genai/develop/agents/creating-agent) -- Deep dive into agent configuration
 - [Adding Tools to an Agent](/docs/genai/develop/agents/adding-tools) -- Advanced tool patterns

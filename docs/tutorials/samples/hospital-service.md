@@ -8,7 +8,7 @@ title: Hospital Service
 
 A hospital management service that exposes REST APIs for managing doctors, patients, and appointments. The service integrates with a PostgreSQL database for persistence, validates appointment availability, and sends notification emails when appointments are confirmed. This sample demonstrates the fundamentals of building a data-backed HTTP service with WSO2 Integrator.
 
-## Architecture diagram
+## Architecture Diagram
 
 ```mermaid
 flowchart LR
@@ -28,7 +28,7 @@ flowchart LR
     Appointments ----> SMTP
 ```
 
-## Features demonstrated
+## Features Demonstrated
 
 - **CRUD REST APIs** with proper HTTP methods and status codes
 - **PostgreSQL database integration** with parameterized queries and connection pooling
@@ -45,7 +45,7 @@ flowchart LR
 - Docker (for PostgreSQL) or a local PostgreSQL instance
 - SMTP credentials (optional -- for email notifications)
 
-## Quick start
+## Quick Start
 
 ```bash
 git clone https://github.com/wso2/integrator-samples.git
@@ -87,9 +87,9 @@ curl -X POST http://localhost:8090/appointments \
 curl "http://localhost:8090/appointments?doctorId=1"
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 hospital-service/
@@ -107,7 +107,7 @@ hospital-service/
     └── hospital_test.bal  # API integration tests
 ```
 
-### Data types (`types.bal`)
+### Data Types (`types.bal`)
 
 ```ballerina
 // Doctor record with constraint validation.
@@ -146,7 +146,7 @@ type ErrorResponse record {|
 |};
 ```
 
-### Service endpoints (`main.bal`)
+### Service Endpoints (`main.bal`)
 
 ```ballerina
 import ballerina/http;
@@ -192,7 +192,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-### Database layer (`repository.bal`)
+### Database Layer (`repository.bal`)
 
 ```ballerina
 import ballerinax/postgresql;

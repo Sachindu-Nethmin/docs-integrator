@@ -34,7 +34,7 @@ flowchart TD
     Notify ----> NotifySvc
 ```
 
-## When to use it
+## When to Use It
 
 - Multiple backend calls must happen in a specific **sequence** with dependencies between steps.
 - You want to hide backend service topology from external clients.
@@ -132,7 +132,7 @@ Key aspects of this implementation:
 - **Timeouts**: Set per-backend timeouts to prevent one slow service from blocking the entire request.
 - **Versioning**: The gateway can version its own API independently of backend service versions.
 
-## Related patterns
+## Related Patterns
 
 - [Saga / Compensation](saga-compensation.md) -- For long-running orchestrations where each step has an explicit compensating action.
 - [Scatter-Gather](scatter-gather.md) -- When backend calls are independent and can run in parallel.

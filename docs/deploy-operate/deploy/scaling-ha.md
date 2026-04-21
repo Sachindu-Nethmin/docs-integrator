@@ -6,7 +6,7 @@ title: Scaling & High Availability
 
 Design and configure your WSO2 Integrator deployments for horizontal scaling, high availability, and resilience in production environments.
 
-## Stateless design principles
+## Stateless Design Principles
 
 Ballerina services in WSO2 Integrator are designed to be stateless, making them straightforward to scale horizontally. Follow these principles to ensure your integrations scale correctly:
 
@@ -32,9 +32,9 @@ service /orders on new http:Listener(9090) {
 }
 ```
 
-## Horizontal scaling configuration
+## Horizontal Scaling Configuration
 
-### Kubernetes replica scaling
+### Kubernetes Replica Scaling
 
 Set the number of replicas in your Kubernetes deployment:
 
@@ -69,7 +69,7 @@ spec:
               memory: "512Mi"
 ```
 
-### Horizontal pod autoscaler (HPA)
+### Horizontal Pod Autoscaler (HPA)
 
 Automatically scale based on CPU or memory utilization:
 
@@ -128,9 +128,9 @@ cpu_threshold = 70
 memory_threshold = 80
 ```
 
-## Load balancing considerations
+## Load Balancing Considerations
 
-### Kubernetes service
+### Kubernetes Service
 
 Expose your deployment through a Kubernetes Service for internal load balancing:
 
@@ -151,7 +151,7 @@ spec:
       protocol: TCP
 ```
 
-### Ingress configuration
+### Ingress Configuration
 
 For external traffic, configure an Ingress resource:
 
@@ -184,7 +184,7 @@ spec:
                   number: 80
 ```
 
-### Session affinity
+### Session Affinity
 
 If your integration requires sticky sessions (not recommended for stateless services), configure session affinity on the Service:
 
@@ -196,11 +196,11 @@ spec:
       timeoutSeconds: 600
 ```
 
-## Health checks
+## Health Checks
 
 Configure health probes so Kubernetes can detect unhealthy instances and route traffic away from them.
 
-### Ballerina health endpoint
+### Ballerina Health Endpoint
 
 Ballerina HTTP services support health check endpoints. Add a health resource to your service:
 
@@ -225,7 +225,7 @@ service /orders on new http:Listener(9090) {
 }
 ```
 
-### Kubernetes probe configuration
+### Kubernetes Probe Configuration
 
 ```yaml
 spec:
@@ -254,9 +254,9 @@ spec:
         failureThreshold: 30
 ```
 
-## Failover and resilience
+## Failover and Resilience
 
-### Multi-Zone deployment
+### Multi-Zone Deployment
 
 Distribute pods across availability zones using topology spread constraints:
 
@@ -271,7 +271,7 @@ spec:
           app: wso2-integrator-app
 ```
 
-### Pod disruption budget
+### Pod Disruption Budget
 
 Ensure a minimum number of pods remain available during voluntary disruptions (node upgrades, scaling events):
 
@@ -289,7 +289,7 @@ spec:
       app: wso2-integrator-app
 ```
 
-## Graceful shutdown
+## Graceful Shutdown
 
 Ballerina services handle graceful shutdown automatically. When a `SIGTERM` signal is received, the runtime stops accepting new requests and waits for in-flight requests to complete before shutting down.
 
@@ -308,7 +308,7 @@ spec:
 
 The `preStop` sleep ensures the pod is removed from the Service endpoints before the application begins shutting down, preventing requests from being routed to a terminating pod.
 
-## What's next
+## What's Next
 
 - [Environments](environments.md) -- Manage configuration across environments
 - [Deploy to AWS / Azure / GCP](cloud-providers.md) -- Cloud-specific scaling options

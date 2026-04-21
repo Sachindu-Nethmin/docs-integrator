@@ -8,11 +8,11 @@ Guardrails are programmatic checks that validate what goes into an LLM and what 
 
 Unlike prompt-level constraints (which the LLM may ignore), guardrails are enforced in code and cannot be bypassed by clever prompts.
 
-## Input guardrails
+## Input Guardrails
 
 Input guardrails validate user messages and tool inputs before they reach the LLM.
 
-### Prompt injection detection
+### Prompt Injection Detection
 
 Detect and block attempts to manipulate the LLM's behavior through user input.
 
@@ -39,7 +39,7 @@ final agent:ChatAgent secureAgent = check new (
 );
 ```
 
-### Input length limits
+### Input Length Limits
 
 Prevent excessively long inputs from consuming context window space or increasing costs.
 
@@ -51,7 +51,7 @@ final guardrails:InputGuardrail lengthGuard = new guardrails:MaxLengthGuardrail(
 });
 ```
 
-### PII detection
+### PII Detection
 
 Detect and redact personally identifiable information before it reaches the LLM.
 
@@ -66,7 +66,7 @@ final guardrails:InputGuardrail piiGuard = new guardrails:PiiDetector({
 // After guardrail: "My email is [REDACTED] and my SSN is [REDACTED]"
 ```
 
-### Custom input validation
+### Custom Input Validation
 
 Write custom validation logic for domain-specific rules.
 
@@ -87,11 +87,11 @@ final guardrails:InputGuardrail customGuard = new guardrails:CustomInputGuardrai
 );
 ```
 
-## Output guardrails
+## Output Guardrails
 
 Output guardrails validate LLM responses before they are sent to the user or downstream system.
 
-### Hallucination detection
+### Hallucination Detection
 
 Check that the LLM's response is grounded in provided context or tool results.
 
@@ -103,7 +103,7 @@ final guardrails:OutputGuardrail hallucinationGuard = new guardrails:Groundednes
 });
 ```
 
-### Output format validation
+### Output Format Validation
 
 Ensure the response matches the expected format for downstream consumption.
 
@@ -117,7 +117,7 @@ final guardrails:OutputGuardrail formatGuard = new guardrails:FormatValidator({
 });
 ```
 
-### Sensitive data leakage prevention
+### Sensitive Data Leakage Prevention
 
 Block responses that contain internal system details, credentials, or other sensitive information.
 
@@ -133,7 +133,7 @@ final guardrails:OutputGuardrail leakageGuard = new guardrails:SensitiveDataFilt
 });
 ```
 
-### Custom output validation
+### Custom Output Validation
 
 ```ballerina
 final guardrails:OutputGuardrail businessRuleGuard = new guardrails:CustomOutputGuardrail(
@@ -153,9 +153,9 @@ final guardrails:OutputGuardrail businessRuleGuard = new guardrails:CustomOutput
 );
 ```
 
-## Applying guardrails to agents
+## Applying Guardrails to Agents
 
-### Combined input and output guardrails
+### Combined Input and Output Guardrails
 
 ```ballerina
 final agent:ChatAgent guardedAgent = check new (
@@ -167,7 +167,7 @@ final agent:ChatAgent guardedAgent = check new (
 );
 ```
 
-### Guardrails for natural functions
+### Guardrails for Natural Functions
 
 ```ballerina
 @ai:NaturalFunction {
@@ -178,11 +178,11 @@ final agent:ChatAgent guardedAgent = check new (
 isolated function summarizeFeedback(string feedback) returns string|error = external;
 ```
 
-## Guardrail responses
+## Guardrail Responses
 
 When a guardrail blocks a request or response, you control what happens next.
 
-### Rejection with message
+### Rejection with Message
 
 ```ballerina
 final guardrails:InputGuardrail strictGuard = new guardrails:CustomInputGuardrail(
@@ -212,7 +212,7 @@ final guardrails:InputGuardrail sanitizer = new guardrails:CustomInputGuardrail(
 );
 ```
 
-## Guardrail execution order
+## Guardrail Execution Order
 
 Guardrails execute in the order they are defined. If any guardrail rejects, processing stops.
 
@@ -222,7 +222,7 @@ Input → [Injection Guard] → [PII Guard] → [Length Guard] → LLM
 Output ← [Leakage Guard] ← [Format Guard] ← [Business Rules] ←
 ```
 
-## Testing guardrails
+## Testing Guardrails
 
 ```ballerina
 import ballerina/test;
@@ -246,7 +246,7 @@ function testPiiRedaction() returns error? {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Content Filtering](content-filtering.md) -- Filter harmful or off-topic AI content
 - [Token & Cost Management](token-cost-management.md) -- Control LLM spending

@@ -14,9 +14,9 @@ OpenSearch is an open-source search and analytics suite derived from Elasticsear
 | OpenSearch Dashboards | Version 2.x |
 | Log Shipper | Fluent Bit, Data Prepper, or Filebeat |
 
-## Step 1 -- deploy OpenSearch
+## Step 1 -- Deploy OpenSearch
 
-### Docker compose
+### Docker Compose
 
 ```yaml
 version: "3.8"
@@ -45,9 +45,9 @@ volumes:
   opensearch-data:
 ```
 
-## Step 2 -- configure log shipping
+## Step 2 -- Configure Log Shipping
 
-### Using fluent bit (Recommended)
+### Using Fluent Bit (Recommended)
 
 Create `fluent-bit.conf`:
 
@@ -80,7 +80,7 @@ Create `fluent-bit.conf`:
     Suppress_Type_Name On
 ```
 
-### Using data prepper
+### Using Data Prepper
 
 Data Prepper is OpenSearch's native data collection tool:
 
@@ -103,7 +103,7 @@ sink:
       index: "ballerina-integrations"
 ```
 
-### Using filebeat with OpenSearch output
+### Using Filebeat with OpenSearch Output
 
 ```yaml
 filebeat.inputs:
@@ -119,16 +119,16 @@ output.elasticsearch:
   protocol: "http"
 ```
 
-## Step 3 -- create an index pattern
+## Step 3 -- Create an Index Pattern
 
 1. Open OpenSearch Dashboards at `http://localhost:5601`.
 2. Navigate to **Stack Management** > **Index Patterns**.
 3. Create a pattern: `ballerina-integrations-*`.
 4. Set `@timestamp` as the time field.
 
-## Step 4 -- build dashboards
+## Step 4 -- Build Dashboards
 
-### Useful visualizations
+### Useful Visualizations
 
 | Visualization | Type | Purpose |
 |---------------|------|---------|
@@ -137,7 +137,7 @@ output.elasticsearch:
 | Service Breakdown | Pie chart | Logs per service |
 | Top Error Messages | Tag cloud | Most frequent error messages |
 
-### DQL queries
+### DQL Queries
 
 | Query | Purpose |
 |-------|---------|
@@ -145,7 +145,7 @@ output.elasticsearch:
 | `service: "order-service" AND orderId.keyword: "ORD-123"` | Trace a specific order |
 | `level: "WARN" OR level: "ERROR"` | Warnings and errors |
 
-## Trace analytics with data prepper
+## Trace Analytics with Data Prepper
 
 OpenSearch also supports distributed trace analytics via Data Prepper:
 
@@ -162,7 +162,7 @@ sink:
 
 Configure Ballerina to send traces to Data Prepper's OpenTelemetry receiver, then visualize traces in OpenSearch Dashboards under **Trace Analytics**.
 
-## What's next
+## What's Next
 
 - [Elastic Stack](elastic.md) -- Alternative with Elasticsearch
 - [Logging & Structured Logs](logging.md) -- Configure Ballerina logging

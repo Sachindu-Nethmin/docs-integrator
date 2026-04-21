@@ -13,7 +13,7 @@ Process EDI (Electronic Data Interchange) 850 purchase order files from an FTP s
 - Salesforce developer account with a connected app and OAuth 2.0 credentials
 - Familiarity with the EDI X12 850 (Purchase Order) format
 
-## Quick run
+## Quick Run
 
 ```bash
 # Clone the samples repository
@@ -49,9 +49,9 @@ refreshToken = "<SF_REFRESH_TOKEN>"
 baseUrl = "https://your-instance.salesforce.com"
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 ftp-edi-to-salesforce-opportunity/
@@ -65,7 +65,7 @@ ftp-edi-to-salesforce-opportunity/
 └── types.bal
 ```
 
-### Defining the data types
+### Defining the Data Types
 
 ```ballerina
 // Parsed EDI 850 Purchase Order
@@ -107,7 +107,7 @@ type SalesforceLineItem record {|
 |};
 ```
 
-### Monitoring FTP for new EDI files
+### Monitoring FTP for New EDI Files
 
 ```ballerina
 import ballerina/ftp;
@@ -153,7 +153,7 @@ service on ftpListener {
 }
 ```
 
-### Parsing EDI x12 850 format
+### Parsing EDI X12 850 Format
 
 ```ballerina
 import ballerina/log;
@@ -236,7 +236,7 @@ function formatEdiDate(string ediDate) returns string {
 }
 ```
 
-### Creating the Salesforce opportunity
+### Creating the Salesforce Opportunity
 
 ```ballerina
 import ballerinax/salesforce;
@@ -314,21 +314,21 @@ function lookupPricebookEntry(string productCode) returns string?|error {
 }
 ```
 
-### Key points
+### Key Points
 
 - **FTP listener**: The integration uses the Ballerina FTP listener to detect new EDI files as they arrive in the inbound directory.
 - **EDI parsing**: The X12 850 format is parsed segment by segment, extracting key fields from BEG (order header), N1 (buyer info), and PO1 (line items) segments.
 - **File lifecycle**: After processing, files are moved from the inbound directory to a processed directory to prevent reprocessing.
 - **Account resolution**: The buyer name from the EDI file is used to look up or create a Salesforce Account.
 
-## Customization notes
+## Customization Notes
 
 - **Support SFTP**: Switch from FTP to SFTP by updating the listener and client configuration to use secure connections.
 - **Handle EDI 855 responses**: Extend the integration to generate EDI 855 (Purchase Order Acknowledgment) files and upload them back to the FTP server.
 - **Add validation**: Implement EDI document validation to check for mandatory segments and reject malformed files.
 - **Error file directory**: Move files that fail parsing to a separate error directory instead of leaving them in the inbound folder.
 
-## What's next
+## What's Next
 
 - [Shopify to Outlook Welcome Email](shopify-outlook-email.md) -- Send welcome emails for new customers
 - [MySQL to Salesforce Products](mysql-salesforce-products.md) -- Sync product catalogs from a database

@@ -6,7 +6,7 @@ title: Environments
 
 Manage environment-specific configuration to promote your integrations safely from development through testing to production.
 
-## Promotion workflow
+## Promotion Workflow
 
 A typical promotion workflow moves your integration through three stages:
 
@@ -16,7 +16,7 @@ Development --> Testing --> Production
 
 Each environment uses the same compiled artifact (JAR or Docker image) but with different configuration values. This ensures that the code tested in staging is identical to what runs in production -- only the configuration changes.
 
-### Recommended workflow
+### Recommended Workflow
 
 1. **Development** -- Engineers run locally or deploy to a shared dev environment. Configuration points to sandbox APIs, local databases, and debug-level logging.
 2. **Testing** -- The built artifact is deployed to a testing environment with production-like configuration. Integration tests and end-to-end tests run here.
@@ -35,7 +35,7 @@ project-root/
     prod-Config.toml
 ```
 
-### Development configuration
+### Development Configuration
 
 ```toml
 # config/dev-Config.toml
@@ -56,7 +56,7 @@ apiKey = "dev-key-12345"
 timeoutSeconds = 30
 ```
 
-### Testing configuration
+### Testing Configuration
 
 ```toml
 # config/test-Config.toml
@@ -77,7 +77,7 @@ apiKey = "${TEST_API_KEY}"
 timeoutSeconds = 15
 ```
 
-### Production configuration
+### Production Configuration
 
 ```toml
 # config/prod-Config.toml
@@ -98,11 +98,11 @@ apiKey = "${PROD_API_KEY}"
 timeoutSeconds = 10
 ```
 
-## Environment variables per target
+## Environment Variables per Target
 
 Override configuration values using environment variables without modifying `Config.toml` files. This is the recommended approach for secrets in containerized deployments.
 
-### Configurable variables in Ballerina
+### Configurable Variables in Ballerina
 
 Declare configurable variables in your Ballerina code:
 
@@ -112,7 +112,7 @@ configurable string dbHost = "localhost";
 configurable string dbPassword = ?;  // Required, no default
 ```
 
-### Setting values via environment variables
+### Setting Values via Environment Variables
 
 ```bash
 # Convention: BAL_CONFIG_VAR__
@@ -121,7 +121,7 @@ export BAL_CONFIG_VAR_ORDER_SERVICE_DB_HOST=db-prod.internal.example.com
 export BAL_CONFIG_VAR_ORDER_SERVICE_DB_PASSWORD=s3cret
 ```
 
-### Kubernetes ConfigMaps and secrets
+### Kubernetes ConfigMaps and Secrets
 
 In Kubernetes, use ConfigMaps for non-sensitive values and Secrets for credentials:
 
@@ -180,9 +180,9 @@ spec:
         name: integrator-config
 ```
 
-## Blue-Green and canary deployments
+## Blue-Green and Canary Deployments
 
-### Blue-Green deployment
+### Blue-Green Deployment
 
 Run two identical environments (blue and green). Route traffic to the active one and deploy updates to the inactive one. After verification, switch traffic.
 
@@ -201,7 +201,7 @@ kubectl patch service integrator-service -n production \
 kubectl scale deployment/integrator-blue --replicas=0 -n production
 ```
 
-### Canary deployment
+### Canary Deployment
 
 Route a small percentage of traffic to the new version. Gradually increase if metrics are healthy.
 
@@ -231,7 +231,7 @@ spec:
 
 Use a single Kubernetes Service with a shared label (`app: integrator`) so both the stable and canary deployments receive traffic proportional to their replica count.
 
-## What's next
+## What's Next
 
 - [Scaling & High Availability](scaling-ha.md) -- Configure scaling and resilience
 - [Secrets & Encryption](../secure/secrets-encryption.md) -- Secure your configuration values

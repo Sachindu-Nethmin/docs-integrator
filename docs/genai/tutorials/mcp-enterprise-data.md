@@ -28,7 +28,7 @@ flowchart LR
     Tools ----> DB
 ```
 
-## Step 1: Create the project
+## Step 1: Create the Project
 
 ```toml
 # Ballerina.toml
@@ -55,7 +55,7 @@ dbPassword = "password"
 dbName = "enterprise_db"
 ```
 
-## Step 2: Set up the database client
+## Step 2: Set Up the Database Client
 
 ```ballerina
 // db.bal
@@ -74,7 +74,7 @@ final mysql:Client db = check new ({
 });
 ```
 
-## Step 3: Define MCP tools
+## Step 3: Define MCP Tools
 
 ```ballerina
 // tools.bal
@@ -173,9 +173,9 @@ isolated function getTopProducts(
 }
 ```
 
-## Step 4: Create the MCP server
+## Step 4: Create the MCP Server
 
-### Option a: Stdio transport (for Claude desktop)
+### Option A: stdio Transport (for Claude Desktop)
 
 ```ballerina
 // main.bal
@@ -190,7 +190,7 @@ service on new mcp:Listener() {
 }
 ```
 
-### Option b: SSE transport (for remote clients)
+### Option B: SSE Transport (for remote clients)
 
 ```ballerina
 // main.bal
@@ -204,9 +204,9 @@ service on new mcp:Listener(new mcp:SseTransport(8090)) {
 }
 ```
 
-## Step 5: Configure Claude desktop
+## Step 5: Configure Claude Desktop
 
-### For stdio transport
+### For stdio Transport
 
 Add the following to your Claude Desktop configuration file (`claude_desktop_config.json`):
 
@@ -224,7 +224,7 @@ Add the following to your Claude Desktop configuration file (`claude_desktop_con
 }
 ```
 
-### For SSE transport
+### For SSE Transport
 
 ```json
 {
@@ -257,7 +257,7 @@ Add the following to your Claude Desktop configuration file (`claude_desktop_con
    # Connect with an MCP client library
    ```
 
-## Step 7: Add security
+## Step 7: Add Security
 
 Add API key authentication for production deployments.
 
@@ -282,7 +282,7 @@ isolated function validateApiKey(string apiKey) returns boolean|error {
 }
 ```
 
-## What you built
+## What You Built
 
 You now have an MCP server that:
 - Exposes enterprise data through 5 tools with clear descriptions
@@ -291,7 +291,7 @@ You now have an MCP server that:
 - Limits query results to prevent context window overflow
 - Can be secured with API key authentication
 
-## What's next
+## What's Next
 
 - [Exposing MCP Servers](/docs/genai/mcp/exposing-mcp-servers) -- Advanced MCP server patterns
 - [MCP Security](/docs/genai/mcp/mcp-security) -- OAuth, mTLS, and authorization

@@ -6,7 +6,7 @@ title: Third-Party Observability Tools
 
 WSO2 Integrator integrates with all major observability platforms through Ballerina's built-in observability framework and standard protocols (OpenTelemetry, Prometheus).
 
-## Supported platforms
+## Supported Platforms
 
 | Platform | Metrics | Logs | Traces |
 |---|---|---|---|
@@ -21,9 +21,9 @@ WSO2 Integrator integrates with all major observability platforms through Baller
 | **WSO2 Devant** | Built-in | Built-in | Built-in |
 | **WSO2 ICP** | Built-in | Built-in | Built-in |
 
-## Integration approaches
+## Integration Approaches
 
-### 1. native Ballerina extensions
+### 1. Native Ballerina Extensions
 
 Ballerina has built-in support for Jaeger and Prometheus. Enable them in `Config.toml`:
 
@@ -45,7 +45,7 @@ agentPort = 6831
 
 This approach requires no additional infrastructure beyond the tracing and metrics backends. See [Metrics](metrics.md) and [Distributed Tracing](tracing.md) for detailed configuration.
 
-### 2. OpenTelemetry collector
+### 2. OpenTelemetry Collector
 
 Use the OpenTelemetry Collector as a vendor-neutral pipeline to forward telemetry to any backend. This is the recommended approach when integrating with commercial observability platforms.
 
@@ -111,7 +111,7 @@ helm install otel-collector open-telemetry/opentelemetry-collector \
   -n observability
 ```
 
-### 3. sidecar / agent pattern
+### 3. Sidecar / Agent Pattern
 
 Deploy vendor-specific agents alongside your integration containers:
 
@@ -144,7 +144,7 @@ spec:
           }]
 ```
 
-## Choosing a platform
+## Choosing a Platform
 
 | Use Case | Recommended Approach |
 |---|---|
@@ -155,9 +155,9 @@ spec:
 | WSO2 managed deployment | Devant observability or ICP |
 | Unified metrics, logs, traces | Splunk Observability Cloud |
 
-## Configuration by platform
+## Configuration by Platform
 
-### Datadog quick start
+### Datadog Quick Start
 
 ```toml
 # Config.toml -- route traces through Datadog Agent
@@ -169,7 +169,7 @@ tracingProvider = "jaeger"
 reporterEndpoint = "http://datadog-agent:14268/api/traces"
 ```
 
-### New relic quick start
+### New Relic Quick Start
 
 ```toml
 # Config.toml -- route traces through OTEL Collector to New Relic
@@ -181,7 +181,7 @@ tracingProvider = "jaeger"
 reporterEndpoint = "http://otel-collector:14268/api/traces"
 ```
 
-### Elastic APM quick start
+### Elastic APM Quick Start
 
 ```toml
 # Config.toml -- route traces through OTEL Collector to Elastic
@@ -195,7 +195,7 @@ reporterEndpoint = "http://otel-collector:14268/api/traces"
 
 For all platforms, the Ballerina configuration points to either a local agent or an OpenTelemetry Collector. The collector configuration determines the final destination.
 
-## What's next
+## What's Next
 
 - [Metrics](metrics.md) -- Configure Prometheus metrics collection
 - [Distributed Tracing](tracing.md) -- Configure trace exporters

@@ -8,7 +8,7 @@ LLM responses can take several seconds to generate fully. Streaming lets you sen
 
 WSO2 Integrator supports streaming LLM output through Server-Sent Events (SSE) and WebSocket, allowing you to build responsive chat interfaces and real-time AI-powered APIs.
 
-## How streaming works
+## How Streaming Works
 
 Without streaming, the client waits for the entire LLM response before receiving anything:
 
@@ -27,7 +27,7 @@ Client Request → [token] → [token] → [token] → ... → [done]
 
 Server-Sent Events (SSE) is the most common transport for streaming LLM responses over HTTP.
 
-### Basic SSE streaming
+### Basic SSE Streaming
 
 ```ballerina
 import ballerina/http;
@@ -50,7 +50,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-### SSE with completion signal
+### SSE with Completion Signal
 
 Send a final event when the stream completes so the client knows the response is finished.
 
@@ -88,7 +88,7 @@ class StreamImplementor {
 }
 ```
 
-### Client-Side SSE consumption
+### Client-Side SSE Consumption
 
 ```javascript
 // JavaScript client example
@@ -107,7 +107,7 @@ eventSource.addEventListener('done', (event) => {
 
 WebSocket provides bidirectional streaming, making it suitable for interactive chat sessions.
 
-### WebSocket chat service
+### WebSocket Chat Service
 
 ```ballerina
 import ballerina/websocket;
@@ -147,7 +147,7 @@ service class ChatWebSocketService {
 }
 ```
 
-### WebSocket with structured messages
+### WebSocket with Structured Messages
 
 ```ballerina
 type WsMessage record {|
@@ -180,9 +180,9 @@ remote function onTextMessage(websocket:Caller caller, string message) returns e
 }
 ```
 
-## Streaming from LLM providers
+## Streaming from LLM Providers
 
-### Direct provider streaming
+### Direct Provider Streaming
 
 Stream responses directly from the LLM provider without an agent.
 
@@ -202,7 +202,7 @@ function streamCompletion(string prompt) returns stream<string, error?>|error {
 }
 ```
 
-### Collecting a streamed response
+### Collecting a Streamed Response
 
 When you need both streaming and the full response.
 
@@ -223,7 +223,7 @@ function streamAndCollect(string prompt, websocket:Caller caller) returns string
 }
 ```
 
-## Streaming with tool calls
+## Streaming with Tool Calls
 
 When an agent calls tools during streaming, you can emit tool-related events alongside tokens.
 
@@ -256,7 +256,7 @@ resource function post chat(@http:Payload ChatRequest request)
 }
 ```
 
-## Error handling in streams
+## Error Handling in Streams
 
 Handle errors gracefully during streaming to avoid broken connections.
 
@@ -276,7 +276,7 @@ resource function post chat(@http:Payload ChatRequest request)
 }
 ```
 
-## When to use streaming
+## When to Use Streaming
 
 | Scenario | Streaming | Non-Streaming |
 |----------|-----------|---------------|
@@ -289,7 +289,7 @@ resource function post chat(@http:Payload ChatRequest request)
 
 Use streaming when a human is waiting for the response. Use non-streaming for machine-to-machine integrations where you need the complete response before proceeding.
 
-## What's next
+## What's Next
 
 - [Managing Context Windows](managing-context-windows.md) -- Handle token limits for long conversations
 - [Model Selection](model-selection.md) -- Choose models with streaming support

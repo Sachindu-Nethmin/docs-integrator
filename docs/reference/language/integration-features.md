@@ -6,7 +6,7 @@ title: Integration-Specific Features
 
 Ballerina is designed as a language for network-distributed applications. It provides first-class constructs for defining services, handling network communication, managing concurrency, and configuring runtime behavior. These features make it uniquely suited for building integrations in WSO2 Integrator.
 
-## Service declarations
+## Service Declarations
 
 A service is a top-level construct that groups related resource functions behind a network listener. Services are the primary way to expose HTTP, GraphQL, gRPC, WebSocket, and other protocol-based endpoints.
 
@@ -36,11 +36,11 @@ service /orders on new http:Listener(9090) {
 }
 ```
 
-### Service path
+### Service Path
 
 The base path (`/orders` above) is the root URL path for all resource functions in the service. Use `/` for the root path.
 
-### Attach point
+### Attach Point
 
 The `on` clause binds the service to one or more listeners. A service can be attached to multiple listeners:
 
@@ -55,11 +55,11 @@ service /api on httpListener, httpsListener {
 }
 ```
 
-## Resource functions
+## Resource Functions
 
 Resource functions define individual API endpoints. Their signature encodes the HTTP method, URL path, parameters, and return type.
 
-### HTTP method mapping
+### HTTP Method Mapping
 
 The function name maps directly to the HTTP method:
 
@@ -73,7 +73,7 @@ resource function head path()   // HEAD
 resource function options path() // OPTIONS
 ```
 
-### Path parameters
+### Path Parameters
 
 Path segments in brackets are extracted as typed parameters:
 
@@ -89,7 +89,7 @@ resource function get files/[string... path]() returns byte[]|error {
 }
 ```
 
-### Query parameters
+### Query Parameters
 
 Function parameters that are not path parameters are treated as query parameters:
 
@@ -101,7 +101,7 @@ resource function get orders(string? status, int limit = 20) returns Order[]|err
 }
 ```
 
-### Request payload
+### Request Payload
 
 Use the `@http:Payload` annotation to bind the request body:
 
@@ -111,7 +111,7 @@ resource function post orders(@http:Payload OrderRequest payload) returns Order|
 }
 ```
 
-### Header access
+### Header Access
 
 Use the `@http:Header` annotation to extract request headers:
 
@@ -123,7 +123,7 @@ resource function get secure(
 }
 ```
 
-### Return types and response codes
+### Return Types and Response Codes
 
 The return type determines the HTTP status code:
 
@@ -146,7 +146,7 @@ resource function get [int id]() returns Order|http:NotFound|error {
 }
 ```
 
-## Listener lifecycle
+## Listener Lifecycle
 
 Listeners manage the lifecycle of network connections. They implement the `Listener` object type with `init`, `attach`, `detach`, `'start`, and `gracefulStop` methods.
 
@@ -166,7 +166,7 @@ service /v1 on apiListener { }
 service /v2 on apiListener { }
 ```
 
-### Listener configuration
+### Listener Configuration
 
 HTTP listeners accept a comprehensive configuration record:
 
@@ -188,11 +188,11 @@ listener http:Listener secureListener = new (9443, {
 });
 ```
 
-## Client objects
+## Client Objects
 
 Client objects provide type-safe access to remote services. They handle connection pooling, serialization, error handling, and resilience.
 
-### HTTP client
+### HTTP Client
 
 ```ballerina
 import ballerina/http;
@@ -223,7 +223,7 @@ function createOrder(OrderRequest req) returns Order|error {
 }
 ```
 
-### Database client
+### Database Client
 
 ```ballerina
 import ballerinax/mysql;
@@ -245,7 +245,7 @@ function getOrderById(int id) returns Order|error {
 }
 ```
 
-## Configurable variables
+## Configurable Variables
 
 The `configurable` keyword declares variables whose values are supplied at deployment time through `Config.toml`, environment variables, or command-line arguments.
 
@@ -273,11 +273,11 @@ type DatabaseConfig record {|
 
 See the [Config.toml Reference](../config/config-toml.md) and [Environment Variables](../config/environment-variables.md) pages for details on providing values.
 
-## Workers and concurrency
+## Workers and Concurrency
 
 Ballerina provides built-in concurrency through named workers and asynchronous function calls. Workers execute concurrently within a function and can communicate through message passing.
 
-### Named workers
+### Named Workers
 
 ```ballerina
 function processOrder(Order order) returns OrderResult|error {
@@ -302,7 +302,7 @@ function processOrder(Order order) returns OrderResult|error {
 }
 ```
 
-### Asynchronous calls
+### Asynchronous Calls
 
 The `start` keyword invokes a function on a new strand (lightweight thread):
 
@@ -326,7 +326,7 @@ function parallelFetch() returns [json, json]|error {
 }
 ```
 
-### Worker message passing
+### Worker Message Passing
 
 Workers can send and receive messages using the `->` and `<-` operators:
 
@@ -361,7 +361,7 @@ function transferFunds(string fromAccount, string toAccount, decimal amount) ret
 }
 ```
 
-### Transaction participants
+### Transaction Participants
 
 Functions annotated with `transactional` participate in the enclosing transaction:
 
@@ -373,7 +373,7 @@ transactional function debit(string account, decimal amount) returns error? {
 }
 ```
 
-## Error handling
+## Error Handling
 
 Ballerina's error handling model uses union types (`T|error`) and the `check` expression to propagate errors up the call stack.
 
@@ -386,7 +386,7 @@ function processRequest() returns json|error {
 }
 ```
 
-### `do`/`on fail` for local error handling
+### `do`/`on fail` for Local Error Handling
 
 ```ballerina
 function handleOrder(Order order) returns string {

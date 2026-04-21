@@ -6,7 +6,7 @@ title: Query Expressions
 
 Query expressions provide a SQL-like syntax for filtering, transforming, and aggregating data in Ballerina. They work with arrays, maps, streams, tables, and XML, making them a core tool for data transformation in integration workflows.
 
-## Basic syntax
+## Basic Syntax
 
 ```ballerina
 var result = from var item in collection
@@ -14,7 +14,7 @@ var result = from var item in collection
              select expression;
 ```
 
-## Clauses reference
+## Clauses Reference
 
 | Clause | Purpose | Required |
 |--------|---------|----------|
@@ -28,7 +28,7 @@ var result = from var item in collection
 | `join` | Join with another collection | No |
 | `on conflict` | Handle key conflicts in table results | No |
 
-## `from` clause
+## `from` Clause
 
 Iterate over arrays, maps, strings, streams, tables, or XML:
 
@@ -55,7 +55,7 @@ from var event in eventStream
 from var i in 0 ..< 10
 ```
 
-### Multiple `from` clauses (Cartesian product)
+### Multiple `from` Clauses (Cartesian Product)
 
 ```ballerina
 json[] combinations = from var color in ["red", "blue"]
@@ -64,7 +64,7 @@ json[] combinations = from var color in ["red", "blue"]
 // [{color: "red", size: "S"}, {color: "red", size: "M"}, ...]
 ```
 
-## `where` clause
+## `where` Clause
 
 Filter items based on a boolean condition:
 
@@ -88,7 +88,7 @@ Order[] highValueOrders = from var order in orders
                           select order;
 ```
 
-## `let` clause
+## `let` Clause
 
 Bind intermediate computed values:
 
@@ -109,7 +109,7 @@ OrderSummary[] summaries = from var order in orders
                            };
 ```
 
-## `select` clause
+## `select` Clause
 
 Transform each item into a new value:
 
@@ -131,7 +131,7 @@ CustomerDTO[] dtos = from var c in customers
                      };
 ```
 
-## `collect` clause
+## `collect` Clause
 
 Aggregate all items into a single result:
 
@@ -150,7 +150,7 @@ string csv = from var name in names
              collect string:'join(",", ...names);
 ```
 
-### Aggregate functions for `collect`
+### Aggregate Functions for `collect`
 
 | Function | Description | Example |
 |----------|-------------|---------|
@@ -160,7 +160,7 @@ string csv = from var name in names
 | `min(expr)` | Minimum value | `collect min(item.price)` |
 | `max(expr)` | Maximum value | `collect max(item.price)` |
 
-## `join` clause
+## `join` Clause
 
 Join two collections on a condition:
 
@@ -181,7 +181,7 @@ OrderWithCustomer[] enriched = from var order in orders
                                 };
 ```
 
-### Outer join
+### Outer Join
 
 Use `outer join` when the right side may not have a match:
 
@@ -195,7 +195,7 @@ var results = from var order in orders
               };
 ```
 
-## `order by` clause
+## `order by` Clause
 
 Sort results by one or more fields:
 
@@ -210,7 +210,7 @@ var sorted = from var emp in employees
              select emp;
 ```
 
-## `limit` clause
+## `limit` Clause
 
 Restrict the number of results:
 
@@ -221,7 +221,7 @@ Order[] top10 = from var order in orders
                 select order;
 ```
 
-## `on conflict` clause
+## `on conflict` Clause
 
 Handle key conflicts when the result is a table:
 
@@ -231,7 +231,7 @@ table key(id) empTable = table key(id) from var emp in employees
                                    on conflict error("Duplicate employee ID");
 ```
 
-## Query actions
+## Query Actions
 
 Use `do` instead of `select` to perform side effects:
 
@@ -244,9 +244,9 @@ do {
 };
 ```
 
-## Integration examples
+## Integration Examples
 
-### Transform API response
+### Transform API Response
 
 ```ballerina
 json apiResponse = check client->get("/api/products");
@@ -268,7 +268,7 @@ ProductSummary[] summaries = from var product in products
                              };
 ```
 
-### Aggregate Kafka events
+### Aggregate Kafka Events
 
 ```ballerina
 decimal totalRevenue = from var event in revenueEvents
@@ -276,7 +276,7 @@ decimal totalRevenue = from var event in revenueEvents
                        collect sum(event.amount);
 ```
 
-## What's next
+## What's Next
 
 - [Concurrency](concurrency.md) -- Workers, strands, and parallel execution
 - [Type System Reference](type-system.md) -- Ballerina types in depth

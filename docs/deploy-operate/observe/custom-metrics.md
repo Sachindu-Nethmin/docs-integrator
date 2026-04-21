@@ -6,18 +6,18 @@ title: Custom Metrics
 
 Define and publish custom application-level metrics from your WSO2 Integrator integrations to monitor business KPIs, SLA compliance, and integration health beyond the built-in metrics.
 
-## When to use custom metrics
+## When to Use Custom Metrics
 
 - Track business metrics (orders processed, messages transformed, records synced)
 - Monitor SLA compliance (response times, error rates per partner)
 - Measure integration throughput and queue depths
 - Create domain-specific dashboards
 
-## Defining custom metrics
+## Defining Custom Metrics
 
 Ballerina's `observe` module provides APIs for creating counters and gauges:
 
-### Counter (Monotonically increasing)
+### Counter (Monotonically Increasing)
 
 ```ballerina
 import ballerina/observe;
@@ -31,7 +31,7 @@ final observe:Counter ordersProcessed = new ("orders_processed_total",
 ordersProcessed.increment(amount = 1);
 ```
 
-### Gauge (Value that goes up and down)
+### Gauge (Value That Goes Up and Down)
 
 ```ballerina
 final observe:Gauge activeConnections = new ("active_connections",
@@ -44,7 +44,7 @@ activeConnections.increment(amount = 1);
 activeConnections.decrement(amount = 1);
 ```
 
-### Tagged metrics
+### Tagged Metrics
 
 Add dimensions to metrics for filtering and grouping:
 
@@ -60,7 +60,7 @@ observe:Counter partnerCounter = requestsByPartner.withTags(tags);
 partnerCounter.increment(amount = 1);
 ```
 
-## Exposing metrics
+## Exposing Metrics
 
 Custom metrics are automatically included in the Prometheus metrics endpoint when observability is enabled:
 
@@ -80,7 +80,7 @@ Access all metrics (including custom ones) at:
 http://localhost:9797/metrics
 ```
 
-## Example: Integration health dashboard
+## Example: Integration Health Dashboard
 
 ```ballerina
 import ballerina/observe;
@@ -113,7 +113,7 @@ service /api on new http:Listener(8080) {
 }
 ```
 
-## Grafana dashboard
+## Grafana Dashboard
 
 Use these metrics in Grafana with PromQL queries:
 
@@ -124,7 +124,7 @@ Use these metrics in Grafana with PromQL queries:
 | Processing time | `message_processing_seconds` | Stat |
 | Success ratio | `messages_transformed_total / messages_received_total` | Gauge |
 
-## What's next
+## What's Next
 
 - [Prometheus](./prometheus) — Set up Prometheus metrics collection
 - [Grafana](./grafana) — Build dashboards for your metrics

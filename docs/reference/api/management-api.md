@@ -18,13 +18,13 @@ The default management port is `9165`. The base path is configurable in the depl
 
 All Management API requests require authentication using Basic Authentication or an OAuth 2.0 bearer token.
 
-### Basic authentication
+### Basic Authentication
 
 ```bash
 curl -k -u admin:admin https://localhost:9165/management/v1/deployments
 ```
 
-### Bearer token
+### Bearer Token
 
 ```bash
 curl -k -X POST https://localhost:9165/management/v1/auth/token \
@@ -39,9 +39,9 @@ curl -k https://localhost:9165/management/v1/deployments \
   -H "Authorization: Bearer <access_token>"
 ```
 
-## Deployment endpoints
+## Deployment Endpoints
 
-### List deployments
+### List Deployments
 
 Returns all deployed integration packages.
 
@@ -86,7 +86,7 @@ GET /management/v1/deployments
 }
 ```
 
-### Get deployment details
+### Get Deployment Details
 
 Returns detailed information about a specific deployment.
 
@@ -129,7 +129,7 @@ GET /management/v1/deployments/{deploymentId}
 }
 ```
 
-### Deploy an integration
+### Deploy an Integration
 
 Deploys a new integration package or updates an existing deployment.
 
@@ -176,7 +176,7 @@ POST /management/v1/deployments
 }
 ```
 
-### Update a deployment
+### Update a Deployment
 
 Updates an existing deployment (e.g., change replicas, update configuration).
 
@@ -195,7 +195,7 @@ PUT /management/v1/deployments/{deploymentId}
 }
 ```
 
-### Delete a deployment
+### Delete a Deployment
 
 Removes a deployed integration.
 
@@ -211,9 +211,9 @@ DELETE /management/v1/deployments/{deploymentId}
 
 **Response (204 No Content):** Empty body on success.
 
-## Configuration endpoints
+## Configuration Endpoints
 
-### Get deployment configuration
+### Get Deployment Configuration
 
 Retrieves the current runtime configuration for a deployment.
 
@@ -239,7 +239,7 @@ GET /management/v1/deployments/{deploymentId}/config
 }
 ```
 
-### Update deployment configuration
+### Update Deployment Configuration
 
 Updates the runtime configuration of a deployed integration. Changes may trigger a rolling restart.
 
@@ -261,9 +261,9 @@ PUT /management/v1/deployments/{deploymentId}/config
 }
 ```
 
-## Scaling endpoints
+## Scaling Endpoints
 
-### Get scaling status
+### Get Scaling Status
 
 ```
 GET /management/v1/deployments/{deploymentId}/scale
@@ -285,7 +285,7 @@ GET /management/v1/deployments/{deploymentId}/scale
 }
 ```
 
-### Scale a deployment
+### Scale a Deployment
 
 ```
 PUT /management/v1/deployments/{deploymentId}/scale
@@ -299,9 +299,9 @@ PUT /management/v1/deployments/{deploymentId}/scale
 }
 ```
 
-## Lifecycle endpoints
+## Lifecycle Endpoints
 
-### Restart a deployment
+### Restart a Deployment
 
 Performs a rolling restart of the deployment.
 
@@ -317,7 +317,7 @@ POST /management/v1/deployments/{deploymentId}/restart
 }
 ```
 
-### Suspend a deployment
+### Suspend a Deployment
 
 Scales the deployment to zero replicas without deleting it.
 
@@ -325,7 +325,7 @@ Scales the deployment to zero replicas without deleting it.
 POST /management/v1/deployments/{deploymentId}/suspend
 ```
 
-### Resume a deployment
+### Resume a Deployment
 
 Restores the deployment to its configured replica count.
 
@@ -333,9 +333,9 @@ Restores the deployment to its configured replica count.
 POST /management/v1/deployments/{deploymentId}/resume
 ```
 
-## Environment endpoints
+## Environment Endpoints
 
-### List environments
+### List Environments
 
 Returns all configured deployment environments.
 
@@ -356,13 +356,13 @@ GET /management/v1/environments
 }
 ```
 
-### Get environment details
+### Get Environment Details
 
 ```
 GET /management/v1/environments/{envName}
 ```
 
-## Error responses
+## Error Responses
 
 All errors follow a consistent format:
 

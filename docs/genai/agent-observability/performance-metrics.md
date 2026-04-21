@@ -8,7 +8,7 @@ Performance metrics give you quantitative visibility into how your AI agents are
 
 Without metrics, you cannot tell if your agents are degrading, costing more than expected, or failing silently.
 
-## Key metrics
+## Key Metrics
 
 | Metric | Description | Healthy Target |
 |--------|-------------|----------------|
@@ -23,9 +23,9 @@ Without metrics, you cannot tell if your agents are degrading, costing more than
 | **Tool calls per interaction** | Average number of tool calls per request | < 5 for most agents |
 | **Guardrail trigger rate** | Percentage of requests blocked by guardrails | < 5% normal |
 
-## Exposing metrics
+## Exposing Metrics
 
-### Prometheus metrics
+### Prometheus Metrics
 
 ```ballerina
 import ballerina/observe;
@@ -58,7 +58,7 @@ final observe:Gauge toolCallGauge = new ("agent_tool_calls_per_request",
 );
 ```
 
-### Instrumenting agent calls
+### Instrumenting Agent Calls
 
 ```ballerina
 function chatWithMetrics(string message, string sessionId) returns string|error {
@@ -83,7 +83,7 @@ function chatWithMetrics(string message, string sessionId) returns string|error 
 }
 ```
 
-### Prometheus configuration
+### Prometheus Configuration
 
 ```toml
 # Config.toml
@@ -96,9 +96,9 @@ port = 9797
 host = "0.0.0.0"
 ```
 
-## Metric breakdowns
+## Metric Breakdowns
 
-### Per-Model metrics
+### Per-Model Metrics
 
 Track metrics separately for each LLM model to compare performance and cost.
 
@@ -118,7 +118,7 @@ function recordModelMetrics(agent:TokenUsage usage) {
 }
 ```
 
-### Per-Tool metrics
+### Per-Tool Metrics
 
 Track which tools are called most often and how long they take.
 
@@ -146,7 +146,7 @@ function recordToolMetrics(string toolName, int durationMs, boolean success) {
 }
 ```
 
-### Per-Session metrics
+### Per-Session Metrics
 
 Track conversation-level metrics for user experience analysis.
 
@@ -171,9 +171,9 @@ function recordSessionEnd(string sessionId, SessionMetrics metrics) {
 }
 ```
 
-## Dashboard setup
+## Dashboard Setup
 
-### Grafana dashboard
+### Grafana Dashboard
 
 Export metrics to Prometheus and visualize in Grafana with these recommended panels:
 
@@ -187,7 +187,7 @@ Export metrics to Prometheus and visualize in Grafana with these recommended pan
 | Cost Accumulation | `agent_session_cost_usd` | Time series |
 | Top Tools by Latency | `agent_tool_latency_ms` | Bar chart |
 
-### Alert rules
+### Alert Rules
 
 ```yaml
 # Prometheus alert rules
@@ -218,7 +218,7 @@ groups:
           summary: "Hourly token usage exceeds 1M tokens"
 ```
 
-## Custom metrics endpoint
+## Custom Metrics Endpoint
 
 Expose agent-specific metrics through a dedicated API for custom dashboards.
 
@@ -241,7 +241,7 @@ service /metrics on new http:Listener(8091) {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Agent Tracing](agent-tracing.md) -- Correlate metrics with trace data
 - [Debugging Agent Behavior](debugging-agent-behavior.md) -- Use metrics to identify problems

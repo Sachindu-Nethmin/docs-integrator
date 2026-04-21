@@ -23,7 +23,7 @@ Ballerina Integration
   └── Structured logs ──▶ Datadog Agent ──▶ Datadog Cloud
 ```
 
-## Step 1 -- install the datadog agent
+## Step 1 -- Install the Datadog Agent
 
 ### Linux
 
@@ -57,7 +57,7 @@ helm install datadog-agent datadog/datadog \
   --set datadog.logs.enabled=true
 ```
 
-## Step 2 -- forward metrics to datadog
+## Step 2 -- Forward Metrics to Datadog
 
 Configure the Datadog Agent to scrape Prometheus metrics from your Ballerina integration.
 
@@ -84,7 +84,7 @@ Restart the agent:
 sudo systemctl restart datadog-agent
 ```
 
-## Step 3 -- forward traces to datadog
+## Step 3 -- Forward Traces to Datadog
 
 Configure Ballerina to send traces via OpenTelemetry to the Datadog Agent:
 
@@ -108,7 +108,7 @@ apm_config:
   receiver_port: 8126
 ```
 
-## Step 4 -- forward logs to datadog
+## Step 4 -- Forward Logs to Datadog
 
 Configure the Datadog Agent to collect logs from your integration:
 
@@ -130,11 +130,11 @@ Enable log collection in the agent config:
 logs_enabled: true
 ```
 
-## Step 5 -- create datadog dashboards
+## Step 5 -- Create Datadog Dashboards
 
 Build dashboards in Datadog to visualize your integration metrics:
 
-### Useful queries
+### Useful Queries
 
 | Panel | Query |
 |-------|-------|
@@ -152,7 +152,7 @@ Create Datadog monitors for critical thresholds:
 3. Define the query: `sum:ballerina.http_response_errors_total.count{service:order-service}.as_rate() > 0.05`.
 4. Set notification channels.
 
-## What's next
+## What's Next
 
 - [Prometheus](prometheus.md) -- Self-managed metrics collection
 - [New Relic](new-relic.md) -- Alternative full-stack observability platform

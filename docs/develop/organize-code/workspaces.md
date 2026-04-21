@@ -6,7 +6,7 @@ title: Workspaces
 
 Develop multiple related Ballerina packages side-by-side in a single VS Code workspace. Workspaces are essential when you maintain shared libraries alongside the services that consume them, or when multiple microservices need to be developed and tested together.
 
-## When to use workspaces
+## When to Use Workspaces
 
 Use a workspace when:
 - Multiple services share a common types/utilities package
@@ -14,7 +14,7 @@ Use a workspace when:
 - A team owns several related microservices
 - You need cross-package refactoring support in the IDE
 
-## Workspace structure
+## Workspace Structure
 
 A workspace is simply a VS Code workspace file (`.code-workspace`) that references multiple Ballerina package directories.
 
@@ -39,7 +39,7 @@ integration-platform/
     └── tests/
 ```
 
-### VS code workspace file
+### VS Code Workspace File
 
 ```json
 {
@@ -57,11 +57,11 @@ integration-platform/
 
 Open with: **File > Open Workspace from File** in VS Code.
 
-## Developing shared packages locally
+## Developing Shared Packages Locally
 
 When services depend on a shared package, use the local repository to develop both simultaneously.
 
-### Step 1: Build and push the shared package
+### Step 1: Build and Push the Shared Package
 
 ```bash
 cd shared-types
@@ -69,7 +69,7 @@ bal pack
 bal push --repository local
 ```
 
-### Step 2: Reference from services
+### Step 2: Reference from Services
 
 ```toml
 # order-service/Ballerina.toml
@@ -112,9 +112,9 @@ cd ../order-service
 bal build
 ```
 
-## Multi-Service development workflow
+## Multi-Service Development Workflow
 
-### Running multiple services
+### Running Multiple Services
 
 Use separate terminals or a script to start all services.
 
@@ -132,7 +132,7 @@ echo "All services started."
 wait
 ```
 
-### Docker compose for Multi-Service development
+### Docker Compose for Multi-Service Development
 
 ```yaml
 # docker-compose.dev.yaml
@@ -165,7 +165,7 @@ services:
     ports: ["9093:9093"]
 ```
 
-## Cross-Package testing
+## Cross-Package Testing
 
 Test interactions between services using integration tests.
 
@@ -205,7 +205,7 @@ function testOrderCreationUpdatesInventory() returns error? {
 | **Multi-repo** (one repo per package) | Large team, independent deployment, different release cadences |
 | **Hybrid** (shared libs in one repo, services separate) | Shared types change rarely, services evolve independently |
 
-### Monorepo structure
+### Monorepo Structure
 
 ```
 integration-platform/
@@ -217,7 +217,7 @@ integration-platform/
 └── integration-platform.code-workspace
 ```
 
-### Multi-Repo with shared types published to central
+### Multi-Repo with Shared Types Published to Central
 
 ```
 # Repo: myorg/shared-types
@@ -231,7 +231,7 @@ order-service/
 └── service.bal
 ```
 
-## Best practices
+## Best Practices
 
 - **Use workspaces for active co-development** -- when you are modifying multiple packages simultaneously
 - **Publish shared packages to Central or a local registry** once they stabilize
@@ -240,7 +240,7 @@ order-service/
 - **Test cross-service interactions** with integration test groups that require all services running
 - **Use Docker Compose** for local multi-service development to match production topology
 
-## What's next
+## What's Next
 
 - [Packages & Modules](packages-modules.md) -- Package structure fundamentals
 - [Manage Dependencies](manage-dependencies.md) -- Version locking and updates

@@ -2,7 +2,7 @@
 title: Scan Tool
 ---
 
-# Scan Tool
+# Scan tool
 
 The `bal scan` tool performs static code analysis on your Ballerina integration projects. It detects security vulnerabilities, code quality issues, performance anti-patterns, and violations of best practices. Results are reported with severity levels and actionable recommendations, helping you maintain high-quality integration code.
 
@@ -198,7 +198,7 @@ do {
 
 ## CI/CD integration
 
-### GitHub actions
+### GitHub Actions
 
 ```yaml
 - name: Run Ballerina Scan

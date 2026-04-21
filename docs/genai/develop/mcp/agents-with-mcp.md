@@ -8,9 +8,9 @@ MCP (Model Context Protocol) servers expose tools through a standardized interfa
 
 This page covers how to connect agents to MCP servers, discover tools, combine MCP tools with local tools, and manage MCP connections in production.
 
-## Connecting to an MCP server
+## Connecting to an MCP Server
 
-### Stdio connection
+### stdio Connection
 
 Connect to a locally running MCP server that communicates over standard I/O. This is the most common setup for development and desktop-based workflows.
 
@@ -24,7 +24,7 @@ final mcp:Client githubMcp = check new ({
 });
 ```
 
-### SSE connection
+### SSE Connection
 
 Connect to a remote MCP server running over Server-Sent Events.
 
@@ -34,7 +34,7 @@ final mcp:Client remoteMcp = check new ({
 });
 ```
 
-### Streamable HTTP connection
+### Streamable HTTP Connection
 
 Connect to an MCP server using the Streamable HTTP transport.
 
@@ -44,11 +44,11 @@ final mcp:Client streamableMcp = check new ({
 });
 ```
 
-## Using MCP tools in agents
+## Using MCP Tools in Agents
 
 The most common pattern is to pass MCP tools directly to an agent. The LLM discovers the available tools through their names and descriptions and calls them as needed during reasoning.
 
-### Single MCP server
+### Single MCP Server
 
 ```ballerina
 import ballerinax/ai.agent;
@@ -69,7 +69,7 @@ final agent:ChatAgent devAgent = check new (
 );
 ```
 
-### Multiple MCP servers
+### Multiple MCP Servers
 
 Combine tools from several MCP servers into a single agent for broader capabilities.
 
@@ -105,7 +105,7 @@ final agent:ChatAgent multiToolAgent = check new (
 );
 ```
 
-### Mixing MCP tools with local tools
+### Mixing MCP Tools with Local Tools
 
 Combine external MCP tools with locally defined agent tools for a hybrid approach.
 
@@ -139,11 +139,11 @@ final agent:ChatAgent hybridAgent = check new (
 );
 ```
 
-## Tool discovery
+## Tool Discovery
 
 Before passing tools to an agent, you can inspect what an MCP server provides.
 
-### Listing available tools
+### Listing Available Tools
 
 ```ballerina
 mcp:ToolInfo[] tools = check githubMcp.listTools();
@@ -155,7 +155,7 @@ foreach mcp:ToolInfo tool in tools {
 }
 ```
 
-### Filtering tools
+### Filtering Tools
 
 When an MCP server exposes many tools, pass only a relevant subset to your agent. Fewer tools means clearer tool selection by the LLM.
 
@@ -174,7 +174,7 @@ final agent:ChatAgent readOnlyAgent = check new (
 );
 ```
 
-## Calling MCP tools directly
+## Calling MCP Tools Directly
 
 If you need to call an MCP tool outside of an agent context, use the `callTool` method.
 
@@ -189,7 +189,7 @@ json result = check githubMcp.callTool("list_issues", {
 
 This is useful for one-off integrations, scripts, or pipelines where you do not need an agent's reasoning loop.
 
-## Reading MCP resources
+## Reading MCP Resources
 
 Access read-only data exposed by an MCP server.
 
@@ -201,9 +201,9 @@ mcp:ResourceInfo[] resources = check remoteMcp.listResources();
 json configData = check remoteMcp.readResource("config://app-settings");
 ```
 
-## Connection lifecycle
+## Connection Lifecycle
 
-### Initialization and timeout
+### Initialization and Timeout
 
 ```ballerina
 final mcp:Client mcpClient = check new ({
@@ -214,7 +214,7 @@ final mcp:Client mcpClient = check new ({
 });
 ```
 
-### Graceful shutdown
+### Graceful Shutdown
 
 Close the MCP connection when your service shuts down.
 
@@ -226,7 +226,7 @@ public function main() returns error? {
 }
 ```
 
-### Connection error handling
+### Connection Error Handling
 
 Handle connection failures gracefully, especially for remote MCP servers that may be temporarily unavailable.
 
@@ -245,7 +245,7 @@ function connectWithRetry(mcp:ClientConfig config, int maxRetries) returns mcp:C
 }
 ```
 
-## Connecting to your own MCP servers
+## Connecting to Your Own MCP Servers
 
 Connect your agents to MCP servers you built with WSO2 Integrator.
 
@@ -271,7 +271,7 @@ final agent:ChatAgent internalAgent = check new (
 );
 ```
 
-## Agent with MCP as an HTTP service
+## Agent with MCP as an HTTP Service
 
 Expose your MCP-powered agent as a REST API.
 
@@ -301,7 +301,7 @@ type ChatResponse record {|
 |};
 ```
 
-## What's next
+## What's Next
 
 - [Creating an MCP Server](/docs/genai/develop/mcp/creating-mcp-server) -- Build your own MCP server
 - [Consuming MCP Tools](/docs/genai/mcp/consuming-mcp-tools) -- Detailed MCP client patterns

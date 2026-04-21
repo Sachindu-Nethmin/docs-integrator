@@ -17,7 +17,7 @@ GitHub Actions uses YAML workflow files stored in `.github/workflows/` to define
 - Deployment target configured (Kubernetes, cloud service, or WSO2 Devant)
 - Repository secrets configured under **Settings > Secrets and variables > Actions**
 
-## Workflow configuration
+## Workflow Configuration
 
 Create `.github/workflows/deploy.yml` in your repository:
 
@@ -168,13 +168,13 @@ jobs:
             -n production --timeout=300s
 ```
 
-## Build step details
+## Build Step Details
 
 The build job installs Java 17 and the Ballerina distribution, then runs `bal build` to compile the project. Build artifacts (the executable JAR) are uploaded for downstream jobs and for manual download.
 
 If your project includes a `Cloud.toml`, the build also generates Docker and Kubernetes artifacts under `target/docker/` and `target/kubernetes/`.
 
-## Test step details
+## Test Step Details
 
 Tests run with coverage enabled. The `if: always()` condition on the upload step ensures test results are available even when tests fail.
 
@@ -202,13 +202,13 @@ To display test results directly in pull request checks, add a test reporting ac
     reporter: java-junit
 ```
 
-## Deploy step details
+## Deploy Step Details
 
 The workflow uses GitHub Environments to manage deployment approvals. Configure the `production` environment under **Settings > Environments** with required reviewers to enforce manual approval before production deployments.
 
 Each environment can have its own set of secrets, allowing different `Config.toml` values per target.
 
-## Secrets management
+## Secrets Management
 
 Configure repository and environment secrets under **Settings > Secrets and variables > Actions**:
 
@@ -228,7 +228,7 @@ deploy-production:
   environment: production  # Uses production secrets
 ```
 
-## Pull request workflow
+## Pull Request Workflow
 
 For pull requests, only the build and test jobs run. Docker build and deployment stages are skipped due to the `if` condition:
 
@@ -238,7 +238,7 @@ if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
 This provides fast feedback on code changes without triggering deployments.
 
-## Reusable workflow
+## Reusable Workflow
 
 For organizations managing multiple Ballerina projects, extract the common pipeline into a reusable workflow:
 
@@ -280,7 +280,7 @@ jobs:
       bal-version: "2201.10.0"
 ```
 
-## What's next
+## What's Next
 
 - [Azure DevOps](azure-devops.md) -- Pipeline configuration for Azure DevOps
 - [GitLab CI/CD](gitlab.md) -- Pipeline configuration for GitLab

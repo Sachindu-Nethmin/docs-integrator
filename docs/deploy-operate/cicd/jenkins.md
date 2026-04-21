@@ -22,7 +22,7 @@ Jenkins provides a flexible CI/CD platform that can be self-hosted or run in the
 - A container registry accessible from the Jenkins server
 - Credentials configured in Jenkins for the registry and deployment target
 
-## Pipeline configuration
+## Pipeline Configuration
 
 Create a `Jenkinsfile` at the root of your repository:
 
@@ -148,13 +148,13 @@ pipeline {
 }
 ```
 
-## Build stage details
+## Build Stage Details
 
 The build stage compiles the Ballerina project and produces an executable JAR in `target/bin/`. When your project has a `Cloud.toml`, it also generates Docker and Kubernetes artifacts.
 
 The `archiveArtifacts` step stores the built JAR in Jenkins for traceability and manual download.
 
-## Test stage details
+## Test Stage Details
 
 The test stage runs all test functions and publishes results in two formats:
 
@@ -174,13 +174,13 @@ stage('Test') {
 }
 ```
 
-## Deploy stage details
+## Deploy Stage Details
 
 The pipeline deploys to staging automatically on every push to `main`. Production deployment requires manual approval via the `input` directive, which pauses the pipeline until an authorized user confirms.
 
 For rollback scenarios, keep previous image tags available in your registry. Rolling back is a single `kubectl set image` command pointing to the prior tag.
 
-## Secrets management
+## Secrets Management
 
 Use Jenkins Credentials to store sensitive values. Reference them in the pipeline using the `credentials()` helper:
 
@@ -204,14 +204,14 @@ stage('Deploy') {
 }
 ```
 
-## Multibranch pipeline
+## Multibranch Pipeline
 
 For teams using feature branches, configure a Jenkins Multibranch Pipeline that automatically discovers branches and runs the pipeline for each one. The `when` directives in the Jenkinsfile control which stages run for which branches:
 
 - **Feature branches**: Build and Test only
 - **Main branch**: Build, Test, Docker, and Deploy
 
-## What's next
+## What's Next
 
 - [GitHub Actions](github-actions.md) -- CI/CD with GitHub-hosted runners
 - [GitLab CI/CD](gitlab.md) -- Pipeline configuration for GitLab

@@ -58,7 +58,7 @@ Select **Update Connection** to save the connection. The `discordClient` connect
 
 ## Configuring the Discord createMessage operation
 
-### Step 5: Add an automation entry point
+### Step 5: Add an Automation entry point
 
 Select **+ Add Artifact** and select **Automation** under the Automation category. Select **Create** to generate the automation entry point named `main`.
 

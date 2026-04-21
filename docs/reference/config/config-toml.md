@@ -10,7 +10,7 @@ title: Config.toml Reference
 
 Ballerina uses a TOML v0.4-compatible syntax with module-qualified keys to map configuration values to their corresponding `configurable` declarations.
 
-## How configurable variables work
+## How Configurable Variables Work
 
 In Ballerina source code, declare a configurable variable with the `configurable` keyword:
 
@@ -31,11 +31,11 @@ hostname = "api.example.com"
 dbUrl = "jdbc:mysql://db.example.com:3306/orders"
 ```
 
-## Module-Qualified names
+## Module-Qualified Names
 
 When configurable variables are in non-root modules or external packages, use TOML table headers to specify the module context.
 
-### Root module (same package)
+### Root Module (same package)
 
 Variables in the root module of the current package require no qualifier:
 
@@ -44,7 +44,7 @@ port = 9090
 hostname = "api.example.com"
 ```
 
-### Non-Root module (same package)
+### Non-Root Module (same package)
 
 Variables in a non-root module of the current package use the module name as the table header:
 
@@ -60,7 +60,7 @@ dbHost = "db.example.com"
 dbPort = 5432
 ```
 
-### External package
+### External Package
 
 Variables in an external package require the full `org-name.package-name` or `org-name.package-name.module-name` qualifier:
 
@@ -71,9 +71,9 @@ port = 3306
 user = "admin"
 ```
 
-## Supported types
+## Supported Types
 
-### Primitive types
+### Primitive Types
 
 ```toml
 # boolean
@@ -94,7 +94,7 @@ hostname = "api.example.com"
 template = "<greeting>Hello</greeting>"
 ```
 
-### Enum types
+### Enum Types
 
 ```toml
 logLevel = "INFO"     # Must match one of the enum members
@@ -135,7 +135,7 @@ password = "secret"
 database = "orders"
 ```
 
-### Nested records
+### Nested Records
 
 ```ballerina
 type SSLConfig record {|
@@ -160,7 +160,7 @@ certPath = "/certs/server.crt"
 keyPath = "/certs/server.key"
 ```
 
-### Array of records (Table arrays)
+### Array of Records (Table Arrays)
 
 Map configurable arrays of records using TOML array-of-tables syntax (`[[...]]`):
 
@@ -227,7 +227,7 @@ name = "Bob"
 department = "Marketing"
 ```
 
-## Precedence rules
+## Precedence Rules
 
 When the same configurable variable is set through multiple sources, the following precedence order applies (highest to lowest):
 
@@ -237,7 +237,7 @@ When the same configurable variable is set through multiple sources, the followi
 4. **Config files** (via `BAL_CONFIG_FILES` or default `Config.toml`)
 5. **Default values in source code** -- lowest priority
 
-## Sensitive data
+## Sensitive Data
 
 Avoid placing secrets (passwords, API keys, tokens) in `Config.toml` files that are committed to version control. Instead, use a separate TOML file for secrets and prioritize it via `BAL_CONFIG_FILES`:
 
@@ -247,7 +247,7 @@ export BAL_CONFIG_FILES="/run/secrets/secret-config.toml:/app/Config.toml"
 
 In Kubernetes, mount secrets as files and reference them through the `BAL_CONFIG_FILES` variable or `Cloud.toml`'s `[[cloud.config.secrets]]` section.
 
-## Complete example
+## Complete Example
 
 ```toml
 # Root module variables

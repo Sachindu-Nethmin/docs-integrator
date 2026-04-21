@@ -12,7 +12,7 @@ This page covers the patterns for exposing agents as APIs that your applications
 
 The most common pattern: expose your agent as a REST endpoint with typed request and response payloads.
 
-### Basic REST agent
+### Basic REST Agent
 
 ```ballerina
 import ballerina/http;
@@ -68,7 +68,7 @@ type SseEvent record {|
 |};
 ```
 
-### Adding authentication
+### Adding Authentication
 
 Protect your agent API with JWT or API key authentication.
 
@@ -117,7 +117,7 @@ function extractUserId(http:Request req) returns string|error {
 }
 ```
 
-### Rate limiting
+### Rate Limiting
 
 Protect against abuse and control costs with rate limiting.
 
@@ -160,7 +160,7 @@ function isRateLimited(string clientId, int maxRequests) returns boolean|error {
 }
 ```
 
-## GraphQL agent API
+## GraphQL Agent API
 
 Expose agents through GraphQL for clients that need flexible query structures.
 
@@ -204,7 +204,7 @@ type ChatResult record {|
 |};
 ```
 
-## WebSocket agent API
+## WebSocket Agent API
 
 Use WebSocket for real-time, bidirectional chat interfaces where latency matters.
 
@@ -249,9 +249,9 @@ service class ChatWebSocketService {
 }
 ```
 
-## Structured response patterns
+## Structured Response Patterns
 
-### Typed agent responses
+### Typed Agent Responses
 
 Return structured data alongside the agent's natural language response.
 
@@ -271,7 +271,7 @@ type ToolUsage record {|
 |};
 ```
 
-### Error responses
+### Error Responses
 
 Return consistent error structures for client applications.
 
@@ -311,7 +311,7 @@ service /api/v1/support on new http:Listener(8090) {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Chat Agents](chat-agents.md) — Core chat agent patterns and configuration
 - [Memory Configuration](memory-configuration.md) — Manage conversation state across API calls

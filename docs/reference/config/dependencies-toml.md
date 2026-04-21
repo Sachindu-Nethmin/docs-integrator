@@ -16,7 +16,7 @@ The `Dependencies.toml` file is an auto-generated lock file that records the exa
 | Manual editing | Not recommended; regenerate with `bal build` |
 | Version control | Should be committed to the repository |
 
-## File structure
+## File Structure
 
 The file uses the [TOML](https://toml.io) format and contains the following sections.
 
@@ -63,7 +63,7 @@ scope = "default"
 transitive = true
 ```
 
-### Package entry fields
+### Package Entry Fields
 
 | Key | Type | Required | Description |
 |-----|------|----------|-------------|
@@ -109,7 +109,7 @@ moduleName = "http.httpscerr"
 | `packageName` | string | Parent package name |
 | `moduleName` | string | Fully qualified module name |
 
-## Complete example
+## Complete Example
 
 ```toml
 # AUTO-GENERATED FILE. DO NOT MODIFY.
@@ -188,7 +188,7 @@ packageName = "myproject"
 moduleName = "myproject"
 ```
 
-## Version resolution
+## Version Resolution
 
 Ballerina uses the following rules to resolve dependency versions.
 
@@ -200,7 +200,7 @@ Ballerina uses the following rules to resolve dependency versions.
 | Lock file priority | If `Dependencies.toml` exists, locked versions are used unless a newer compatible version is required |
 | Sticky versions | Running `bal build` preserves existing locked versions; use `bal build --sticky=false` to force re-resolution |
 
-## Repository configuration
+## Repository Configuration
 
 Dependencies are resolved from configured repositories in the following order.
 
@@ -210,7 +210,7 @@ Dependencies are resolved from configured repositories in the following order.
 | 2 | Custom repositories | Configured in `<ballerina-home>/Settings.toml` |
 | 3 | Ballerina Central | `https://central.ballerina.io` (default remote repository) |
 
-### Settings.toml repository configuration
+### Settings.toml Repository Configuration
 
 ```toml
 # ~/.ballerina/Settings.toml
@@ -224,7 +224,7 @@ username = "user"
 password = "pass"
 ```
 
-## Regenerating dependencies.toml
+## Regenerating Dependencies.toml
 
 | Command | Behavior |
 |---------|----------|
@@ -232,7 +232,7 @@ password = "pass"
 | `bal build --sticky=false` | Re-resolves all dependencies to latest compatible versions |
 | Delete `Dependencies.toml` and run `bal build` | Full re-resolution from scratch |
 
-## See also
+## See Also
 
 - [Ballerina.toml Reference](ballerina-toml.md) -- Project metadata and dependency declarations
 - [Config.toml Reference](config-toml.md) -- Runtime configuration

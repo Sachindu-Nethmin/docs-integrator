@@ -6,9 +6,9 @@ title: Docker & Kubernetes
 
 WSO2 Integrator provides built-in support for containerized deployments. You can generate Docker images and Kubernetes manifests directly from the IDE or the command line.
 
-## Docker deployment
+## Docker Deployment
 
-### Using the visual designer
+### Using the Visual Designer
 
 1. Open your integration in the VS Code design view.
 2. Select **Deploy with Docker** from the Visualizer view.
@@ -23,7 +23,7 @@ bal build --cloud=docker
 
 This generates a Docker image and a Dockerfile in the `target` directory.
 
-### Running the Docker image
+### Running the Docker Image
 
 ```bash
 docker run -d \
@@ -34,9 +34,9 @@ docker run -d \
 
 Mount your `Config.toml` to inject environment-specific configuration at runtime.
 
-## Kubernetes deployment
+## Kubernetes Deployment
 
-### Step 1: Enable Kubernetes in the build
+### Step 1: Enable Kubernetes in the Build
 
 Add the cloud target to your `Ballerina.toml`:
 
@@ -45,7 +45,7 @@ Add the cloud target to your `Ballerina.toml`:
 cloud = "k8s"
 ```
 
-### Step 2: Configure the container
+### Step 2: Configure the Container
 
 Create a `Cloud.toml` in your project root:
 
@@ -56,7 +56,7 @@ name = "my-integration"
 tag = "1.0.0"
 ```
 
-### Step 3: Build and generate manifests
+### Step 3: Build and Generate Manifests
 
 ```bash
 bal build
@@ -70,7 +70,7 @@ This generates Kubernetes manifests in `target/kubernetes/<name>/`, including:
 - **Secret** -- Sensitive configuration values
 - **HPA** -- Horizontal Pod Autoscaler (if configured)
 
-### Step 4: Push and deploy
+### Step 4: Push and Deploy
 
 ```bash
 # Push the image to your container registry
@@ -88,7 +88,7 @@ kubectl get services
 kubectl logs -f deployment/my-integration
 ```
 
-## Resource limits and health probes
+## Resource Limits and Health Probes
 
 Configure resource limits in `Cloud.toml`:
 
@@ -108,7 +108,7 @@ port = 8090
 path = "/ready"
 ```
 
-## Hot deployment with load balancing
+## Hot Deployment with Load Balancing
 
 For zero-downtime deployments, use rolling updates with a load balancer:
 
@@ -134,7 +134,7 @@ upstream integration_backend {
 }
 ```
 
-## What's next
+## What's Next
 
 - [VM-Based Deployment](vm-based.md) -- Deploy as executable JARs
 - [Managing Configurations](managing-configurations.md) -- Environment-specific config management

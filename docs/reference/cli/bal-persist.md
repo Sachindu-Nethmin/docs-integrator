@@ -6,7 +6,7 @@ title: bal persist CLI
 
 The `bal persist` tool provides CLI commands for working with Ballerina's persistence layer. It generates client APIs from data model definitions, manages database schema migrations, and supports multiple data stores including MySQL, MSSQL, PostgreSQL, SQLite, Google Sheets, Redis, and in-memory stores.
 
-## Commands overview
+## Commands Overview
 
 | Command | Description |
 |---------|-------------|
@@ -15,7 +15,7 @@ The `bal persist` tool provides CLI commands for working with Ballerina's persis
 | `bal persist migrate` | Create and manage database schema migrations |
 | `bal persist push` | Push the data model schema directly to the data store |
 
-## Bal persist init
+## bal persist init
 
 Initializes persistence support in the current Ballerina project by creating the required directory structure and a data model definition file.
 
@@ -49,7 +49,7 @@ persist/
   model.bal       # Data model definitions
 ```
 
-### Data model definition
+### Data Model Definition
 
 Define your entities in the generated `persist/model.bal` file:
 
@@ -71,7 +71,7 @@ type Department record {|
 |};
 ```
 
-## Bal persist generate
+## bal persist generate
 
 Generates Ballerina client code from the data model definition. The generated code provides type-safe CRUD APIs for each entity.
 
@@ -106,7 +106,7 @@ generated/
     script.sql               # DDL script (for SQL data stores)
 ```
 
-### Using the generated client
+### Using the Generated Client
 
 ```ballerina
 import myapp.db;
@@ -139,7 +139,7 @@ public function main() returns error? {
 }
 ```
 
-## Bal persist migrate
+## bal persist migrate
 
 Creates database migration scripts based on changes to the data model. This command compares the current data model with the previous state and generates incremental migration scripts.
 
@@ -179,7 +179,7 @@ persist/
       model.bal              # Snapshot of the data model at this point
 ```
 
-### Migration script example
+### Migration Script Example
 
 ```sql
 -- AUTO-GENERATED FILE. DO NOT MODIFY.
@@ -188,7 +188,7 @@ persist/
 ALTER TABLE Employee ADD COLUMN phone VARCHAR(20);
 ```
 
-## Bal persist push
+## bal persist push
 
 Pushes the current data model schema directly to the target data store. This is useful for development and testing environments where migration tracking is not needed.
 
@@ -214,7 +214,7 @@ bal persist push --datastore mysql --module db
 
 `bal persist push` drops and recreates tables. Use this only in development environments. For production, use `bal persist migrate`.
 
-## Supported data stores
+## Supported Data Stores
 
 | Data Store | `--datastore` Value | Migrations | Notes |
 |------------|-------------------|------------|-------|
@@ -226,7 +226,7 @@ bal persist push --datastore mysql --module db
 | Redis | `redis` | No | Key-value store |
 | In-Memory | `inmemory` | No | For testing and prototyping |
 
-## See also
+## See Also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [Ballerina.toml Reference](/docs/reference/config/ballerina-toml) -- Project configuration

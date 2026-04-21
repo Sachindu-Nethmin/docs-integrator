@@ -14,7 +14,7 @@ Grafana provides rich visualization capabilities for the metrics collected by Pr
 | Prometheus | Running and scraping Ballerina metrics |
 | Network | Grafana must reach the Prometheus server |
 
-## Step 1 -- add Prometheus data source
+## Step 1 -- Add Prometheus Data Source
 
 1. Open Grafana and navigate to **Configuration** > **Data Sources**.
 2. Click **Add data source** and select **Prometheus**.
@@ -28,7 +28,7 @@ Grafana provides rich visualization capabilities for the metrics collected by Pr
 
 4. Click **Save & Test** to verify the connection.
 
-## Step 2 -- import the Ballerina dashboard
+## Step 2 -- Import the Ballerina Dashboard
 
 Import the pre-built Ballerina integration dashboard:
 
@@ -37,7 +37,7 @@ Import the pre-built Ballerina integration dashboard:
 3. Select the Prometheus data source.
 4. Click **Import**.
 
-### Dashboard panels
+### Dashboard Panels
 
 The pre-built dashboard includes the following panels:
 
@@ -50,15 +50,15 @@ The pre-built dashboard includes the following panels:
 | DB Query Latency | `ballerina_sql_query_duration_seconds` | Heatmap |
 | Request Volume | `increase(http_requests_total[1h])` | Bar chart |
 
-## Step 3 -- create custom panels
+## Step 3 -- Create Custom Panels
 
-### Request rate by resource
+### Request Rate by Resource
 
 ```promql
 sum(rate(http_requests_total{job="ballerina-integration"}[5m])) by (resource)
 ```
 
-### P95 latency per endpoint
+### p95 Latency per Endpoint
 
 ```promql
 histogram_quantile(0.95,
@@ -66,7 +66,7 @@ histogram_quantile(0.95,
 )
 ```
 
-### Error rate percentage
+### Error Rate Percentage
 
 ```promql
 100 * (
@@ -76,7 +76,7 @@ histogram_quantile(0.95,
 )
 ```
 
-### Database connection pool usage
+### Database Connection Pool Usage
 
 ```promql
 ballerina_sql_active_connections{job="ballerina-integration"}
@@ -92,7 +92,7 @@ Configure Grafana alerts for critical thresholds:
 
 Example alert: Error rate exceeds 5% for 5 minutes.
 
-### Notification channels
+### Notification Channels
 
 | Channel | Setup |
 |---------|-------|
@@ -101,7 +101,7 @@ Example alert: Error rate exceeds 5% for 5 minutes.
 | PagerDuty | Add PagerDuty integration key |
 | Microsoft Teams | Add Teams webhook URL |
 
-## Docker compose setup
+## Docker Compose Setup
 
 Run Prometheus and Grafana together for local development:
 
@@ -128,7 +128,7 @@ volumes:
   grafana-data:
 ```
 
-## What's next
+## What's Next
 
 - [Prometheus](prometheus.md) -- Configure Prometheus metrics collection
 - [Jaeger](jaeger.md) -- Add distributed tracing visualization

@@ -31,7 +31,7 @@ Each consumer processes the event at its own pace:
 - **Consumer B**: Sends confirmation emails.
 - **Consumer C**: Updates the analytics dashboard.
 
-## When to use it
+## When to Use It
 
 - One event should trigger **multiple independent reactions** across different services.
 - Producers and consumers should be **loosely coupled** and evolve independently.
@@ -42,7 +42,7 @@ Avoid this pattern when you need a synchronous request-response interaction or w
 
 ## Implementation
 
-### Kafka publisher
+### Kafka Publisher
 
 ```ballerina
 import ballerinax/kafka;
@@ -77,7 +77,7 @@ service /orders on new http:Listener(8080) {
 }
 ```
 
-### Kafka subscriber (Inventory consumer)
+### Kafka Subscriber (Inventory Consumer)
 
 ```ballerina
 import ballerinax/kafka;
@@ -128,7 +128,7 @@ function releaseInventory(json event) returns error? {
 }
 ```
 
-### NATS subscriber (Notification consumer)
+### NATS Subscriber (Notification Consumer)
 
 For lighter-weight pub/sub without persistence requirements, NATS is a good alternative:
 
@@ -172,7 +172,7 @@ function sendConfirmationEmail(json event) returns error? {
 - **Ordering**: Kafka preserves order within a partition. If order matters, use a consistent partition key (e.g., customer ID).
 - **Backpressure**: Monitor consumer lag. If consumers fall behind, scale horizontally or increase processing throughput.
 
-## Related patterns
+## Related Patterns
 
 - [Scatter-Gather](scatter-gather.md) -- For parallel fan-out with aggregation, where you wait for all responses.
 - [Content-Based Router](content-based-router.md) -- For routing a single event to one specific consumer based on content.

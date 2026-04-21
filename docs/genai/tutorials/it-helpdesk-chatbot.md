@@ -41,7 +41,7 @@ flowchart TD
     Tools ----> System & KB & Admin
 ```
 
-## Step 1: Create the project
+## Step 1: Create the Project
 
 ```toml
 # Ballerina.toml
@@ -67,7 +67,7 @@ org = "ballerina"
 name = "websocket"
 ```
 
-## Step 2: Set up configuration
+## Step 2: Set Up Configuration
 
 ```toml
 # Config.toml
@@ -91,7 +91,7 @@ configurable string kbApiUrl = ?;
 configurable string itAdminApiUrl = ?;
 ```
 
-## Step 3: Define data types
+## Step 3: Define Data Types
 
 ```ballerina
 // types.bal
@@ -138,7 +138,7 @@ type ChatMessage record {|
 |};
 ```
 
-## Step 4: Configure Redis-Backed persistent memory
+## Step 4: Configure Redis-Backed Persistent Memory
 
 ```ballerina
 // memory.bal
@@ -162,7 +162,7 @@ function createPersistentMemory(string sessionId) returns agent:ChatMemory {
 }
 ```
 
-## Step 5: Define agent tools
+## Step 5: Define Agent Tools
 
 ```ballerina
 // tools.bal
@@ -254,7 +254,7 @@ isolated function requestPasswordReset(
 }
 ```
 
-## Step 6: Create the agent
+## Step 6: Create the Agent
 
 ```ballerina
 // agent.bal
@@ -300,7 +300,7 @@ Guidelines:
 }
 ```
 
-## Step 7: Expose as a WebSocket service
+## Step 7: Expose as a WebSocket Service
 
 The WebSocket interface enables real-time, bidirectional chat between the employee and the agent.
 
@@ -362,7 +362,7 @@ service class ChatService {
 }
 ```
 
-## Step 8: Run and test
+## Step 8: Run and Test
 
 1. Start the service:
    ```bash
@@ -398,7 +398,7 @@ service class ChatService {
      -d '{"message": "My laptop screen is flickering", "employeeId": "EMP-10042"}'
    ```
 
-## Step 9: Add conversation summary for long sessions
+## Step 9: Add Conversation Summary for Long Sessions
 
 For long-running conversations, summarize older messages to stay within token limits while retaining key context.
 
@@ -421,7 +421,7 @@ function createSummarizingMemory(string sessionId) returns agent:ChatMemory {
 }
 ```
 
-## What you built
+## What You Built
 
 You now have an IT helpdesk chatbot that:
 - Provides real-time support through a WebSocket interface
@@ -432,7 +432,7 @@ You now have an IT helpdesk chatbot that:
 - Remembers past conversations using Redis-backed persistent memory
 - Summarizes long conversations to manage token limits
 
-## What's next
+## What's Next
 
 - [Memory Configuration](/docs/genai/agents/memory-configuration) -- Explore memory options in depth
 - [Chat Agents](/docs/genai/agents/chat-agents) -- Learn more about chat agent patterns

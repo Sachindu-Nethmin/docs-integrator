@@ -8,11 +8,11 @@ Agent memory controls how your AI agent retains and manages conversation history
 
 Choosing the right memory strategy depends on your conversation length, cost constraints, and how much context the agent needs to perform its tasks effectively.
 
-## Memory types
+## Memory Types
 
 WSO2 Integrator provides several memory implementations, each optimized for different use cases.
 
-### Message window memory
+### Message Window Memory
 
 Keeps the most recent N messages. Simple, predictable, and the best default choice.
 
@@ -34,7 +34,7 @@ final agent:ChatAgent myAgent = check new (
 
 **Best for:** General-purpose chat agents, help desk bots, interactive data exploration.
 
-### Token window memory
+### Token Window Memory
 
 Keeps messages that fit within a token budget. Useful when you need to control costs precisely or work within model context limits.
 
@@ -58,7 +58,7 @@ final agent:ChatAgent costAwareAgent = check new (
 
 **Best for:** Cost-sensitive applications, long conversations, working with smaller context window models.
 
-### Summary memory
+### Summary Memory
 
 Compresses older messages into a summary while keeping recent messages verbatim. This gives agents a sense of the full conversation without using excessive tokens.
 
@@ -90,7 +90,7 @@ The memory structure looks like this after many messages:
 
 **Best for:** Long-running sessions (hours/days), project planning, ongoing advisory conversations.
 
-### Persistent memory
+### Persistent Memory
 
 Store conversation history in an external database for sessions that span multiple service restarts or deployments.
 
@@ -115,9 +115,9 @@ final agent:ChatAgent persistentAgent = check new (
 
 **Best for:** Multi-day conversations, agents that survive restarts, compliance requirements for conversation logging.
 
-## Memory configuration patterns
+## Memory Configuration Patterns
 
-### Combining memory with context injection
+### Combining Memory with Context Injection
 
 Add external context to the conversation without it counting toward the message history.
 
@@ -139,7 +139,7 @@ service /agent on new http:Listener(8090) {
 }
 ```
 
-### Session-Scoped memory
+### Session-Scoped Memory
 
 Create separate memory instances per session for complete isolation.
 
@@ -168,7 +168,7 @@ function getOrCreateAgent(string sessionId) returns agent:ChatAgent|error {
 }
 ```
 
-### Conversation handoff
+### Conversation Handoff
 
 Transfer conversation history from one agent to another (e.g., escalation from bot to specialized agent).
 
@@ -193,7 +193,7 @@ function escalateToSpecialist(string sessionId) returns string|error {
 }
 ```
 
-## Choosing the right memory strategy
+## Choosing the Right Memory Strategy
 
 | Scenario | Recommended Memory | Why |
 |----------|-------------------|-----|
@@ -203,7 +203,7 @@ function escalateToSpecialist(string sessionId) returns string|error {
 | Multi-day onboarding workflows | `PersistentChatMemory` | Survives restarts |
 | Single-turn task processing | No memory | Stateless by design |
 
-## What's next
+## What's Next
 
 - [Tool Binding](tool-binding.md) — Connect agents to functions and APIs
 - [Managing Context Windows](/docs/genai/llm-connectivity/managing-context-windows) — Optimize token usage across the full pipeline

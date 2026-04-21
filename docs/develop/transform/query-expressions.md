@@ -6,7 +6,7 @@ title: Query Expressions
 
 Transform collections and streams declaratively using Ballerina's built-in query expression syntax. Query expressions bring SQL-like operations directly into the language, making complex data transformations readable and concise without external libraries.
 
-## Query expression basics
+## Query Expression Basics
 
 A query expression iterates over a collection and produces a new collection using clauses like `from`, `where`, `select`, `let`, `order by`, `limit`, and `join`.
 
@@ -54,7 +54,7 @@ public function main() {
 }
 ```
 
-## The `from` clause
+## The `from` Clause
 
 The `from` clause defines the input source and iteration variable. It works with arrays, maps, streams, and tables.
 
@@ -88,7 +88,7 @@ string[] allTags = from string[] group in tags
     select tag;
 ```
 
-## The `where` clause
+## The `where` Clause
 
 Filter elements with boolean expressions.
 
@@ -135,7 +135,7 @@ Employee[] seniorHighEarners = from Employee e in staff
     select e;
 ```
 
-## The `let` clause
+## The `let` Clause
 
 Introduce intermediate computed values within a query.
 
@@ -179,7 +179,7 @@ OrderSummary[] summaries = from Order o in orders
     };
 ```
 
-## The `select` clause
+## The `select` Clause
 
 Project and reshape data into new forms.
 
@@ -209,7 +209,7 @@ string[] orderLabels = from Order o in orders
     select string `${o.orderId}: ${o.customer} ($${o.total})`;
 ```
 
-## The `order by` clause
+## The `order by` Clause
 
 Sort query results by one or more fields in ascending or descending order.
 
@@ -231,7 +231,7 @@ Employee[] sorted = from Employee e in staff
     select e;
 ```
 
-## The `limit` clause
+## The `limit` Clause
 
 Restrict the number of results returned.
 
@@ -247,7 +247,7 @@ Order[] top3 = from Order o in orders
     select o;
 ```
 
-## The `join` clause
+## The `join` Clause
 
 Combine data from two collections based on a matching condition.
 
@@ -312,7 +312,7 @@ public function main() {
 }
 ```
 
-## Working with tables
+## Working with Tables
 
 Query expressions work naturally with Ballerina tables, which provide key-based access.
 
@@ -346,7 +346,7 @@ public function main() {
 }
 ```
 
-## Stream processing with queries
+## Stream Processing with Queries
 
 Use query expressions with streams for lazy, memory-efficient processing of large datasets.
 
@@ -381,7 +381,7 @@ public function processLogs(stream<LogEntry, error?> logStream) returns error? {
 }
 ```
 
-## Collecting results
+## Collecting Results
 
 Query expressions can produce different collection types based on the context.
 
@@ -418,7 +418,7 @@ string report = from Sale s in sales
     collect string:'join("\n");
 ```
 
-## Integration example: API response transformation
+## Integration Example: API Response Transformation
 
 Combine query expressions to reshape API data for a different consumer.
 
@@ -495,7 +495,7 @@ function getProductsFromUpstream() returns SourceProduct[]|error {
 }
 ```
 
-## Best practices
+## Best Practices
 
 - **Prefer query expressions over manual loops** for filter/map/sort operations -- they are more readable and less error-prone
 - **Use `let` for computed values** rather than duplicating expressions in `where` and `select`
@@ -503,7 +503,7 @@ function getProductsFromUpstream() returns SourceProduct[]|error {
 - **Use streams for large datasets** -- stream-based queries process elements lazily without loading everything into memory
 - **Type your results explicitly** when the projected shape differs from the source to catch mapping errors at compile time
 
-## What's next
+## What's Next
 
 - [Expressions & Functions](expressions-functions.md) -- Built-in functions for string, date, math operations
 - [Type System & Records](type-system.md) -- Define structured types for query results

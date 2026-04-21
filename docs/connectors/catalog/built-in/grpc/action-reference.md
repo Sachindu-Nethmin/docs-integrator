@@ -83,7 +83,7 @@ Executes a unary (simple) gRPC call — sends a single request and receives a si
 
 </details>
 
-#### Server streaming RPC
+#### Server Streaming RPC
 
 <details>
 <summary>executeServerStreaming</summary>
@@ -117,7 +117,7 @@ Executes a server streaming gRPC call — sends a single request and receives a 
 
 </details>
 
-#### Client streaming RPC
+#### Client Streaming RPC
 
 <details>
 <summary>executeClientStreaming</summary>
@@ -143,7 +143,7 @@ grpc:StreamingClient streamingClient = check grpcClient->executeClientStreaming(
 
 </details>
 
-#### Bidirectional streaming RPC
+#### Bidirectional Streaming RPC
 
 <details>
 <summary>executeBidirectionalStreaming</summary>
@@ -169,7 +169,7 @@ grpc:StreamingClient streamingClient = check grpcClient->executeBidirectionalStr
 
 </details>
 
-#### Stub initialization
+#### Stub Initialization
 
 <details>
 <summary>initStub</summary>
@@ -197,7 +197,7 @@ check self.grpcClient.initStub(self, ROOT_DESCRIPTOR, getDescriptorMap());
 
 ---
 
-## Streaming client
+## Streaming Client
 
 Used in client streaming and bidirectional streaming RPCs to send messages, receive responses, and manage stream lifecycle.
 
@@ -221,7 +221,7 @@ grpc:StreamingClient streamingClient = check grpcClient->executeClientStreaming(
 
 ### Operations
 
-#### Message operations
+#### Message Operations
 
 <details>
 <summary>send</summary>
@@ -265,7 +265,7 @@ Receives a response message from the server. In client streaming, this returns t
 
 </details>
 
-#### Stream lifecycle
+#### Stream Lifecycle
 
 <details>
 <summary>complete</summary>

@@ -127,7 +127,7 @@ sequenceDiagram
     }}
 />
 
-## What's next
+## Next steps
 
 - [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
 - [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent

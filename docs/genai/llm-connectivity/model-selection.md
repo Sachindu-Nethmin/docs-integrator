@@ -8,7 +8,7 @@ WSO2 Integrator supports multiple LLM providers, giving you the flexibility to c
 
 Different tasks demand different tradeoffs between capability, speed, cost, and data privacy. A sentiment classifier does not need the same model as a complex multi-agent workflow.
 
-## Supported providers
+## Supported Providers
 
 | Provider | Module | Models | Best For |
 |----------|--------|--------|----------|
@@ -19,7 +19,7 @@ Different tasks demand different tradeoffs between capability, speed, cost, and 
 | **AWS Bedrock** | `ballerinax/ai.provider.bedrock` | Claude, Titan, Llama | AWS ecosystem, VPC deployment |
 | **Ollama** | `ballerinax/ai.provider.ollama` | Llama 3, Mistral, Phi-3 | Local/on-premises, no data leaves your network |
 
-## Configuring providers
+## Configuring Providers
 
 ### OpenAI
 
@@ -47,7 +47,7 @@ final anthropic:Client llmClient = check new ({
 });
 ```
 
-### Google gemini
+### Google Gemini
 
 ```ballerina
 import ballerinax/ai.provider.google;
@@ -77,7 +77,7 @@ final azure:Client llmClient = check new ({
 });
 ```
 
-### AWS bedrock
+### AWS Bedrock
 
 ```ballerina
 import ballerinax/ai.provider.bedrock;
@@ -106,7 +106,7 @@ final ollama:Client llmClient = check new ({
 });
 ```
 
-## Model configuration options
+## Model Configuration Options
 
 Every provider supports common configuration parameters.
 
@@ -122,7 +122,7 @@ final openai:Client llmClient = check new ({
 });
 ```
 
-### Temperature guidelines
+### Temperature Guidelines
 
 | Temperature | Behavior | Use Cases |
 |-------------|----------|-----------|
@@ -130,9 +130,9 @@ final openai:Client llmClient = check new ({
 | 0.3 - 0.7 | Balanced creativity and consistency | General chat, summarization, analysis |
 | 0.8 - 1.5 | Creative, varied outputs | Content generation, brainstorming |
 
-## Choosing a model
+## Choosing a Model
 
-### By use case
+### By Use Case
 
 | Use Case | Recommended Model | Why |
 |----------|-------------------|-----|
@@ -145,7 +145,7 @@ final openai:Client llmClient = check new ({
 | Enterprise compliance | Azure OpenAI, AWS Bedrock | Data residency, audit logging |
 | Multi-step reasoning | o1, o3-mini, Claude Sonnet | Chain-of-thought reasoning |
 
-### By context window size
+### By Context Window Size
 
 | Model | Context Window | Notes |
 |-------|---------------|-------|
@@ -157,7 +157,7 @@ final openai:Client llmClient = check new ({
 | Gemini 2.0 Flash | 1M tokens | Fast with very large context |
 | Llama 3 (Ollama) | 8K-128K tokens | Varies by model variant |
 
-### By cost (Approximate)
+### By Cost (Approximate)
 
 | Model | Input Cost | Output Cost | Relative Cost |
 |-------|-----------|-------------|---------------|
@@ -169,7 +169,7 @@ final openai:Client llmClient = check new ({
 | Gemini 2.5 Pro | Medium-High | Medium-High | $$$ |
 | o1 | High | High | $$$$ |
 
-## Using multiple models
+## Using Multiple Models
 
 Assign different models to different tasks to optimize cost and capability.
 
@@ -203,7 +203,7 @@ final agent:ChatAgent specialistAgent = check new (
 );
 ```
 
-## Environment-Based configuration
+## Environment-Based Configuration
 
 Use Ballerina's `configurable` variables to switch models across environments.
 
@@ -242,7 +242,7 @@ llmApiKey = "not-needed"
 # llmApiKey = "sk-..."
 ```
 
-## What's next
+## What's Next
 
 - [Natural Expressions](natural-expressions.md) -- Use natural language in Ballerina code
 - [Prompt Engineering](prompt-engineering.md) -- Write effective prompts for your models

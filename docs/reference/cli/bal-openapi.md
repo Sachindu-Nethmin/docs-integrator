@@ -6,7 +6,7 @@ title: bal openapi CLI
 
 The `bal openapi` tool generates Ballerina source code from OpenAPI specifications and exports OpenAPI specifications from existing Ballerina services. It supports OpenAPI 2.0 (Swagger) and OpenAPI 3.0.x/3.1.x specifications in JSON and YAML formats.
 
-## Commands overview
+## Commands Overview
 
 | Command | Description |
 |---------|-------------|
@@ -14,7 +14,7 @@ The `bal openapi` tool generates Ballerina source code from OpenAPI specificatio
 | `bal openapi -i <spec>` | Generate Ballerina client and/or service from an OpenAPI spec |
 | `bal openapi export <module>` | Export an OpenAPI spec from a Ballerina service |
 
-## Generate command
+## Generate Command
 
 Generates Ballerina source code (service stubs, client connectors, or both) from an OpenAPI specification file.
 
@@ -75,7 +75,7 @@ bal openapi -i petstore.yaml --mode service --with-service-type
 bal openapi -i petstore.yaml --mode client --status-code-binding
 ```
 
-### Generated files (Client mode)
+### Generated Files (Client Mode)
 
 ```
 client.bal                # HTTP client connector with typed methods
@@ -84,7 +84,7 @@ utils.bal                 # Utility functions for serialization
 client_test.bal           # Test skeletons (if --with-tests is used)
 ```
 
-### Generated files (Service mode)
+### Generated Files (Service Mode)
 
 ```
 service.bal               # Service stub with resource functions
@@ -93,7 +93,7 @@ service_type.bal          # Service type definition (if --with-service-type)
 service_test.bal          # Test skeletons (if --with-tests is used)
 ```
 
-### Generated client example
+### Generated Client Example
 
 ```ballerina
 // Auto-generated client from petstore.yaml
@@ -121,7 +121,7 @@ public isolated client class Client {
 }
 ```
 
-## Export command
+## Export Command
 
 Exports an OpenAPI specification from an existing Ballerina HTTP service.
 
@@ -155,7 +155,7 @@ bal openapi export service.bal --json
 bal openapi export service.bal -o specs/
 ```
 
-### Service annotations for export
+### Service Annotations for Export
 
 Add annotations to your Ballerina service to enrich the exported OpenAPI spec:
 
@@ -181,7 +181,7 @@ service /api/v1 on new http:Listener(8080) {
 }
 ```
 
-## OpenAPI to Ballerina type mapping
+## OpenAPI to Ballerina Type Mapping
 
 | OpenAPI Type | OpenAPI Format | Ballerina Type |
 |-------------|---------------|----------------|
@@ -200,7 +200,7 @@ service /api/v1 on new http:Listener(8080) {
 | `oneOf` | — | Union type |
 | `allOf` | — | Intersection type |
 
-## See also
+## See Also
 
 - [bal Command Reference](bal-commands.md) -- All bal subcommands
 - [Ballerina by Example](/docs/reference/by-example) -- Runnable examples

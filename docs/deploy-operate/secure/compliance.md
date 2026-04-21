@@ -6,7 +6,7 @@ title: Compliance Considerations
 
 Design your integrations with regulatory compliance in mind — audit logging, data protection, and governance patterns.
 
-## Audit logging
+## Audit Logging
 
 Log all sensitive operations for compliance audits:
 
@@ -33,7 +33,7 @@ resource function post orders(http:Request req, OrderRequest order) returns http
 }
 ```
 
-### Structured audit log format
+### Structured Audit Log Format
 
 Enable JSON logging for machine-parseable audit trails:
 
@@ -45,9 +45,9 @@ level = "INFO"
 
 Ship audit logs to a dedicated, immutable log store (S3, Azure Blob, or a SIEM) for retention compliance.
 
-## Data protection
+## Data Protection
 
-### PII masking
+### PII Masking
 
 Mask personally identifiable information in logs and responses:
 
@@ -65,7 +65,7 @@ function maskCreditCard(string cc) returns string {
 }
 ```
 
-### Data minimization
+### Data Minimization
 
 Only process and store the minimum data needed:
 
@@ -75,9 +75,9 @@ log:printInfo("Processing customer", customerId = customer.id);
 // NOT: log:printInfo("Processing", customer = customer.toJson());
 ```
 
-## Data residency
+## Data Residency
 
-### Region-Specific configuration
+### Region-Specific Configuration
 
 Use environment-specific `Config.toml` files to route data to region-appropriate services:
 
@@ -93,7 +93,7 @@ storageRegion = "us-east-1"
 apiEndpoint = "https://us.api.example.com"
 ```
 
-### Cross-Border data transfer
+### Cross-Border Data Transfer
 
 When integrations span regions, implement data classification:
 
@@ -105,7 +105,7 @@ function canTransferCrossBorder(DataClassification classification) returns boole
 }
 ```
 
-## SOC 2 / GDPR / HIPAA considerations
+## SOC 2 / GDPR / HIPAA Considerations
 
 | Requirement | Implementation |
 |------------|----------------|
@@ -117,7 +117,7 @@ function canTransferCrossBorder(DataClassification classification) returns boole
 | **Breach notification** | Alert on authentication failures and anomalies |
 | **Data retention** | Configure log and data lifecycle policies |
 
-## What's next
+## What's Next
 
 - [Secrets & Encryption](secrets-encryption.md) — Encrypt data at rest and in transit
 - [Authentication](authentication.md) — Enforce access control

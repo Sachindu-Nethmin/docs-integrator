@@ -13,7 +13,7 @@ Keep files synchronized between Google Drive and Microsoft OneDrive with bi-dire
 - Microsoft Azure app registration with OneDrive (Microsoft Graph) API permissions
 - Designated folders in both Google Drive and OneDrive to keep in sync
 
-## Quick run
+## Quick Run
 
 ```bash
 # Clone the samples repository
@@ -51,9 +51,9 @@ pollingIntervalSeconds = 60
 conflictResolution = "latest-wins"
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 google-drive-to-onedrive-sync/
@@ -67,7 +67,7 @@ google-drive-to-onedrive-sync/
 └── types.bal
 ```
 
-### Defining the data types
+### Defining the Data Types
 
 ```ballerina
 // Represents a file in either storage provider
@@ -93,7 +93,7 @@ type SyncState record {|
 |};
 ```
 
-### Detecting changes in Google drive
+### Detecting Changes in Google Drive
 
 ```ballerina
 import ballerinax/googleapis.drive;
@@ -166,7 +166,7 @@ function uploadToOneDrive(string fileName, byte[] content) returns error? {
 }
 ```
 
-### BI-Directional sync engine
+### Bi-Directional Sync Engine
 
 ```ballerina
 import ballerina/task;
@@ -236,20 +236,20 @@ function hasMatchingChecksum(map<string> checksums, SyncFile file) returns boole
 }
 ```
 
-### Key points
+### Key Points
 
 - **Bi-directional sync**: Changes in either Google Drive or OneDrive are detected and replicated to the other service.
 - **Checksum-based change detection**: File checksums prevent unnecessary re-uploads when content has not changed.
 - **Conflict resolution**: The `latest-wins` strategy uses modification timestamps to resolve conflicts when a file is modified on both sides between sync cycles.
 
-## Customization notes
+## Customization Notes
 
 - **File type filtering**: Add MIME type filters to sync only specific file types (e.g., documents, spreadsheets).
 - **Subfolder support**: Extend the sync engine to recursively traverse and sync subfolders.
 - **Change the conflict strategy**: Implement alternative strategies such as `keep-both` (rename the conflicting file) or `source-priority` (always prefer one side).
 - **Add webhook triggers**: Replace polling with Google Drive push notifications and Microsoft Graph subscriptions for near-real-time sync.
 
-## What's next
+## What's Next
 
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet data to your CRM
 - [FTP EDI to Salesforce Opportunity](ftp-edi-salesforce.md) -- Process files from FTP servers

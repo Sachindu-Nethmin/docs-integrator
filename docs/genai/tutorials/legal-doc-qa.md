@@ -33,7 +33,7 @@ flowchart TD
     LLM ----> CaseLaw
 ```
 
-## Step 1: Create the project
+## Step 1: Create the Project
 
 ```toml
 # Ballerina.toml
@@ -75,7 +75,7 @@ legalDbMcpUrl = "http://localhost:3001"
 caseLawMcpUrl = "http://localhost:3002"
 ```
 
-## Step 2: Define data types
+## Step 2: Define Data Types
 
 ```ballerina
 // types.bal
@@ -127,7 +127,7 @@ type QaResponse record {|
 |};
 ```
 
-## Step 3: Set up the vector database
+## Step 3: Set Up the Vector Database
 
 ```sql
 -- Run in PostgreSQL
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS legal_documents (
 CREATE INDEX ON legal_documents USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
 ```
 
-## Step 4: Build the RAG pipeline
+## Step 4: Build the RAG Pipeline
 
 ```ballerina
 // embeddings.bal
@@ -292,7 +292,7 @@ function searchInternalDocuments(
 }
 ```
 
-## Step 5: Create the legal database MCP server
+## Step 5: Create the Legal Database MCP Server
 
 The legal database MCP server exposes regulatory and compliance data as tools the agent can call.
 
@@ -354,7 +354,7 @@ service on new mcp:Listener(3001) {
 }
 ```
 
-## Step 6: Create the case law MCP server
+## Step 6: Create the Case Law MCP Server
 
 The case law MCP server connects to an external case law API and exposes search and citation tools.
 
@@ -411,7 +411,7 @@ service on new mcp:Listener(3002) {
 }
 ```
 
-## Step 7: Build the agent
+## Step 7: Build the Agent
 
 The agent combines the RAG tool for internal document search with MCP tools for external legal databases.
 
@@ -484,7 +484,7 @@ Guidelines:
 );
 ```
 
-## Step 8: Expose as a GraphQL service
+## Step 8: Expose as a GraphQL Service
 
 ```ballerina
 // service.bal
@@ -556,7 +556,7 @@ service /legal on new graphql:Listener(8090) {
 }
 ```
 
-## Step 9: Run and test
+## Step 9: Run and Test
 
 1. Start the MCP servers and the GraphQL service:
    ```bash
@@ -616,7 +616,7 @@ service /legal on new graphql:Listener(8090) {
      }'
    ```
 
-## What you built
+## What You Built
 
 You now have a legal document Q&A system that:
 - Ingests legal documents into a pgvector database with semantic embeddings
@@ -627,7 +627,7 @@ You now have a legal document Q&A system that:
 - Includes confidence ratings and mandatory legal disclaimers
 - Exposes a flexible GraphQL API for frontend consumption
 
-## What's next
+## What's Next
 
 - [RAG Architecture Overview](/docs/genai/rag/architecture-overview) -- Deep dive into RAG design patterns
 - [MCP Security](/docs/genai/mcp/mcp-security) -- Secure your MCP connections for sensitive legal data

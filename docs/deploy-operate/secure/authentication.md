@@ -6,7 +6,7 @@ title: Authentication
 
 Secure your production services with industry-standard authentication mechanisms. Ballerina provides declarative auth configuration at the service level.
 
-## JWT validation
+## JWT Validation
 
 Protect services by validating JWT tokens from an identity provider:
 
@@ -41,7 +41,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-## OAuth 2.0 introspection
+## OAuth 2.0 Introspection
 
 Validate opaque tokens by calling the token introspection endpoint:
 
@@ -62,7 +62,7 @@ Validate opaque tokens by calling the token introspection endpoint:
 service /admin on secureListener { }
 ```
 
-## Basic authentication
+## Basic Authentication
 
 For internal or legacy services:
 
@@ -106,7 +106,7 @@ listener http:Listener mtlsListener = new (9443, {
 });
 ```
 
-## Combining authentication methods
+## Combining Authentication Methods
 
 Support multiple auth mechanisms on a single service — Ballerina tries each in order:
 
@@ -120,7 +120,7 @@ Support multiple auth mechanisms on a single service — Ballerina tries each in
 service /api on secureListener { }
 ```
 
-## What's next
+## What's Next
 
 - [API Security & Rate Limiting](api-security.md) — Rate limiting and input validation
 - [Secrets & Encryption](secrets-encryption.md) — Manage credentials securely

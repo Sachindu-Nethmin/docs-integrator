@@ -14,7 +14,7 @@ Send an SMS notification via Twilio whenever a Salesforce opportunity is marked 
 - Twilio account with an SMS-enabled phone number
 - Twilio Account SID and Auth Token
 
-## Quick run
+## Quick Run
 
 ```bash
 # Clone the samples repository
@@ -50,9 +50,9 @@ defaultRecipient = "+1987654321"
 messageTemplate = "Congrats! Opportunity '{{name}}' worth {{amount}} has been closed-won by {{owner}}."
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 salesforce-to-twilio-sms/
@@ -65,7 +65,7 @@ salesforce-to-twilio-sms/
 └── types.bal
 ```
 
-### Defining the data types
+### Defining the Data Types
 
 ```ballerina
 // Salesforce Opportunity change event
@@ -86,7 +86,7 @@ type SmsNotification record {|
 |};
 ```
 
-### Listening to Salesforce events
+### Listening to Salesforce Events
 
 The `sf_listener.bal` file subscribes to Salesforce Change Data Capture events for the Opportunity object:
 
@@ -174,20 +174,20 @@ function getOwnerName(string ownerId) returns string|error {
 }
 ```
 
-### Key points
+### Key Points
 
 - **Event-driven architecture**: The integration uses Salesforce Change Data Capture (CDC) to react to opportunity stage changes in near real time without polling.
 - **Template-based messages**: The SMS body is constructed from a configurable template with placeholder substitution.
 - **Fallback recipient**: If the opportunity owner does not have a mobile phone on file, the SMS is sent to a configured default recipient.
 
-## Customization notes
+## Customization Notes
 
 - **Trigger on other stages**: Modify the stage check to send notifications for different pipeline stages (e.g., "Negotiation", "Proposal").
 - **Add Slack in addition to SMS**: Use the `ballerinax/slack` connector to also post a message to a sales channel.
 - **Include account details**: Extend the notification to include the account name by querying the Account object using `AccountId`.
 - **Rate limiting**: Add throttling logic to avoid exceeding Twilio's SMS rate limits during bulk opportunity updates.
 
-## What's next
+## What's Next
 
 - [Kafka to Salesforce Price Book](kafka-salesforce-pricebook.md) -- Stream pricing updates to Salesforce
 - [Shopify to Outlook Welcome Email](shopify-outlook-email.md) -- Send welcome emails for new customers

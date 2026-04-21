@@ -6,7 +6,7 @@ title: Integration Artifacts
 
 Integration artifacts are the building blocks of your integrations. Each artifact type serves a specific purpose -- exposing an endpoint, reacting to events, processing files, running scheduled tasks, or powering AI agents. Understanding these types helps you choose the right approach for each integration scenario.
 
-## Artifact overview
+## Artifact Overview
 
 WSO2 Integrator supports the following artifact types:
 
@@ -32,7 +32,7 @@ WSO2 Integrator supports the following artifact types:
 | **Other** | Connection | Reusable configurations for external systems |
 | **Other** | Configuration | Environment-specific settings |
 
-## Five primary integration types
+## Five Primary Integration Types
 
 | Type | Purpose | Trigger |
 |---|---|---|
@@ -42,7 +42,7 @@ WSO2 Integrator supports the following artifact types:
 | **Event Integration** | Reactive workflows from message sources | Kafka, RabbitMQ, MQTT messages |
 | **File Integration** | Batch uploads, scheduled file processing | Files appearing in folder/FTP |
 
-## How artifacts relate
+## How Artifacts Relate
 
 A typical integration combines multiple artifact types. For example, an order processing system might include:
 
@@ -59,11 +59,11 @@ flowchart TD
     Handler ----> Automation
 ```
 
-## Creating artifacts
+## Creating Artifacts
 
 You can create artifacts in two ways:
 
-### Visual designer
+### Visual Designer
 
 1. Open the WSO2 Integrator sidebar in VS Code.
 2. Click the **+** button next to the artifact category.
@@ -84,7 +84,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-## Artifact lifecycle
+## Artifact Lifecycle
 
 Every artifact follows the same lifecycle:
 
@@ -94,7 +94,7 @@ Every artifact follows the same lifecycle:
 4. **Test** -- Validate with Try-It, unit tests, or mocks
 5. **Deploy** -- Package and deploy to a runtime environment
 
-## What's next
+## What's Next
 
 - [Services](service/http-service.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
 - [Event Handlers](event/kafka.md) -- React to messages from brokers and external systems

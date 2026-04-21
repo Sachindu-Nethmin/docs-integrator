@@ -13,7 +13,7 @@ Send a personalized welcome email via Microsoft Outlook whenever a new customer 
 - Microsoft Azure app registration with Mail.Send permissions (Microsoft Graph API)
 - An Outlook or Microsoft 365 mailbox to send from
 
-## Quick run
+## Quick Run
 
 ```bash
 # Clone the samples repository
@@ -49,9 +49,9 @@ senderEmail = "welcome@yourcompany.com"
 subject = "Welcome to Our Store!"
 ```
 
-## Code walkthrough
+## Code Walkthrough
 
-### Project structure
+### Project Structure
 
 ```
 shopify-to-outlook-email/
@@ -65,7 +65,7 @@ shopify-to-outlook-email/
 └── types.bal
 ```
 
-### Defining the data types
+### Defining the Data Types
 
 ```ballerina
 // Shopify new customer webhook payload
@@ -113,7 +113,7 @@ type OutlookEmailAddress record {|
 |};
 ```
 
-### Receiving Shopify webhooks
+### Receiving Shopify Webhooks
 
 The `shopify_webhook.bal` file exposes an HTTP endpoint that receives Shopify customer creation webhooks:
 
@@ -164,7 +164,7 @@ function verifyShopifyHmac(string payload, string? hmacHeader) returns boolean {
 }
 ```
 
-### Building the welcome email
+### Building the Welcome Email
 
 ```ballerina
 function buildWelcomeEmailHtml(ShopifyCustomer customer) returns string {
@@ -206,7 +206,7 @@ function buildWelcomeEmailHtml(ShopifyCustomer customer) returns string {
 }
 ```
 
-### Sending via Microsoft outlook
+### Sending via Microsoft Outlook
 
 ```ballerina
 import ballerina/http;
@@ -253,21 +253,21 @@ function sendWelcomeEmail(ShopifyCustomer customer) returns error? {
 }
 ```
 
-### Key points
+### Key Points
 
 - **Webhook-driven**: The integration reacts instantly to new customer registrations via Shopify webhooks, with no polling required.
 - **HMAC verification**: Every incoming webhook is validated using the Shopify HMAC-SHA256 signature to prevent unauthorized requests.
 - **HTML email**: The welcome email is built as branded HTML with the customer's name and location personalized.
 - **Microsoft Graph API**: Emails are sent through the Microsoft Graph API, supporting any Outlook or Microsoft 365 mailbox.
 
-## Customization notes
+## Customization Notes
 
 - **Customize the email template**: Modify `buildWelcomeEmailHtml` to match your brand's design, add product images, or include a discount code.
 - **Add a delay**: Introduce a short delay (e.g., 5 minutes) before sending the welcome email to avoid overwhelming new customers with immediate messages.
 - **Conditional emails**: Check `accepts_marketing` to send different content to customers who opted in versus those who did not.
 - **Attach a coupon**: Generate a unique discount code via the Shopify Admin API and include it in the welcome email.
 
-## What's next
+## What's Next
 
 - [HubSpot to Google Contacts](hubspot-google-contacts.md) -- Sync CRM contacts to Google Contacts
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS on Salesforce events

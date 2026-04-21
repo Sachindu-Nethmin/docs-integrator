@@ -6,11 +6,11 @@ title: Handling Responses
 
 LLM responses can take several seconds to generate fully. WSO2 Integrator provides streaming, context window management, and error handling to build reliable, responsive AI-powered services.
 
-## Streaming responses
+## Streaming Responses
 
 Streaming sends partial responses to clients as they are produced, reducing perceived latency.
 
-### SSE streaming
+### SSE Streaming
 
 Server-Sent Events (SSE) is the most common transport for streaming LLM responses over HTTP.
 
@@ -33,7 +33,7 @@ service /api on new http:Listener(8090) {
 }
 ```
 
-### WebSocket streaming
+### WebSocket Streaming
 
 WebSocket provides bidirectional streaming for interactive chat sessions.
 
@@ -70,7 +70,7 @@ service class ChatWebSocketService {
 }
 ```
 
-### Direct provider streaming
+### Direct Provider Streaming
 
 Stream responses directly from the LLM provider without an agent.
 
@@ -90,7 +90,7 @@ function streamCompletion(string prompt) returns stream<string, error?>|error {
 }
 ```
 
-### Streaming with tool call events
+### Streaming with Tool Call Events
 
 When an agent calls tools during streaming, emit tool-related events alongside tokens.
 
@@ -123,11 +123,11 @@ resource function post chat(@http:Payload ChatRequest request)
 }
 ```
 
-## Managing context Windows
+## Managing Context Windows
 
 Every LLM has a fixed context window. Managing it is essential for reliable agents that handle long conversations and large documents.
 
-### Token budget overview
+### Token Budget Overview
 
 ```
 Context Window (128K)
@@ -139,7 +139,7 @@ Context Window (128K)
   Reserved for Response ~2,000 tokens
 ```
 
-### Chunking large documents
+### Chunking Large Documents
 
 Split large documents into smaller chunks and process them individually.
 
@@ -161,7 +161,7 @@ function processLargeDocument(string document) returns string|error {
 }
 ```
 
-### Trimming tool output
+### Trimming Tool Output
 
 Trim large tool responses to prevent exceeding context window limits.
 
@@ -182,7 +182,7 @@ isolated function searchDocuments(string query) returns json|error {
 }
 ```
 
-## Error handling
+## Error Handling
 
 Handle errors gracefully during streaming and LLM interactions.
 
@@ -202,7 +202,7 @@ resource function post chat(@http:Payload ChatRequest request)
 }
 ```
 
-## When to use streaming
+## When to Use Streaming
 
 | Scenario | Streaming | Non-Streaming |
 |----------|-----------|---------------|
@@ -215,7 +215,7 @@ resource function post chat(@http:Payload ChatRequest request)
 
 Use streaming when a human is waiting for the response. Use non-streaming for machine-to-machine integrations where you need the complete response before proceeding.
 
-## Context window sizing guide
+## Context Window Sizing Guide
 
 | Model | Context Window | Recommended Max History | Reserve for Response |
 |-------|---------------|------------------------|---------------------|
@@ -225,7 +225,7 @@ Use streaming when a human is waiting for the response. Use non-streaming for ma
 | Gemini 2.0 Flash | 1M | 800K tokens | 8K tokens |
 | Llama 3 (8B) | 8K | 6K tokens | 1K tokens |
 
-## What's next
+## What's Next
 
 - [Configuring Providers](/docs/genai/develop/direct-llm/configuring-providers) -- Choose models with streaming support
 - [Constructing Prompts](/docs/genai/develop/direct-llm/constructing-prompts) -- Write effective prompts

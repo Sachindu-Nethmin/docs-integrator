@@ -8,9 +8,9 @@ LLM API calls are priced per token. Without controls, a busy agent can accumulat
 
 Cost management is not just about budgets -- it also prevents runaway loops, abusive usage, and unexpected spikes from affecting your production systems.
 
-## Tracking token usage
+## Tracking Token Usage
 
-### Per-Request usage
+### Per-Request Usage
 
 Every LLM call returns usage information that you can capture and log.
 
@@ -33,7 +33,7 @@ function chatWithTracking(string message, string sessionId) returns string|error
 }
 ```
 
-### Aggregated usage tracking
+### Aggregated Usage Tracking
 
 Track cumulative usage across sessions and time periods.
 
@@ -71,9 +71,9 @@ function calculateCost(agent:TokenUsage usage) returns decimal {
 }
 ```
 
-## Setting spending limits
+## Setting Spending Limits
 
-### Per-Session limits
+### Per-Session Limits
 
 Cap token usage per conversation session.
 
@@ -93,7 +93,7 @@ final agent:ChatAgent limitedAgent = check new (
 );
 ```
 
-### Per-User limits
+### Per-User Limits
 
 Prevent individual users from consuming excessive resources.
 
@@ -107,7 +107,7 @@ final guardrails:SpendingLimit userLimit = new ({
 });
 ```
 
-### Global budget limits
+### Global Budget Limits
 
 Set organization-wide spending caps.
 
@@ -121,9 +121,9 @@ final guardrails:SpendingLimit globalLimit = new ({
 });
 ```
 
-## Cost optimization strategies
+## Cost Optimization Strategies
 
-### Model tiering
+### Model Tiering
 
 Use cheaper models for simple tasks and expensive models only where needed.
 
@@ -157,7 +157,7 @@ final agent:ChatAgent specialist = check new (
 );
 ```
 
-### Prompt optimization
+### Prompt Optimization
 
 Shorter prompts cost less. Trim unnecessary verbosity from system prompts and tool descriptions.
 
@@ -174,7 +174,7 @@ systemPrompt: string `Customer support assistant for Acme Corp.
     Use tools to verify information before responding.`  // ~30 tokens
 ```
 
-### Caching frequent queries
+### Caching Frequent Queries
 
 Cache responses for common, deterministic queries.
 
@@ -200,7 +200,7 @@ function cachedClassify(string text) returns string|error {
 }
 ```
 
-### Reducing context size
+### Reducing Context Size
 
 Minimize the tokens sent with each request by trimming conversation history and tool results.
 
@@ -217,7 +217,7 @@ final agent:ChatAgent efficientAgent = check new (
 );
 ```
 
-## Usage alerts
+## Usage Alerts
 
 Set up alerts for unusual spending patterns.
 
@@ -246,7 +246,7 @@ function checkAndAlert(guardrails:UsageTracker tracker) returns error? {
 }
 ```
 
-## Usage dashboard data
+## Usage Dashboard Data
 
 Export usage data for dashboards and reporting.
 
@@ -268,7 +268,7 @@ service /api/usage on new http:Listener(8091) {
 }
 ```
 
-## What's next
+## What's Next
 
 - [Input/Output Guardrails](input-output-guardrails.md) -- Validate AI inputs and outputs
 - [Content Filtering](content-filtering.md) -- Filter inappropriate content
