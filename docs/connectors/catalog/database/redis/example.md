@@ -23,7 +23,7 @@ flowchart LR
 
 ## Setting up the Redis integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../getting-started/create-integration.md) guide to set up your project first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-a-new-integration.md) guide to set up your project first, then return here to add the connector.
 
 ## Adding the Redis connector
 
@@ -98,7 +98,7 @@ After saving the `set` operation, the Automation canvas displays the complete in
 
 ## Try it yourself
 
-[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/connectors/redis-connector-sample)
+[![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/redis-connector-sample)
 
 ## More code examples
 

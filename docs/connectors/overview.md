@@ -1,16 +1,16 @@
 ---
-title: Connectors Overview
+title: Connectors overview
 ---
 
-# Connectors Overview
+# Connectors overview
 
 Send a Slack notification when an order ships. Read customer records from Salesforce. Write results to a Google Sheet. Query a database and return the data in an API response.
 
-Connectors make these integrations possible—without writing low-level HTTP or protocol code. WSO2 Integrator includes 200+ pre-built connectors for the services your business already uses.
+Connectors make these integrations possible—without writing low-level HTTP or protocol code. WSO2 Integrator includes 400+ pre-built connectors for the services your business already uses.
 
 ## How connectors fit into your integration
 
-Every integration in WSO2 Integrator follows the same pattern:
+Most integrations follow a similar pattern:
 
 ```mermaid
 flowchart LR
@@ -49,7 +49,7 @@ The connector action is where WSO2 Integrator communicates with the external ser
 
 ### Connector
 
-A connector is a pre-built integration component (implemented as a Ballerina package) that wraps an external service's API into ready-to-use operations. Instead of constructing HTTP requests and parsing responses by hand, you select an action from the connector's list and configure its inputs.
+A connector is a pre-built integration component that exposes an external service's API as ready-to-use operations. Instead of constructing HTTP requests and parsing responses by hand, you select an action from the connector's list and configure its inputs.
 
 ### Connection
 
@@ -72,7 +72,14 @@ Some connectors also support triggers—inbound events the external service push
 
 Most connectors are action-only. Trigger support is available for select connectors—primarily databases (MySQL, PostgreSQL, MSSQL), messaging systems (Kafka, RabbitMQ), and file storage. See each connector's documentation for what's available.
 
-## Next steps
+## Libraries without client connectors
+
+Not everything in the connector catalog is a client connector. Some packages are libraries that provide integration capabilities without a client — PDF generation, string manipulation, I/O, and cloud function invocation (AWS Lambda, Azure Functions) fall into this category. Use them inside your integration logic the same way you would any other Ballerina library.
+
+## What's next
 
 - [Connector catalog](catalog/index.mdx) — Browse all available connectors
-- [Connections](../develop/integration-artifacts/supporting/connections.md) — Create and manage connections
+- [Connection configuration](connection-configuration.md) — Configure credentials and endpoint settings
+- [Connections](../develop/integration-artifacts/supporting/connections.md) — Create and manage connections in your integration
+- [Error handling](error-handling-per.md) — Handle failures and retries in connector calls
+- [Build your own connector](build-your-own/build-own.md) — Create a custom connector for a service not in the catalog

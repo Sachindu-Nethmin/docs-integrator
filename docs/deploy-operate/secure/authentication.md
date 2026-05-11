@@ -2,11 +2,11 @@
 title: Authentication
 ---
 
-# Authentication (OAuth 2.0, JWT, mTLS)
+# Authentication
 
-Secure your production services with industry-standard authentication mechanisms. Ballerina provides declarative auth configuration at the service level.
+Secure your production services with industry-standard authentication mechanisms. WSO2 Integrator provides declarative auth configuration at the service level.
 
-## JWT Validation
+## JWT validation
 
 Protect services by validating JWT tokens from an identity provider:
 
@@ -41,7 +41,7 @@ service /api on new http:Listener(9090) {
 }
 ```
 
-## OAuth 2.0 Introspection
+## OAuth 2.0 introspection
 
 Validate opaque tokens by calling the token introspection endpoint:
 
@@ -62,7 +62,7 @@ Validate opaque tokens by calling the token introspection endpoint:
 service /admin on secureListener { }
 ```
 
-## Basic Authentication
+## Basic authentication
 
 For internal or legacy services:
 
@@ -89,26 +89,26 @@ scopes = ["admin", "read"]
 
 ## Mutual TLS (mTLS)
 
-Require client certificates for service-to-service authentication:
+Require client certificates for service-to-service authentication. Before configuring mTLS, set up your keystores and truststores as described in [Keystores and truststores](keystore-truststore.md).
 
 ```ballerina
 listener http:Listener mtlsListener = new (9443, {
     secureSocket: {
         key: {
-            certFile: "/certs/server.crt",
-            keyFile: "/certs/server.key"
+            certFile: "/path/to/server.crt",
+            keyFile: "/path/to/server.key"
         },
         mutualSsl: {
             verifyClient: http:REQUIRE,
-            cert: "/certs/trusted-client-ca.crt"
+            cert: "/path/to/ca.crt"
         }
     }
 });
 ```
 
-## Combining Authentication Methods
+## Combining authentication methods
 
-Support multiple auth mechanisms on a single service — Ballerina tries each in order:
+Support multiple auth mechanisms on a single service. WSO2 Integrator tries each handler in order:
 
 ```ballerina
 @http:ServiceConfig {
@@ -120,7 +120,8 @@ Support multiple auth mechanisms on a single service — Ballerina tries each in
 service /api on secureListener { }
 ```
 
-## What's Next
+## What's next
 
-- [API Security & Rate Limiting](api-security.md) — Rate limiting and input validation
-- [Secrets & Encryption](secrets-encryption.md) — Manage credentials securely
+- [SSO configuration](sso-configuration.md) — Set up single sign-on using OpenID Connect
+- [API security and rate limiting](api-security-rate-limiting.md) — Rate limiting and input validation for your APIs
+- [Secrets and encryption](secrets-encryption.md) — Manage credentials securely

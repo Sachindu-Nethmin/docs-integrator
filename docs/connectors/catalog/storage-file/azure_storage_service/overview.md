@@ -1,6 +1,8 @@
 ---
-title: Azure Storage Service Overview
+title: Overview
 ---
+
+# Overview
 
 Azure Storage Service provides scalable cloud storage for blobs (binary large objects) and file shares on Microsoft Azure. The Ballerina `ballerinax/azure_storage_service` connector (v4.3.3) exposes two sub-modules — `blobs` for working with Azure Blob Storage containers and blob objects, and `files` for managing Azure File Shares — enabling seamless integration of Azure storage into Ballerina-based applications.
 
@@ -25,13 +27,13 @@ Actions are operations you invoke on Azure Storage from your integration — lis
 | `File Client` | File and directory CRUD, direct upload, byte-range read, list files and directories, file metadata |
 | `File Management Client` | File share create/delete, list shares, get and set file service properties |
 
-See the **[Action Reference](action-reference.md)** for the full list of operations, parameters, and sample code for each client.
+See the **[Action Reference](actions.md)** for the full list of operations, parameters, and sample code for each client.
 
 ## Documentation
 
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating an Azure Storage account and obtaining the credentials required to use the Azure Storage Service connector.
 
-* **[Action Reference](action-reference.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
 
 ## How to contribute
 

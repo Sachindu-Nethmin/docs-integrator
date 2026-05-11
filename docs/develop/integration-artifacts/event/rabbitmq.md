@@ -60,6 +60,8 @@ Service configuration sets the queue the service subscribes to and applies advan
 
 In the **Service Designer**, click the **Configure** icon in the header to open the **RabbitMQ Event Integration Configuration** panel. Select **RabbitMQ Event Integration** in the left panel.
 
+![RabbitMQ Event Integration Configuration panel](/img/develop/integration-artifacts/event/rabbitmq/step-service-config.png)
+
 | Field | Description |
 |---|---|
 | **Queue Name** | Name of the queue this service listens to. |
@@ -235,4 +237,4 @@ Each handler receives a `rabbitmq:AnydataMessage` parameter with the message con
 
 - [Kafka](kafka.md) — consume messages from Apache Kafka topics
 - [Connections](../supporting/connections.md) — reuse RabbitMQ connection credentials across services
-- [RabbitMQ connector reference](../../../connectors/catalog/messaging/rabbitmq/overview.md) — full connector API reference and trigger reference
+- [RabbitMQ connector reference](../../../connectors/catalog/messaging/rabbitmq/connector-overview.md) — full connector API reference and trigger reference

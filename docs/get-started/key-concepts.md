@@ -8,7 +8,7 @@ This page introduces every major product component in 2–3 sentences. Think of 
 
 ## Project
 
-A workspace that contains your integration code, dependencies, configuration, and deployment artifacts. Each project is self-contained with its own `Ballerina.toml` file. For more information, see [Project structure](/docs/develop/project-views/overview).
+A workspace that contains your integration code, dependencies, configuration, and deployment artifacts. Each project is self-contained with its own `Ballerina.toml` file. For more information, see [Project structure](/docs/develop/understand-ide/views/project-view).
 
 ## Integration
 
@@ -16,7 +16,7 @@ A reusable piece of business logic that connects systems, transforms data, or or
 
 ## Library
 
-A shareable collection of reusable components, functions, and connectors packaged for distribution. Libraries let you build once and use across multiple projects or share with your team. For more information, see [Organize code](/docs/develop/organize-code/).
+A shareable collection of reusable components, functions, and connectors packaged for distribution. Libraries let you build once and use across multiple projects or share with your team.
 
 ## Services and listeners
 
@@ -56,9 +56,9 @@ Integrations where the listener connects to a remote file server (FTP, SFTP, FTP
 
 Pre-built modules for connecting to external systems—Salesforce, databases, Kafka, OpenAI, and 200+ more. Each connector handles authentication, serialization, and error handling. For more information, see [Connectors](/docs/connectors/overview).
 
-## Visual data mapper
+## Data mapper
 
-A visual data transformation tool in the WSO2 Integrator design view. Map fields between source and target schemas using the design interface, with AI-assisted suggestions. For more information, see [Visual data mapper](/docs/develop/transform/data-mapper).
+A visual data transformation tool in the WSO2 Integrator design view. Map fields between source and target schemas using the design interface, with AI-assisted suggestions. For more information, see [Data mapper](/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper).
 
 ## Natural functions
 
