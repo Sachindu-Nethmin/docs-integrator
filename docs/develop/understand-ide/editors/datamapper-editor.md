@@ -1,14 +1,20 @@
 ---
-title: Data Mapper editor
+title: Data Mapper Editor
 ---
 
-# Data Mapper editor
+# Data Mapper Editor
 
 The Data Mapper editor is the visual surface you open for any data mapper in WSO2 Integrator. It shows the source types on the left, the target type on the right, and the mapping canvas between them, so you can wire fields by drawing links or filling expressions instead of hand-writing the conversion function. The data mapper itself is a typed function with one or more inputs and one output, and every change you make in the editor is reflected in the underlying function source.
 
 For end-to-end usage, including how to create a data mapper, work with arrays and nested records, and apply transformations, see [Data mapper](/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper).
 
 ![Data Mapper editor for the transform data mapper](/img/develop/understand-ide/editors/datamapper-editor/overview.png)
+
+## Open the editor
+
+Select a data mapper under **Data Mappers** in the project explorer, or select the data mapper node from a flow in the [Flow Diagram editor](flow-diagram-editor.md). The editor opens with the data mapper's inputs on the left, the output on the right, and the mapping canvas between them.
+
+To create a new data mapper before opening the editor, see [Data mapper](/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper).
 
 ## Header
 

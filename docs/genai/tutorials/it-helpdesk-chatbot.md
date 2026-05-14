@@ -27,7 +27,7 @@ Before getting started, ensure that the following requirements are met:
 
 - Install the [WSO2 Integrator VS Code extension](/docs/get-started/install)
 - Set up an MSSQL database for agent memory persistence
-- Have a basic understanding of memory configuration concepts. For more information, refer to [Memory Configuration](/docs/genai/agents/memory-configuration)
+- Have a basic understanding of memory configuration concepts. For more information, refer to [Memory](/docs/genai/develop/agents/memory)
 
 ## Architecture
 
@@ -212,8 +212,6 @@ curl -X POST http://localhost:9090/hthr/chat \
       }'
 ```
 
-Example response:
-
 ```json
 {
   "message":"To address your VPN issue, please restart the VPN client and try reconnecting. If you have already done this, let me know for further assistance!"
@@ -230,8 +228,6 @@ curl -X POST http://localhost:9090/hthr/chat \
         "message":"I already restarted it"
       }'
 ```
-
-Example response:
 
 ```json
 {
@@ -257,8 +253,6 @@ curl -X POST http://localhost:9090/hthr/chat \
       }'
 ```
 
-Example response:
-
 ```json
 {
   "message":"I currently don't have any further suggestions from the knowledge base. However, you might try these:
@@ -283,8 +277,6 @@ curl -X POST http://localhost:9090/hthr/chat \
       }'
 ```
 
-Example response:
-
 ```json
 {
   "message":"Yes, your issue is that your VPN is not working, and you've already restarted the client. Would you like me to assist you with anything specific regarding that?"
@@ -292,7 +284,3 @@ Example response:
 ```
 
 The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL backed memory and retrieved using the same `sessionId`.
-
-## What's next
-
-[Building a Legal Document Q&A System with MCP and RAG](genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag.md) - Explore memory options in depth

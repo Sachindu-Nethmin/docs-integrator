@@ -1,8 +1,8 @@
 ---
-title: Import a project to WSO2 Cloud
+title: Import a Project to WSO2 Cloud
 ---
 
-# Import a project
+# Import a Project
 
 If you have an existing project created with the WSO2 Integrator IDE in a Git repository, you can import it directly into WSO2 Cloud. During import, you configure each integration in the project and WSO2 Cloud creates them all at once.
 
@@ -17,6 +17,10 @@ If you have an existing project created with the WSO2 Integrator IDE in a Git re
     ![Organization Overview](/img/deploy/cloud/import-project/organization-overview.png)
 3. Click **Import** to import an existing WSO2 Integrator project.
 4. Select your Git provider and complete the authorization flow in the browser, then return to WSO2 Cloud.
+
+    :::warning
+    One-click OAuth2 authorization is only available for GitHub. To use Bitbucket, GitLab, or Azure DevOps, you must first add your credentials at the organization level. See [Connect a Git repository](../../manage/cloud/cicd/connect-git-repository.md) for instructions.
+    :::
 
 ## Configure and import the project
 

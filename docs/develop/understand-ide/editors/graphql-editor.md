@@ -1,14 +1,20 @@
 ---
-title: GraphQL editor
+title: GraphQL Editor
 ---
 
-# GraphQL editor
+# GraphQL Editor
 
 The GraphQL editor, also known as the **GraphQL diagram**, is the editor you open for any GraphQL service in WSO2 Integrator. It renders the service as a node on a canvas, lists every query, mutation, and subscription the service exposes, and draws lines from each operation to the types it returns or accepts. Use it to add or remove operations, edit their signatures, and navigate to the resolver implementation, all from a single view.
 
 For end-to-end usage, including how to create a GraphQL service from scratch or import an existing schema, see [GraphQL Service](/docs/develop/integration-artifacts/service/graphql).
 
 ![GraphQL editor showing a GraphQL service with its queries, subscription, and referenced types](/img/develop/understand-ide/editors/graphql-editor/overview.png)
+
+## Open the editor
+
+Select a GraphQL service under **Entry points** in the project explorer, or select the service node on the [Integrator view](../views/integration-view.md) design canvas. The editor opens with the service node and the types it references on the canvas.
+
+To create a new GraphQL service before opening the editor, see [GraphQL Service](/docs/develop/integration-artifacts/service/graphql).
 
 ## Header
 
